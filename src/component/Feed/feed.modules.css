@@ -1,0 +1,12 @@
+.feed {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 2px;
+}
+
+.feed input {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
