@@ -43,7 +43,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>LogBlocksLearn (TM)</h1>
+      <h1>LogBlocks</h1>
+      {/* <p>A New Block-based Learning Approach</p> */}
       <div className="createResource">
         <input
           placeholder="name"
