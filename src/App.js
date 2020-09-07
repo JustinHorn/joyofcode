@@ -43,8 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>hello guest</h1>
-
+      <h1>LogBlocksLearn (TM)</h1>
       <div className="createResource">
         <input
           placeholder="name"
