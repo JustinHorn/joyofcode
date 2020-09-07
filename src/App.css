@@ -11,32 +11,8 @@
   max-width: 500px;
 }
 
-.tags {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style-type: none;
-}
-
-.tags li {
-  margin: 5px;
-  background-color: rgb(128, 128, 128, 0.2);
-  border-radius: 5px;
-  padding: 4px;
-}
-
 .thread {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.resource {
-  max-width: 500px;
-}
-
-.attributes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: left;
 }

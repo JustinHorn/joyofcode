@@ -1,34 +1,24 @@
 import React, { useState } from "react";
 import "./App.css";
-
-const resource = {
-  name: "testR",
-  url: "https://www.google.com",
-  tags: ["tag1", "tag2", "tag3"],
-  author: "Josss Doebler",
-  date: 11000,
-};
-
-// const tag = {
-//   tags: ["react", "useEffect", "node"],
-// };
+import Resource from "component/Resource";
+import { data } from "mockData";
 
 function App() {
-  const [resources, setResources] = useState([resource]);
+  const [resources, setResources] = useState(data.resources);
 
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState("");
-  const [author, setAuthor] = useState("");
+  const [postedBy, setPostedBy] = useState("");
 
   const createResource = () => {
     //check if data is valid
-    if (name.trim() && url.trim() && tags.trim() && author.trim()) {
+    if (name.trim() && url.trim() && tags.trim() && postedBy.trim()) {
       const new_resource = {
         name,
         url,
         tags: tags.split(","),
-        author,
+        postedBy,
         date: Date.now(),
       };
 
@@ -37,7 +27,7 @@ function App() {
       setName("");
       setUrl("");
       setTags("");
-      setAuthor("");
+      setPostedBy("");
     }
   };
 
@@ -63,8 +53,8 @@ function App() {
         ></input>
         <input
           placeholder="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          value={postedBy}
+          onChange={(e) => setPostedBy(e.target.value)}
         ></input>
         <button onClick={createResource}>create new resource</button>
       </div>
@@ -77,25 +67,5 @@ function App() {
     </div>
   );
 }
-
-const Resource = ({ name, tags, url, author, date }) => (
-  <div className="resource">
-    <h4>
-      <a href={url}> {name} </a>
-    </h4>
-    <div className="attributes">
-      <span>
-        <ul className="tags">
-          {tags?.map((x) => (
-            <li>{x}</li>
-          ))}
-        </ul>
-      </span>
-      <span> {author}</span>
-
-      <span>{date}</span>
-    </div>
-  </div>
-);
 
 export default App;

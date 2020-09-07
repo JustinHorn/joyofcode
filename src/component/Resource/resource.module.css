@@ -1,0 +1,33 @@
+.resource {
+  max-width: 500px;
+  text-align: left;
+  margin: 5px;
+}
+
+.resource h4 {
+  margin: 5px;
+  margin-left: 0;
+  font-size: 0.8em;
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  font-size: 0.7em;
+}
+
+.tags {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+}
+
+.tags li {
+  background-color: rgba(216, 126, 56, 0.811);
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 1ch;
+  margin-right: 2px;
+}
