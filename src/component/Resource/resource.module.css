@@ -8,6 +8,11 @@
   margin: 5px;
   margin-left: 0;
   font-size: 0.8em;
+  color: grey;
+}
+
+.resource a {
+  color: black;
 }
 
 .postInfo {

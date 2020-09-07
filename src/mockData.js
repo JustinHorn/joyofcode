@@ -2,7 +2,7 @@ export const data = {
   resources: [
     {
       name: "testR",
-      url: "https://www.google.com",
+      url: "https://google.com",
       tags: ["tag1", "tag2", "tag3"],
       //   access: "free",
       postedBy: "Josss Doebler",
@@ -33,14 +33,14 @@ export const data = {
     },
     {
       name: "JavaScript tutorial",
-      url: "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+      url: "https://youtube.com/watch?v=W6NZfCO5SIk",
       tags: ["JavaScript", "beginner"],
       postedBy: "Justin Horn",
       date: 11000,
     },
     {
       name: "Es-lint by Airbnb",
-      url: "https://www.npmjs.com/package/eslint-config-airbnb",
+      url: "https://npmjs.com/package/eslint-config-airbnb",
       tags: ["npm", "eslint", "airnbn"],
       postedBy: "Airbnb Team",
       date: Date.now(),

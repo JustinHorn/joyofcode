@@ -1,66 +1,38 @@
 import React, { useState } from "react";
 import "./App.css";
-import Resource from "component/Resource";
 import { data } from "mockData";
+import Resource from "component/Resource";
+import CreateResource from "component/CreateResource";
+import { useResources } from "helper";
 
 function App() {
-  const [resources, setResources] = useState(data.resources);
+  const { resources, createResource } = useResources(data);
 
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
-  const [tags, setTags] = useState("");
-  const [postedBy, setPostedBy] = useState("");
+  const [filters, setFilters] = useState("");
 
-  const createResource = () => {
-    //check if data is valid
-    if (name.trim() && url.trim() && tags.trim() && postedBy.trim()) {
-      const new_resource = {
-        name,
-        url,
-        tags: tags.split(","),
-        postedBy,
-        date: Date.now(),
-      };
-
-      setResources([new_resource, ...resources]);
-
-      setName("");
-      setUrl("");
-      setTags("");
-      setPostedBy("");
+  const doTagsApply = (resource) => {
+    if (filters) {
+      const tags = filters.split(",");
+      for (let i = 0; i < tags.length; i++) {
+        if (resource.tags.includes(tags[i])) return true;
+      }
+      return false;
     }
+    return true;
   };
-
   return (
     <div className="App">
-      <h1>LogBlocks</h1>
-      {/* <p>A New Block-based Learning Approach</p> */}
-      <div className="createResource">
-        <input
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        ></input>
-        <input
-          placeholder="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        ></input>
-        <input
-          placeholder="tags"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-        ></input>
-        <input
-          placeholder="author"
-          value={postedBy}
-          onChange={(e) => setPostedBy(e.target.value)}
-        ></input>
-        <button onClick={createResource}>create new resource</button>
-      </div>
+      <h1>Hello</h1>
+      <CreateResource createResource={createResource} />
 
       <div className="thread">
-        {resources.map((x, index) => (
+        <input
+          type="text"
+          placeholder="filter"
+          value={filters}
+          onChange={(e) => setFilters(e.target.value)}
+        ></input>
+        {resources.filter(doTagsApply).map((x, index) => (
           <Resource key={index} {...x}></Resource>
         ))}
       </div>
