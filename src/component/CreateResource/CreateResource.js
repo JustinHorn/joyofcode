@@ -22,22 +22,22 @@ const CreateResource = ({ createResource }) => {
         placeholder="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-      ></input>
+      />
       <input
         placeholder="url"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-      ></input>
+      />
       <input
         placeholder="tags"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
-      ></input>
+      />
       <input
         placeholder="posted by"
         value={postedBy}
         onChange={(e) => setPostedBy(e.target.value)}
-      ></input>
+      />
       <button onClick={create}>create new resource</button>
     </div>
   );

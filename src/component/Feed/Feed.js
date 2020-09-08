@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Resource from "component/Resource";
 import styles from "./feed.modules.css";
 
-const Feed = ({ resources }) => {
+const Feed = ({ resources, deleteResource }) => {
   const [filters, setFilters] = useState("");
 
   const doTagsApply = (resource) => {
@@ -25,7 +25,7 @@ const Feed = ({ resources }) => {
         onChange={(e) => setFilters(e.target.value)}
       ></input>
       {resources.filter(doTagsApply).map((x, index) => (
-        <Resource key={index} {...x}></Resource>
+        <Resource key={index} {...x} deleteResource={deleteResource}></Resource>
       ))}
     </div>
   );

@@ -6,7 +6,7 @@ import moment from "moment";
 
 import Url from "url-parse";
 
-const Resource = ({ name, tags, url, postedBy, date }) => {
+const Resource = ({ id, name, tags, url, postedBy, date, deleteResource }) => {
   return (
     <div className={styles.resource}>
       <div className={styles.resourceBookmark}>B</div>
@@ -18,9 +18,11 @@ const Resource = ({ name, tags, url, postedBy, date }) => {
           {"by " + postedBy + " on " + moment(date).format("YYYY.MM.DD-HH:mm")}
         </div>
         <ul className={styles.tags}>
-          {tags?.map((x) => (
-            <li>{x}</li>
+          {tags?.map((x, index) => (
+            <li key={index}>{x}</li>
           ))}
+          <button>Edit</button>
+          <button onClick={() => deleteResource(id)}>Delete</button>
         </ul>
       </div>
     </div>

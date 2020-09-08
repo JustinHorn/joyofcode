@@ -1,6 +1,7 @@
 export const data = {
   resources: [
     {
+      id: 1,
       name: "testR",
       url: "https://google.com",
       tags: ["tag1", "tag2", "tag3"],
@@ -9,6 +10,7 @@ export const data = {
       date: 11000,
     },
     {
+      id: 2,
       name: "Set Up absolute imports for React",
       url:
         "https://medium.com/hackernoon/absolute-imports-with-create-react-app-4c6cfb66c35d",
@@ -17,6 +19,7 @@ export const data = {
       date: 11000,
     },
     {
+      id: 3,
       name: "How to get previous props state with react hooks",
       url:
         "https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/",
@@ -25,6 +28,8 @@ export const data = {
       date: 110020,
     },
     {
+      id: 4,
+
       name: "How does useEffect work?",
       url: "https://daveceddia.com/useeffect-hook-examples/",
       tags: ["react", "hooks", "useEffect", "state"],
@@ -32,6 +37,8 @@ export const data = {
       date: 1100,
     },
     {
+      id: 5,
+
       name: "JavaScript tutorial",
       url: "https://youtube.com/watch?v=W6NZfCO5SIk",
       tags: ["JavaScript", "beginner"],
@@ -39,6 +46,8 @@ export const data = {
       date: 11000,
     },
     {
+      id: 6,
+
       name: "Es-lint by Airbnb",
       url: "https://npmjs.com/package/eslint-config-airbnb",
       tags: ["npm", "eslint", "airnbn"],
