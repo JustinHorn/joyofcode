@@ -6,11 +6,13 @@ import * as serviceWorker from "./serviceWorker";
 
 import { ResourceContextProvider } from "context/ResourcesContext";
 
+import ApolloProvider from "setUpApollo";
+
 ReactDOM.render(
   <React.StrictMode>
-    <ResourceContextProvider>
+    <ApolloProvider>
       <App />
-    </ResourceContextProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

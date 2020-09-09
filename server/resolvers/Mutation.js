@@ -18,4 +18,10 @@ const addResource = async (p, args, context, i) => {
   return resource;
 };
 
-module.exports = { addResource };
+
+const deleteResource = async (p,args,context,i) => {
+   return await context.prisma.resource.delete({where:{id:Number(args.id)}})
+
+}
+
+module.exports = { addResource,deleteResource };

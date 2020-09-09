@@ -1,10 +1,30 @@
 import React, { useState, useContext } from "react";
 import styles from "./createresource.module.css";
 
-import ResourceContext from "context/ResourcesContext";
+import { gql } from "apollo-boost";
+import { useMutation, useQuery } from "@apollo/client";
+
+const ADDResource_Mutation = gql`
+  mutation addResource(
+    $author: String!
+    $title: String!
+    $href: String!
+    $tags: [String!]!
+  ) {
+    addResource(author: $author, title: $title, href: $href, tags: $tags) {
+      title
+      author
+      href
+      date
+      tags {
+        name
+      }
+    }
+  }
+`;
 
 const CreateResource = ({}) => {
-  const { createResource } = useContext(ResourceContext);
+  const [mutate, { error, data }] = useMutation(ADDResource_Mutation);
 
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
@@ -12,7 +32,16 @@ const CreateResource = ({}) => {
   const [postedBy, setPostedBy] = useState("");
 
   const create = () => {
-    if (createResource(name, url, tags, postedBy)) {
+    if (name.trim() && url.trim() && tags.trim() && postedBy.trim()) {
+      const variables = {
+        author: postedBy.trim(),
+        href: url.trim(),
+        tags: tags.trim().split(","),
+        title: name.trim(),
+      };
+
+      mutate({ variables });
+
       setName("");
       setUrl("");
       setTags("");
