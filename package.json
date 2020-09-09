@@ -1,0 +1,32 @@
+{
+  "name": "blocklearning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "watch": "nodemon -e .js,.graphql",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && yarn --only=dev && yarn && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinHorn/block_learning.git"
+  },
+  "author": "Justin Horn",
+  "dependencies": {
+    "@prisma/cli": "2.5.1",
+    "@prisma/client": "2.5.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "nodemon": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/JustinHorn/block_learning/issues"
+  },
+  "homepage": "https://github.com/JustinHorn/block_learning#readme"
+}

@@ -1,0 +1,26 @@
+type Query {
+  hello: String!
+  feed: [Resource!]!
+}
+
+type Mutation {
+  addResource(
+    author: String!
+    title: String!
+    href: String!
+    tags: [String!]!
+  ): Resource
+}
+
+type Resource {
+  id: Int!
+  title: String!
+  href: String!
+  author: String!
+  tags: [Tag!]!
+}
+type Tag {
+  id: Int!
+  name: String!
+  resources: [Resource!]!
+}
