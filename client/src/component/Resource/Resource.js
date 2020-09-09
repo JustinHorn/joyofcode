@@ -21,7 +21,6 @@ const Resource = ({ id, name, tags, url, postedBy, date, deleteResource }) => {
           {tags?.map((x, index) => (
             <li key={index}>{x}</li>
           ))}
-          <button>Edit</button>
           <button onClick={() => deleteResource(id)}>Delete</button>
         </ul>
       </div>

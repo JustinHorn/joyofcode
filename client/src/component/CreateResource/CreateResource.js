@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./createresource.module.css";
 
-const CreateResource = ({ createResource }) => {
+import ResourceContext from "context/ResourcesContext";
+
+const CreateResource = ({}) => {
+  const { createResource } = useContext(ResourceContext);
+
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState("");

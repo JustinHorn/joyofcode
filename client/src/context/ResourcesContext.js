@@ -2,30 +2,49 @@ import React, { useState, useEffect } from "react";
 
 import { data } from "mockData";
 
+import { getMaxId } from "helper";
+
+const ResourceContext = React.createContext([]);
+
+export default ResourceContext;
+
 const storageResources = JSON.parse("" + localStorage.getItem("resources"));
 
 let start_resources = storageResources?.length
   ? storageResources
   : data.resources;
 
-export const useResources = () => {
+let maxId = localStorage.getItem("nextId");
+if (maxId) {
+  maxId = Number(maxId);
+} else {
+  maxId = getMaxId(start_resources) + 1;
+}
+
+export const ResourceContextProvider = ({ children }) => {
   const [resources, setResources] = useState(start_resources);
+
+  const [nextId, setNextId] = useState(maxId);
 
   useEffect(() => {
     localStorage.setItem("resources", JSON.stringify(resources));
   }, [resources]);
 
+  useEffect(() => {
+    localStorage.setItem("nextId", nextId);
+  }, [nextId]);
+
   const createResource = (name, url, tags, postedBy) => {
     if (name.trim() && url.trim() && tags.trim() && postedBy.trim()) {
-      const maxId = getMaxId(resources);
       const new_resource = {
-        id: maxId + 1,
+        id: nextId,
         name,
         url,
         tags: tags.split(","),
         postedBy,
         date: Date.now(),
       };
+      setNextId(nextId + 1);
       setResources([new_resource, ...resources]);
       return true;
     }
@@ -42,15 +61,13 @@ export const useResources = () => {
     }
   };
 
-  return { resources, createResource, deleteResource };
+  return (
+    <ResourceContext.Provider
+      value={{ resources, createResource, deleteResource }}
+    >
+      {children}
+    </ResourceContext.Provider>
+  );
 };
 
 // Math.max(a,b) => returns the greater of the two
-const getMaxId = (resources) => {
-  let max = 0;
-  // let max = [];
-  for (let i = 0; i < resources.length; i++) {
-    max = Math.max(max, resources[i].id);
-  }
-  return max;
-};

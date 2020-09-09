@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Resource from "component/Resource";
-import styles from "./feed.modules.css";
+import styles from "./feed.module.css";
 
-const Feed = ({ resources, deleteResource }) => {
+import ResourceContext from "context/ResourcesContext";
+
+const Feed = ({}) => {
+  const { resources, deleteResource } = useContext(ResourceContext);
   const [filters, setFilters] = useState("");
 
   const doTagsApply = (resource) => {
     if (filters) {
       const tags = filters.split(",");
-      for (let i = 0; i < tags.length; i++) {
-        if (resource.tags.includes(tags[i])) return true;
+      for (let i = 0; i < resource.tags.length; i++) {
+        if (tags.includes(resource.tags[i])) return true;
       }
       return false;
     }
@@ -19,11 +22,12 @@ const Feed = ({ resources, deleteResource }) => {
   return (
     <div className={styles.feed}>
       <input
+        className={styles.filter}
         type="text"
         placeholder="filter"
         value={filters}
         onChange={(e) => setFilters(e.target.value)}
-      ></input>
+      />
       {resources.filter(doTagsApply).map((x, index) => (
         <Resource key={index} {...x} deleteResource={deleteResource}></Resource>
       ))}
