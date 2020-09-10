@@ -11,9 +11,14 @@ type Mutation {
     tags: [String!]!
   ): Resource
 
-  deleteResource(
-    id:Int!
-  ): DeletedResource
+  updateResource(
+    id: Int!
+    author: String
+    title: String
+    tags: [String!]
+  ): Resource
+
+  deleteResource(id: Int!): DeletedResource
 }
 
 type DeletedResource {
@@ -21,7 +26,7 @@ type DeletedResource {
   title: String!
   href: String!
   author: String!
-  date:String!
+  date: String!
 }
 
 type Resource {
@@ -30,7 +35,7 @@ type Resource {
   href: String!
   author: String!
   tags: [Tag!]!
-  date:String!
+  date: String!
 }
 
 type Tag {
