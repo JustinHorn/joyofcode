@@ -5,6 +5,7 @@ import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";
 
 import { FeedQuery } from "component/Feed";
+import MutationForm from "component/MutationForm";
 
 const ADDResource_Mutation = gql`
   mutation addResource(
@@ -26,7 +27,7 @@ const ADDResource_Mutation = gql`
   }
 `;
 
-const CreateResource = ({}) => {
+const CreateResource = () => {
   const [mutate, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
       const { addResource } = m_result.data;
@@ -39,53 +40,26 @@ const CreateResource = ({}) => {
     },
   });
 
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
-  const [tags, setTags] = useState("");
-  const [postedBy, setPostedBy] = useState("");
-
-  const create = () => {
-    if (name.trim() && url.trim() && tags.trim() && postedBy.trim()) {
+  const doMutation = ({ title, href, tags }) => {
+    if (title.trim() && href.trim() && tags.trim()) {
       const variables = {
-        author: postedBy.trim(),
-        href: url.trim(),
+        author: "anonymous",
+        href: href.trim(),
         tags: tags.trim().split(","),
-        title: name.trim(),
+        title: title.trim(),
       };
-
       mutate({ variables });
-
-      setName("");
-      setUrl("");
-      setTags("");
-      setPostedBy("");
+      return true;
     }
+    return false;
   };
 
   return (
-    <div className={styles.createResource}>
-      <input
-        placeholder="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        placeholder="url"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-      />
-      <input
-        placeholder="tags"
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-      />
-      <input
-        placeholder="posted by"
-        value={postedBy}
-        onChange={(e) => setPostedBy(e.target.value)}
-      />
-      <button onClick={create}>create new resource</button>
-    </div>
+    <MutationForm
+      doMutation={doMutation}
+      headline="create"
+      props={{ title: "", href: "", tags: "" }}
+    ></MutationForm>
   );
 };
 

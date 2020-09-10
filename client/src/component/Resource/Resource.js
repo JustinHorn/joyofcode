@@ -1,49 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./resource.module.css";
 
 import moment from "moment";
 
 import Url from "url-parse";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/client";
 
-import { FeedQuery } from "component/Feed";
+import UpdateResource from "./UpdateResource";
 
-const MUTATION_DELETE = gql`
-  mutation MUTATION_DELETE($id: Int!) {
-    deleteResource(id: $id) {
-      id
-      title
-      href
-    }
-  }
-`;
+import DeleteResource from "./DeleteResource";
 
 const Resource = ({ id, title, tags, href, author, date }) => {
-  const [mutate, { error, data }] = useMutation(MUTATION_DELETE, {
-    update(cache, m_result, m_id) {
-      const { deleteResource } = m_result.data;
-
-      const data = cache.readQuery({ query: FeedQuery });
-
-      const feed = data.feed;
-
-      const index = feed.findIndex((x) => x.id === deleteResource.id);
-      const new_data = {
-        feed: [...feed.slice(0, index), ...feed.slice(index + 1)],
-      };
-      cache.writeQuery({ query: FeedQuery, data: new_data });
-    },
-  });
-
-  const deleteResource = () => {
-    mutate({ variables: { id } });
-  };
-
-  if (error) {
-    alert(error);
-  }
+  const [isUpdate, setUpdate] = useState(false);
 
   return (
     <div className={styles.resource}>
@@ -62,9 +30,11 @@ const Resource = ({ id, title, tags, href, author, date }) => {
           {tags?.map(({ name }, index) => (
             <li key={index}>{name}</li>
           ))}
-          <button onClick={deleteResource}>Delete</button>
+          <button onClick={() => setUpdate(!isUpdate)}>edit</button>
+          <DeleteResource id={id}> </DeleteResource>
         </ul>
       </div>
+      {isUpdate && <UpdateResource id={id}></UpdateResource>}
     </div>
   );
 };
