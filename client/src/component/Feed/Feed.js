@@ -1,13 +1,16 @@
-import React, { useState, useContext } from "react";
-import Resource from "component/Resource";
+import React, { useState } from "react";
+
 import styles from "./feed.module.css";
+
+import { ResourceFilter } from "component/Resource";
 
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 
-const FeedQuery = gql`
+export const FeedQuery = gql`
   query {
     feed {
+      id
       title
       author
       href
@@ -19,23 +22,8 @@ const FeedQuery = gql`
   }
 `;
 
-const Feed = ({}) => {
+const Feed = () => {
   const { data, loading, error } = useQuery(FeedQuery);
-
-  const [filters, setFilters] = useState("");
-
-  const doTagsApply = (resource) => {
-    if (filters) {
-      const tags = filters.split(",");
-      for (let i = 0; i < resource.tags.length; i++) {
-        if (tags.includes(resource.tags[i])) return true;
-      }
-      return false;
-    }
-    return true;
-  };
-
-  console.log(data);
 
   if (error) {
     console.log(error);
@@ -45,16 +33,7 @@ const Feed = ({}) => {
 
   return (
     <div className={styles.feed}>
-      <input
-        className={styles.filter}
-        type="text"
-        placeholder="filter"
-        value={filters}
-        onChange={(e) => setFilters(e.target.value)}
-      />
-      {data.feed.filter(doTagsApply).map((x, index) => (
-        <Resource key={index} {...x}></Resource>
-      ))}
+      <ResourceFilter resources={data?.feed}></ResourceFilter>
     </div>
   );
 };

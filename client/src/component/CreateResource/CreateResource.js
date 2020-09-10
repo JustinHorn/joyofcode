@@ -4,6 +4,8 @@ import styles from "./createresource.module.css";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";
 
+import { FeedQuery } from "component/Feed";
+
 const ADDResource_Mutation = gql`
   mutation addResource(
     $author: String!
@@ -12,6 +14,7 @@ const ADDResource_Mutation = gql`
     $tags: [String!]!
   ) {
     addResource(author: $author, title: $title, href: $href, tags: $tags) {
+      id
       title
       author
       href
@@ -24,7 +27,17 @@ const ADDResource_Mutation = gql`
 `;
 
 const CreateResource = ({}) => {
-  const [mutate, { error, data }] = useMutation(ADDResource_Mutation);
+  const [mutate, { error, data }] = useMutation(ADDResource_Mutation, {
+    update(cache, m_result, m_id) {
+      const { addResource } = m_result.data;
+      const data = cache.readQuery({ query: FeedQuery });
+      const feed = data.feed;
+      const new_data = {
+        feed: [addResource, ...feed],
+      };
+      cache.writeQuery({ query: FeedQuery, data: new_data });
+    },
+  });
 
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
