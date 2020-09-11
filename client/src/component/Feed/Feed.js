@@ -12,10 +12,13 @@ export const FeedQuery = gql`
     feed {
       id
       title
-      author
       href
       date
       tags {
+        name
+      }
+      postedBy {
+        id
         name
       }
     }
@@ -27,7 +30,7 @@ const Feed = () => {
 
   if (error) {
     console.log(error);
-    return "error";
+    throw error;
   }
   if (loading) return "loading";
 

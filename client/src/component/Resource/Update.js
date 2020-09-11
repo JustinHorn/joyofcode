@@ -11,9 +11,12 @@ const MUTATION_UPDATE = gql`
       id
       title
       href
-      author
       date
       tags {
+        id
+        name
+      }
+      postedBy {
         id
         name
       }

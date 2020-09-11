@@ -1,6 +1,7 @@
 type Query {
   hello: String!
   feed: [Resource!]!
+  authorize: User
 }
 
 type Mutation {

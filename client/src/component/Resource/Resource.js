@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import styles from "./resource.module.css";
 
@@ -9,8 +9,10 @@ import Url from "url-parse";
 import UpdateResource from "./Update";
 
 import DeleteResource from "./Delete";
+import UserContext from "context";
 
-const Resource = ({ id, title, tags, href, author, date }) => {
+const Resource = ({ id, title, tags, href, postedBy, date }) => {
+  const { user } = useContext(UserContext);
   const [isUpdate, setUpdate] = useState(false);
 
   return (
@@ -22,7 +24,7 @@ const Resource = ({ id, title, tags, href, author, date }) => {
         </h4>
         <div className={styles.postInfo}>
           {"by " +
-            author +
+            postedBy?.name +
             " on " +
             moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
         </div>
@@ -30,8 +32,12 @@ const Resource = ({ id, title, tags, href, author, date }) => {
           {tags?.map(({ name }, index) => (
             <li key={index}>{name}</li>
           ))}
-          <button onClick={() => setUpdate(!isUpdate)}>edit</button>
-          <DeleteResource id={id}> </DeleteResource>
+          {postedBy?.id === user?.id && user && (
+            <button onClick={() => setUpdate(!isUpdate)}>edit</button>
+          )}
+          {postedBy?.id === user?.id && user && (
+            <DeleteResource id={id}> </DeleteResource>
+          )}
         </ul>
       </div>
       {isUpdate && <UpdateResource id={id}></UpdateResource>}

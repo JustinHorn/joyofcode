@@ -6,10 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 
 import ApolloProvider from "setUpApollo";
 
+import { UserContextProvider } from "context/UserContext";
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider>
-      <App />
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

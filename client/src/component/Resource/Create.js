@@ -7,16 +7,13 @@ import { FeedQuery } from "component/Feed";
 import MutationForm from "component/MutationForm";
 
 const ADDResource_Mutation = gql`
-  mutation addResource(
-    $author: String!
-    $title: String!
-    $href: String!
-    $tags: [String!]!
-  ) {
-    addResource(author: $author, title: $title, href: $href, tags: $tags) {
+  mutation addResource($title: String!, $href: String!, $tags: [String!]!) {
+    addResource(title: $title, href: $href, tags: $tags) {
       id
       title
-      author
+      postedBy {
+        name
+      }
       href
       date
       tags {
@@ -42,7 +39,6 @@ const CreateResource = () => {
   const doMutation = ({ title, href, tags }) => {
     if (title.trim() && href.trim() && tags.trim()) {
       const variables = {
-        author: "anonymous",
         href: href.trim(),
         tags: tags.trim().split(","),
         title: title.trim(),
