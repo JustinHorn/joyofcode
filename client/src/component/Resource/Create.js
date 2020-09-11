@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import styles from "./createresource.module.css";
 
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";

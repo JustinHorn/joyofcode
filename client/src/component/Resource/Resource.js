@@ -6,9 +6,9 @@ import moment from "moment";
 
 import Url from "url-parse";
 
-import UpdateResource from "./UpdateResource";
+import UpdateResource from "./Update";
 
-import DeleteResource from "./DeleteResource";
+import DeleteResource from "./Delete";
 
 const Resource = ({ id, title, tags, href, author, date }) => {
   const [isUpdate, setUpdate] = useState(false);

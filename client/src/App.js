@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Feed from "component/Feed";
-import CreateResource from "component/CreateResource";
+import { CreateResource } from "component/Resource";
 
 function App() {
   return (
