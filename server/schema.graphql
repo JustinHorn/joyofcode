@@ -4,28 +4,33 @@ type Query {
 }
 
 type Mutation {
-  addResource(
-    author: String!
-    title: String!
-    href: String!
-    tags: [String!]!
-  ): Resource
+  login(email: String!, password: String!): AuthPayLoad
+  register(name: String!, email: String!, password: String!): AuthPayLoad
 
-  updateResource(
-    id: Int!
-    author: String
-    title: String
-    tags: [String!]
-  ): Resource
+  addResource(title: String!, href: String!, tags: [String!]!): Resource
+
+  updateResource(id: Int!, title: String, tags: [String!]): Resource
 
   deleteResource(id: Int!): DeletedResource
+}
+
+type AuthPayLoad {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  posts: [Resource!]!
 }
 
 type DeletedResource {
   id: Int!
   title: String!
   href: String!
-  author: String!
+  postedBy: User
   date: String!
 }
 
@@ -33,9 +38,9 @@ type Resource {
   id: Int!
   title: String!
   href: String!
-  author: String!
   tags: [Tag!]!
   date: String!
+  postedBy: User
 }
 
 type Tag {

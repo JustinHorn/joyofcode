@@ -2,6 +2,11 @@ const Resource = {
   tags: (parent, args, context) => {
     return context.prisma.resource.findOne({ where: { id: parent.id } }).tags();
   },
+  postedBy: (parent, args, context) => {
+    return context.prisma.resource
+      .findOne({ where: { id: parent.id } })
+      .postedBy();
+  },
 };
 
 const Tag = {
@@ -10,4 +15,12 @@ const Tag = {
   },
 };
 
-module.exports = { Resource, Tag };
+const User = {
+  posts: (parent, args, context) => {
+    return context.prisma.user
+      .findOne({ where: { id: parent.id } })
+      .postedResources();
+  },
+};
+
+module.exports = { Resource, Tag, User };
