@@ -12,9 +12,12 @@ const authorize = async (p, args, context) => {
   return user;
 };
 
-const feed = async (p, arg, context) => {
-  const resources = await context.prisma.resource.findMany();
-  return resources;
+const feed = async (p, args, context) => {
+  return await context.prisma.resource.findMany({
+    skip: args.skip,
+    take: args.take,
+    orderBy: args.orderBy,
+  });
 };
 
 module.exports = { hello, feed, authorize };

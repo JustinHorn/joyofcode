@@ -1,7 +1,19 @@
 type Query {
   hello: String!
-  feed: [Resource!]!
+  feed(skip: Int, take: Int, orderBy: ResourceOrderByInput): [Resource!]!
   authorize: User
+}
+
+input ResourceOrderByInput {
+  id: Sort
+  title: Sort
+  href: Sort
+  date: Sort
+}
+
+enum Sort {
+  asc
+  desc
 }
 
 type Mutation {

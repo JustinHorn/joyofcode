@@ -8,8 +8,8 @@ import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 
 export const FeedQuery = gql`
-  query {
-    feed {
+  query GETFEED($orderBy: ResourceOrderByInput) {
+    feed(orderBy: $orderBy) {
       id
       title
       href
@@ -26,7 +26,9 @@ export const FeedQuery = gql`
 `;
 
 const Feed = () => {
-  const { data, loading, error } = useQuery(FeedQuery);
+  const { data, loading, error } = useQuery(FeedQuery, {
+    variables: { orderBy: { date: "desc" } },
+  });
 
   if (error) {
     console.log(error);
