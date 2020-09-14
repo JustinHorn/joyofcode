@@ -48,8 +48,8 @@ const addResource = async (p, args, context, i) => {
 
   const resource = await context.prisma.resource.create({
     data: {
-      title: args.title,
-      href: args.href,
+      ...args,
+
       tags: {
         connectOrCreate: tags,
       },
@@ -65,7 +65,7 @@ const addResource = async (p, args, context, i) => {
 const updateResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
-  const { title } = args;
+  const { title, github, imgUrl } = args;
 
   const tags = await getTags(args, context);
 
@@ -78,6 +78,8 @@ const updateResource = async (p, args, context, i) => {
             where: { id: args.id },
             data: {
               title,
+              github,
+              imgUrl,
               tags,
             },
           },

@@ -11,6 +11,8 @@ const MUTATION_DELETE = gql`
       id
       title
       href
+      imgUrl
+      github
     }
   }
 `;

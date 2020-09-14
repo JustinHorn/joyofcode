@@ -20,9 +20,21 @@ type Mutation {
   login(email: String!, password: String!): AuthPayLoad
   register(name: String!, email: String!, password: String!): AuthPayLoad
 
-  addResource(title: String!, href: String!, tags: [String!]!): Resource
+  addResource(
+    title: String!
+    href: String!
+    tags: [String!]!
+    imgUrl: String
+    github: String
+  ): Resource
 
-  updateResource(id: Int!, title: String, tags: [String!]): Resource
+  updateResource(
+    id: Int!
+    title: String
+    tags: [String!]
+    github: String
+    imgUrl: String
+  ): Resource
 
   deleteResource(id: Int!): DeletedResource
 }
@@ -45,11 +57,15 @@ type DeletedResource {
   href: String!
   postedBy: User
   date: String!
+  github: String!
+  imgUrl: String!
 }
 
 type Resource {
   id: Int!
   title: String!
+  imgUrl: String!
+  github: String!
   href: String!
   tags: [Tag!]!
   date: String!

@@ -6,10 +6,24 @@ import { useMutation } from "@apollo/client";
 import { FeedQueryAndVars } from "component/Feed";
 
 const MUTATION_UPDATE = gql`
-  mutation updateResource($id: Int!, $title: String, $tags: [String!]) {
-    updateResource(id: $id, title: $title, tags: $tags) {
+  mutation updateResource(
+    $id: Int!
+    $title: String
+    $tags: [String!]
+    $imgUrl: String
+    $github: String
+  ) {
+    updateResource(
+      id: $id
+      title: $title
+      tags: $tags
+      imgUrl: $imgUrl
+      github: $github
+    ) {
       id
       title
+      imgUrl
+      github
       href
       date
       tags {
@@ -43,11 +57,13 @@ const UpdateResource = ({ id }) => {
     },
   });
 
-  const doUpdateMutation = ({ title, tags }) => {
+  const doUpdateMutation = ({ title, tags, imgUrl, github }) => {
     const variables = {
       id,
       title: title ? title.trim() : undefined,
       tags: tags.length ? tags.split(",") : undefined,
+      imgUrl: imgUrl ? imgUrl : undefined,
+      github: github ? github : undefined,
     };
     update({ variables });
     return true;
@@ -57,7 +73,7 @@ const UpdateResource = ({ id }) => {
     <MutationForm
       doMutation={doUpdateMutation}
       headline={"update"}
-      props={{ title: "", tags: "" }}
+      props={{ title: "", tags: "", imgUrl: "", github: "" }}
     ></MutationForm>
   );
 };

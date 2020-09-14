@@ -14,6 +14,8 @@ export const FeedQuery = gql`
       title
       href
       date
+      imgUrl
+      github
       tags {
         name
       }

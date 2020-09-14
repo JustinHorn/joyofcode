@@ -23,7 +23,8 @@ model Resource {
     date   DateTime @default(now())
     title  String
     href   String
-    imgUrl String
+    imgUrl String   @default("")
+    github String   @default("")
     tags   Tag[]
 
     postedBy User? @relation(fields: [userdId], references: [id])

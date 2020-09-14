@@ -7,10 +7,23 @@ import { FeedQueryAndVars } from "component/Feed";
 import MutationForm from "component/MutationForm";
 
 const ADDResource_Mutation = gql`
-  mutation addResource($title: String!, $href: String!, $tags: [String!]!) {
-    addResource(title: $title, href: $href, tags: $tags) {
+  mutation addResource(
+    $title: String!
+    $href: String!
+    $tags: [String!]!
+    $imgUrl: String
+    $github: String
+  ) {
+    addResource(
+      title: $title
+      href: $href
+      tags: $tags
+      imgUrl: $imgUrl
+      github: $github
+    ) {
       id
       title
+      imgUrl
       postedBy {
         name
       }
@@ -41,12 +54,14 @@ const CreateResource = () => {
     },
   });
 
-  const doMutation = ({ title, href, tags }) => {
+  const doMutation = ({ title, href, tags, imgUrl, github }) => {
     if (title.trim() && href.trim() && tags.trim()) {
       const variables = {
         href: href.trim(),
         tags: tags.trim().split(","),
         title: title.trim(),
+        imgUrl,
+        github,
       };
       mutate({ variables });
       return true;
@@ -55,11 +70,14 @@ const CreateResource = () => {
   };
 
   return (
-    <MutationForm
-      doMutation={doMutation}
-      headline="create"
-      props={{ title: "", href: "", tags: "" }}
-    ></MutationForm>
+    <>
+      <h2>Share your Project</h2>
+      <MutationForm
+        doMutation={doMutation}
+        headline="create"
+        props={{ title: "", href: "", tags: "", imgUrl: "", github: "" }}
+      ></MutationForm>
+    </>
   );
 };
 
