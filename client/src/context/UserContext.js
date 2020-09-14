@@ -1,18 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { gql } from "apollo-boost";
-
-import { useMutation, useQuery } from "@apollo/client";
-
-const query_authorize = gql`
-  query {
-    authorize {
-      id
-      name
-      email
-    }
-  }
-`;
+import useAutomaticAuthorize from "hooks/useAutomaticAuthorize";
 
 const UserContext = React.createContext();
 export default UserContext;
@@ -41,14 +29,4 @@ export const UserContextProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-};
-
-const useAutomaticAuthorize = (setUser) => {
-  const { loading, error, data } = useQuery(query_authorize);
-
-  useEffect(() => {
-    if (data) {
-      setUser(data.authorize);
-    }
-  }, [data]);
 };

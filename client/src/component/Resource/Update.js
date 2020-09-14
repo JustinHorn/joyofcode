@@ -3,7 +3,7 @@ import MutationForm from "component/MutationForm";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
-import { FeedQuery } from "component/Feed";
+import { FeedQueryAndVars } from "component/Feed";
 
 const MUTATION_UPDATE = gql`
   mutation updateResource($id: Int!, $title: String, $tags: [String!]) {
@@ -28,7 +28,7 @@ const UpdateResource = ({ id }) => {
   const [update, other] = useMutation(MUTATION_UPDATE, {
     update(cache, m_result, m_id) {
       const { updateResource } = m_result.data;
-      const data = cache.readQuery({ query: FeedQuery });
+      const data = cache.readQuery({ ...FeedQueryAndVars });
       const feed = data.feed;
 
       const index = feed.findIndex((x) => x.id === updateResource.id);
@@ -39,7 +39,7 @@ const UpdateResource = ({ id }) => {
           ...feed.slice(index + 1),
         ],
       };
-      cache.writeQuery({ query: FeedQuery, data: new_data });
+      cache.writeQuery({ ...FeedQueryAndVars, data: new_data });
     },
   });
 

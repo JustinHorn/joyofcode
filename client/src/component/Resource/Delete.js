@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
-import { FeedQuery } from "component/Feed";
+import { FeedQueryAndVars } from "component/Feed";
 
 const MUTATION_DELETE = gql`
   mutation MUTATION_DELETE($id: Int!) {
@@ -20,7 +20,7 @@ const DeleteResource = ({ id }) => {
     update(cache, m_result, m_id) {
       const { deleteResource } = m_result.data;
 
-      const data = cache.readQuery({ query: FeedQuery });
+      const data = cache.readQuery({ ...FeedQueryAndVars });
 
       const feed = data.feed;
 
@@ -28,7 +28,7 @@ const DeleteResource = ({ id }) => {
       const new_data = {
         feed: [...feed.slice(0, index), ...feed.slice(index + 1)],
       };
-      cache.writeQuery({ query: FeedQuery, data: new_data });
+      cache.writeQuery({ ...FeedQueryAndVars, data: new_data });
     },
   });
 

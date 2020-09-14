@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { FeedQuery } from "component/Feed";
+import { FeedQueryAndVars } from "component/Feed";
 import MutationForm from "component/MutationForm";
 
 const ADDResource_Mutation = gql`
@@ -27,12 +27,17 @@ const CreateResource = () => {
   const [mutate, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
       const { addResource } = m_result.data;
-      const data = cache.readQuery({ query: FeedQuery });
+      const data = cache.readQuery({
+        ...FeedQueryAndVars,
+      });
       const feed = data.feed;
       const new_data = {
         feed: [addResource, ...feed],
       };
-      cache.writeQuery({ query: FeedQuery, data: new_data });
+      cache.writeQuery({
+        ...FeedQueryAndVars,
+        data: new_data,
+      });
     },
   });
 
