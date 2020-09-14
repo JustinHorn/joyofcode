@@ -21,7 +21,7 @@ const ResourceFilter = ({ resources }) => {
       <input
         style={{ width: "100%" }}
         type="text"
-        placeholder="filter"
+        placeholder="search"
         value={filters}
         onChange={(e) => setFilters(e.target.value)}
       />
