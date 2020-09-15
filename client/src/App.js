@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "./App.css";
 import Feed from "component/Feed";
 import { CreateResource } from "component/Resource";
@@ -7,8 +7,11 @@ import UserContext from "context";
 
 function App() {
   const { user } = useContext(UserContext);
+
+  const ref = useRef();
+
   return (
-    <div className="App">
+    <div ref={ref} className="App">
       <Navbar></Navbar>
       <h1>Hello {user?.name}</h1>
       <CreateResource />
