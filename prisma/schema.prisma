@@ -19,13 +19,15 @@ model User {
 }
 
 model Resource {
-    id     Int      @id @default(autoincrement())
-    date   DateTime @default(now())
-    title  String
-    href   String
-    imgUrl String   @default("")
-    github String   @default("")
-    tags   Tag[]
+    id          Int      @id @default(autoincrement())
+    date        DateTime @default(now())
+    title       String
+    href        String
+    imgUrl      String   @default("")
+    github      String   @default("")
+    description String   @default("")
+
+    tags Tag[]
 
     postedBy User? @relation(fields: [userdId], references: [id])
     userdId  Int?

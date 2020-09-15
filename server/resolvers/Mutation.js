@@ -65,7 +65,7 @@ const addResource = async (p, args, context, i) => {
 const updateResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
-  const { title, github, imgUrl } = args;
+  const { title, github, imgUrl, description } = args;
 
   const tags = await getTags(args, context);
 
@@ -80,6 +80,8 @@ const updateResource = async (p, args, context, i) => {
               title,
               github,
               imgUrl,
+              description,
+
               tags,
             },
           },

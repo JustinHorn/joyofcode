@@ -13,16 +13,18 @@ import UserContext from "context";
 
 import { LinkIcon } from "component/Icon";
 
-const Resource = ({
-  id,
-  title,
-  tags,
-  href,
-  postedBy,
-  imgUrl,
-  date,
-  github,
-}) => {
+const Resource = (props) => {
+  const {
+    id,
+    title,
+    tags,
+    href,
+    postedBy,
+    imgUrl,
+    date,
+    description,
+    github,
+  } = props;
   const { user } = useContext(UserContext);
   const [isUpdate, setUpdate] = useState(false);
 
@@ -35,6 +37,8 @@ const Resource = ({
           <a href={href}> {title} </a> ({hostname})
         </h4>
         <img className={styles.preview} src={imgUrl} alt="" />
+        <p>{description}</p>
+
         <div className={styles.postInfo}>
           {"by " +
             postedBy?.name +
@@ -66,10 +70,7 @@ const Resource = ({
         </ul>
       </div>
       {isUpdate && (
-        <UpdateResource
-          id={id}
-          afterUpdate={() => setUpdate(false)}
-        ></UpdateResource>
+        <UpdateResource resource={props} afterUpdate={() => setUpdate(false)} />
       )}
     </div>
   );

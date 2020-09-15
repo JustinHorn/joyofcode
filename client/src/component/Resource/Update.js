@@ -13,6 +13,7 @@ const MUTATION_UPDATE = gql`
     $tags: [String!]
     $imgUrl: String
     $github: String
+    $description:String
   ) {
     updateResource(
       id: $id
@@ -20,13 +21,15 @@ const MUTATION_UPDATE = gql`
       tags: $tags
       imgUrl: $imgUrl
       github: $github
+      description:$description
     ) {
       ${resourceQuery}
     }
   }
 `;
 
-const UpdateResource = ({ id, afterUpdate }) => {
+const UpdateResource = ({ resource, afterUpdate }) => {
+  const { id } = resource;
   const [update, other] = useMutation(MUTATION_UPDATE, {
     update(cache, m_result, m_id) {
       const { updateResource } = m_result.data;
@@ -48,8 +51,9 @@ const UpdateResource = ({ id, afterUpdate }) => {
   const options = {
     title: "rq",
     tags: "rq",
-    imgUrl: "",
-    github: "",
+    description: "rq",
+    imgUrl: "rq",
+    github: "rq",
   };
 
   const MO = new MutationOptions(options);
@@ -58,6 +62,7 @@ const UpdateResource = ({ id, afterUpdate }) => {
     const variables = MO.formatVars(props);
     variables.tags = variables.tags?.split(",");
     variables.id = id;
+    console.log(variables);
     update({ variables });
     afterUpdate();
     return true;
@@ -67,7 +72,7 @@ const UpdateResource = ({ id, afterUpdate }) => {
     <MutationForm
       doMutation={doUpdateMutation}
       headline={"update"}
-      props={MO.nullyfy()}
+      props={MO.parseProps(resource)}
     />
   );
 };

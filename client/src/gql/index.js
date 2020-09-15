@@ -1,10 +1,11 @@
 export const resourceProps = `
         id
         title
-        imgUrl
-        github
         href
         date
+        imgUrl
+        github
+        description
 `;
 
 export const resourceQuery = `

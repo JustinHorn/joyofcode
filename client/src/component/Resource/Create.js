@@ -50,6 +50,7 @@ const CreateResource = () => {
     title: "rq",
     href: "rq",
     tags: "rq",
+    description: "",
     imgUrl: "",
     github: "",
   };

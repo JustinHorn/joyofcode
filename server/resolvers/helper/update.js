@@ -1,4 +1,4 @@
-const getOldTagIds = async (id, context) => {
+const getOldTags = async (id, context) => {
   return (
     await context.prisma.resource
       .findOne({
@@ -7,6 +7,7 @@ const getOldTagIds = async (id, context) => {
       .tags()
   ).map((x) => ({
     id: x.id,
+    name: x.name,
   }));
 };
 
@@ -18,15 +19,25 @@ const formatCoC = (tag) => ({
 const getTags = async (args, context) => {
   if (!args.tags) return {};
 
-  const tags = { connectOrCreate: args.tags.map((x) => formatCoC(x)) };
+  const oldTags = await getOldTags(args.id, context);
 
-  const oldTags = await getOldTagIds(args.id, context);
+  const oldNames = oldTags.map((oT) => oT.name);
 
-  if (oldTags.length) {
-    tags.disconnect = oldTags;
+  const new_tags = filterNewTags(args.tags, oldNames);
+
+  const nextTags = { connectOrCreate: new_tags.map((x) => formatCoC(x)) };
+
+  const abandonedTags = oldTags.filter((x) => !args.tags.includes(x.name));
+
+  if (abandonedTags.length) {
+    nextTags.disconnect = abandonedTags.map((x) => ({ id: x.id }));
   }
 
-  return tags;
+  return nextTags;
+};
+
+const filterNewTags = (nT, oT) => {
+  return nT.filter((nT) => oT.findIndex((oT) => oT.name === nT) === -1);
 };
 
 module.exports = { getTags };
