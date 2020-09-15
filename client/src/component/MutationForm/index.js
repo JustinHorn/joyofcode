@@ -1,3 +1,5 @@
-import MutationForm from "./MutationForm";
+import MutationForm,{MutationOptions} from "./MutationForm";
 
 export default MutationForm;
+
+export {MutationOptions}

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import MutationForm from "component/MutationForm";
+import MutationForm, { MutationOptions } from "component/MutationForm";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
+import { resourceQuery } from "gql";
 
 const MUTATION_UPDATE = gql`
   mutation updateResource(
@@ -20,25 +21,12 @@ const MUTATION_UPDATE = gql`
       imgUrl: $imgUrl
       github: $github
     ) {
-      id
-      title
-      imgUrl
-      github
-      href
-      date
-      tags {
-        id
-        name
-      }
-      postedBy {
-        id
-        name
-      }
+      ${resourceQuery}
     }
   }
 `;
 
-const UpdateResource = ({ id }) => {
+const UpdateResource = ({ id, afterUpdate }) => {
   const [update, other] = useMutation(MUTATION_UPDATE, {
     update(cache, m_result, m_id) {
       const { updateResource } = m_result.data;
@@ -57,15 +45,21 @@ const UpdateResource = ({ id }) => {
     },
   });
 
-  const doUpdateMutation = ({ title, tags, imgUrl, github }) => {
-    const variables = {
-      id,
-      title: title ? title.trim() : undefined,
-      tags: tags.length ? tags.split(",") : undefined,
-      imgUrl: imgUrl ? imgUrl : undefined,
-      github: github ? github : undefined,
-    };
+  const options = {
+    title: "rq",
+    tags: "rq",
+    imgUrl: "",
+    github: "",
+  };
+
+  const MO = new MutationOptions(options);
+
+  const doUpdateMutation = (props) => {
+    const variables = MO.formatVars(props);
+    variables.tags = variables.tags?.split(",");
+    variables.id = id;
     update({ variables });
+    afterUpdate();
     return true;
   };
 
@@ -73,8 +67,8 @@ const UpdateResource = ({ id }) => {
     <MutationForm
       doMutation={doUpdateMutation}
       headline={"update"}
-      props={{ title: "", tags: "", imgUrl: "", github: "" }}
-    ></MutationForm>
+      props={MO.nullyfy()}
+    />
   );
 };
 

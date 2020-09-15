@@ -4,7 +4,9 @@ import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
-import MutationForm from "component/MutationForm";
+import MutationForm, { MutationOptions } from "component/MutationForm";
+
+import { resourceQuery } from "gql";
 
 const ADDResource_Mutation = gql`
   mutation addResource(
@@ -21,17 +23,7 @@ const ADDResource_Mutation = gql`
       imgUrl: $imgUrl
       github: $github
     ) {
-      id
-      title
-      imgUrl
-      postedBy {
-        name
-      }
-      href
-      date
-      tags {
-        name
-      }
+      ${resourceQuery}
     }
   }
 `;
@@ -54,15 +46,20 @@ const CreateResource = () => {
     },
   });
 
-  const doMutation = ({ title, href, tags, imgUrl, github }) => {
-    if (title.trim() && href.trim() && tags.trim()) {
-      const variables = {
-        href: href.trim(),
-        tags: tags.trim().split(","),
-        title: title.trim(),
-        imgUrl,
-        github,
-      };
+  const options = {
+    title: "rq",
+    href: "rq",
+    tags: "rq",
+    imgUrl: "",
+    github: "",
+  };
+
+  const MO = new MutationOptions(options);
+
+  const doMutation = (props) => {
+    if (MO.testMatch(props)) {
+      const variables = MO.formatVars(props);
+      variables.tags = variables.tags.split(",");
       mutate({ variables });
       return true;
     }
@@ -75,7 +72,7 @@ const CreateResource = () => {
       <MutationForm
         doMutation={doMutation}
         headline="create"
-        props={{ title: "", href: "", tags: "", imgUrl: "", github: "" }}
+        props={MO.nullyfy()}
       ></MutationForm>
     </>
   );

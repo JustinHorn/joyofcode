@@ -7,22 +7,12 @@ import { ResourceFilter } from "component/Resource";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 
+import { resourceQuery } from "gql";
+
 export const FeedQuery = gql`
   query getFeed($orderBy: ResourceOrderByInput) {
     feed(orderBy: $orderBy) {
-      id
-      title
-      href
-      date
-      imgUrl
-      github
-      tags {
-        name
-      }
-      postedBy {
-        id
-        name
-      }
+      ${resourceQuery}
     }
   }
 `;

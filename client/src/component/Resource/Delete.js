@@ -5,14 +5,12 @@ import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
 
+import { resourceProps } from "gql";
+
 const MUTATION_DELETE = gql`
   mutation MUTATION_DELETE($id: Int!) {
     deleteResource(id: $id) {
-      id
-      title
-      href
-      imgUrl
-      github
+      ${resourceProps}
     }
   }
 `;
@@ -35,7 +33,9 @@ const DeleteResource = ({ id }) => {
   });
 
   const deleteResource = (id) => {
-    mutate({ variables: { id } });
+    if (window.confirm("You really wanna delete?")) {
+      mutate({ variables: { id } });
+    }
   };
 
   return <button onClick={() => deleteResource(id)}>Delete</button>;
