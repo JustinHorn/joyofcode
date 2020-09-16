@@ -4,6 +4,8 @@ import Authentication from "component/Authentication";
 
 import UserContext from "context";
 
+import styles from "./navbar.module.css";
+
 import Popup from "component/Popup";
 
 const Navbar = () => {
@@ -21,7 +23,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav>
+      <nav className={styles.nav}>
         {(!user &&
           ["Login", "Register"].map((option, index) => (
             <button

@@ -3,3 +3,17 @@
   flex-direction: column;
   max-width: 500px;
 }
+
+.table {
+  text-align: left;
+}
+
+.table tr,
+td {
+  margin: 0px;
+  padding: 0px;
+}
+
+.table h4 {
+  margin: 5px;
+}

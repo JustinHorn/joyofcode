@@ -1,27 +1,15 @@
-Features:
+Version 0.0.0
 
-- filter
-  - show me react stuff on just "react!"
-  - show me google results!
-- update
-  - automaticly add existings tags to tags
+check href -> no localhost!
+check github -> needs to be github!
+setup project email!
 
---> better search && google results!
+also on update
 
---> more joy on sharing a project/link!
+implement until 16:00!
 
-# Joy of code
+host && publish until 16:30!
 
-I want to share my projects with others
+do sports
 
-I want to comment on them
-
-I want to meet and connect with others!
-
-I want to add
-
-learning resources to my profile and mark them as complete -> joy of progress
-
-I want to share things with the crowd -> joy of group/status
-
-I want to follow and message others -> joy of friendship
+react to feed back and thing about features!

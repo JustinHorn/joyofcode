@@ -12,9 +12,12 @@ function App() {
 
   return (
     <div ref={ref} className="App">
+      <p>Send feedback to justinhorn0000@gmail.com - or message him directly</p>
       <Navbar></Navbar>
-      <h1>Hello {user?.name}</h1>
-      <CreateResource />
+      {!user && <h1>login or register to share your project</h1>}
+
+      {user && <h1>Hello {user.name}</h1>}
+      {user && <CreateResource />}
       <Feed />
     </div>
   );

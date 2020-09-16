@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import { gql } from "apollo-boost";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
 import {
@@ -36,12 +36,6 @@ const ADDResource_Mutation = gql`
   }
 `;
 
-const getImage_MUTATION = gql`
-  mutation GetImage_MUTATION($href: String!) {
-    makePictureOfWebsite(href: $href)
-  }
-`;
-
 const CreateResource = () => {
   const [mutate, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
@@ -59,10 +53,6 @@ const CreateResource = () => {
       });
     },
   });
-
-  const [getImage, { error: imageError, data: imageData }] = useMutation(
-    getImage_MUTATION
-  );
 
   const options = {
     title: "rq",
@@ -87,26 +77,18 @@ const CreateResource = () => {
 
   const props = useProps(MO.nullyfy(), doMutation);
 
-  useEffect(() => {
-    if (imageData) {
-      const new_state = { ...props.stateProps };
-      new_state.imgUrl = imageData.makePictureOfWebsite;
-      props.setProps(new_state);
-    }
-  }, [imageData]);
-
-  const preview = () => {
-    getImage({ variables: { href: props.stateProps.href } });
-  };
+  const preview = useGetImageMutation(props);
 
   return (
     <div className={styles.create}>
       <h2>Share your Project</h2>
       <div className="edit">
-        <button onClick={preview}> previewImage</button>
+        <button onClick={preview}> generate Image from href</button> (takes a
+        few seconds)
         <MutationFormWithoutState headline="create" {...props} />
       </div>
       <div className="preview">
+        <h4>Preview:</h4>
         <Resource
           {...props.stateProps}
           imgUrl={props.stateProps.imgUrl}
@@ -116,6 +98,33 @@ const CreateResource = () => {
       </div>
     </div>
   );
+};
+
+const getImage_MUTATION = gql`
+  mutation GetImage_MUTATION($href: String!) {
+    makePictureOfWebsite(href: $href)
+  }
+`;
+
+const useGetImageMutation = (props) => {
+  const [getImage, { error: imageError, data: imageData }] = useMutation(
+    getImage_MUTATION
+  );
+
+  useEffect(() => {
+    if (imageData) {
+      const new_state = { ...props.stateProps };
+      new_state.imgUrl = imageData.makePictureOfWebsite;
+
+      setTimeout(() => props.setProps(new_state), 1000);
+    }
+  }, [imageData]);
+
+  const preview = () => {
+    getImage({ variables: { href: props.stateProps.href } });
+  };
+
+  return preview;
 };
 
 export default CreateResource;

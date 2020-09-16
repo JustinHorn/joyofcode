@@ -17,31 +17,29 @@ const Authentication = ({ isLogin }) => {
 
   return (
     <div className={styles.main}>
-      <>
-        <h2>{isLogin ? "Login" : "Register"}</h2>
+      <h2>{isLogin ? "Login" : "Register"}</h2>
+      <input
+        type="text"
+        placeholder="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <br />
+      {!isLogin && (
         <input
           type="text"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        {!isLogin && (
-          <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        )}
-        <button onClick={authenticate}>{isLogin ? "Login" : "Register"}</button>
-      </>
+      )}
+      <button onClick={authenticate}>{isLogin ? "Login" : "Register"}</button>
     </div>
   );
 };
