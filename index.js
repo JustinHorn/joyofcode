@@ -8,6 +8,7 @@ const { resolvers } = require("./server/resolvers");
 
 const { PrismaClient } = require("@prisma/client");
 
+require("dotenv").config();
 // 2
 const prisma = new PrismaClient();
 
@@ -30,8 +31,6 @@ const options = {
 
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
-const puppeteer = require("puppeteer");
-
 server.express.get("/file", async (req, res, next) => {
   const page = await puppeteer
     .launch()
@@ -43,7 +42,7 @@ server.express.get("/file", async (req, res, next) => {
       return page;
     });
 
-  res.write(await page.screenshot({ path: "example.png" }));
+  res.write();
 });
 
 server.start(options, () => console.log("Server startet!"));

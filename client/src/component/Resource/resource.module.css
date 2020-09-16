@@ -52,7 +52,7 @@
 }
 
 .friendly li {
-  background-color: rgba(216, 126, 56, 0.811);
+  background-color: lightgrey;
   border-radius: 5px;
   padding: 4px;
   font-size: 1ch;

@@ -39,6 +39,8 @@ type Mutation {
   ): Resource
 
   deleteResource(id: Int!): DeletedResource
+
+  makePictureOfWebsite(href: String!): String
 }
 
 type AuthPayLoad {

@@ -116,10 +116,18 @@ const deleteResource = async (p, args, context, i) => {
   return resource;
 };
 
+const { getImage } = require("./helper/shootPicture");
+
+const makePictureOfWebsite = async (p, args, context) => {
+  const userId = getUserId(context);
+  return getImage(args.href);
+};
+
 module.exports = {
   login,
   register,
   addResource,
   deleteResource,
   updateResource,
+  makePictureOfWebsite,
 };
