@@ -10,6 +10,17 @@ const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   </Popup>
 );
 
+export const useProps = (props, doMutation) => {
+  const [stateProps, setProps] = useState(props);
+
+  const mutateSth = () => {
+    if (doMutation(stateProps)) {
+      setProps(props);
+    }
+  };
+  return { stateProps, setProps, mutateSth };
+};
+
 const MutationForm = ({ doMutation, headline, props }) => {
   const [stateProps, setProps] = useState(props);
 
@@ -20,7 +31,23 @@ const MutationForm = ({ doMutation, headline, props }) => {
   };
 
   return (
-    <div className={styles.createResource}>
+    <MutationFormWithoutState
+      stateProps={stateProps}
+      setProps={setProps}
+      headline={headline}
+      mutateSth={mutateSth}
+    ></MutationFormWithoutState>
+  );
+};
+
+export const MutationFormWithoutState = ({
+  mutateSth,
+  headline,
+  stateProps,
+  setProps,
+}) => {
+  return (
+    <div className={styles.form}>
       {Object.keys(stateProps).map((key, index) => (
         <input
           key={index}
@@ -40,42 +67,3 @@ const MutationForm = ({ doMutation, headline, props }) => {
 };
 
 export default MutationForm;
-
-export function MutationOptions(options) {
-  this.options = options;
-
-  this.testMatch = (props) => {
-    const requiredKeys = Object.keys(this.options).filter(
-      (key) => this.options[key] === "rq"
-    );
-    for (let i = 0; i < requiredKeys.length; i++) {
-      if (!props[requiredKeys[i]].trim()) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  this.formatVars = (props) => {
-    const variables = {};
-
-    Object.keys(this.options).forEach((key) => {
-      variables[key] =
-        this.options[key] === "rq" ? props[key].trim() : props[key];
-    });
-    return variables;
-  };
-
-  this.nullyfy = () => {
-    const nullOptions = {};
-    Object.keys(this.options).forEach((key) => (nullOptions[key] = ""));
-    return nullOptions;
-  };
-
-  this.parseProps = (resource) => {
-    const props = {};
-    Object.keys(this.options).forEach((key) => (props[key] = resource[key]));
-    props.tags = props.tags.map((x) => x.name).join(",");
-    return props;
-  };
-}

@@ -36,7 +36,7 @@ const Resource = (props) => {
         <h4>
           <a href={href}> {title} </a> ({hostname})
         </h4>
-        <img className={styles.preview} src={imgUrl} alt="" />
+        <img className={styles.preview} srcSet={imgUrl} />
         <p>{description}</p>
 
         <div className={styles.postInfo}>

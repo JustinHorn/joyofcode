@@ -1,5 +1,10 @@
-import MutationForm,{MutationOptions} from "./MutationForm";
+import MutationForm, {
+  MutationFormWithoutState,
+  useProps,
+} from "./MutationForm";
+
+import { MutationOptions } from "./MutationOptions";
 
 export default MutationForm;
 
-export {MutationOptions}
+export { MutationOptions, MutationFormWithoutState, useProps };

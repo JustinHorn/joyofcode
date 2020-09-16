@@ -1,12 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
-import MutationForm, { MutationOptions } from "component/MutationForm";
+import {
+  MutationFormWithoutState,
+  useProps,
+  MutationOptions,
+} from "component/MutationForm";
 
 import { resourceQuery } from "gql";
+
+import Resource from "component/Resource";
+
+import styles from "./create.module.css";
 
 const ADDResource_Mutation = gql`
   mutation addResource(
@@ -28,6 +36,12 @@ const ADDResource_Mutation = gql`
   }
 `;
 
+const getImage_MUTATION = gql`
+  mutation GetImage_MUTATION($href: String!) {
+    makePictureOfWebsite(href: $href)
+  }
+`;
+
 const CreateResource = () => {
   const [mutate, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
@@ -46,10 +60,14 @@ const CreateResource = () => {
     },
   });
 
+  const [getImage, { error: imageError, data: imageData }] = useMutation(
+    getImage_MUTATION
+  );
+
   const options = {
     title: "rq",
-    href: "rq",
     tags: "rq",
+    href: "rq",
     description: "",
     imgUrl: "",
     github: "",
@@ -67,15 +85,36 @@ const CreateResource = () => {
     return false;
   };
 
+  const props = useProps(MO.nullyfy(), doMutation);
+
+  useEffect(() => {
+    if (imageData) {
+      const new_state = { ...props.stateProps };
+      new_state.imgUrl = imageData.makePictureOfWebsite;
+      props.setProps(new_state);
+    }
+  }, [imageData]);
+
+  const preview = () => {
+    getImage({ variables: { href: props.stateProps.href } });
+  };
+
   return (
-    <>
+    <div className={styles.create}>
       <h2>Share your Project</h2>
-      <MutationForm
-        doMutation={doMutation}
-        headline="create"
-        props={MO.nullyfy()}
-      ></MutationForm>
-    </>
+      <div className="edit">
+        <button onClick={preview}> previewImage</button>
+        <MutationFormWithoutState headline="create" {...props} />
+      </div>
+      <div className="preview">
+        <Resource
+          {...props.stateProps}
+          imgUrl={props.stateProps.imgUrl}
+          tags={props.stateProps.tags.split(",").map((n) => ({ name: n }))}
+          date={Date.now()}
+        />
+      </div>
+    </div>
   );
 };
 
