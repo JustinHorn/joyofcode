@@ -79,6 +79,12 @@ const CreateResource = () => {
 
   const preview = useGetImageMutation(props);
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
   return (
     <div className={styles.create}>
       <h2>Share your Project</h2>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import MutationForm, { MutationOptions } from "component/MutationForm";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
@@ -30,7 +30,7 @@ const MUTATION_UPDATE = gql`
 
 const UpdateResource = ({ resource, afterUpdate }) => {
   const { id } = resource;
-  const [update, other] = useMutation(MUTATION_UPDATE, {
+  const [update, { data, error }] = useMutation(MUTATION_UPDATE, {
     update(cache, m_result, m_id) {
       const { updateResource } = m_result.data;
       const data = cache.readQuery({ ...FeedQueryAndVars });
@@ -47,6 +47,12 @@ const UpdateResource = ({ resource, afterUpdate }) => {
       cache.writeQuery({ ...FeedQueryAndVars, data: new_data });
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   const options = {
     title: "rq",

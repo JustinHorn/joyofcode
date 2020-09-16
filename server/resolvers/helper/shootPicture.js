@@ -2,8 +2,6 @@ const aws = require("aws-sdk");
 
 const puppeteer = require("puppeteer");
 
-var Url = require("url-parse");
-
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.SECRET_AWS_KEY,
@@ -14,14 +12,10 @@ puppeteer.launch().then(async function (browser) {
   page = await browser.newPage();
 });
 
-const getImage = async (href) => {
-  const url = new Url(href);
-  const host = url.host;
-  const path = url.pathname;
+const { Check } = require("./checkUrl");
 
-  if (host.includes("localhost")) {
-    throw Error("No localhost urls");
-  }
+const getImage = async (href) => {
+  const { host, path } = new Check(href).noLocalHost();
 
   const fileName = host + path + ".png";
 
