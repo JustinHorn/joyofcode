@@ -25,8 +25,6 @@
     "helmet": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0",
     "nodemon": "^2.0.4",
     "puppeteer": "^5.3.0",
     "url-parse": "^1.4.7"
