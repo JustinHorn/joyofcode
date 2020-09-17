@@ -1,5 +1,6 @@
 var Url = require("url-parse");
 
+const localhost = process.env.LOCALHOST;
 class Check {
   constructor(href) {
     const url = new Url(href);
@@ -7,8 +8,8 @@ class Check {
     this.path = url.pathname;
   }
   noLocalHost = () => {
-    if (!this.host || this.host.includes("localhost")) {
-      throw Error("No localhost urls");
+    if (!this.host || this.host.includes(localhost)) {
+      throw Error("No " + localhost + " urls");
     }
     return { ...this };
   };

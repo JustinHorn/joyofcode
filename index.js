@@ -29,17 +29,18 @@ const options = {
   playground: "/graphql",
 };
 
-const helmet = require("helmet");
+helmet = require("helmet");
 
 server.express.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: [
+        frameAncestors: [
           "https://justinhorn.github.io",
           "https://justinhorn.name/",
           "http://localhost:3000/",
         ],
+        defaultSrc: [],
       },
     },
   })
