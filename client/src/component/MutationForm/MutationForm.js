@@ -18,18 +18,28 @@ export const useProps = (props, doMutation) => {
       setProps(props);
     }
   };
-  return { stateProps, setProps, mutateSth };
+
+  const setProp = (key, value) => {
+    const new_props = { ...stateProps };
+    new_props[key] = {
+      ...stateProps[key],
+      value: value,
+    };
+    setProps(new_props);
+  };
+
+  return { stateProps, setProp, mutateSth };
 };
 
 const MutationForm = ({ doMutation, headline, props }) => {
-  const { stateProps, setProps, mutateSth } = useProps(props, doMutation);
+  const { stateProps, mutateSth, setProp } = useProps(props, doMutation);
 
   return (
     <MutationFormWithoutState
       stateProps={stateProps}
-      setProps={setProps}
       headline={headline}
       mutateSth={mutateSth}
+      setProp={setProp}
     ></MutationFormWithoutState>
   );
 };
@@ -38,7 +48,7 @@ export const MutationFormWithoutState = ({
   mutateSth,
   headline,
   stateProps,
-  setProps,
+  setProp,
 }) => {
   return (
     <div className={styles.form}>
@@ -51,16 +61,9 @@ export const MutationFormWithoutState = ({
             <td>
               <input
                 key={index}
-                placeholder={key}
+                placeholder={stateProps[key].placeholder || key}
                 value={stateProps[key].value}
-                onChange={(e) => {
-                  let new_props = { ...stateProps };
-                  new_props[key] = {
-                    ...stateProps[key],
-                    value: e.target.value,
-                  };
-                  setProps(new_props);
-                }}
+                onChange={(e) => setProp(key, e.target.value)}
               />
             </td>
           </tr>

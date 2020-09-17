@@ -6,6 +6,8 @@ import { useMutation } from "@apollo/client";
 import { FeedQueryAndVars } from "component/Feed";
 import { resourceQuery } from "gql";
 
+import { updateOptions as options } from "component/MutationForm";
+
 const MUTATION_UPDATE = gql`
   mutation updateResource(
     $id: Int!
@@ -53,14 +55,6 @@ const UpdateResource = ({ resource, afterUpdate }) => {
       alert(error);
     }
   }, [error]);
-
-  const options = {
-    title: { name: "Title:", value: "", trim: true },
-    description: { name: "Description:", value: "" },
-    imgUrl: { name: "Url of image:", value: "" },
-    github: { name: "Github:", value: "" },
-    tags: { name: "Tags:", value: "" },
-  };
 
   const MO = new MutationOptions(options);
 

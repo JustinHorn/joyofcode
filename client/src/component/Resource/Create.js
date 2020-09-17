@@ -16,6 +16,10 @@ import Resource from "component/Resource";
 
 import styles from "./create.module.css";
 
+import { useGetImageMutation } from "hooks";
+
+import { createOptions as options } from "component/MutationForm";
+
 const ADDResource_Mutation = gql`
   mutation addResource(
     $title: String!
@@ -54,15 +58,6 @@ const CreateResource = () => {
     },
   });
 
-  const options = {
-    title: { name: "Title:", value: "", trim: true },
-    href: { name: "Link to deployed project:", value: "", trim: true },
-    description: { name: "Description:", value: "" },
-    imgUrl: { name: "Url of image:", value: "" },
-    github: { name: "Github:", value: "" },
-    tags: { name: "Tags:", value: "" },
-  };
-
   const MO = new MutationOptions(options);
 
   const doMutation = (props) => {
@@ -77,7 +72,11 @@ const CreateResource = () => {
 
   const props = useProps(MO.options, doMutation);
 
-  const preview = useGetImageMutation(props);
+  const setImage = (url) => {
+    props.setProp("imgUrl", url);
+  };
+
+  const preview = useGetImageMutation(setImage);
 
   useEffect(() => {
     if (error) {
@@ -95,8 +94,10 @@ const CreateResource = () => {
     <div className={styles.create}>
       <h2>Share your Project</h2>
       <div className="edit">
-        <button onClick={preview}> generate Image from href</button> (takes a
-        few seconds)
+        <button onClick={() => preview(props.stateProps.href.value)}>
+          generate Image from href
+        </button>{" "}
+        (takes a few seconds)
         <MutationFormWithoutState headline="create" {...props} />
       </div>
       <div className="preview">
@@ -112,33 +113,6 @@ const CreateResource = () => {
       </div>
     </div>
   );
-};
-
-const getImage_MUTATION = gql`
-  mutation GetImage_MUTATION($href: String!) {
-    makePictureOfWebsite(href: $href)
-  }
-`;
-
-const useGetImageMutation = (props) => {
-  const [getImage, { error: imageError, data: imageData }] = useMutation(
-    getImage_MUTATION
-  );
-
-  useEffect(() => {
-    if (imageData) {
-      const new_state = { ...props.stateProps };
-      new_state.imgUrl = imageData.makePictureOfWebsite;
-
-      setTimeout(() => props.setProps(new_state), 1000);
-    }
-  }, [imageData]);
-
-  const preview = () => {
-    getImage({ variables: { href: props.stateProps.href } });
-  };
-
-  return preview;
 };
 
 export default CreateResource;

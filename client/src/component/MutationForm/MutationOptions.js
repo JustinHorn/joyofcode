@@ -17,17 +17,10 @@ export function MutationOptions(options) {
     const variables = {};
 
     Object.keys(this.options).forEach((key) => {
-      variables[key] = this.options[key].trim
-        ? props[key].value.trim()
-        : props[key].value;
+      const value = props[key].value;
+      variables[key] = this.options[key].trim ? value.trim() : value;
     });
     return variables;
-  };
-
-  this.nullyfy = () => {
-    const nullOptions = {};
-    Object.keys(this.options).forEach((key) => (nullOptions[key] = ""));
-    return nullOptions;
   };
 
   this.parseProps = (resource) => {
