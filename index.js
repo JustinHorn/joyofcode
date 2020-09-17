@@ -29,6 +29,21 @@ const options = {
   playground: "/graphql",
 };
 
+const helmet = require("helmet");
+
+server.express.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [
+          "https://justinhorn.github.io",
+          "https://justinhorn.name/",
+          "http://localhost:3000/",
+        ],
+      },
+    },
+  })
+);
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
 server.express.get("/file", async (req, res, next) => {
