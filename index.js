@@ -33,16 +33,7 @@ helmet = require("helmet");
 
 server.express.use(
   helmet({
-    contentSecurityPolicy: {
-      directives: {
-        frameAncestors: [
-          "https://justinhorn.github.io",
-          "https://justinhorn.name/",
-          "http://localhost:3000/",
-        ],
-        defaultSrc: [],
-      },
-    },
+    contentSecurityPolicy: false,
   })
 );
 server.express.use(express.static(path.join(__dirname, "client", "build")));
