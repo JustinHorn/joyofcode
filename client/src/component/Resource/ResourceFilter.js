@@ -9,7 +9,9 @@ const ResourceFilter = ({ resources }) => {
     if (filters) {
       const tags = filters.split(",");
       for (let i = 0; i < resource.tags.length; i++) {
-        if (tags.includes(resource.tags[i].name)) return true;
+        for (let j = 0; j < tags.length; j++) {
+          if (resource.tags[i].name.includes(tags[j])) return true;
+        }
       }
       return false;
     }
