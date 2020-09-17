@@ -8,22 +8,21 @@ import { resourceQuery } from "gql";
 
 import { updateOptions as options } from "component/MutationForm";
 
+import { formatValsFromLines } from "gql";
+
+const values = `$id: Int!
+$title: String
+$tags: [String!]
+$imgUrl: String
+$github: String
+$description:String`;
+
 const MUTATION_UPDATE = gql`
   mutation updateResource(
-    $id: Int!
-    $title: String
-    $tags: [String!]
-    $imgUrl: String
-    $github: String
-    $description:String
+    ${values}
   ) {
     updateResource(
-      id: $id
-      title: $title
-      tags: $tags
-      imgUrl: $imgUrl
-      github: $github
-      description:$description
+      ${formatValsFromLines(values)}
     ) {
       ${resourceQuery}
     }

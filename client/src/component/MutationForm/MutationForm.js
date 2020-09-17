@@ -53,21 +53,22 @@ export const MutationFormWithoutState = ({
   return (
     <div className={styles.form}>
       <table className={styles.table}>
-        {Object.keys(stateProps).map((key, index) => (
-          <tr className={styles.column}>
-            <td>
-              <h4>{stateProps[key].name}</h4>
-            </td>
-            <td>
-              <input
-                key={index}
-                placeholder={stateProps[key].placeholder || key}
-                value={stateProps[key].value}
-                onChange={(e) => setProp(key, e.target.value)}
-              />
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {Object.keys(stateProps).map((key, index) => (
+            <tr key={index} className={styles.column}>
+              <td>
+                <h4>{stateProps[key].name}</h4>
+              </td>
+              <td>
+                <input
+                  placeholder={stateProps[key].placeholder || key}
+                  value={stateProps[key].value}
+                  onChange={(e) => setProp(key, e.target.value)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
 
       <button onClick={mutateSth}>{headline}</button>

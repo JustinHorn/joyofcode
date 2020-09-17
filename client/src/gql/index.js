@@ -1,3 +1,7 @@
+import formatValsFromLines from "./formatValsFromLines";
+
+export { formatValsFromLines };
+
 export const resourceProps = `
         id
         title

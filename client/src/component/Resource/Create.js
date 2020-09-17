@@ -20,20 +20,20 @@ import { useGetImageMutation } from "hooks";
 
 import { createOptions as options } from "component/MutationForm";
 
+import { formatValsFromLines } from "gql";
+
+const values = `$title: String!
+$href: String!
+$tags: [String!]!
+$imgUrl: String
+$github: String`;
+
 const ADDResource_Mutation = gql`
   mutation addResource(
-    $title: String!
-    $href: String!
-    $tags: [String!]!
-    $imgUrl: String
-    $github: String
+    ${values}
   ) {
     addResource(
-      title: $title
-      href: $href
-      tags: $tags
-      imgUrl: $imgUrl
-      github: $github
+        ${formatValsFromLines(values)}
     ) {
       ${resourceQuery}
     }
