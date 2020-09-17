@@ -3,10 +3,10 @@ export function MutationOptions(options) {
 
   this.testMatch = (props) => {
     const requiredKeys = Object.keys(this.options).filter(
-      (key) => this.options[key] === "rq"
+      (key) => this.options[key].trim
     );
     for (let i = 0; i < requiredKeys.length; i++) {
-      if (!props[requiredKeys[i]].trim()) {
+      if (!props[requiredKeys[i]].value.trim()) {
         return false;
       }
     }
@@ -17,8 +17,9 @@ export function MutationOptions(options) {
     const variables = {};
 
     Object.keys(this.options).forEach((key) => {
-      variables[key] =
-        this.options[key] === "rq" ? props[key].trim() : props[key];
+      variables[key] = this.options[key].trim
+        ? props[key].value.trim()
+        : props[key].value;
     });
     return variables;
   };
@@ -30,9 +31,11 @@ export function MutationOptions(options) {
   };
 
   this.parseProps = (resource) => {
-    const props = {};
-    Object.keys(this.options).forEach((key) => (props[key] = resource[key]));
-    props.tags = props.tags.map((x) => x.name).join(",");
+    const props = { ...this.options };
+    Object.keys(this.options).forEach(
+      (key) => (props[key].value = resource[key])
+    );
+    props.tags.value = props.tags.value.map((x) => x.name).join(",");
     return props;
   };
 }

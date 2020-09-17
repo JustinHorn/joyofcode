@@ -22,13 +22,7 @@ export const useProps = (props, doMutation) => {
 };
 
 const MutationForm = ({ doMutation, headline, props }) => {
-  const [stateProps, setProps] = useState(props);
-
-  const mutateSth = () => {
-    if (doMutation(stateProps)) {
-      setProps(props);
-    }
-  };
+  const { stateProps, setProps, mutateSth } = useProps(props, doMutation);
 
   return (
     <MutationFormWithoutState
@@ -52,16 +46,19 @@ export const MutationFormWithoutState = ({
         {Object.keys(stateProps).map((key, index) => (
           <tr className={styles.column}>
             <td>
-              <h4>{key}</h4>
+              <h4>{stateProps[key].name}</h4>
             </td>
             <td>
               <input
                 key={index}
                 placeholder={key}
-                value={stateProps[key]}
+                value={stateProps[key].value}
                 onChange={(e) => {
                   let new_props = { ...stateProps };
-                  new_props[key] = e.target.value;
+                  new_props[key] = {
+                    ...stateProps[key],
+                    value: e.target.value,
+                  };
                   setProps(new_props);
                 }}
               />

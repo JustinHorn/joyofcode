@@ -40,8 +40,7 @@
   justify-content: space-between;
 }
 
-.friendly,
-.unfriendly {
+.friendly {
   padding-left: 0;
   margin: 0;
   display: flex;
@@ -53,7 +52,7 @@
   margin-left: 20px;
 }
 
-.friendly li {
+.tag {
   background-color: lightgrey;
   border-radius: 5px;
   padding: 4px;

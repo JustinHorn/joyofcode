@@ -55,12 +55,12 @@ const CreateResource = () => {
   });
 
   const options = {
-    title: "rq",
-    tags: "rq",
-    href: "rq",
-    description: "",
-    imgUrl: "",
-    github: "",
+    title: { name: "Title:", value: "", trim: true },
+    href: { name: "Link to deployed project:", value: "", trim: true },
+    description: { name: "Description:", value: "" },
+    imgUrl: { name: "Url of image:", value: "" },
+    github: { name: "Github:", value: "" },
+    tags: { name: "Tags:", value: "" },
   };
 
   const MO = new MutationOptions(options);
@@ -75,7 +75,7 @@ const CreateResource = () => {
     return false;
   };
 
-  const props = useProps(MO.nullyfy(), doMutation);
+  const props = useProps(MO.options, doMutation);
 
   const preview = useGetImageMutation(props);
 
@@ -84,6 +84,12 @@ const CreateResource = () => {
       alert(error);
     }
   }, [error]);
+
+  const resourceProps = {};
+
+  Object.keys(props.stateProps).forEach(
+    (k) => (resourceProps[k] = props.stateProps[k].value)
+  );
 
   return (
     <div className={styles.create}>
@@ -96,9 +102,11 @@ const CreateResource = () => {
       <div className="preview">
         <h4>Preview:</h4>
         <Resource
-          {...props.stateProps}
+          {...resourceProps}
           imgUrl={props.stateProps.imgUrl}
-          tags={props.stateProps.tags.split(",").map((n) => ({ name: n }))}
+          tags={props.stateProps.tags.value
+            .split(",")
+            .map((n) => ({ name: n }))}
           date={Date.now()}
         />
       </div>

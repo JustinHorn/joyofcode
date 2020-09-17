@@ -1,15 +1,12 @@
-Version 0.0.0
+Version 0.0.1
 
-check href -> no localhost!
-check github -> needs to be github!
-setup project email!
+Create:
+Show mandatory fields!
+Give better error feedback!
+Do not delete everthing on error!
+better Prop name!
+describe Prop!
 
-also on update
-
-implement until 16:00!
-
-host && publish until 16:30!
-
-do sports
-
-react to feed back and thing about features!
+Resource:
+no tags possible
+if no tags - don't show tags

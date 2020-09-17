@@ -30,6 +30,8 @@ const Resource = (props) => {
 
   const hostname = new Url(href).hostname;
 
+  const postedByCurrentUser = postedBy?.id === user?.id && user;
+
   return (
     <div className={styles.resource}>
       <div className={styles.resourceBody}>
@@ -48,9 +50,11 @@ const Resource = (props) => {
         <ul className={styles.tagsAndOptions}>
           <ul className={styles.friendly}>
             {tags?.map(({ name }, index) => (
-              <li key={index}>{name}</li>
+              <li className={styles.tag} key={index}>
+                {name}
+              </li>
             ))}
-            {postedBy?.id === user?.id && user && (
+            {postedByCurrentUser && (
               <button onClick={() => setUpdate(!isUpdate)}>edit</button>
             )}
 
@@ -62,11 +66,7 @@ const Resource = (props) => {
               />
             )}
           </ul>
-          <ul className={styles.unfriendly}>
-            {postedBy?.id === user?.id && user && (
-              <DeleteResource id={id}> </DeleteResource>
-            )}
-          </ul>
+          {postedByCurrentUser && <DeleteResource id={id}> </DeleteResource>}
         </ul>
       </div>
       {isUpdate && (

@@ -55,11 +55,11 @@ const UpdateResource = ({ resource, afterUpdate }) => {
   }, [error]);
 
   const options = {
-    title: "rq",
-    tags: "rq",
-    description: "rq",
-    imgUrl: "rq",
-    github: "rq",
+    title: { name: "Title:", value: "", trim: true },
+    description: { name: "Description:", value: "" },
+    imgUrl: { name: "Url of image:", value: "" },
+    github: { name: "Github:", value: "" },
+    tags: { name: "Tags:", value: "" },
   };
 
   const MO = new MutationOptions(options);
@@ -68,7 +68,6 @@ const UpdateResource = ({ resource, afterUpdate }) => {
     const variables = MO.formatVars(props);
     variables.tags = variables.tags?.split(",");
     variables.id = id;
-    console.log(variables);
     update({ variables });
     afterUpdate();
     return true;
