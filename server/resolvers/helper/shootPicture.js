@@ -8,9 +8,12 @@ const s3 = new aws.S3({
 });
 
 let page;
-puppeteer.launch().then(async function (browser) {
-  page = await browser.newPage();
-});
+puppeteer
+  .launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] })
+  .then(async function (browser) {
+    page = await browser.newPage();
+  })
+  .catch((error) => console.log(error));
 
 const { Check } = require("./checkUrl");
 
