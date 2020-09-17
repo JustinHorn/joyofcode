@@ -3,4 +3,11 @@ import useAutomaticAuthorize from "./useAutomaticAuthorize";
 
 import useGetImageMutation from "./useGetImageMutation";
 
-export { useLoginOrRegister, useAutomaticAuthorize, useGetImageMutation };
+import useCreateResource from "./useCreateResource";
+
+export {
+  useLoginOrRegister,
+  useAutomaticAuthorize,
+  useGetImageMutation,
+  useCreateResource,
+};

@@ -1,6 +1,6 @@
 import MutationForm, {
   MutationFormWithoutState,
-  useProps,
+  useHandleFormValues,
 } from "./MutationForm";
 
 import { createOptions, updateOptions } from "./Options";
@@ -12,7 +12,7 @@ export default MutationForm;
 export {
   MutationOptions,
   MutationFormWithoutState,
-  useProps,
+  useHandleFormValues,
   createOptions,
   updateOptions,
 };

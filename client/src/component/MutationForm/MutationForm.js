@@ -10,36 +10,36 @@ const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   </Popup>
 );
 
-export const useProps = (props, doMutation) => {
-  const [stateProps, setProps] = useState(props);
+export const useHandleFormValues = (props, doMutation) => {
+  const [formValues, setFormValues] = useState(props);
 
   const mutateSth = () => {
-    if (doMutation(stateProps)) {
-      setProps(props);
+    if (doMutation(formValues)) {
+      setFormValues(props);
     }
   };
 
-  const setProp = (key, value) => {
-    const new_props = { ...stateProps };
+  const setFormValue = (key, value) => {
+    const new_props = { ...formValues };
     new_props[key] = {
-      ...stateProps[key],
+      ...formValues[key],
       value: value,
     };
-    setProps(new_props);
+    setFormValues(new_props);
   };
 
-  return { stateProps, setProp, mutateSth };
+  return { formValues, setFormValue, mutateSth };
 };
 
 const MutationForm = ({ doMutation, headline, props }) => {
-  const { stateProps, mutateSth, setProp } = useProps(props, doMutation);
+  const { formValues, mutateSth, setFormValue } = useHandleFormValues(props, doMutation);
 
   return (
     <MutationFormWithoutState
-      stateProps={stateProps}
+      formValues={formValues}
       headline={headline}
       mutateSth={mutateSth}
-      setProp={setProp}
+      setFormValue={setFormValue}
     ></MutationFormWithoutState>
   );
 };
@@ -47,23 +47,23 @@ const MutationForm = ({ doMutation, headline, props }) => {
 export const MutationFormWithoutState = ({
   mutateSth,
   headline,
-  stateProps,
-  setProp,
+  formValues,
+  setFormValue,
 }) => {
   return (
     <div className={styles.form}>
       <table className={styles.table}>
         <tbody>
-          {Object.keys(stateProps).map((key, index) => (
+          {Object.keys(formValues).map((key, index) => (
             <tr key={index} className={styles.column}>
               <td>
-                <h4>{stateProps[key].name}</h4>
+                <h4>{formValues[key].name}</h4>
               </td>
               <td>
                 <input
-                  placeholder={stateProps[key].placeholder || key}
-                  value={stateProps[key].value}
-                  onChange={(e) => setProp(key, e.target.value)}
+                  placeholder={formValues[key].placeholder || key}
+                  value={formValues[key].value}
+                  onChange={(e) => setFormValue(key, e.target.value)}
                 />
               </td>
             </tr>
