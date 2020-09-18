@@ -7,9 +7,9 @@ class Check {
     this.host = url.host;
     this.path = url.pathname;
   }
-  noLocalHost = () => {
+  noLocalHost = (prop) => {
     if (!this.host || this.host.includes(localhost)) {
-      throw Error("No " + localhost + " urls");
+      throw Error("No " + localhost + " urls " + prop);
     }
     return { ...this };
   };

@@ -59,7 +59,6 @@ const UpdateResource = ({ resource, afterUpdate }) => {
 
   const doUpdateMutation = (props) => {
     const variables = MO.formatVars(props);
-    variables.tags = variables.tags?.split(",");
     variables.id = id;
     update({ variables });
     afterUpdate();

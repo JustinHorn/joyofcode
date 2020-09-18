@@ -7,8 +7,9 @@ const Preview = ({ formValues }) => {
 
   Object.keys(formValues).forEach((k) => (values[k] = formValues[k].value));
 
-  const tags = values.tags.split(",").map((n) => ({ name: n }));
-
+  const tags = values.tags.map((x) => ({
+    name: x,
+  }));
   const { user } = useContext(UserContext);
 
   return (

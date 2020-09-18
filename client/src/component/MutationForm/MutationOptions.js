@@ -28,7 +28,7 @@ export function MutationOptions(options) {
     Object.keys(this.options).forEach(
       (key) => (props[key].value = resource[key])
     );
-    props.tags.value = props.tags.value.map((x) => x.name).join(",");
+    props.tags.value = props.tags.value.map((x) => x.name);
     return props;
   };
 }

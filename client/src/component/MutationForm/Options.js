@@ -15,7 +15,12 @@ const sharedOptions = {
     placeholder: "https://github.com...",
     value: "",
   },
-  tags: { name: "Tags", placeholder: "tag1,tag2,tag3...", value: "" },
+  tags: {
+    name: "Tags",
+    placeholder: "node.js",
+    value: ["react.js"],
+    tag: true,
+  },
 };
 
 const title = {

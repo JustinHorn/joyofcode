@@ -48,7 +48,7 @@ const addResource = async (p, args, context, i) => {
     where: { name: n },
   }));
 
-  args.href && new Check(args.href).noLocalHost();
+  args.href && new Check(args.href).noLocalHost("as Link");
 
   args.github && new Check(args.github).mustBeGithub();
 

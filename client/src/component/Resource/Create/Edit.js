@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useGetImageMutation } from "hooks";
 import { MutationFormWithoutState } from "component/MutationForm";
+
+import styles from "./edit.module.css";
+
+let id = 0;
 
 const Edit = ({ props }) => {
   const setImage = (url) => {

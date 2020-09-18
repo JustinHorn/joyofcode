@@ -22,7 +22,6 @@ const CreateResource = () => {
   const doMutation = (props) => {
     if (MO.testMatch(props)) {
       const variables = MO.formatVars(props);
-      variables.tags = variables.tags.split(",");
       createResource({ variables });
       return true;
     }
