@@ -25,7 +25,7 @@ const ADDResource_Mutation = gql`
     }
   }
 `;
-const useCreateResource = () => {
+const useCreateResource = (onSuccess) => {
   const [createResource, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
       const { addResource } = m_result.data;
@@ -40,6 +40,7 @@ const useCreateResource = () => {
         ...FeedQueryAndVars,
         data: new_data,
       });
+      onSuccess();
     },
   });
 

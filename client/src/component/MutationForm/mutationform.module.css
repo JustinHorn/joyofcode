@@ -17,3 +17,7 @@ td {
 .table h4 {
   margin: 5px;
 }
+
+.underline {
+  text-decoration: underline;
+}

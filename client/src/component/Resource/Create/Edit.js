@@ -15,7 +15,7 @@ const Edit = ({ props }) => {
         setImage={setImage}
       />
       (takes a few seconds)
-      <MutationFormWithoutState headline="create" {...props} />
+      <MutationFormWithoutState headline="share" {...props} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Authentication from "component/Authentication";
 
@@ -20,6 +20,10 @@ const Navbar = () => {
   };
 
   const { user, logout } = useContext(UserContext);
+
+  useEffect(() => {
+    setShow("not");
+  }, [user]);
 
   return (
     <>

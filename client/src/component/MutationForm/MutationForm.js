@@ -10,13 +10,11 @@ const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   </Popup>
 );
 
-export const useHandleFormValues = (props, doMutation) => {
+export const useHandleFormValues = (props) => {
   const [formValues, setFormValues] = useState(props);
 
-  const mutateSth = () => {
-    if (doMutation(formValues)) {
-      setFormValues(props);
-    }
+  const resetFormValues = () => {
+    setFormValues(props);
   };
 
   const setFormValue = (key, value) => {
@@ -28,24 +26,24 @@ export const useHandleFormValues = (props, doMutation) => {
     setFormValues(new_props);
   };
 
-  return { formValues, setFormValue, mutateSth };
+  return { formValues, setFormValue, resetFormValues };
 };
 
 const MutationForm = ({ doMutation, headline, props }) => {
-  const { formValues, mutateSth, setFormValue } = useHandleFormValues(props, doMutation);
+  const { formValues, setFormValue } = useHandleFormValues(props);
 
   return (
     <MutationFormWithoutState
       formValues={formValues}
       headline={headline}
-      mutateSth={mutateSth}
+      onClick={() => doMutation(formValues)}
       setFormValue={setFormValue}
-    ></MutationFormWithoutState>
+    />
   );
 };
 
 export const MutationFormWithoutState = ({
-  mutateSth,
+  onClick,
   headline,
   formValues,
   setFormValue,
@@ -57,7 +55,10 @@ export const MutationFormWithoutState = ({
           {Object.keys(formValues).map((key, index) => (
             <tr key={index} className={styles.column}>
               <td>
-                <h4>{formValues[key].name}</h4>
+                <h4>
+                  {formValues[key].name}
+                  {formValues[key].trim ? "*" : ""}:
+                </h4>
               </td>
               <td>
                 <input
@@ -71,7 +72,7 @@ export const MutationFormWithoutState = ({
         </tbody>
       </table>
 
-      <button onClick={mutateSth}>{headline}</button>
+      <button onClick={onClick}>{headline}</button>
     </div>
   );
 };

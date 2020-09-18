@@ -13,8 +13,11 @@ import Edit from "./Edit";
 import Preview from "./Preview";
 
 const CreateResource = () => {
-  const { createResource } = useCreateResource();
   const MO = new MutationOptions(options);
+
+  const props = useHandleFormValues(MO.options);
+
+  const { createResource } = useCreateResource(props.resetFormValues);
 
   const doMutation = (props) => {
     if (MO.testMatch(props)) {
@@ -26,7 +29,11 @@ const CreateResource = () => {
     return false;
   };
 
-  const props = useHandleFormValues(MO.options, doMutation);
+  const mutateSth = () => {
+    doMutation(props.formValues);
+  };
+
+  props.onClick = mutateSth;
 
   return (
     <div className={styles.create}>
