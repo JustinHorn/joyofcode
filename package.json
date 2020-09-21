@@ -8,6 +8,8 @@
   },
   "scripts": {
     "start": "node ./index.js",
+    "clean":"kill -9 $(lsof -t -i:4000)",
+
     "watch": "nodemon -e .js,.graphql",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "yarn prisma generate && cd client && yarn --only=dev && yarn && yarn build"

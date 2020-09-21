@@ -52,6 +52,7 @@ export const MutationFormWithoutState = (props) => {
         <tbody>
           {Object.keys(formValues).map((key, index) => (
             <Elements
+              key={index}
               k={key}
               formValues={formValues}
               setFormValue={setFormValue}

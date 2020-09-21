@@ -14,11 +14,6 @@ const Edit = ({ props }) => {
 
   return (
     <div className="edit">
-      <GenerateImageFromHref
-        href={props.formValues.href.value}
-        setImage={setImage}
-      />
-      (takes a few seconds)
       <MutationFormWithoutState headline="share" {...props} />
     </div>
   );

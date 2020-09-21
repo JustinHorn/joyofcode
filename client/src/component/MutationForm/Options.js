@@ -1,3 +1,5 @@
+import { makeScreenShotAction } from "./Actions";
+
 const sharedOptions = {
   description: {
     name: "Description",
@@ -19,7 +21,7 @@ const sharedOptions = {
     name: "Tags",
     placeholder: "node.js",
     value: ["react.js"],
-    tag: true,
+    handler: "tag",
   },
 };
 
@@ -37,12 +39,20 @@ const createOptions = {
     value: "",
     placeholder: "https://cookieclicker-justin.herokuapp.com/",
     trim: true,
+    handler: "action",
+    ...makeScreenShotAction,
   },
   ...sharedOptions,
 };
 
 const updateOptions = {
   title,
+  href: {
+    name: "Get an imgUrl",
+    value: "",
+    handler: "actionNoInput",
+    ...makeScreenShotAction,
+  },
   ...sharedOptions,
 };
 
