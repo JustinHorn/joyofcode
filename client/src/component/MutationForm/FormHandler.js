@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import styles from "./mutationform.module.css";
 
-const ChooseFormType = (props) => {
+const FormHandler = (props) => {
   const { k: key, formValues, setFormValue } = props;
 
   return (
@@ -56,4 +56,4 @@ const TagInput = ({ k, formValues, setFormValue }) => {
   );
 };
 
-export default ChooseFormType;
+export default FormHandler;

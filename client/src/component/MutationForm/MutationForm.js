@@ -4,7 +4,7 @@ import styles from "./mutationform.module.css";
 
 import Popup from "component/Popup";
 
-import ChooseFormType from "./ChooseFormType";
+import FormHandler from "./FormHandler";
 
 const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   <Popup show={show} onClickAway={onClickAway}>
@@ -77,7 +77,7 @@ const Elements = (props) => {
         </h4>
       </td>
       <td>
-        <ChooseFormType {...props} />
+        <FormHandler {...props} />
       </td>
     </tr>
   );

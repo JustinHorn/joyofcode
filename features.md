@@ -1,8 +1,12 @@
-better check -> is url valid?
 
-tag system
+
+
 
 to improve
 refactor MutationForm!
 
-find a better way of validating the urls!
+
+add be able to comment projects!
+be able to like projects!
+be able to look up personal projects!
+
