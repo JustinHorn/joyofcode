@@ -7,6 +7,11 @@ const Resource = {
       .findOne({ where: { id: parent.id } })
       .postedBy();
   },
+  likes: (parent, args, context) => {
+    return context.prisma.resource
+      .findOne({ where: { id: parent.id } })
+      .likes();
+  },
 };
 
 const Tag = {
@@ -21,6 +26,18 @@ const User = {
       .findOne({ where: { id: parent.id } })
       .postedResources();
   },
+  likes: (parent, args, context) => {
+    return context.prisma.user.findOne({ where: { id: parent.id } }).likes();
+  },
 };
 
-module.exports = { Resource, Tag, User };
+const Like = {
+  user: (parent, args, context) => {
+    return context.prisma.like.findOne({ where: { id: parent.id } }).user();
+  },
+  resource: (parent, args, context) => {
+    return context.prisma.like.findOne({ where: { id: parent.id } }).resource();
+  },
+};
+
+module.exports = { Resource, Tag, User, Like };

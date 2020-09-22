@@ -71,7 +71,7 @@ export const MutationFormWithoutState = (props) => {
 };
 
 const Elements = (props) => {
-  const { k: key, formValues, setFormValue } = props;
+  const { k: key, formValues } = props;
 
   return (
     <tr className={styles.column}>

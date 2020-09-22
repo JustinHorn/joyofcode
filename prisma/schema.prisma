@@ -17,6 +17,7 @@ model User {
     password        String
     registeredAt    DateTime   @default(now())
     postedResources Resource[]
+    likes           Like[]
 }
 
 model Resource {
@@ -30,8 +31,19 @@ model Resource {
 
     tags Tag[]
 
-    postedBy User? @relation(fields: [userdId], references: [id])
+    postedBy User?  @relation(fields: [userdId], references: [id])
     userdId  Int?
+    likes    Like[]
+}
+
+model Like {
+    id   Int      @id @default(autoincrement())
+    date DateTime @default(now())
+    user User     @relation(fields: [userId], references: [id])
+
+    userId     Int
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
 }
 
 model Tag {

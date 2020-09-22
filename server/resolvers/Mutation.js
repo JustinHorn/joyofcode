@@ -43,10 +43,12 @@ const { Check } = require("./helper/checkUrl");
 const addResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
-  const tags = args.tags.map((n) => ({
-    create: { name: n },
-    where: { name: n },
-  }));
+  const tags = args.tags
+    ? args.tags.map((n) => ({
+        create: { name: n },
+        where: { name: n },
+      }))
+    : [];
 
   args.href && new Check(args.href).noLocalHost("as Link");
 
@@ -66,6 +68,31 @@ const addResource = async (p, args, context, i) => {
   });
 
   return resource;
+};
+
+const likeResource = async (p, args, context, i) => {
+  const userId = getUserId(context);
+  const { id: resourceId } = args;
+
+  const like = context.prisma.like.create({
+    data: {
+      user: { connect: { id: userId } },
+      resource: { connect: { id: resourceId } },
+    },
+  });
+  return like;
+};
+
+const unlikeResource = async (p, args, context, i) => {
+  const userId = getUserId(context);
+  const { id } = args;
+
+  const like = await context.prisma.like.delete({
+    where: {
+      id,
+    },
+  });
+  return like.id;
 };
 
 const updateResource = async (p, args, context, i) => {
@@ -135,6 +162,8 @@ module.exports = {
   login,
   register,
   addResource,
+  likeResource,
+  unlikeResource,
   deleteResource,
   updateResource,
   makePictureOfWebsite,

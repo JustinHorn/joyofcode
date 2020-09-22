@@ -29,6 +29,9 @@ type Mutation {
     github: String
   ): Resource
 
+  likeResource(id: Int!): Like
+  unlikeResource(id: Int!): Int
+
   updateResource(
     id: Int!
     title: String
@@ -38,7 +41,7 @@ type Mutation {
     github: String
   ): Resource
 
-  deleteResource(id: Int!): DeletedResource
+  deleteResource(id: Int!): Int
 
   makePictureOfWebsite(href: String!): String
 }
@@ -53,6 +56,14 @@ type User {
   name: String!
   email: String!
   posts: [Resource!]!
+  likes: [Like!]!
+}
+
+type Like {
+  id: Int!
+  date: String!
+  user: User!
+  resource: Resource!
 }
 
 type DeletedResource {
@@ -76,6 +87,7 @@ type Resource {
   imgUrl: String!
   github: String!
   description: String!
+  likes: [Like!]!
 }
 
 type Tag {
