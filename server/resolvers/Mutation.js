@@ -135,6 +135,23 @@ const updateResource = async (p, args, context, i) => {
   return context.prisma.resource.findOne({ where: { id: args.id } });
 };
 
+const addComment = (p, args, context) => {
+  const userId = getUserId(context);
+
+  const comment = context.prisma.comment.create({
+    data: {
+      text: args.text,
+      postedBy: {
+        connect: { id: userId },
+      },
+      postedUnder: {
+        connect: { id: args.resourceId },
+      },
+    },
+  });
+  return comment;
+};
+
 const deleteResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
@@ -173,5 +190,6 @@ module.exports = {
   unlikeResource,
   deleteResource,
   updateResource,
+  addComment,
   makePictureOfWebsite,
 };

@@ -18,6 +18,11 @@ const Resource = {
       .likes();
     return likes.length;
   },
+  comments: async (parent, args, context) => {
+    return await context.prisma.resource
+      .findOne({ where: { id: parent.id } })
+      .comments();
+  },
 };
 
 const Tag = {
@@ -35,6 +40,11 @@ const User = {
   likes: (parent, args, context) => {
     return context.prisma.user.findOne({ where: { id: parent.id } }).likes();
   },
+  comments: async (parent, args, context) => {
+    return await context.prisma.user
+      .findOne({ where: { id: parent.id } })
+      .comments();
+  },
 };
 
 const Like = {
@@ -46,4 +56,17 @@ const Like = {
   },
 };
 
-module.exports = { Resource, Tag, User, Like };
+const Comment = {
+  postedBy: (parent, args, context) => {
+    return context.prisma.comment
+      .findOne({ where: { id: parent.id } })
+      .postedBy();
+  },
+  postedUnder: (parent, args, context) => {
+    return context.prisma.comment
+      .findOne({ where: { id: parent.id } })
+      .postedUnder();
+  },
+};
+
+module.exports = { Resource, Tag, User, Like, Comment };

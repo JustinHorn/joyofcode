@@ -44,6 +44,9 @@ type Mutation {
   deleteResource(id: Int!): Int
 
   makePictureOfWebsite(href: String!): String
+
+  addComment(resourceId: Int!, text: String!): Comment
+  removeComment(commentId: Int!): Int
 }
 
 type AuthPayLoad {
@@ -57,6 +60,15 @@ type User {
   email: String!
   posts: [Resource!]!
   likes: [Like!]!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: Int!
+  date: String!
+  text: String!
+  postedBy: User!
+  postedUnder: Resource!
 }
 
 type Like {
@@ -89,6 +101,7 @@ type Resource {
   description: String!
   likes: [Like!]!
   likeCount: Int!
+  comments: [Comment!]!
 }
 
 type Tag {
