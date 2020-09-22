@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
@@ -16,7 +16,7 @@ const MUTATION_DELETE = gql`
 `;
 
 const DeleteResource = ({ id }) => {
-  const [mutate, { error, data }] = useMutation(MUTATION_DELETE, {
+  const [mutate, options] = useMutation(MUTATION_DELETE, {
     update(cache, m_result, m_id) {
       const { deleteResource } = m_result.data;
 

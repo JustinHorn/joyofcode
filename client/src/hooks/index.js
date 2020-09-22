@@ -4,7 +4,9 @@ import useAutomaticAuthorize from "./useAutomaticAuthorize";
 import useGetImageMutation from "./useGetImageMutation";
 
 import useCreateResource from "./useCreateResource";
-import { useLikeResource, useUnLikeResource } from "./useLikeResource";
+import { useLikeResource } from "./useLikeResource";
+
+import useUpdateResource from "./useUpdateResource";
 
 export {
   useLoginOrRegister,
@@ -12,5 +14,5 @@ export {
   useGetImageMutation,
   useCreateResource,
   useLikeResource,
-  useUnLikeResource,
+  useUpdateResource,
 };

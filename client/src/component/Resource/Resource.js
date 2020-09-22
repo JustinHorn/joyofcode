@@ -27,15 +27,11 @@ const Resource = (props) => {
     description,
     github,
     likes,
-    likeCount,
   } = props;
   const { user } = useContext(UserContext);
   const [isUpdate, setUpdate] = useState(false);
 
   const hostname = new Url(href).hostname;
-
-  const isLikedByUser =
-    user && likes && !!likes.find((x) => x.user.id === user.id);
 
   const postedByCurrentUser = postedBy?.id === user?.id && user;
 
@@ -55,11 +51,7 @@ const Resource = (props) => {
               " on " +
               moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
           </span>
-          <LikeOrUnlikeButton
-            id={id}
-            link={isLikedByUser}
-            likeCount={likeCount}
-          />
+          <LikeOrUnlikeButton id={id} likes={likes} />
         </div>
 
         <ul className={styles.tagsAndOptions}>
@@ -81,7 +73,7 @@ const Resource = (props) => {
               />
             )}
           </ul>
-          {postedByCurrentUser && <DeleteResource id={id}> </DeleteResource>}
+          {postedByCurrentUser && <DeleteResource id={id} />}
         </ul>
       </div>
       {isUpdate && (
@@ -91,24 +83,24 @@ const Resource = (props) => {
   );
 };
 
-const LikeOrUnlikeButton = ({ id, link, likeCount }) => {
-  const { likeResource } = useLikeResource();
-  const { unlikeResource } = useUnLikeResource();
+const LikeOrUnlikeButton = ({ id, likes }) => {
+  const { user } = useContext(UserContext);
+
+  const isLikedByUser =
+    user && likes && !!likes.find((x) => x.user.id === user.id);
+
+  const { likeResource } = useLikeResource(!isLikedByUser);
 
   const onClick = () => {
-    if (link) {
-      likeResource({ variables: { id } });
-    } else {
-      unlikeResource({ variables: { id } });
-    }
+    likeResource({ variables: { id } });
   };
 
   return (
     <button
       onClick={onClick}
-      className={styles.likeButton + " " + (link ? styles.liked : "")}
+      className={styles.likeButton + " " + (isLikedByUser ? styles.liked : "")}
     >
-      {likeCount}
+      {likes?.length}
     </button>
   );
 };

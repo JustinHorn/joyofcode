@@ -75,6 +75,7 @@
   color: white;
   text-shadow: 1px 1px black;
   margin-left: 10px;
+  outline: none;
 }
 
 .likeButton::before {

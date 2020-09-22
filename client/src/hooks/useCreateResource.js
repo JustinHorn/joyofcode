@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
-import { FeedQueryAndVars } from "component/Feed";
-
 import { resourceQuery, formatValsFromLines } from "gql";
+
+import { readFeed, writeFeed } from "./helper";
 
 const values = `$title: String!
 $href: String!
@@ -27,17 +27,13 @@ const useCreateResource = (onSuccess) => {
   const [createResource, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
       const { addResource } = m_result.data;
-      const data = cache.readQuery({
-        ...FeedQueryAndVars,
-      });
-      const feed = data.feed;
+      const feed = readFeed(cache);
+
       const new_data = {
         feed: [addResource, ...feed],
       };
-      cache.writeQuery({
-        ...FeedQueryAndVars,
-        data: new_data,
-      });
+      writeFeed(cache, new_data);
+
       onSuccess();
     },
   });

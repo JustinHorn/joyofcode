@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./App.css";
 import Feed from "component/Feed";
 import { CreateResource } from "component/Resource";
