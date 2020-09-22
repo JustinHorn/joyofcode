@@ -69,7 +69,7 @@ const UpdateResource = ({ resource, afterUpdate }) => {
     <MutationForm
       doMutation={doUpdateMutation}
       headline={"update"}
-      props={MO.parseProps(resource)}
+      props={MO.parseToResource(resource)}
     />
   );
 };

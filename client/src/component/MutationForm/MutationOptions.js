@@ -23,7 +23,7 @@ export function MutationOptions(options) {
     return variables;
   };
 
-  this.parseProps = (resource) => {
+  this.parseToResource = (resource) => {
     const props = { ...this.options };
     Object.keys(this.options).forEach(
       (key) => (props[key].value = resource[key])

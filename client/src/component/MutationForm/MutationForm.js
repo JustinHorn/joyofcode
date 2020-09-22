@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./mutationform.module.css";
 
@@ -8,7 +8,7 @@ import FormHandler from "./FormHandler";
 
 const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   <Popup show={show} onClickAway={onClickAway}>
-    <MutationForm {...{ doMutation, headline, props }}></MutationForm>{" "}
+    <MutationForm {...{ doMutation, headline, props }} />
   </Popup>
 );
 
@@ -18,6 +18,10 @@ export const useHandleFormValues = (props) => {
   const resetFormValues = () => {
     setFormValues(props);
   };
+
+  useEffect(() => {
+    setFormValues(props);
+  }, [props]);
 
   const setFormValue = (key, value) => {
     const new_props = { ...formValues };

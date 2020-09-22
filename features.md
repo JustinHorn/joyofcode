@@ -1,5 +1,5 @@
 improvements:
-formValue should recieve an object
+setFormValue should recieve an object
 
 split up form handler
 

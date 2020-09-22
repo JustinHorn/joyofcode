@@ -56,4 +56,30 @@ const updateOptions = {
   ...sharedOptions,
 };
 
-export { createOptions, updateOptions };
+const loginOptions = {
+  email: {
+    name: "Email",
+    value: "",
+    placeholder: "Email",
+    trim: true,
+  },
+  password: {
+    name: "Password",
+    value: "",
+    placeholder: "Password",
+    trim: true,
+    pw: true,
+  },
+};
+
+const registerOptions = {
+  ...loginOptions,
+  name: {
+    name: "Name",
+    value: "",
+    placeholder: "Name",
+    trim: true,
+  },
+};
+
+export { registerOptions, loginOptions, createOptions, updateOptions };

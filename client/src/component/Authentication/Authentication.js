@@ -1,46 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 
 import { useLoginOrRegister } from "hooks";
 
-import styles from "./authentication.module.css";
+import MutationForm, { MutationOptions } from "component/MutationForm";
+
+import { loginOptions, registerOptions } from "component/MutationForm/Options";
 
 const Authentication = ({ isLogin }) => {
-  const { mutate } = useLoginOrRegister(isLogin);
+  const MO = new MutationOptions(isLogin ? loginOptions : registerOptions);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const { mutate: loginOrRegister } = useLoginOrRegister(isLogin);
 
-  const authenticate = () => {
-    mutate({ variables: { email, password, name } });
+  const doMutation = (props) => {
+    if (MO.testMatch(props)) {
+      const variables = MO.formatVars(props);
+      loginOrRegister({ variables });
+      return true;
+    }
+    return false;
   };
 
   return (
-    <div className={styles.main}>
-      <h2>{isLogin ? "Login" : "Register"}</h2>
-      <input
-        type="text"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      {!isLogin && (
-        <input
-          type="text"
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      )}
-      <button onClick={authenticate}>{isLogin ? "Login" : "Register"}</button>
-    </div>
+    <MutationForm
+      doMutation={doMutation}
+      headline={isLogin ? "Login" : "Register"}
+      props={MO.options}
+    />
   );
 };
 
