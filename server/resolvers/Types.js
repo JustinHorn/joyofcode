@@ -8,9 +8,15 @@ const Resource = {
       .postedBy();
   },
   likes: (parent, args, context) => {
-    return context.prisma.resource
+    return (likes = context.prisma.resource
+      .findOne({ where: { id: parent.id } })
+      .likes());
+  },
+  likeCount: async (parent, args, context) => {
+    const likes = await context.prisma.resource
       .findOne({ where: { id: parent.id } })
       .likes();
+    return likes.length;
   },
 };
 

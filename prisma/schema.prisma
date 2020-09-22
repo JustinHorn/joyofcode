@@ -44,6 +44,8 @@ model Like {
     userId     Int
     resource   Resource @relation(fields: [resourceId], references: [id])
     resourceId Int
+    @@unique([userId, resourceId])
+
 }
 
 model Tag {

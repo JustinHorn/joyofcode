@@ -13,6 +13,8 @@ import UserContext from "context";
 
 import { LinkIcon } from "component/Icon";
 
+import { useLikeResource, useUnLikeResource } from "hooks";
+
 const Resource = (props) => {
   const {
     id,
@@ -24,11 +26,16 @@ const Resource = (props) => {
     date,
     description,
     github,
+    likes,
+    likeCount,
   } = props;
   const { user } = useContext(UserContext);
   const [isUpdate, setUpdate] = useState(false);
 
   const hostname = new Url(href).hostname;
+
+  const isLikedByUser =
+    user && likes && !!likes.find((x) => x.user.id === user.id);
 
   const postedByCurrentUser = postedBy?.id === user?.id && user;
 
@@ -39,14 +46,22 @@ const Resource = (props) => {
           <a href={href}> {title} </a> ({hostname})
         </h4>
         <img className={styles.preview} srcSet={imgUrl} />
-        <p>{description}</p>
+        {description && <p>{description}</p>}
 
         <div className={styles.postInfo}>
-          {"by " +
-            postedBy?.name +
-            " on " +
-            moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
+          <span className="text">
+            {"by " +
+              postedBy?.name +
+              " on " +
+              moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
+          </span>
+          <LikeOrUnlikeButton
+            id={id}
+            link={isLikedByUser}
+            likeCount={likeCount}
+          />
         </div>
+
         <ul className={styles.tagsAndOptions}>
           <ul className={styles.friendly}>
             {tags?.map(({ name }, index) => (
@@ -73,6 +88,28 @@ const Resource = (props) => {
         <UpdateResource resource={props} afterUpdate={() => setUpdate(false)} />
       )}
     </div>
+  );
+};
+
+const LikeOrUnlikeButton = ({ id, link, likeCount }) => {
+  const { likeResource } = useLikeResource();
+  const { unlikeResource } = useUnLikeResource();
+
+  const onClick = () => {
+    if (link) {
+      likeResource({ variables: { id } });
+    } else {
+      unlikeResource({ variables: { id } });
+    }
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      className={styles.likeButton + " " + (link ? styles.liked : "")}
+    >
+      {likeCount}
+    </button>
   );
 };
 

@@ -88,6 +88,7 @@ type Resource {
   github: String!
   description: String!
   likes: [Like!]!
+  likeCount: Int!
 }
 
 type Tag {

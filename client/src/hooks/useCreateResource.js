@@ -4,9 +4,7 @@ import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
 
-import { resourceQuery } from "gql";
-
-import { formatValsFromLines } from "gql";
+import { resourceQuery, formatValsFromLines } from "gql";
 
 const values = `$title: String!
 $href: String!

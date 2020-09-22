@@ -30,7 +30,8 @@
 }
 
 .postInfo {
-  font-size: 0.7em;
+  font-size: 1em;
+  height: 2em;
 }
 
 .tagsAndOptions {
@@ -63,4 +64,40 @@
 .icon {
   width: 30px;
   height: 30px;
+}
+
+.likeButton {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: white;
+  text-shadow: 1px 1px black;
+  margin-left: 10px;
+}
+
+.likeButton::before {
+  z-index: -1;
+  font-size: 3em;
+  color: #000;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.liked::after {
+  z-index: -1;
+  font-size: 3em;
+  color: red;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 1s;
+}
+.liked::after {
+  transform: translate(-50%, -50%) scale(1.1);
 }

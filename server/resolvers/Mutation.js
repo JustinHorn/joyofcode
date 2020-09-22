@@ -74,6 +74,13 @@ const likeResource = async (p, args, context, i) => {
   const userId = getUserId(context);
   const { id: resourceId } = args;
 
+  const exists = await context.prisma.like.findOne({
+    where: { userId_resourceId: { userId, resourceId } },
+  });
+  if (exists) {
+    throw new Error("Resource has already been liked!");
+  }
+
   const like = context.prisma.like.create({
     data: {
       user: { connect: { id: userId } },
@@ -85,11 +92,11 @@ const likeResource = async (p, args, context, i) => {
 
 const unlikeResource = async (p, args, context, i) => {
   const userId = getUserId(context);
-  const { id } = args;
+  const { id: resourceId } = args;
 
   const like = await context.prisma.like.delete({
     where: {
-      id,
+      userId_resourceId: { userId, resourceId },
     },
   });
   return like.id;

@@ -10,6 +10,13 @@ export const resourceProps = `
         imgUrl
         github
         description
+        likes {
+            id
+            user {
+                id
+            }
+        }
+        likeCount
 `;
 
 export const resourceQuery = `
