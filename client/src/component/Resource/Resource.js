@@ -13,6 +13,8 @@ import UserContext from "context";
 
 import { LinkIcon } from "component/Icon";
 
+import Popup from "component/Popup";
+
 import { useLikeResource, useUnLikeResource } from "hooks";
 
 const Resource = (props) => {
@@ -41,7 +43,9 @@ const Resource = (props) => {
         <h4>
           <a href={href}> {title} </a> ({hostname})
         </h4>
-        <img className={styles.preview} srcSet={imgUrl} />
+        <div className={styles.imgContainer}>
+          {imgUrl && <img className={styles.preview} srcSet={imgUrl} />}
+        </div>
         {description && <p>{description}</p>}
 
         <div className={styles.postInfo}>
@@ -76,9 +80,9 @@ const Resource = (props) => {
           {postedByCurrentUser && <DeleteResource id={id} />}
         </ul>
       </div>
-      {isUpdate && (
+      <Popup show={isUpdate} onClickAway={() => setUpdate(false)}>
         <UpdateResource resource={props} afterUpdate={() => setUpdate(false)} />
-      )}
+      </Popup>
     </div>
   );
 };

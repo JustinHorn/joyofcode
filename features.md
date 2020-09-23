@@ -1,5 +1,17 @@
 ## backlog
 
+- no heart
+- hacker news break point
+- post on a different route
+- image to small
+- about page
+
+- properly center projects
+
+- what is it not?
+
+- content moderation?
+
 - load tech stack after
 
 - have a user profile

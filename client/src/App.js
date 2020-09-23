@@ -5,21 +5,36 @@ import { CreateResource } from "component/Resource";
 import Navbar from "component/Navbar";
 import UserContext from "context";
 
+import Mainpage from "pages/Mainpage";
+
+import PrivateRoute from "component/PrivateRoute";
+
+import Post from "pages/Post";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 function App() {
   const { user } = useContext(UserContext);
 
-  const ref = useRef();
-
   return (
-    <div ref={ref} className="App">
-      <p>Send feedback to justinhorn0000@gmail.com - or message him directly</p>
-      <Navbar></Navbar>
-      {!user && <h1>login or register to share your project</h1>}
+    <Router>
+      <div className="App">
+        <p>
+          Send feedback to justinhorn0000@gmail.com - or message him directly
+        </p>
+        <Navbar></Navbar>
+        {user && <h1>Hello {user.name}</h1>}
 
-      {user && <h1>Hello {user.name}</h1>}
-      {user && <CreateResource />}
-      <Feed />
-    </div>
+        <Switch>
+          <PrivateRoute path="/post">
+            <Post />
+          </PrivateRoute>
+          <Route path="/">
+            <Mainpage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

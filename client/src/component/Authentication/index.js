@@ -1,3 +1,5 @@
 import Authentication from "./Authentication";
 
-export default Authentication;
+import AuthenticationButtons from "./Buttons";
+
+export default AuthenticationButtons;

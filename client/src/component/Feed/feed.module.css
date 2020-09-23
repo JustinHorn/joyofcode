@@ -1,6 +1,6 @@
 .feed {
   display: flex;
-  flex-direction: column;
-  align-items: left;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 2px;
 }

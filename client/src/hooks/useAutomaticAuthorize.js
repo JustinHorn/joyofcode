@@ -15,12 +15,18 @@ const query_authorize = gql`
 `;
 
 const useAutomaticAuthorize = (setUser) => {
-  const { data } = useQuery(query_authorize);
+  const { data, error } = useQuery(query_authorize);
 
   useEffect(() => {
     if (data) {
       setUser(data.authorize);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      setUser(false);
+    }
+  }, [error]);
 };
 export default useAutomaticAuthorize;

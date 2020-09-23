@@ -1,49 +1,37 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import Authentication from "component/Authentication";
-
-import UserContext from "context";
+import AuthenticationButtons from "component/Authentication";
 
 import styles from "./navbar.module.css";
+import UserContext from "context";
 
-import Popup from "component/Popup";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [show, setShow] = useState("not");
+  const { user } = useContext(UserContext);
 
-  const getOnClick = (type) => () => {
-    if (type === show) {
-      setShow("not");
-    } else {
-      setShow(type);
-    }
+  const location = useLocation();
+
+  const isSelected = (path) => {
+    return location.pathname === path ? styles.selected : "";
   };
-
-  const { user, logout } = useContext(UserContext);
-
-  useEffect(() => {
-    setShow("not");
-  }, [user]);
 
   return (
     <>
       <nav className={styles.nav}>
-        {(!user &&
-          ["Login", "Register"].map((option, index) => (
-            <button
-              key={index}
-              type="checkbox"
-              className={option === show ? "active" : ""}
-              onClick={getOnClick(option)}
-            >
-              {option}
-            </button>
-          ))) || <button onClick={logout}>Logout</button>}
-      </nav>
+        <div className={styles.navigation}>
+          <NavLink to="/">
+            <button className={isSelected("/")}>Main </button>
+          </NavLink>
+          {user && (
+            <NavLink to="/post">
+              <button className={isSelected("/post")}> Post</button>
+            </NavLink>
+          )}
+        </div>
 
-      <Popup show={show !== "not"} onClickAway={() => setShow("not")}>
-        <Authentication isLogin={show === "Login"} />
-      </Popup>
+        <AuthenticationButtons></AuthenticationButtons>
+      </nav>
     </>
   );
 };
