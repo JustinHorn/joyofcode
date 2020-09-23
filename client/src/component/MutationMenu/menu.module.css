@@ -1,0 +1,17 @@
+.menu {
+  display: grid;
+  grid-template-areas:
+    "headline headline"
+    "edit preview";
+}
+
+.menu > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu h2 {
+  text-align: center;
+  grid-area: headline;
+}

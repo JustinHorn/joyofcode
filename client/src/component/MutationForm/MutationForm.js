@@ -18,10 +18,6 @@ export const useHandleFormValues = (props) => {
   const resetFormValues = () => {
     setFormValues(props);
   };
-  /*
-  useEffect(() => {
-    setFormValues(props);
-  }, [props]);*/
 
   const setFormValue = (key, value) => {
     const new_props = { ...formValues };
@@ -32,7 +28,7 @@ export const useHandleFormValues = (props) => {
     setFormValues(new_props);
   };
 
-  return { formValues, setFormValue, resetFormValues };
+  return { formValues, setFormValue, resetFormValues, setFormValues };
 };
 
 const MutationForm = ({ doMutation, headline, props }) => {

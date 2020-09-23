@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useLoginOrRegister } from "hooks";
 
-import MutationForm, { MutationOptions } from "component/MutationForm";
+import {
+  MutationOptions,
+  useHandleFormValues,
+  MutationFormWithoutState,
+} from "component/MutationForm";
 
 import { loginOptions, registerOptions } from "component/MutationForm/Options";
 
@@ -10,6 +14,14 @@ const Authentication = ({ isLogin }) => {
   const MO = new MutationOptions(isLogin ? loginOptions : registerOptions);
 
   const { mutate: loginOrRegister } = useLoginOrRegister(isLogin);
+
+  const { formValues, setFormValue, setFormValues } = useHandleFormValues(
+    MO.options
+  );
+
+  useEffect(() => {
+    setFormValues(MO.options);
+  }, [isLogin]);
 
   const doMutation = (props) => {
     if (MO.testMatch(props)) {
@@ -21,10 +33,11 @@ const Authentication = ({ isLogin }) => {
   };
 
   return (
-    <MutationForm
-      doMutation={doMutation}
+    <MutationFormWithoutState
+      formValues={formValues}
       headline={isLogin ? "Login" : "Register"}
-      props={MO.options}
+      onClick={() => doMutation(formValues)}
+      setFormValue={setFormValue}
     />
   );
 };

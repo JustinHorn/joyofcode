@@ -1,7 +1,7 @@
 import Resource from "./Resource";
 import ResourceFilter from "./ResourceFilter";
 
-import CreateResource from "./Create";
+import CreateResource from "../MutateResource";
 
 export default Resource;
 

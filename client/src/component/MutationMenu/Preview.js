@@ -14,13 +14,12 @@ const Preview = ({ formValues }) => {
 
   return (
     <div className="preview">
-      <h4>Preview:</h4>
       <Resource
         preview={true}
         {...values}
         tags={tags}
         date={Date.now()}
-        postedBy={{ name: user.name }}
+        postedBy={{ name: user?.name }}
       />
     </div>
   );

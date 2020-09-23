@@ -6,9 +6,6 @@ import moment from "moment";
 
 import Url from "url-parse";
 
-import UpdateResource from "./Update";
-
-import DeleteResource from "./Delete";
 import UserContext from "context";
 
 import { LinkIcon } from "component/Icon";
@@ -16,6 +13,14 @@ import { LinkIcon } from "component/Icon";
 import Popup from "component/Popup";
 
 import { useLikeResource, useUnLikeResource } from "hooks";
+
+import useDeleteResource from "hooks/useDeleteResource";
+
+import { MutationOptions, useHandleFormValues } from "component/MutationForm";
+import { updateOptions as options } from "component/MutationForm";
+import { useUpdateResource } from "hooks";
+
+import MutationMenu from "component/MutationMenu";
 
 const Resource = (props) => {
   const {
@@ -37,6 +42,26 @@ const Resource = (props) => {
   const hostname = new Url(href).hostname;
 
   const postedByCurrentUser = postedBy?.id === user?.id && user;
+
+  const { deleteResource } = useDeleteResource();
+
+  const deleteOnClick = () => {
+    if (window.confirm("You really wanna delete?")) {
+      deleteResource({ variables: { id } });
+    }
+  };
+
+  const resource = props;
+  const MO = new MutationOptions(options);
+
+  const propsM = useHandleFormValues(MO.parseToResource(resource));
+
+  const { update: mutation } = useUpdateResource();
+
+  const doMutation = ({ variables }) => {
+    variables.id = id;
+    mutation({ variables });
+  };
 
   return (
     <div className={styles.resource}>
@@ -78,15 +103,18 @@ const Resource = (props) => {
               />
             )}
           </ul>
-          {postedByCurrentUser && <DeleteResource id={id} />}
+          {postedByCurrentUser && (
+            <button onClick={deleteOnClick}>Delete</button>
+          )}
         </ul>
       </div>
       {!preview && (
         <Popup show={isUpdate} onClickAway={() => setUpdate(false)}>
-          <UpdateResource
-            show={isUpdate}
-            resource={props}
-            afterUpdate={() => setUpdate(false)}
+          <MutationMenu
+            MO={MO}
+            mutation={doMutation}
+            headline={"Update your project"}
+            props={propsM}
           />
         </Popup>
       )}
