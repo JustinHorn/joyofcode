@@ -1,6 +1,22 @@
 import { makeScreenShotAction } from "./Actions";
 
+const title = {
+  name: "Title",
+  value: "",
+  placeholder: "Cookie Clicker",
+  trim: true,
+};
+
 const sharedOptions = {
+  title,
+  href: {
+    name: "Link to deployed project",
+    value: "",
+    placeholder: "https://cookieclicker-justin.herokuapp.com/",
+    trim: true,
+    handler: "action",
+    ...makeScreenShotAction,
+  },
   description: {
     name: "Description",
     placeholder: "I love this project",
@@ -25,34 +41,11 @@ const sharedOptions = {
   },
 };
 
-const title = {
-  name: "Title",
-  value: "",
-  placeholder: "Cookie Clicker",
-  trim: true,
-};
-
 const createOptions = {
-  title,
-  href: {
-    name: "Link to deployed project",
-    value: "",
-    placeholder: "https://cookieclicker-justin.herokuapp.com/",
-    trim: true,
-    handler: "action",
-    ...makeScreenShotAction,
-  },
   ...sharedOptions,
 };
 
 const updateOptions = {
-  title,
-  href: {
-    name: "Get an imgUrl",
-    value: "",
-    handler: "actionNoInput",
-    ...makeScreenShotAction,
-  },
   ...sharedOptions,
 };
 

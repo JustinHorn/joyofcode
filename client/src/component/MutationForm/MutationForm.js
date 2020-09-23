@@ -18,10 +18,10 @@ export const useHandleFormValues = (props) => {
   const resetFormValues = () => {
     setFormValues(props);
   };
-
+  /*
   useEffect(() => {
     setFormValues(props);
-  }, [props]);
+  }, [props]);*/
 
   const setFormValue = (key, value) => {
     const new_props = { ...formValues };

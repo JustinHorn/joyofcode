@@ -29,6 +29,7 @@ const Resource = (props) => {
     description,
     github,
     likes,
+    preview,
   } = props;
   const { user } = useContext(UserContext);
   const [isUpdate, setUpdate] = useState(false);
@@ -55,7 +56,7 @@ const Resource = (props) => {
               " on " +
               moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
           </span>
-          <LikeOrUnlikeButton id={id} likes={likes} />
+          {!preview && <LikeOrUnlikeButton id={id} likes={likes} />}
         </div>
 
         <ul className={styles.tagsAndOptions}>
@@ -65,7 +66,7 @@ const Resource = (props) => {
                 {name}
               </li>
             ))}
-            {postedByCurrentUser && (
+            {!preview && postedByCurrentUser && (
               <button onClick={() => setUpdate(!isUpdate)}>edit</button>
             )}
 
@@ -80,9 +81,15 @@ const Resource = (props) => {
           {postedByCurrentUser && <DeleteResource id={id} />}
         </ul>
       </div>
-      <Popup show={isUpdate} onClickAway={() => setUpdate(false)}>
-        <UpdateResource resource={props} afterUpdate={() => setUpdate(false)} />
-      </Popup>
+      {!preview && (
+        <Popup show={isUpdate} onClickAway={() => setUpdate(false)}>
+          <UpdateResource
+            show={isUpdate}
+            resource={props}
+            afterUpdate={() => setUpdate(false)}
+          />
+        </Popup>
+      )}
     </div>
   );
 };

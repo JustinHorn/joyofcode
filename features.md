@@ -38,3 +38,8 @@
 ## done
 
 - be able to unlike projects!
+
+## buggs
+
+- schema wrong in graphql
+- application freezes on update

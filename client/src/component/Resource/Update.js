@@ -1,14 +1,20 @@
 import React from "react";
-import MutationForm, { MutationOptions } from "component/MutationForm";
+import { MutationOptions, useHandleFormValues } from "component/MutationForm";
 
 import { updateOptions as options } from "component/MutationForm";
 
 import { useUpdateResource } from "hooks";
 
+import Edit from "./Create/Edit";
+
+import Preview from "./Create/Preview";
+
 const UpdateResource = ({ resource, afterUpdate }) => {
   const { id } = resource;
   const { update } = useUpdateResource();
   const MO = new MutationOptions(options);
+
+  const props = useHandleFormValues(MO.parseToResource(resource));
 
   const doUpdateMutation = (props) => {
     const variables = MO.formatVars(props);
@@ -18,12 +24,19 @@ const UpdateResource = ({ resource, afterUpdate }) => {
     return true;
   };
 
+  const mutateSth = () => {
+    doUpdateMutation(props.formValues);
+  };
+
+  props.onClick = mutateSth;
+
   return (
-    <MutationForm
-      doMutation={doUpdateMutation}
-      headline={"update"}
-      props={MO.parseToResource(resource)}
-    />
+    <div className={""}>
+      <h2>Update your project</h2>
+
+      <Edit props={props}></Edit>
+      <Preview formValues={props.formValues}></Preview>
+    </div>
   );
 };
 

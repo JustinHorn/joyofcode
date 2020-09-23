@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
 
-import { resourceProps } from "gql";
-
 const MUTATION_DELETE = gql`
   mutation MUTATION_DELETE($id: Int!) {
     deleteResource(id: $id) {
-      ${resourceProps}
+      id
+      title
     }
   }
 `;
 
 const DeleteResource = ({ id }) => {
-  const [mutate, options] = useMutation(MUTATION_DELETE, {
+  const [mutate, { error }] = useMutation(MUTATION_DELETE, {
     update(cache, m_result, m_id) {
       const { deleteResource } = m_result.data;
 
@@ -31,6 +30,12 @@ const DeleteResource = ({ id }) => {
       cache.writeQuery({ ...FeedQueryAndVars, data: new_data });
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+  }, [error]);
 
   const deleteResource = (id) => {
     if (window.confirm("You really wanna delete?")) {

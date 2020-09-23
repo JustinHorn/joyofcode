@@ -105,7 +105,7 @@ const unlikeResource = async (p, args, context, i) => {
 const updateResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
-  const { title, github, imgUrl, description } = args;
+  const { href, title, github, imgUrl, description } = args;
 
   github && new Check(github).mustBeGithub();
 
@@ -123,7 +123,7 @@ const updateResource = async (p, args, context, i) => {
               github,
               imgUrl,
               description,
-
+              href,
               tags,
             },
           },

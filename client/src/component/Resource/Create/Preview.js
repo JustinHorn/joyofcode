@@ -16,6 +16,7 @@ const Preview = ({ formValues }) => {
     <div className="preview">
       <h4>Preview:</h4>
       <Resource
+        preview={true}
         {...values}
         tags={tags}
         date={Date.now()}
