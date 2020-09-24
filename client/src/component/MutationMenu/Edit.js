@@ -2,10 +2,10 @@ import React from "react";
 
 import { MutationFormWithoutState } from "component/MutationForm";
 
-const Edit = ({ props }) => {
+const Edit = ({ props, actionName }) => {
   return (
     <div className="edit">
-      <MutationFormWithoutState headline="share" {...props} />
+      <MutationFormWithoutState headline={actionName || "share"} {...props} />
     </div>
   );
 };

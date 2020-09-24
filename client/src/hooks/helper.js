@@ -1,4 +1,4 @@
-import { FeedQueryAndVars } from "component/Feed";
+import { FeedQueryAndVars } from "./useFeed";
 const readFeed = (cache) => {
   const data = cache.readQuery({
     ...FeedQueryAndVars,

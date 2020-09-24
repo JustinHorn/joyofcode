@@ -4,3 +4,7 @@
   flex-wrap: wrap;
   margin: 2px;
 }
+
+.searchbar input {
+  width: 100%;
+}

@@ -22,6 +22,7 @@ const ResourceUpdatePopup = ({ resourceValues, show, onClickAway }) => {
   return (
     <Popup show={show} onClickAway={onClickAway}>
       <MutationMenu
+        actionName={"Update"}
         options={updateOptions}
         mutation={doMutation}
         headline={"Update your project"}

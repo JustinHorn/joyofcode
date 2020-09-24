@@ -1,5 +1,3 @@
-import Feed, { FeedQuery, FeedQueryAndVars } from "./Feed";
+import Feed from "./Feed";
 
 export default Feed;
-
-export { FeedQuery, FeedQueryAndVars };
