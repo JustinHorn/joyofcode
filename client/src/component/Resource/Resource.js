@@ -6,7 +6,7 @@ import Url from "url-parse";
 
 import PostInfo from "./PostInfo/PostInfo";
 
-import TagsAndMutations from "./TagsAndMutations/TagsAndMutations";
+import TagsAndMutations from "./TagsAndMutations";
 
 import ResourceUpdatePopup from "./ResourceUpdatePopup";
 

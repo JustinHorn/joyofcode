@@ -87,24 +87,34 @@ const registerOptions = {
   },
 };
 
-const exports = { registerOptions, loginOptions, createOptions, updateOptions };
+export const testMatch = (options, props) => {
+  const requiredKeys = Object.keys(options).filter((key) => options[key].trim);
+  for (let i = 0; i < requiredKeys.length; i++) {
+    if (!props[requiredKeys[i]].value.trim()) {
+      return false;
+    }
+  }
+  return true;
+};
 
-Object.keys(exports).forEach((key) => {
-  const props = exports[key];
-  Object.keys(props).forEach((k) => (props[k].defVal = props[k].value));
-});
+export const formatVars = (options, props) => {
+  const variables = {};
 
-const resetOption = () => {
-  Object.keys(exports).forEach((key) => {
-    const props = exports[key];
-    Object.keys(props).forEach((k) => (props[k].value = props[k].defVal));
+  Object.keys(options).forEach((key) => {
+    const value = props[key].value;
+    variables[key] = options[key].trim ? value.trim() : value;
   });
+  return variables;
 };
 
-export {
-  registerOptions,
-  loginOptions,
-  createOptions,
-  updateOptions,
-  resetOption,
+export const parseToResource = (options, resource) => {
+  const props = {};
+  Object.keys(options).forEach((k) => {
+    props[k] = { ...options[k] };
+  });
+  Object.keys(options).forEach((key) => (props[key].value = resource[key]));
+  props.tags.value = props.tags.value.map((x) => x.name);
+  return props;
 };
+
+export { registerOptions, loginOptions, createOptions, updateOptions };

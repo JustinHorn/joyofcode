@@ -5,10 +5,12 @@ import Preview from "./Preview";
 
 import styles from "./menu.module.css";
 
-const MutationMenu = ({ MO, mutation, props, headline }) => {
+import { testMatch, formatVars } from "component/MutationForm/Options";
+
+const MutationMenu = ({ options, mutation, props, headline }) => {
   const doMutation = (props) => {
-    if (MO.testMatch(props)) {
-      const variables = MO.formatVars(props);
+    if (testMatch(options, props)) {
+      const variables = formatVars(options, props);
       mutation({ variables });
       return true;
     }

@@ -25,6 +25,8 @@
 - follow people
 - global and local feed
 
+- add deep copy
+
 ## in Queue
 
 - comment projects!

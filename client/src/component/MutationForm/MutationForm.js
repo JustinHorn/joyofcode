@@ -6,16 +6,13 @@ import Popup from "component/Popup";
 
 import FormHandler from "./FormHandler";
 
-import { MutationOptions } from "./MutationOptions";
-import { updateOptions, resetOption } from "./Options";
+import { updateOptions, parseToResource } from "./Options";
 
 const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   <Popup show={show} onClickAway={onClickAway}>
     <MutationForm {...{ doMutation, headline, props }} />
   </Popup>
 );
-
-const MO = new MutationOptions(updateOptions);
 
 export const useHandleFormValues = (props, resourceValues) => {
   const [formValues, setFormValues] = useState(props);
@@ -26,7 +23,7 @@ export const useHandleFormValues = (props, resourceValues) => {
 
   useEffect(() => {
     if (resourceValues) {
-      setFormValues(MO.parseToResource(resourceValues));
+      setFormValues(parseToResource(updateOptions, resourceValues));
     }
   }, [resourceValues]);
 

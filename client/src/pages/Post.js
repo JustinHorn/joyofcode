@@ -11,8 +11,6 @@ import MutationMenu from "component/MutationMenu";
 const Post = () => {
   const { user } = useContext(UserContext);
 
-  const MO = new MutationOptions(options);
-
   const props = useHandleFormValues(options);
 
   const { createResource: mutation } = useCreateResource(props.resetFormValues);
@@ -23,7 +21,7 @@ const Post = () => {
 
       {user && (
         <MutationMenu
-          MO={MO}
+          MO={options}
           mutation={mutation}
           headline={"Share your project!"}
           props={props}
