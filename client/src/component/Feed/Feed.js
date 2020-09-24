@@ -12,7 +12,7 @@ const Feed = () => {
   const { data, loading, error } = useFeed();
 
   const resources = data?.feed;
-  const [filters, setFilters] = useState({ value: [] });
+  const [filters, setFilters] = useState({ value: [], placeholder: "search" });
 
   const doTagsApply = (resource) => {
     if (filters.value.length) {

@@ -1,14 +1,9 @@
 ## backlog
 
-- no heart
-- hacker news break point
-- post on a different route
-- image to small
+- hacker news break points
 - about page
 - titles bigger
 - opacity on liked vs not liked
-
-- properly center projects
 
 - what is it not?
 
@@ -25,11 +20,11 @@
 - follow people
 - global and local feed
 
-- add deep copy
+- comment projects!
 
 ## in Queue
 
-- comment projects!
+- move resource link away from title
 
 ## do everyday
 
@@ -37,10 +32,18 @@
 
 ## maybe
 
+- give resources their own page
+
+-
 - view vs. need help?
 
 ## done
 
+- add deep copy
+- image to small
+- properly center projects
+- no heart
+- post on a different route
 - be able to unlike projects!
 
 ## buggs
