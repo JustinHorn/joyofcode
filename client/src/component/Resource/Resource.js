@@ -4,19 +4,11 @@ import styles from "./resource.module.css";
 
 import Url from "url-parse";
 
-import UserContext from "context";
+import PostInfo from "./PostInfo/PostInfo";
 
-import Popup from "component/Popup";
+import TagsAndMutations from "./TagsAndMutations/TagsAndMutations";
 
-import { MutationOptions, useHandleFormValues } from "component/MutationForm";
-import { updateOptions as options } from "component/MutationForm";
-import { useUpdateResource } from "hooks";
-
-import MutationMenu from "component/MutationMenu";
-
-import PostInfo from "./PostInfo";
-
-import TagsAndMutations from "./TagsAndMutations";
+import ResourceUpdatePopup from "./ResourceUpdatePopup";
 
 const Resource = (props) => {
   const {
@@ -79,7 +71,7 @@ const Picture = ({ imgUrl }) => (
   </div>
 );
 
-const Description = ({ description }) => <p>{description}</p>;
+const Description = ({ description }) => <p>{description || "---"}</p>;
 
 const Headline = ({ href, title }) => {
   const hostname = new Url(href).hostname;
@@ -88,32 +80,6 @@ const Headline = ({ href, title }) => {
     <h4>
       <a href={href}> {title} </a> ({hostname})
     </h4>
-  );
-};
-
-const ResourceUpdatePopup = ({ resourceValues, show, onClickAway }) => {
-  const { id } = resourceValues;
-  const MO = new MutationOptions(options);
-
-  const propsM = useHandleFormValues(MO.parseToResource(resourceValues));
-
-  const { update: mutation } = useUpdateResource();
-
-  const doMutation = ({ variables }) => {
-    variables.id = id;
-    mutation({ variables });
-    onClickAway();
-  };
-
-  return (
-    <Popup show={show} onClickAway={onClickAway}>
-      <MutationMenu
-        MO={MO}
-        mutation={doMutation}
-        headline={"Update your project"}
-        props={propsM}
-      />
-    </Popup>
   );
 };
 

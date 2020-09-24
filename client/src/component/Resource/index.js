@@ -1,8 +1,6 @@
 import Resource from "./Resource";
-import ResourceFilter from "./ResourceFilter";
-
-import CreateResource from "../MutateResource";
+import ResourceFilter from "../Feed/ResourceFilter";
 
 export default Resource;
 
-export { ResourceFilter, CreateResource };
+export { ResourceFilter };

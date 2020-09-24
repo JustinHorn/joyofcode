@@ -1,7 +1,5 @@
 import React, { useContext, useRef } from "react";
 import "./App.css";
-import Feed from "component/Feed";
-import { CreateResource } from "component/Resource";
 import Navbar from "component/Navbar";
 import UserContext from "context";
 
@@ -23,7 +21,6 @@ function App() {
           Send feedback to justinhorn0000@gmail.com - or message him directly
         </p>
         <Navbar></Navbar>
-        {user && <h1>Hello {user.name}</h1>}
 
         <Switch>
           <PrivateRoute path="/post">

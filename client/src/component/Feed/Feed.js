@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./feed.module.css";
 
-import { ResourceFilter } from "component/Resource";
+import ResourceFilter from "./ResourceFilter";
 
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
