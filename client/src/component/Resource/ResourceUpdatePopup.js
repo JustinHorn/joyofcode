@@ -3,7 +3,7 @@ import React from "react";
 import Popup from "component/Popup";
 
 import { useHandleFormValues } from "component/MutationForm";
-import { updateOptions } from "component/MutationForm";
+import { updateOptions } from "forms/Options";
 import { useUpdateResource } from "hooks";
 import MutationMenu from "component/MutationMenu";
 

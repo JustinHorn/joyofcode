@@ -4,9 +4,9 @@ import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
 import { FeedQueryAndVars } from "component/Feed";
-import { resourceQuery } from "gql";
+import { resourceQuery } from "forms";
 
-import { formatValsFromLines } from "gql";
+import { formatValsFromLines } from "forms";
 
 import { readFeed, writeFeed } from "./helper";
 

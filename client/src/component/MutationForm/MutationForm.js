@@ -6,7 +6,7 @@ import Popup from "component/Popup";
 
 import FormHandler from "./FormHandler";
 
-import { updateOptions, parseToResource } from "./Options";
+import { updateOptions, parseToResource } from "forms/Options";
 
 const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   <Popup show={show} onClickAway={onClickAway}>

@@ -7,9 +7,9 @@ import {
   MutationFormWithoutState,
 } from "component/MutationForm";
 
-import { loginOptions, registerOptions } from "component/MutationForm/Options";
+import { loginOptions, registerOptions } from "forms/Options";
 
-import { testMatch, formatVars } from "component/MutationForm/Options";
+import { testMatch, formatVars } from "forms/Options";
 
 const Authentication = ({ isLogin }) => {
   const options = isLogin ? loginOptions : registerOptions;
