@@ -152,6 +152,20 @@ const addComment = (p, args, context) => {
   return comment;
 };
 
+const removeComment = async (p, args, context) => {
+  const userId = getUserId(context);
+
+  const comment = await context.prisma.user.update({
+    where: { id: userId },
+    data: {
+      comments: {
+        delete: { id: args.commentId },
+      },
+    },
+  });
+  return comment.id;
+};
+
 const deleteResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
@@ -188,5 +202,6 @@ module.exports = {
   deleteResource,
   updateResource,
   addComment,
+  removeComment,
   makePictureOfWebsite,
 };

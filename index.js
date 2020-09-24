@@ -34,6 +34,7 @@ helmet = require("helmet");
 server.express.use(
   helmet({
     contentSecurityPolicy: false,
+    frameguard: false,
   })
 );
 server.express.use(express.static(path.join(__dirname, "client", "build")));
