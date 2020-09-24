@@ -7,10 +7,11 @@ const ResourceFilter = ({ resources }) => {
 
   const doTagsApply = (resource) => {
     if (filters) {
-      const tags = filters.split(",");
-      for (let i = 0; i < resource.tags.length; i++) {
+      const tags = filters.split(",").map((x) => x.toLowerCase());
+      const r_tags = resource.tags.map((x) => x.name.toLowerCase());
+      for (let i = 0; i < r_tags.length; i++) {
         for (let j = 0; j < tags.length; j++) {
-          if (resource.tags[i].name.includes(tags[j])) return true;
+          if (r_tags.includes(tags[j])) return true;
         }
       }
       return false;

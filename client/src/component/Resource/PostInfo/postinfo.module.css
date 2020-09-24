@@ -15,27 +15,28 @@
   outline: none;
 }
 
-.likeButton::before {
-  z-index: -1;
-  font-size: 3em;
+.notLiked::before {
   color: #000;
-  content: "♥";
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  content: "🤘";
+
   transform: translate(-50%, -50%);
 }
 .liked::after {
-  z-index: -1;
-  font-size: 3em;
   color: red;
-  content: "♥";
+  content: "🤟";
+
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.notLiked::before,
+.liked::after {
+  z-index: -1;
+  font-size: 2em;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 1s;
 }
+
 .liked::after {
   transform: translate(-50%, -50%) scale(1.1);
 }

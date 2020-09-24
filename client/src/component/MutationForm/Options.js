@@ -75,4 +75,24 @@ const registerOptions = {
   },
 };
 
-export { registerOptions, loginOptions, createOptions, updateOptions };
+const exports = { registerOptions, loginOptions, createOptions, updateOptions };
+
+Object.keys(exports).forEach((key) => {
+  const props = exports[key];
+  Object.keys(props).forEach((k) => (props[k].defVal = props[k].value));
+});
+
+const resetOption = () => {
+  Object.keys(exports).forEach((key) => {
+    const props = exports[key];
+    Object.keys(props).forEach((k) => (props[k].value = props[k].defVal));
+  });
+};
+
+export {
+  registerOptions,
+  loginOptions,
+  createOptions,
+  updateOptions,
+  resetOption,
+};

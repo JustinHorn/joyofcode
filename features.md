@@ -5,6 +5,8 @@
 - post on a different route
 - image to small
 - about page
+- titles bigger
+- opacity on liked vs not liked
 
 - properly center projects
 

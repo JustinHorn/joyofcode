@@ -6,18 +6,47 @@ import Popup from "component/Popup";
 
 import FormHandler from "./FormHandler";
 
+import { MutationOptions } from "./MutationOptions";
+import { updateOptions, resetOption } from "./Options";
+
 const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
   <Popup show={show} onClickAway={onClickAway}>
     <MutationForm {...{ doMutation, headline, props }} />
   </Popup>
 );
 
-export const useHandleFormValues = (props) => {
+const MO = new MutationOptions(updateOptions);
+
+export const useHandleFormValues = (props, resourceValues) => {
   const [formValues, setFormValues] = useState(props);
 
   const resetFormValues = () => {
     setFormValues(props);
   };
+
+  useEffect(() => {
+    if (resourceValues) {
+      setFormValues(MO.parseToResource(resourceValues));
+    } else {
+      setFormValues(props);
+    }
+  }, [resourceValues]);
+  /*
+  useEffect(() => {
+    console.log("mount");
+    console.log(formValues);
+    return () => {
+      console.log("unmount resetting options!");
+      resetOption();
+    };
+  }, []);
+  */
+
+  useEffect(() => {
+    console.log("props");
+
+    console.log(props);
+  }, [formValues]);
 
   const setFormValue = (key, value) => {
     const new_props = { ...formValues };

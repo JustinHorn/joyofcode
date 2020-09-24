@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 
-import moment from "moment";
-
 import { useLikeResource, useUnLikeResource } from "hooks";
 import UserContext from "context";
 
 import styles from "./postinfo.module.css";
+
+import { formatTimeDiff } from "helper";
 
 const PostInfo = ({ id, postedBy, date, likes, preview }) => {
   const { user } = useContext(UserContext);
@@ -19,19 +19,17 @@ const PostInfo = ({ id, postedBy, date, likes, preview }) => {
     likeResource({ variables: { id } });
   };
 
+  const time = formatTimeDiff(date);
   return (
     <div className={styles.postInfo}>
-      <span>
-        {"by " +
-          postedBy?.name +
-          " on " +
-          moment(Number(date)).format("YYYY.MM.DD-HH:mm")}
-      </span>
+      <span>{"posted by " + postedBy?.name + " " + time}</span>
       {!preview && (
         <button
           onClick={onClick}
           className={
-            styles.likeButton + " " + (isLikedByUser ? styles.liked : "")
+            styles.likeButton +
+            " " +
+            (isLikedByUser ? styles.liked : styles.notLiked)
           }
         >
           {likes?.length}

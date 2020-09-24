@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { CreateResource } from "component/Resource";
 import { useHandleFormValues, MutationOptions } from "component/MutationForm";
 
 import { createOptions as options } from "component/MutationForm";
@@ -14,7 +13,7 @@ const Post = () => {
 
   const MO = new MutationOptions(options);
 
-  const props = useHandleFormValues(MO.options);
+  const props = useHandleFormValues(options);
 
   const { createResource: mutation } = useCreateResource(props.resetFormValues);
 

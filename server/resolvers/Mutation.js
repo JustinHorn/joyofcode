@@ -159,17 +159,14 @@ const deleteResource = async (p, args, context, i) => {
     where: { id: args.id },
   });
 
-  await context.prisma.user.update({
-    where: { id: userId },
-    data: {
-      postedResources: {
-        delete: [
-          {
-            id: args.id,
-          },
-        ],
-      },
-    },
+  if (resource.userId !== userId) {
+    throw new Error("Resource not posted by user");
+  }
+
+  await context.prisma.like.deleteMany({ where: { resourceId: args.id } });
+
+  await context.prisma.resource.delete({
+    where: { id: args.id },
   });
 
   return resource;
