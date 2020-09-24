@@ -12,6 +12,9 @@ const FormHandler = (props) => {
   };
 
   if (formValue.handler === "action" || formValue.handler === "actionNoInput") {
+    if (!formValue.useGetAction) {
+      debugger;
+    }
     componentProps["action"] = formValue.useGetAction(setFormValue);
     componentProps["actionName"] = formValue.actionName;
   }

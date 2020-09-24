@@ -1,5 +1,10 @@
 export function MutationOptions(options) {
-  this.options = options;
+  this.options = {};
+
+  Object.keys(options).forEach((k) => {
+    this.options[k] = { ...options[k] };
+  });
+
   this.testMatch = (props) => {
     const requiredKeys = Object.keys(this.options).filter(
       (key) => this.options[key].trim

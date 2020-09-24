@@ -27,26 +27,8 @@ export const useHandleFormValues = (props, resourceValues) => {
   useEffect(() => {
     if (resourceValues) {
       setFormValues(MO.parseToResource(resourceValues));
-    } else {
-      setFormValues(props);
     }
   }, [resourceValues]);
-  /*
-  useEffect(() => {
-    console.log("mount");
-    console.log(formValues);
-    return () => {
-      console.log("unmount resetting options!");
-      resetOption();
-    };
-  }, []);
-  */
-
-  useEffect(() => {
-    console.log("props");
-
-    console.log(props);
-  }, [formValues]);
 
   const setFormValue = (key, value) => {
     const new_props = { ...formValues };

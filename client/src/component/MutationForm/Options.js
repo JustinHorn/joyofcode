@@ -1,10 +1,21 @@
 import { makeScreenShotAction } from "./Actions";
+import { useGetImageMutation } from "hooks";
 
 const title = {
   name: "Title",
   value: "",
   placeholder: "Cookie Clicker",
   trim: true,
+};
+
+const useGetAction = (setFormValue) => {
+  const setImage = (imgUrl) => {
+    setFormValue("imgUrl", imgUrl);
+  };
+
+  const preview = useGetImageMutation(setImage);
+
+  return preview;
 };
 
 const sharedOptions = {
@@ -15,7 +26,8 @@ const sharedOptions = {
     placeholder: "https://cookieclicker-justin.herokuapp.com/",
     trim: true,
     handler: "action",
-    ...makeScreenShotAction,
+    useGetAction,
+    actionName: "make a Screenshot",
   },
   description: {
     name: "Description",
