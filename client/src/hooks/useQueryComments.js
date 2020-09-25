@@ -9,7 +9,7 @@ const QUERY_COMMENTS = gql`
     }
   }
 `;
-const getQueryVars = (id) => ({
+export const getQueryVars = (id) => ({
   query: QUERY_COMMENTS,
   variables: { resourceId: id, orderBy: { date: "desc" } },
 });

@@ -5,7 +5,7 @@ import { formatTimeDiff } from "helper";
 
 import UserContext from "context/UserContext";
 
-const Comment = ({ text, postedBy, date }) => {
+const Comment = ({ id, text, postedBy, date, remove }) => {
   const { user } = useContext(UserContext);
 
   const you = postedBy.id === user?.id;
@@ -13,7 +13,10 @@ const Comment = ({ text, postedBy, date }) => {
   return (
     <span className={styles.comment}>
       <span className={styles.commentsInfo}>
-        {(you ? "You" : postedBy.name) + " " + formatTimeDiff(date) + " ago"}
+        <span>
+          {(you ? "You" : postedBy.name) + " " + formatTimeDiff(date) + " ago"}{" "}
+        </span>
+        {you && <button onClick={remove}>DELETE</button>}
       </span>
       <span className={styles.text}>{text}</span>
     </span>

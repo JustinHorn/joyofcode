@@ -1,6 +1,8 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 import { comment, formatValsFromLines } from "forms";
+
+import { getQueryVars } from "./useQueryComments";
 
 const values = `$resourceId:Int! 
 $text:String!`;
@@ -15,19 +17,6 @@ mutation ADDCOMMENT_MUTATION(
     ${comment}
   }
 }`;
-
-const QUERY_COMMENTS = gql`
-  query QUERY_COMMENTS($resourceId:Int! $orderBy:CommentOrderByInput) {
-    comments(resourceId:$resourceId orderBy:$orderBy) {
-      ${comment}
-    }
-  }
-`;
-
-const getQueryVars = (id) => ({
-  query: QUERY_COMMENTS,
-  variables: { resourceId: id, orderBy: { date: "desc" } },
-});
 
 const useAddComment = (resourceId) => {
   const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION, {

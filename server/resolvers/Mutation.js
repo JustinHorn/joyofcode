@@ -163,7 +163,7 @@ const addComment = (p, args, context) => {
 const removeComment = async (p, args, context) => {
   const userId = getUserId(context);
 
-  const comment = await context.prisma.user.update({
+  const user = await context.prisma.user.update({
     where: { id: userId },
     data: {
       comments: {
@@ -171,7 +171,7 @@ const removeComment = async (p, args, context) => {
       },
     },
   });
-  return comment.id;
+  return args.commentId;
 };
 
 const deleteResource = async (p, args, context, i) => {
