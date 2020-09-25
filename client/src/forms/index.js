@@ -2,6 +2,16 @@ import formatValsFromLines from "./formatValsFromLines";
 
 export { formatValsFromLines };
 
+export const comment = `
+            id
+            text
+            date
+            postedBy {
+                id
+                name
+            }
+`;
+
 export const resourceProps = `
         id
         title
@@ -16,7 +26,8 @@ export const resourceProps = `
                 id
             }
         }
-        likeCount
+ 
+
 `;
 
 export const resourceQuery = `

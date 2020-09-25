@@ -36,8 +36,8 @@ export const formatTimeDiff = (at) => {
     .filter((key) => !!t[key])[0];
 
   if (t[timeString] === 1) {
-    return t[timeString] + " " + timeString.slice(0, -1) + " ago";
+    return t[timeString] + " " + timeString.slice(0, -1);
   } else {
-    return t[timeString] + " " + timeString + " ago";
+    return t[timeString] + " " + timeString;
   }
 };

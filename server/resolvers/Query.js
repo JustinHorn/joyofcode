@@ -20,4 +20,13 @@ const feed = async (p, args, context) => {
   });
 };
 
-module.exports = { hello, feed, authorize };
+const comments = async (p, args, context) => {
+  return await context.prisma.comment.findMany({
+    where: { resourceId: args.resourceId },
+    skip: args.skip,
+    take: args.take,
+    orderBy: args.orderBy,
+  });
+};
+
+module.exports = { hello, feed, authorize, comments };

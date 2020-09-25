@@ -19,10 +19,11 @@ const PostInfo = ({ id, postedBy, date, likes, preview }) => {
     likeResource({ variables: { id } });
   };
 
-  const time = formatTimeDiff(date);
   return (
     <div className={styles.postInfo}>
-      <span>{"posted by " + postedBy?.name + " " + time}</span>
+      <span>
+        {"posted by " + postedBy?.name + " " + formatTimeDiff(date) + " ago"}
+      </span>
       {!preview && (
         <button
           onClick={onClick}

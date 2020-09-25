@@ -10,6 +10,8 @@ import TagsAndMutations from "./TagsAndMutations";
 
 import ResourceUpdatePopup from "./ResourceUpdatePopup";
 
+import CommentSection from "./CommentSection";
+
 const Resource = (props) => {
   const {
     id,
@@ -23,7 +25,9 @@ const Resource = (props) => {
     github,
     likes,
     preview,
+    comments,
   } = props;
+
   const [isUpdate, setUpdate] = useState(false);
 
   return (
@@ -52,8 +56,8 @@ const Resource = (props) => {
             postedBy,
           }}
         />
+        {!preview && <CommentSection resourceId={id} />}
       </div>
-
       {!preview && (
         <ResourceUpdatePopup
           show={isUpdate}
@@ -77,9 +81,12 @@ const Headline = ({ href, title }) => {
   const hostname = new Url(href).hostname;
 
   return (
-    <h4>
-      <a href={href}> {title} </a> ({hostname})
-    </h4>
+    <h2>
+      {title}
+      <h4>
+        <a href={href}> ({hostname})</a>{" "}
+      </h4>
+    </h2>
   );
 };
 

@@ -2,11 +2,12 @@
   width: 400px;
   text-align: left;
   margin: 5px;
+  margin-left: 0px;
+  margin-right: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px dotted black;
 }
 
 .resourceBody {
@@ -17,17 +18,18 @@
   margin: 5px;
   margin-left: 0;
   font-size: 0.8em;
-  color: grey;
+  color: black;
 }
 
 .resourceBody a {
-  color: black;
+  color: grey;
 }
 
 .imgContainer {
   width: 400px;
   height: 300px;
   text-align: center;
+  border: 1px solid black;
 }
 
 .preview {

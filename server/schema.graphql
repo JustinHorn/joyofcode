@@ -1,7 +1,18 @@
 type Query {
   hello: String!
   feed(skip: Int, take: Int, orderBy: ResourceOrderByInput): [Resource!]!
+  comments(
+    resourceId: Int!
+    skip: Int
+    take: Int
+    orderBy: CommentOrderByInput
+  ): [Comment!]!
   authorize: User
+}
+
+input CommentOrderByInput {
+  id: Sort
+  date: Sort
 }
 
 input ResourceOrderByInput {

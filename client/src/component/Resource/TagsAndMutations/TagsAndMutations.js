@@ -16,6 +16,10 @@ const TagsAndMutations = ({
   github,
   postedBy,
 }) => {
+  if (tags.length === 0) {
+    tags = [{ name: "..." }];
+  }
+
   const { user } = useContext(UserContext);
   const postedByCurrentUser = postedBy?.id === user?.id && user;
 

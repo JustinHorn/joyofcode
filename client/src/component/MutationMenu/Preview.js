@@ -18,6 +18,7 @@ const Preview = ({ formValues }) => {
         preview={true}
         {...values}
         tags={tags}
+        comments={[]}
         date={Date.now()}
         postedBy={{ name: user?.name }}
       />
