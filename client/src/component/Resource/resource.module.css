@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+.resourceBody h2 {
+  margin-bottom: 0;
+}
+
 .resourceBody h4 {
   margin: 5px;
   margin-left: 0;

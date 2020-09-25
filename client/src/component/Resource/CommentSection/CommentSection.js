@@ -8,6 +8,8 @@ import styles from "./commentsection.module.css";
 
 import Comment from "component/Comment";
 
+import Spoiler from "component/Spoiler";
+
 const values = `$resourceId:Int! 
 $text:String!`;
 
@@ -33,14 +35,29 @@ const QUERY_COMMENTS = gql`
 const CommentSection = ({ resourceId }) => {
   const [text, setText] = useState("");
 
-  const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION);
+  const queryVars = {
+    query: QUERY_COMMENTS,
+    variables: { resourceId, orderBy: { date: "desc" } },
+  };
+
+  const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION, {
+    update: (cache, result, info) => {
+      const { addComment: comment } = result.data;
+
+      const comments = cache.readQuery({ ...queryVars }).comments;
+
+      const new_comments = [comment, ...comments];
+
+      cache.writeQuery({ ...queryVars, data: { comments: new_comments } });
+    },
+  });
 
   const writeComment = () => {
     mutate({ variables: { resourceId, text } });
   };
 
-  const { data, loading } = useQuery(QUERY_COMMENTS, {
-    variables: { resourceId, orderBy: { date: "desc" } },
+  const { data, loading } = useQuery(queryVars.query, {
+    variables: queryVars.variables,
   });
 
   if (loading) return "loading";
@@ -48,23 +65,26 @@ const CommentSection = ({ resourceId }) => {
   return (
     <div>
       <h3>Comments: {data?.comments.length}</h3>
-      <div className={styles.writeComment}>
-        <h4>Comment:</h4>
-        <textarea
-          name="comment"
-          id=""
-          cols="30"
-          rows="5"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={writeComment}>Comment</button>
-      </div>
-      <div className={styles.comments}>
-        {data?.comments.map((content) => (
-          <Comment {...content}></Comment>
-        ))}
-      </div>
+
+      <Spoiler>
+        <div className={styles.writeComment}>
+          <h4>Comment:</h4>
+          <textarea
+            name="comment"
+            id=""
+            cols="30"
+            rows="5"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button onClick={writeComment}>Comment</button>
+        </div>
+        <div className={styles.comments}>
+          {data?.comments.map((content, index) => (
+            <Comment key={index} {...content}></Comment>
+          ))}
+        </div>
+      </Spoiler>
     </div>
   );
 };

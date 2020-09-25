@@ -25,16 +25,11 @@ const PostInfo = ({ id, postedBy, date, likes, preview }) => {
         {"posted by " + postedBy?.name + " " + formatTimeDiff(date) + " ago"}
       </span>
       {!preview && (
-        <button
-          onClick={onClick}
-          className={
-            styles.likeButton +
-            " " +
-            (isLikedByUser ? styles.liked : styles.notLiked)
-          }
-        >
-          {likes?.length}
-        </button>
+        <>
+          {" "}
+          Likes: {likes.length}{" "}
+          <button onClick={onClick}>{isLikedByUser ? "unlike" : "like"}</button>
+        </>
       )}
     </div>
   );
