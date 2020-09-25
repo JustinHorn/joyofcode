@@ -25,7 +25,7 @@ const Resource = (props) => {
     github,
     likes,
     preview,
-    comments,
+    commentCount,
   } = props;
 
   const [isUpdate, setUpdate] = useState(false);
@@ -57,7 +57,9 @@ const Resource = (props) => {
           }}
         />
 
-        {!preview && <CommentSection resourceId={id} />}
+        {!preview && (
+          <CommentSection resourceId={id} commentCount={commentCount} />
+        )}
       </div>
 
       {!preview && (

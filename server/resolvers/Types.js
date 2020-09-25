@@ -13,10 +13,14 @@ const Resource = {
       .likes());
   },
   likeCount: async (parent, args, context) => {
-    const likes = await context.prisma.resource
-      .findOne({ where: { id: parent.id } })
-      .likes();
-    return likes.length;
+    return await context.prisma.like.count({
+      where: { resourceId: parent.id },
+    });
+  },
+  commentCount: async (parent, args, context) => {
+    return await context.prisma.comment.count({
+      where: { resourceId: parent.id },
+    });
   },
   comments: async (parent, args, context) => {
     return await context.prisma.resource

@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-
-import { gql, useMutation, useQuery } from "@apollo/client";
-
-import { comment, formatValsFromLines } from "forms";
+import React, { useState, useEffect } from "react";
 
 import styles from "./commentsection.module.css";
 
@@ -10,63 +6,30 @@ import Comment from "component/Comment";
 
 import Spoiler from "component/Spoiler";
 
-const values = `$resourceId:Int! 
-$text:String!`;
+import useAddComment from "hooks/useAddComment";
 
-const ADDCOMMENT_MUTATION = gql`
-mutation ADDCOMMENT_MUTATION(
-  ${values}
-) {
-  addComment(
-    ${formatValsFromLines(values)}
-  ) {
-    ${comment}
-  }
-}`;
+import useQueryComments from "hooks/useQueryComments";
 
-const QUERY_COMMENTS = gql`
-  query QUERY_COMMENTS($resourceId:Int! $orderBy:CommentOrderByInput) {
-    comments(resourceId:$resourceId orderBy:$orderBy) {
-      ${comment}
-    }
-  }
-`;
-
-const CommentSection = ({ resourceId }) => {
+const CommentSection = ({ resourceId, commentCount }) => {
   const [text, setText] = useState("");
 
-  const queryVars = {
-    query: QUERY_COMMENTS,
-    variables: { resourceId, orderBy: { date: "desc" } },
-  };
+  const { loadComments, data, called, loading } = useQueryComments(resourceId);
 
-  const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION, {
-    update: (cache, result, info) => {
-      const { addComment: comment } = result.data;
+  const { sendComment } = useAddComment(resourceId);
 
-      const comments = cache.readQuery({ ...queryVars }).comments;
+  const [show, setShow] = useState(false);
 
-      const new_comments = [comment, ...comments];
+  useEffect(() => {
+    show && !called && loadComments();
+  }, [show]);
 
-      cache.writeQuery({ ...queryVars, data: { comments: new_comments } });
-    },
-  });
-
-  const writeComment = () => {
-    mutate({ variables: { resourceId, text } });
-  };
-
-  const { data, loading } = useQuery(queryVars.query, {
-    variables: queryVars.variables,
-  });
-
-  if (loading) return "loading";
+  const onClick = () => setShow(!show);
 
   return (
     <div>
-      <h3>Comments: {data?.comments.length}</h3>
+      <h3>Comments: {(data && data?.comments.length) || commentCount}</h3>
 
-      <Spoiler>
+      <Spoiler show={show} onClick={onClick}>
         <div className={styles.writeComment}>
           <h4>Comment:</h4>
           <textarea
@@ -77,8 +40,10 @@ const CommentSection = ({ resourceId }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button onClick={writeComment}>Comment</button>
+          <button onClick={() => sendComment(text)}>Comment</button>
         </div>
+        {loading && "loading"}
+
         <div className={styles.comments}>
           {data?.comments.map((content, index) => (
             <Comment key={index} {...content}></Comment>

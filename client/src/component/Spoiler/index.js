@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./index.module.css";
 
-const Spoiler = ({ children }) => {
-  const [show, setShow] = useState(false);
-
+const Spoiler = ({ show, onClick, children }) => {
   return (
     <div className={styles.spoiler + " " + show ? styles.show : ""}>
-      <button className={styles.button} onClick={() => setShow(!show)}>
+      <button className={styles.button} onClick={onClick}>
         {!show ? "˅" : "˄"}
       </button>
       <div className={styles.elements + " " + (show ? styles.show : "")}>

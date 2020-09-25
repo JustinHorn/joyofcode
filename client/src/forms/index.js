@@ -26,8 +26,7 @@ export const resourceProps = `
                 id
             }
         }
- 
-
+        commentCount
 `;
 
 export const resourceQuery = `

@@ -113,6 +113,7 @@ type Resource {
   description: String!
   likes: [Like!]!
   likeCount: Int!
+  commentCount: Int!
   comments: [Comment!]!
 }
 
