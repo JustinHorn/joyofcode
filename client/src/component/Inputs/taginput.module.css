@@ -6,11 +6,3 @@
   align-items: center;
   list-style-type: none;
 }
-
-.tag {
-  background-color: lightgrey;
-  border-radius: 5px;
-  padding: 4px;
-  font-size: 1ch;
-  margin-right: 2px;
-}

@@ -43,6 +43,10 @@ const { Check } = require("./helper/checkUrl");
 const addResource = async (p, args, context, i) => {
   const userId = getUserId(context);
 
+  if (args.tags.length > 20) {
+    throw new Error("No more tags than 20!");
+  }
+
   const tags = args.tags
     ? args.tags.map((n) => ({
         create: { name: n },
@@ -108,6 +112,10 @@ const updateResource = async (p, args, context, i) => {
   const { href, title, github, imgUrl, description } = args;
 
   github && new Check(github).mustBeGithub();
+
+  if (args.tags.length > 20) {
+    throw new Error("No more tags than 20!");
+  }
 
   const tags = await getTags(args, context);
 

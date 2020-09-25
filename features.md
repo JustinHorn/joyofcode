@@ -24,8 +24,6 @@
 
 ## in Queue
 
-- move resource link away from title
-
 ## do everyday
 
 - make a picture of project everyday

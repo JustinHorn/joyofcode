@@ -31,7 +31,7 @@ const TagsAndMutations = ({
     <ul className={styles.tagsAndOptions}>
       <ul className={styles.friendly}>
         {tags?.map(({ name }, index) => (
-          <li className={styles.tag} key={index}>
+          <li className={"tag"} key={index}>
             {name}
           </li>
         ))}

@@ -32,7 +32,7 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
       />
       <ul className={styles.taglist}>
         {tags.map((t, index) => (
-          <li key={index} className={styles.tag}>
+          <li key={index} className={"tag"}>
             {t} <button onClick={deleteTag(index)}>X</button>
           </li>
         ))}
