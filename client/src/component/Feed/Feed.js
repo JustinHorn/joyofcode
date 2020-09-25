@@ -48,7 +48,7 @@ const Feed = () => {
 
       <div className={styles.feed}>
         {resources.filter(doTagsApply).map((x, index) => (
-          <Resource key={index} {...x}></Resource>
+          <Resource key={index} {...x} />
         ))}
       </div>
     </>

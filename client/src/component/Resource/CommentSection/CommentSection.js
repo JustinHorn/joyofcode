@@ -9,15 +9,8 @@ import Spoiler from "component/Spoiler";
 import useAddComment from "hooks/useAddComment";
 
 import useQueryComments from "hooks/useQueryComments";
-import { gql, useMutation } from "@apollo/client";
 
-import { getQueryVars } from "hooks/useQueryComments";
-
-const REMOVE_COMMENT_MUTATION = gql`
-  mutation removeComment($commentId: Int!) {
-    removeComment(commentId: $commentId)
-  }
-`;
+import useRemoveComment from "hooks/useRemoveComment";
 
 const CommentSection = ({ resourceId, commentCount }) => {
   const [text, setText] = useState("");
@@ -26,6 +19,8 @@ const CommentSection = ({ resourceId, commentCount }) => {
 
   const { sendComment } = useAddComment(resourceId);
 
+  const { getRemoveComment } = useRemoveComment(resourceId);
+
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -33,29 +28,6 @@ const CommentSection = ({ resourceId, commentCount }) => {
   }, [show]);
 
   const onClick = () => setShow(!show);
-
-  const [removeComment, { error }] = useMutation(REMOVE_COMMENT_MUTATION, {
-    update: (cache, result, info) => {
-      const { removeComment: id } = result.data;
-
-      const comments = cache.readQuery({ ...getQueryVars(resourceId) })
-        .comments;
-
-      const index = comments.findIndex((c) => c.id === id);
-      const new_comments = [
-        ...comments.slice(0, index),
-        ...comments.slice(index + 1),
-      ];
-      cache.writeQuery({
-        ...getQueryVars(resourceId),
-        data: { comments: new_comments },
-      });
-    },
-  });
-
-  const getRemove = (id) => () => {
-    removeComment({ variables: { commentId: id } });
-  };
 
   return (
     <div>
@@ -81,8 +53,8 @@ const CommentSection = ({ resourceId, commentCount }) => {
             <Comment
               key={index}
               {...content}
-              remove={getRemove(content.id)}
-            ></Comment>
+              remove={getRemoveComment(content.id)}
+            />
           ))}
         </div>
       </Spoiler>

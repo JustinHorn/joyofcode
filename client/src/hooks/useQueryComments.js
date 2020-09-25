@@ -22,7 +22,6 @@ const useQueryComments = (resourceId) => {
       variables: queryVars.variables,
     }
   );
-
   return { loadComments, data, called, loading };
 };
 
