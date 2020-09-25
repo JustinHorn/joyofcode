@@ -19,7 +19,7 @@ const CommentSection = ({ resourceId, commentCount }) => {
 
   const { sendComment } = useAddComment(resourceId);
 
-  const { getRemoveComment } = useRemoveComment(resourceId);
+  const { getRemove: getRemoveComment } = useRemoveComment(resourceId);
 
   const [show, setShow] = useState(false);
 
