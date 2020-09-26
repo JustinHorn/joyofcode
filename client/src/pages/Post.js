@@ -21,7 +21,7 @@ const Post = () => {
 
       {user && (
         <MutationMenu
-          MO={options}
+          options={options}
           mutation={mutation}
           headline={"Share your project!"}
           props={props}

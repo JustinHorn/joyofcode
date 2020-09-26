@@ -28,6 +28,9 @@ colors for
 
 ## in Queue
 
+- give some feedback for the posting user that his stuff has been posted!
+- save stuff in localstorage
+
 ## do everyday
 
 - make a picture of project everyday

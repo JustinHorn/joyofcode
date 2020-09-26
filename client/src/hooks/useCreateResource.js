@@ -9,6 +9,7 @@ import { readFeed, writeFeed } from "./helper";
 const values = `$title: String!
 $href: String!
 $tags: [String!]!
+$description:String
 $imgUrl: String
 $github: String`;
 
