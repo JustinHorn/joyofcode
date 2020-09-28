@@ -4,9 +4,11 @@ import styles from "./feed.module.css";
 
 import Resource from "component/Resource";
 
-import TagInput from "component/Inputs/TagInput";
+import TagInput from "component/Forms/Inputs/TagInput";
 
 import useFeed from "hooks/useFeed";
+
+import List from "component/List";
 
 const Feed = () => {
   const { data, loading, error } = useFeed();
@@ -50,23 +52,10 @@ const Feed = () => {
         setSpecificFormValue={setValue}
       />
 
-      <List
-        className={styles.feed}
-        Key="feed"
-        Component={Resource}
-        list={filteredResources}
-      />
+      <div className={styles.feed}>
+        <List Key="feed" Component={Resource} list={filteredResources} />
+      </div>
     </>
-  );
-};
-
-const List = ({ list, Component, className, Key }) => {
-  return (
-    <div className={className}>
-      {list.map((item, index) => (
-        <Component key={Key + index} {...item} />
-      ))}
-    </div>
   );
 };
 

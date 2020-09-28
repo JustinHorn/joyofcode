@@ -2,15 +2,19 @@ import React, { useContext, useState } from "react";
 
 import styles from "./resource.module.css";
 
-import Url from "url-parse";
+import PostInfo from "Section/PostInfo";
 
-import PostInfo from "component/PostInfo";
-
-import TagsAndMutations from "component/TagsAndMutations";
+import TagsAndMutations from "Section/TagsAndMutations";
 
 import ResourceUpdatePopup from "./ResourceUpdatePopup";
 
-import CommentSection from "component/CommentSection";
+import CommentSection from "Section/Comment";
+
+import Picture from "component/Resource/Picture";
+
+import Description from "component/Resource/Description";
+
+import Headline from "component/Resource/Headline";
 
 const Resource = (props) => {
   const {
@@ -70,27 +74,6 @@ const Resource = (props) => {
         />
       )}
     </div>
-  );
-};
-
-const Picture = ({ imgUrl }) => (
-  <div className={styles.imgContainer}>
-    {imgUrl && <img className={styles.preview} src={imgUrl} />}
-  </div>
-);
-
-const Description = ({ description }) => <p>{description || "---"}</p>;
-
-const Headline = ({ href, title }) => {
-  const hostname = new Url(href).hostname;
-
-  return (
-    <>
-      <h2>{title}</h2>
-      <h4>
-        <a href={href}> ({hostname})</a>{" "}
-      </h4>
-    </>
   );
 };
 

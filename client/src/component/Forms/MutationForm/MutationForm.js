@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./mutationform.module.css";
 
-import Popup from "component/Popup";
-
-import FormHandler from "./FormHandler";
-
 import { updateOptions, parseToResource } from "forms/Options";
 
-const MutationPopup = ({ show, onClickAway, doMutation, headline, props }) => (
-  <Popup show={show} onClickAway={onClickAway}>
-    <MutationForm {...{ doMutation, headline, props }} />
-  </Popup>
-);
+import List from "component/List";
+
+import Element from "component/Forms/Element";
 
 export const useHandleFormValues = (props, resourceValues) => {
   const [formValues, setFormValues] = useState(props);
@@ -58,37 +52,21 @@ export const MutationFormWithoutState = (props) => {
     <div className={styles.form}>
       <table className={styles.table}>
         <tbody>
-          {Object.keys(formValues).map((key, index) => (
-            <Elements
-              key={index}
-              k={key}
-              formValues={formValues}
-              setFormValue={setFormValue}
-            />
-          ))}
+          <List
+            Key={"MFWS"}
+            list={Object.keys(formValues).map((key, index) => ({
+              key: index,
+              k: key,
+              formValues,
+              setFormValue,
+            }))}
+            Component={Element}
+          />
         </tbody>
       </table>
 
       <button onClick={onClick}>{headline}</button>
     </div>
-  );
-};
-
-const Elements = (props) => {
-  const { k: key, formValues } = props;
-
-  return (
-    <tr className={styles.column}>
-      <td>
-        <h4>
-          {formValues[key].name}
-          {formValues[key].trim ? "*" : ""}:
-        </h4>
-      </td>
-      <td>
-        <FormHandler {...props} />
-      </td>
-    </tr>
   );
 };
 

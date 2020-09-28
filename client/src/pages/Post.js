@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
-import { useHandleFormValues, MutationOptions } from "component/MutationForm";
+import {
+  useHandleFormValues,
+  MutationOptions,
+} from "component/Forms/MutationForm";
 
 import { createOptions as options } from "forms/Options";
 

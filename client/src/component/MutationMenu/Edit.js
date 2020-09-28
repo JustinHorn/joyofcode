@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MutationFormWithoutState } from "component/MutationForm";
+import { MutationFormWithoutState } from "component/Forms/MutationForm";
 
 const Edit = ({ props, actionName }) => {
   return (

@@ -2,6 +2,10 @@ import React, { useState } from "react";
 
 import styles from "./taginput.module.css";
 
+import List from "component/List";
+
+import Tag from "component/Forms/Tag";
+
 const TagInput = ({ className, formValue, setSpecificFormValue }) => {
   const tags = formValue.value;
 
@@ -14,7 +18,7 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
     }
   };
 
-  const deleteTag = (index) => () => {
+  const getDeleteTag = (index) => () => {
     setSpecificFormValue([...tags.slice(0, index), ...tags.slice(index + 1)]);
   };
 
@@ -31,11 +35,11 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
         onChange={onChange}
       />
       <ul className={styles.taglist}>
-        {tags.map((t, index) => (
-          <li key={index} className={"tag"}>
-            {t} <button onClick={deleteTag(index)}>X</button>
-          </li>
-        ))}
+        <List
+          Key={"tags"}
+          Component={Tag}
+          list={tags.map((t, i) => ({ text: t, onClick: getDeleteTag(i) }))}
+        />
       </ul>
     </div>
   );

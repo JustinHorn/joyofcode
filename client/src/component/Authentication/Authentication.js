@@ -5,7 +5,7 @@ import { useLoginOrRegister } from "hooks";
 import {
   useHandleFormValues,
   MutationFormWithoutState,
-} from "component/MutationForm";
+} from "component/Forms/MutationForm";
 
 import { loginOptions, registerOptions } from "forms/Options";
 
