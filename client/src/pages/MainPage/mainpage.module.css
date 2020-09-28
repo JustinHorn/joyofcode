@@ -1,0 +1,25 @@
+.main {
+  display: grid;
+  grid-template-areas:
+    "greet search"
+    "feed feed";
+}
+
+.greet {
+  grid-area: greet;
+}
+
+.searchbar {
+  grid-area: search;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.searchbar,
+.searchbar input {
+  width: 300px;
+}
+
+.feed {
+  grid-area: feed;
+}

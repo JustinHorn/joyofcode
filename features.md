@@ -4,8 +4,6 @@
 
 break
 
-- refactor backend 12:00
-- update like symbol - 14:00
 - give projects their individual page
 - give projects a longer description with line-breaks 18:00 today
 - allow users to follow && message each other
@@ -27,10 +25,10 @@ break
 
 ## done
 
-- make tags all lower case - 11:00
-
+- update like symbol - 14:00
+- refactor backend 12:00
+- make tags all lower case 11:00
 - install docker 10:45
-
 - add deep copy
 - image to small
 - properly center projects

@@ -37,7 +37,7 @@ const Resource = (props) => {
   return (
     <div className={styles.resource}>
       <div className={styles.resourceBody}>
-        <Headline {...{ href, title }} />
+        <Headline {...{ id, href, title }} />
         <Picture {...{ imgUrl }} />
         <Description {...{ description }} />
         <PostInfo

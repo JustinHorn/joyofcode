@@ -3,7 +3,9 @@ import "./App.css";
 import Navbar from "component/Navbar";
 import UserContext from "context";
 
-import Mainpage from "pages/Mainpage";
+import Mainpage from "pages/MainPage";
+
+import ProjectPage from "pages/Project";
 
 import PrivateRoute from "component/PrivateRoute";
 
@@ -20,6 +22,9 @@ function App() {
         <Navbar />
 
         <Switch>
+          <Route path="/project/:id">
+            <ProjectPage />
+          </Route>
           <PrivateRoute path="/post">
             <Post />
           </PrivateRoute>

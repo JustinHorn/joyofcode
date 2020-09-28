@@ -13,6 +13,7 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
 
   const onPress = (e) => {
     if (e.charCode === 13) {
+      e.preventDefault();
       setSpecificFormValue([...tags, text]);
       setText("");
     }
