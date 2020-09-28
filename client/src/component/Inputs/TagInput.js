@@ -19,7 +19,7 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
   };
 
   const onChange = (e) => {
-    setText(e.target.value.trim());
+    setText(e.target.value.trim().toLowerCase());
   };
   return (
     <div className={className}>

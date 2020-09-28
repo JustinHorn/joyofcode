@@ -17,10 +17,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <p>
-          Send feedback to justinhorn0000@gmail.com - or message him directly
-        </p>
-        <Navbar></Navbar>
+        <Navbar />
 
         <Switch>
           <PrivateRoute path="/post">
@@ -30,6 +27,9 @@ function App() {
             <Mainpage />
           </Route>
         </Switch>
+        <p style={{ textAlign: "right" }}>
+          Send feedback to justinhorn0000@gmail.com - or message him directly
+        </p>
       </div>
     </Router>
   );

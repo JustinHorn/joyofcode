@@ -1,35 +1,20 @@
-get css effects from the web
-
-colors for
-
 ## backlog
-
-- hacker news break points
-- about page
-- titles bigger
-- opacity on liked vs not liked
-
-- what is it not?
-
-- content moderation?
-
-- load tech stack after
-
-- have a user profile
-
-- more secure sign up procedure
-
-- more secure token saving
-
-- follow people
-- global and local feed
-
-- comment projects!
 
 ## in Queue
 
-- give some feedback for the posting user that his stuff has been posted!
-- save stuff in localstorage
+break
+
+- refactor backend 12:00
+- update like symbol - 14:00
+- give projects their individual page
+- give projects a longer description with line-breaks 18:00 today
+- allow users to follow && message each other
+- allow users to check their past behaviour
+- allow users to save projects to their favourite --> this is liked!
+- make a separate tech stack column! - with tech stack
+- give projects a proper description -> draft.js
+
+-- after this dedicate one hour of each to find users!
 
 ## do everyday
 
@@ -38,11 +23,13 @@ colors for
 ## maybe
 
 - give resources their own page
-
--
 - view vs. need help?
 
 ## done
+
+- make tags all lower case - 11:00
+
+- install docker 10:45
 
 - add deep copy
 - image to small
@@ -51,7 +38,7 @@ colors for
 - post on a different route
 - be able to unlike projects!
 
-## buggs
+## bugs
 
 - schema wrong in graphql
 - application freezes on update

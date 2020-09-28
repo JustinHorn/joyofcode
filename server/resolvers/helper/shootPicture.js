@@ -15,10 +15,10 @@ puppeteer
   })
   .catch((error) => console.log(error));
 
-const { Check } = require("./checkUrl");
+const check = require("./check");
 
 const getImage = async (href) => {
-  const { host, path } = new Check(href).noLocalHost();
+  const { host, path } = check.noLocalHost(href, "as img link");
 
   const fileName = host + path + ".png";
 
