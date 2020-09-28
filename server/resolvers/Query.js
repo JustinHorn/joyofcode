@@ -12,6 +12,10 @@ const authorize = async (p, args, context) => {
   return user;
 };
 
+const project = async (p, args, context) => {
+  return await context.prisma.resource.findOne({ where: { id: args.id } });
+};
+
 const feed = async (p, args, context) => {
   return await context.prisma.resource.findMany({
     skip: args.skip,
@@ -29,4 +33,4 @@ const comments = async (p, args, context) => {
   });
 };
 
-module.exports = { hello, feed, authorize, comments };
+module.exports = { hello, project, feed, authorize, comments };

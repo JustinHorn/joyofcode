@@ -28,3 +28,13 @@
 .resourceBody a {
   color: grey;
 }
+
+.socialAttributes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socialAttributes h3 {
+  margin: 0;
+}

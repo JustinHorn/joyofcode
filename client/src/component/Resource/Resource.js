@@ -6,15 +6,15 @@ import PostInfo from "Section/PostInfo";
 
 import TagsAndMutations from "Section/TagsAndMutations";
 
-import ResourceUpdatePopup from "./ResourceUpdatePopup";
-
-import CommentSection from "Section/Comment";
-
 import Picture from "component/Resource/Picture";
 
 import Description from "component/Resource/Description";
 
 import Headline from "component/Resource/Headline";
+
+import CommentCounter from "component/CommentCounter";
+
+import LikeHandler from "component/LikeHandler";
 
 const Resource = (props) => {
   const {
@@ -60,19 +60,14 @@ const Resource = (props) => {
             postedBy,
           }}
         />
-
         {!preview && (
-          <CommentSection resourceId={id} commentCount={commentCount} />
+          <div className={styles.socialAttributes}>
+            <CommentCounter count={commentCount} />
+            <LikeHandler likes={likes} resourceId={id} />
+            <span></span>
+          </div>
         )}
       </div>
-
-      {!preview && (
-        <ResourceUpdatePopup
-          show={isUpdate}
-          onClickAway={() => setUpdate(false)}
-          resourceValues={props}
-        />
-      )}
     </div>
   );
 };

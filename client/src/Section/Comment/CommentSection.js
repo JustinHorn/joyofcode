@@ -12,7 +12,7 @@ import useQueryComments from "hooks/useQueryComments";
 
 import useRemoveComment from "hooks/useRemoveComment";
 
-const CommentSection = ({ resourceId, commentCount }) => {
+const CommentSection = ({ resourceId }) => {
   const [text, setText] = useState("");
 
   const { loadComments, data, called, loading } = useQueryComments(resourceId);
@@ -21,48 +21,35 @@ const CommentSection = ({ resourceId, commentCount }) => {
 
   const { getRemove: getRemoveComment } = useRemoveComment(resourceId);
 
-  const [show, setShow] = useState(false);
-
   useEffect(() => {
-    show && !called && loadComments();
-  }, [show]);
-
-  const onClick = () => setShow(!show);
+    loadComments();
+  }, []);
 
   return (
     <div>
-      <h3>Comments: {(data && data?.comments.length) || commentCount}</h3>
-
-      <Spoiler show={show} onClick={onClick}>
-        <div className={styles.writeComment}>
-          <h4>Comment:</h4>
-          <textarea
-            name="comment"
-            id=""
-            cols="30"
-            rows="5"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <button onClick={() => sendComment(text)}>Comment</button>
-        </div>
-        {loading && "loading"}
-
-        <CommentList
-          comments={data?.comments || []}
-          getRemoveComment={getRemoveComment}
+      <div className={styles.writeComment}>
+        <textarea
+          name="comment"
+          placeholder="Comment"
+          id=""
+          cols="30"
+          rows="5"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-      </Spoiler>
+        <button onClick={() => sendComment(text)}>Comment</button>
+      </div>
+      {loading && "loading"}
+
+      <CommentList
+        comments={data?.comments || []}
+        getRemoveComment={getRemoveComment}
+      />
     </div>
   );
 };
 
 const CommentList = ({ comments, getRemoveComment }) => {
-  useEffect(() => {
-    console.log("comments");
-    console.log(comments[0]);
-  }, [comments]);
-
   return (
     <div className={styles.comments}>
       {comments.map((content, index) => (

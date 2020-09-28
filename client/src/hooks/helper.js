@@ -3,6 +3,9 @@ const readFeed = (cache) => {
   const data = cache.readQuery({
     ...FeedQueryAndVars,
   });
+  console.log("data");
+  console.log(data);
+
   const feed = data.feed;
   return feed;
 };

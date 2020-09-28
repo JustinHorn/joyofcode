@@ -12,9 +12,11 @@ import PrivateRoute from "component/PrivateRoute";
 import Post from "pages/Post";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import useFeed from "hooks/useFeed";
 
 function App() {
   const { user } = useContext(UserContext);
+  const { data, loading, error } = useFeed();
 
   return (
     <Router>

@@ -1,0 +1,6 @@
+.likeButton {
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  font-size: 3ch;
+}

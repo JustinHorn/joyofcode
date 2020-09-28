@@ -1,7 +1,10 @@
 .main {
+  max-width: 100%;
+
   display: grid;
   grid-template-areas:
-    "greet search"
+    "greet greet"
+    "search search"
     "feed feed";
 }
 

@@ -6,8 +6,8 @@ import { resourceQuery } from "forms";
 //move this out
 
 export const FeedQuery = gql`
-  query getFeed($orderBy: ResourceOrderByInput) {
-    feed(orderBy: $orderBy) {
+  query getFeed($take:Int,$orderBy: ResourceOrderByInput) {
+    feed(take:$take,orderBy: $orderBy) {
       ${resourceQuery}
     }
   }
@@ -15,7 +15,7 @@ export const FeedQuery = gql`
 
 export const FeedQueryAndVars = {
   query: FeedQuery,
-  variables: { orderBy: { date: "desc" } },
+  variables: { take: 1, orderBy: { date: "desc" } },
 };
 
 const useFeed = () => {

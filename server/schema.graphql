@@ -8,6 +8,8 @@ type Query {
     orderBy: CommentOrderByInput
   ): [Comment!]!
   authorize: User
+
+  project(id: Int!): Resource
 }
 
 input CommentOrderByInput {

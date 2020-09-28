@@ -1,11 +1,4 @@
-.tagsAndOptions {
-  padding-left: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.friendly {
+.props {
   padding-left: 0;
   margin: 0;
   display: flex;

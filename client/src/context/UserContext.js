@@ -24,8 +24,12 @@ export const UserContextProvider = ({ children }) => {
     localStorage.setItem("auth_token", token);
   };
 
+  const projectByCurrentUser = (postedById) => {
+    return postedById === user?.id && user;
+  };
+
   return (
-    <UserContext.Provider value={{ user, logout, login }}>
+    <UserContext.Provider value={{ user, logout, login, projectByCurrentUser }}>
       {children}
     </UserContext.Provider>
   );
