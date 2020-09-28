@@ -7,11 +7,3 @@
 .App > * {
   margin: 10px;
 }
-
-.tag {
-  background-color: lightgrey;
-  border-radius: 5px;
-  padding: 4px;
-  font-size: 2ch;
-  margin-right: 2px;
-}

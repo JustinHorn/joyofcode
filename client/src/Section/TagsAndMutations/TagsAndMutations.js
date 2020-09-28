@@ -7,6 +7,9 @@ import useDeleteResource from "hooks/useDeleteResource";
 import styles from "./tagsandmutations.module.css";
 import UserContext from "context";
 
+import List from "component/List";
+import Tag from "component/Tag";
+
 const TagsAndMutations = ({
   id,
   tags,
@@ -34,11 +37,12 @@ const TagsAndMutations = ({
   return (
     <ul className={styles.tagsAndOptions}>
       <ul className={styles.friendly}>
-        {tags?.map(({ name }, index) => (
-          <li className={"tag"} key={index}>
-            {name}
-          </li>
-        ))}
+        <List
+          list={tags?.map((t) => ({ text: t.name }))}
+          Key={"tAM"}
+          Component={Tag}
+        />
+
         {!preview && postedByCurrentUser && (
           <button onClick={() => setUpdate(!isUpdate)}>edit</button>
         )}

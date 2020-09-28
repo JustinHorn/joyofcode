@@ -4,7 +4,7 @@ import styles from "./taginput.module.css";
 
 import List from "component/List";
 
-import Tag from "component/Forms/Tag";
+import Tag from "component/Tag";
 
 const TagInput = ({ className, formValue, setSpecificFormValue }) => {
   const tags = formValue.value;
@@ -38,7 +38,10 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
         <List
           Key={"tags"}
           Component={Tag}
-          list={tags.map((t, i) => ({ text: t, onClick: getDeleteTag(i) }))}
+          list={tags.map((t, i) => ({
+            text: t,
+            Button: <button onClick={getDeleteTag(i)}>X</button>,
+          }))}
         />
       </ul>
     </div>
