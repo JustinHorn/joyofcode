@@ -48,16 +48,30 @@ const CommentSection = ({ resourceId, commentCount }) => {
         </div>
         {loading && "loading"}
 
-        <div className={styles.comments}>
-          {data?.comments.map((content, index) => (
-            <Comment
-              key={index}
-              {...content}
-              remove={getRemoveComment(content.id)}
-            />
-          ))}
-        </div>
+        <CommentList
+          comments={data?.comments || []}
+          getRemoveComment={getRemoveComment}
+        />
       </Spoiler>
+    </div>
+  );
+};
+
+const CommentList = ({ comments, getRemoveComment }) => {
+  useEffect(() => {
+    console.log("comments");
+    console.log(comments[0]);
+  }, [comments]);
+
+  return (
+    <div className={styles.comments}>
+      {comments.map((content, index) => (
+        <Comment
+          key={content.id}
+          {...content}
+          remove={getRemoveComment(content.id)}
+        />
+      ))}
     </div>
   );
 };

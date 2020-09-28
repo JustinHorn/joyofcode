@@ -26,9 +26,13 @@ const PostInfo = ({ id, postedBy, date, likes, preview }) => {
       </span>
       {!preview && (
         <>
-          {" "}
-          Likes: {likes.length}{" "}
-          <button onClick={onClick}>{isLikedByUser ? "unlike" : "like"}</button>
+          <div className={styles.likeButton} onClick={onClick}>
+            <span
+              className={" " + (isLikedByUser ? styles.liked : styles.notLiked)}
+            />
+
+            {likes.length}
+          </div>
         </>
       )}
     </div>

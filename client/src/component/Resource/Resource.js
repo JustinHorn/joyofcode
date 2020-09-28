@@ -4,13 +4,13 @@ import styles from "./resource.module.css";
 
 import Url from "url-parse";
 
-import PostInfo from "./PostInfo/PostInfo";
+import PostInfo from "component/PostInfo";
 
-import TagsAndMutations from "./TagsAndMutations";
+import TagsAndMutations from "component/TagsAndMutations";
 
 import ResourceUpdatePopup from "./ResourceUpdatePopup";
 
-import CommentSection from "./CommentSection";
+import CommentSection from "component/CommentSection";
 
 const Resource = (props) => {
   const {

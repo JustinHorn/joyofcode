@@ -18,7 +18,7 @@ const Comment = ({ id, text, postedBy, date, remove }) => {
         </span>
         {you && <button onClick={remove}>DELETE</button>}
       </span>
-      <span className={styles.text}>{text}</span>
+      <textarea readOnly={true} value={text} className={styles.text} />
     </span>
   );
 };

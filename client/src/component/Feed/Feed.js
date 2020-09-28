@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import styles from "./feed.module.css";
 
@@ -32,6 +32,10 @@ const Feed = () => {
     setFilters({ value: x });
   };
 
+  const filteredResources = useMemo(
+    () => resources?.filter(doTagsApply) || [filters, resources]
+  );
+
   if (error) {
     console.log(error);
     throw error;
@@ -46,12 +50,23 @@ const Feed = () => {
         setSpecificFormValue={setValue}
       />
 
-      <div className={styles.feed}>
-        {resources.filter(doTagsApply).map((x, index) => (
-          <Resource key={index} {...x} />
-        ))}
-      </div>
+      <List
+        className={styles.feed}
+        Key="feed"
+        Component={Resource}
+        list={filteredResources}
+      />
     </>
+  );
+};
+
+const List = ({ list, Component, className, Key }) => {
+  return (
+    <div className={className}>
+      {list.map((item, index) => (
+        <Component key={Key + index} {...item} />
+      ))}
+    </div>
   );
 };
 

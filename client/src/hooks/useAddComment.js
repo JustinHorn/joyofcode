@@ -26,6 +26,7 @@ const useAddComment = (resourceId) => {
       const comments = cache.readQuery({ ...getQueryVars(resourceId) })
         .comments;
 
+      console.log(comment);
       const new_comments = [comment, ...comments];
 
       cache.writeQuery({
