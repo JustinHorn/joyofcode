@@ -44,7 +44,7 @@ function App() {
             </Route>
           </Switch>
           <p style={{ textAlign: "right" }}>
-            Send feedback to justinhorn0000@gmail.com - or message him directly
+            Send feedback to justinhorn0000@gmail.com
           </p>
         </main>
       </div>

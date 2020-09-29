@@ -39,6 +39,12 @@ server.express.use(
 );
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
+const fs = require("fs");
+
+server.express.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 server.express.get("/file", async (req, res, next) => {
   const page = await puppeteer
     .launch()
