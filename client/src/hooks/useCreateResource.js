@@ -24,7 +24,7 @@ const ADDResource_Mutation = gql`
     }
   }
 `;
-const useCreateResource = (onSuccess) => {
+const useCreateResource = (props) => {
   const [createResource, { error, data }] = useMutation(ADDResource_Mutation, {
     update(cache, m_result, m_id) {
       const { addResource } = m_result.data;
@@ -34,9 +34,8 @@ const useCreateResource = (onSuccess) => {
         feed: [addResource, ...feed],
       };
       writeFeed(cache, new_data);
-
-      onSuccess();
     },
+    ...props,
   });
 
   useEffect(() => {

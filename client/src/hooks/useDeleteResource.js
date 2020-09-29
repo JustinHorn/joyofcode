@@ -14,8 +14,8 @@ const MUTATION_DELETE = gql`
   }
 `;
 
-const useDeleteResource = () => {
-  const [deleteResource, { error }] = useMutation(MUTATION_DELETE, {
+const useDeleteResource = (props) => {
+  const [deleteResource, { error, called }] = useMutation(MUTATION_DELETE, {
     update(cache, m_result, m_id) {
       const { deleteResource } = m_result.data;
       const feed = readFeed(cache);
@@ -26,6 +26,7 @@ const useDeleteResource = () => {
       };
       writeFeed(cache, new_data);
     },
+    ...props,
   });
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const useDeleteResource = () => {
       console.log(error);
     }
   }, [error]);
-  return { deleteResource };
+  return { deleteResource, error, called };
 };
 
 export default useDeleteResource;

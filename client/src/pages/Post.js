@@ -10,13 +10,28 @@ import { useCreateResource } from "hooks";
 
 import UserContext from "context";
 import MutationMenu from "component/MutationMenu";
+import { useHistory } from "react-router-dom";
 
 const Post = () => {
   const { user } = useContext(UserContext);
 
   const props = useHandleFormValues(options);
+  const history = useHistory();
+  const onCompleted = (data) => {
+    const resource = data.addResource;
 
-  const { createResource: mutation } = useCreateResource(props.resetFormValues);
+    props.resetFormValues();
+
+    if (
+      window.confirm(
+        `Resource ${resource.title} has been posted. Wanna view it?`
+      )
+    ) {
+      history.push("/project/" + resource.id);
+    }
+  };
+
+  const { createResource: mutation } = useCreateResource({ onCompleted });
 
   return (
     <>

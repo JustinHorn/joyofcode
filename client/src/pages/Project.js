@@ -1,10 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
-
-import { resourceQuery, comment } from "forms";
 import Resource from "component/Resource";
 
 import UserContext from "context";
@@ -12,39 +8,20 @@ import UserContext from "context";
 import CommentSection from "Section/Comment";
 import ResourceUpdatePopup from "component/Resource/ResourceUpdatePopup";
 
-import useDeleteResource from "hooks/useDeleteResource";
+import DeleteHandler from "component/DeleteHandler";
 
-const QUERY_PROJECT = gql`
-  query QUERY_PROJECT($id:Int!) {
-      project(id:$id) {
-          ${resourceQuery}
-          comments {
-            ${comment}
-          }
-      }
-  }
-`;
+import useProject from "hooks/useProject";
 
 const ProjectPage = () => {
   let { id } = useParams();
   id = Number(id);
 
-  const [isUpdate, setUpdate] = useState(false);
+  const { loading, data, error } = useProject(id);
 
-  const { loading, data, error } = useQuery(QUERY_PROJECT, {
-    variables: { id },
-  });
+  const [isUpdate, setUpdate] = useState(false);
 
   const { user } = useContext(UserContext);
   const postedByCurrentUser = data?.project.postedBy.id === user?.id && user;
-
-  const { deleteResource } = useDeleteResource();
-
-  const deleteOnClick = () => {
-    if (window.confirm("You really wanna delete?")) {
-      deleteResource({ variables: { id } });
-    }
-  };
 
   if (loading) return "loading";
   if (error) {
@@ -57,7 +34,7 @@ const ProjectPage = () => {
         <button onClick={() => setUpdate(!isUpdate)}>edit</button>
       )}
 
-      {postedByCurrentUser && <button onClick={deleteOnClick}>Delete</button>}
+      {postedByCurrentUser && <DeleteHandler resourceId={id}></DeleteHandler>}
 
       <Resource {...data?.project}></Resource>
       <CommentSection resourceId={id} />
