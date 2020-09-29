@@ -6,7 +6,8 @@
 
 setCount of ... in feed
 
-- give projects their individual page
+- comment is link
+- description only on the project page
 - give projects a longer description with line-breaks 18:00 today
 - allow users to follow && message each other
 - allow users to check their past behaviour
@@ -27,6 +28,7 @@ setCount of ... in feed
 
 ## done
 
+- give projects their individual page
 - update like symbol - 14:00
 - refactor backend 12:00
 - make tags all lower case 11:00

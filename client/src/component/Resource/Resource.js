@@ -16,6 +16,8 @@ import CommentCounter from "component/CommentCounter";
 
 import LikeHandler from "component/LikeHandler";
 
+import { Link } from "react-router-dom";
+
 const Resource = (props) => {
   const {
     id,
@@ -30,6 +32,7 @@ const Resource = (props) => {
     likes,
     preview,
     commentCount,
+    isFeed,
   } = props;
 
   const [isUpdate, setUpdate] = useState(false);
@@ -39,7 +42,7 @@ const Resource = (props) => {
       <div className={styles.resourceBody}>
         <Headline {...{ id, href, title }} />
         <Picture {...{ imgUrl }} />
-        <Description {...{ description }} />
+        {!isFeed && <Description {...{ description }} />}
         <PostInfo
           {...{
             id,
@@ -62,7 +65,7 @@ const Resource = (props) => {
         />
         {!preview && (
           <div className={styles.socialAttributes}>
-            <CommentCounter count={commentCount} />
+            <CommentCounter count={commentCount} projectId={id} />
             <LikeHandler likes={likes} resourceId={id} />
             <span></span>
           </div>

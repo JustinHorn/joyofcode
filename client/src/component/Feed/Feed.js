@@ -13,7 +13,7 @@ import List from "component/List";
 const Feed = ({ filter }) => {
   const { data, loading, error } = useFeed();
 
-  const resources = data?.feed;
+  const resources = data?.feed.map((x) => ({ ...x, isFeed: true }));
 
   const filteredResources = useMemo(
     () => resources?.filter(filter) || [filter, resources]

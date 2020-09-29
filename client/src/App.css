@@ -1,9 +1,12 @@
-.App {
-  width: 80%;
-  margin-left: 10%;
+.Layout {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: ". main .";
+
   text-align: center;
 }
 
-.App > * {
-  margin: 10px;
+main {
+  grid-area: main;
 }

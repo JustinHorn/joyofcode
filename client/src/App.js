@@ -11,7 +11,12 @@ import PrivateRoute from "component/PrivateRoute";
 
 import Post from "pages/Post";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import useFeed from "hooks/useFeed";
 
 function App() {
@@ -20,23 +25,28 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Navbar />
+      <div className="Layout">
+        <main>
+          <Navbar />
 
-        <Switch>
-          <Route path="/project/:id">
-            <ProjectPage />
-          </Route>
-          <PrivateRoute path="/post">
-            <Post />
-          </PrivateRoute>
-          <Route path="/">
-            <Mainpage />
-          </Route>
-        </Switch>
-        <p style={{ textAlign: "right" }}>
-          Send feedback to justinhorn0000@gmail.com - or message him directly
-        </p>
+          <Switch>
+            <Route path="/project/:id">
+              <ProjectPage />
+            </Route>
+            <PrivateRoute path="/post">
+              <Post />
+            </PrivateRoute>
+            <Route exact path="/">
+              <Mainpage />
+            </Route>
+            <Route path="/">
+              <Redirect to={"/"}></Redirect>
+            </Route>
+          </Switch>
+          <p style={{ textAlign: "right" }}>
+            Send feedback to justinhorn0000@gmail.com - or message him directly
+          </p>
+        </main>
       </div>
     </Router>
   );

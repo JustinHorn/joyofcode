@@ -53,7 +53,6 @@ const ProjectPage = () => {
   }
   return (
     <div>
-      <h1> This is the project page of {id}</h1>
       {postedByCurrentUser && (
         <button onClick={() => setUpdate(!isUpdate)}>edit</button>
       )}

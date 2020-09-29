@@ -15,7 +15,7 @@ export const FeedQuery = gql`
 
 export const FeedQueryAndVars = {
   query: FeedQuery,
-  variables: { take: 1, orderBy: { date: "desc" } },
+  variables: { take: 10, orderBy: { date: "desc" } },
 };
 
 const useFeed = () => {
