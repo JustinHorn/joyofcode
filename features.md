@@ -6,8 +6,8 @@
 
 setCount of ... in feed
 
-- comment is link
-- description only on the project page
+- loading sign when stuff is posted and messaged when interaction has been completed!
+
 - give projects a longer description with line-breaks 18:00 today
 - allow users to follow && message each other
 - allow users to check their past behaviour
@@ -28,6 +28,8 @@ setCount of ... in feed
 
 ## done
 
+- comment is link
+- description only on the project page
 - give projects their individual page
 - update like symbol - 14:00
 - refactor backend 12:00

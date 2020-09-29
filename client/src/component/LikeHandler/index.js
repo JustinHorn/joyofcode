@@ -19,8 +19,11 @@ const LikeHandler = ({ likes, resourceId }) => {
 
   return (
     <div className={styles.likeButton}>
-      <span className={styles.icon} onClick={onClick}>
-        {isLikedByUser ? "✌️" : "🤟"}
+      <span
+        className={styles.icon + " " + (!isLikedByUser ? styles.opac : "")}
+        onClick={onClick}
+      >
+        {isLikedByUser ? "✌️" : "👋"}
       </span>
       <span className={styles.text}> {likes.length}</span>
     </div>
