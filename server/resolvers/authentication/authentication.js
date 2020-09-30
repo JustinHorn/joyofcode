@@ -21,12 +21,12 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-function sendEmail(email, code) {
+function sendEmail(email, id, code) {
   var mailOptions = {
     from: "joyofcode8@gmail.com",
     to: email,
     subject: "Your verification email!",
-    text: `Thanks for signing up! This is your verification code: ${code}`,
+    text: `Thanks for signing up! This is your verification link: \n https://joyofcode.herokuapp.com/verifyuser?id=${id}&code=${code}`,
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -50,7 +50,7 @@ const register = async (p, args, context, i) => {
     data: { ...args, password, verificationCode },
   });
 
-  sendEmail(args.email, verificationCode);
+  sendEmail(args.email, user.id, verificationCode);
 
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 

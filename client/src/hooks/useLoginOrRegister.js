@@ -12,6 +12,7 @@ const mutation_login = gql`
         id
         name
         email
+        verified
       }
     }
   }
@@ -25,6 +26,7 @@ const mutation_register = gql`
         id
         name
         email
+        verified
       }
     }
   }

@@ -7,6 +7,7 @@ const path = require("path");
 const { resolvers } = require("./server/resolvers");
 
 const { PrismaClient } = require("@prisma/client");
+const { exception } = require("console");
 
 require("dotenv").config();
 // 2
@@ -37,6 +38,31 @@ server.express.use(
     frameguard: false,
   })
 );
+
+server.express.get("/verifyuser", async (req, res, next) => {
+  try {
+    let { id, code } = req.query;
+    id = Number(id);
+    code = Number(code);
+
+    if (id === NaN || code === NaN) {
+      throw new Exception("Id and code need to be numbers!");
+    }
+
+    const user = await prisma.user.findOne({ where: { id } });
+
+    if ((user.verificationCode = code)) {
+      const user = await prisma.user.update({
+        where: { id },
+        data: { verified: true },
+      });
+      console.log(`User ${id} verified ${user.verified}`);
+    }
+  } finally {
+    next();
+  }
+});
+
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
 server.express.get("*", (req, res) => {

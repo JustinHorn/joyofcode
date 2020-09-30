@@ -10,6 +10,7 @@ const query_authorize = gql`
       id
       name
       email
+      verified
     }
   }
 `;
