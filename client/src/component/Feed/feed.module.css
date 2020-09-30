@@ -1,19 +1,7 @@
 .feed {
   margin: auto 0;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  place-items: center;
   column-gap: 10px;
-}
-
-@media screen and (max-width: 1440px) {
-  .feed {
-    grid-template-columns: auto auto;
-  }
-}
-
-@media screen and (max-width: 920px) {
-  .feed {
-    grid-template-columns: auto;
-    column-gap: 0px;
-  }
 }

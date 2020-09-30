@@ -1,4 +1,4 @@
-const authenticationMutations = require("./authentication.js");
+const authenticationMutations = require("./authentication/authentication.js");
 
 const resourceMutations = require("./resource");
 

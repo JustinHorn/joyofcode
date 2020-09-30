@@ -15,14 +15,16 @@ generator client {
 }
 
 model User {
-    id              Int        @id @default(autoincrement())
-    name            String
-    email           String     @unique
-    password        String
-    registeredAt    DateTime   @default(now())
-    postedResources Resource[]
-    likes           Like[]
-    comments        Comment[]
+    id               Int        @id @default(autoincrement())
+    verified         Boolean    @default(true)
+    verificationCode Int        @default(0)
+    name             String
+    email            String     @unique
+    password         String
+    registeredAt     DateTime   @default(now())
+    postedResources  Resource[]
+    likes            Like[]
+    comments         Comment[]
 }
 
 model Resource {
@@ -63,8 +65,8 @@ model Like {
     userId     Int
     resource   Resource @relation(fields: [resourceId], references: [id])
     resourceId Int
-    @@unique([userId, resourceId])
 
+    @@unique([userId, resourceId])
 }
 
 model Tag {

@@ -35,6 +35,12 @@ const useLoginOrRegister = (isLogin) => {
     isLogin ? mutation_login : mutation_register
   );
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
   const { login } = useContext(UserContext);
 
   useEffect(() => {

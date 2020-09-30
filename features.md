@@ -2,12 +2,13 @@
 
 - how to deal with cage behaviour and update?
 
+- what do to on wrong id ?
+
 ## in Queue
 
 setCount of ... in feed
 
-- loading sign when stuff is posted and messaged when interaction has been completed!
-
+- add secure passport & github authentication!
 - give projects a longer description with line-breaks 18:00 today
 - allow users to follow && message each other
 - allow users to check their past behaviour
@@ -28,6 +29,7 @@ setCount of ... in feed
 
 ## done
 
+- loading sign when stuff is posted and messaged when interaction has been completed!
 - comment is link
 - description only on the project page
 - give projects their individual page
