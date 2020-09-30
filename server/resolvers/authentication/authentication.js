@@ -21,12 +21,12 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-function sendEmail(email) {
+function sendEmail(email, code) {
   var mailOptions = {
     from: "joyofcode8@gmail.com",
     to: email,
     subject: "Your verification email!",
-    text: "Thanks for signing up!",
+    text: `Thanks for signing up! This is your verification code: ${code}`,
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -43,13 +43,14 @@ const register = async (p, args, context, i) => {
   if (!check.isEmailValid(email)) {
     throw new Error(`Email "${email}" is not valid!`);
   }
+  const verificationCode = Math.floor(100000000 + Math.random() * 900000000);
 
   const password = await bcrypt.hash(args.password, 10);
   const user = await context.prisma.user.create({
-    data: { ...args, password },
+    data: { ...args, password, verificationCode },
   });
 
-  sendEmail(args.email);
+  sendEmail(args.email, verificationCode);
 
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 

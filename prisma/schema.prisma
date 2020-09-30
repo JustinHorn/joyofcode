@@ -16,8 +16,8 @@ generator client {
 
 model User {
     id               Int        @id @default(autoincrement())
-    verified         Boolean    @default(true)
-    verificationCode Int        @default(0)
+    verified         Boolean    @default(false)
+    verificationCode Int
     name             String
     email            String     @unique
     password         String

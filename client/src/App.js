@@ -28,7 +28,7 @@ function App() {
       <div className="Layout">
         <main>
           <Navbar />
-
+          {user && !user.verified && <h1>Not verified!</h1>}
           <Switch>
             <Route path="/project/:id">
               <ProjectPage />

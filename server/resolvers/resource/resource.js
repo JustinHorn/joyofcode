@@ -1,10 +1,10 @@
 const { getTags } = require("../helper/update");
-const { getUserId } = require("../helper/authentication");
+const { getUserIdVerified } = require("../helper/authentication");
 
 const { getImage } = require("../helper/shootPicture");
 
 const makePictureOfWebsite = async (p, args, context) => {
-  const userId = getUserId(context);
+  const { userId } = await getUserIdVerified(context);
   return getImage(args.href);
 };
 
@@ -19,7 +19,7 @@ const checkArgs = ({ tags, href, github }) => {
 };
 
 const addResource = async (p, args, context, i) => {
-  const userId = getUserId(context);
+  const { userId } = await getUserIdVerified(context);
 
   checkArgs(args);
 
@@ -47,7 +47,7 @@ const addResource = async (p, args, context, i) => {
 };
 
 const updateResource = async (p, args, context, i) => {
-  const userId = getUserId(context);
+  const { userId } = await getUserIdVerified(context);
 
   const { href, title, github, imgUrl, description } = args;
 
@@ -80,7 +80,7 @@ const updateResource = async (p, args, context, i) => {
 };
 
 const deleteResource = async (p, args, context, i) => {
-  const userId = getUserId(context);
+  const { userId } = await getUserIdVerified(context);
 
   const resource = await context.prisma.resource.findOne({
     where: { id: args.id },

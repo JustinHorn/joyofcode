@@ -1,8 +1,7 @@
-const { getUserId } = require("../helper/authentication");
+const { getUserIdVerified } = require("../helper/authentication");
 
 const likeResource = async (p, args, context, i) => {
-  const userId = getUserId(context);
-  const { id: resourceId } = args;
+  const { userId } = await getUserIdVerified(context);
 
   const exists = await context.prisma.like.findOne({
     where: { userId_resourceId: { userId, resourceId } },
@@ -21,7 +20,7 @@ const likeResource = async (p, args, context, i) => {
 };
 
 const unlikeResource = async (p, args, context, i) => {
-  const userId = getUserId(context);
+  const { userId } = await getUserIdVerified(context);
   const { id: resourceId } = args;
 
   const like = await context.prisma.like.delete({
