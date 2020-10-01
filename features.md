@@ -4,19 +4,16 @@
 
 - what do to on wrong id ?
 
+5pm
+
 ## in Queue
 
 setCount of ... in feed
 
-- add secure passport & github authentication!
-- give projects a longer description with line-breaks 18:00 today
-- allow users to follow && message each other
-- allow users to check their past behaviour
-- allow users to save projects to their favourite --> this is liked!
+- give projects a a proper description -> markdown
 - make a separate tech stack column! - with tech stack
-- give projects a proper description -> draft.js
 
--- after this dedicate one hour of each to find users!
+- allow users to see the projects, comments and likes posted in the past
 
 ## do everyday
 
@@ -28,6 +25,8 @@ setCount of ... in feed
 - view vs. need help?
 
 ## done
+
+- add secure passport authentication!
 
 - loading sign when stuff is posted and messaged when interaction has been completed!
 - comment is link

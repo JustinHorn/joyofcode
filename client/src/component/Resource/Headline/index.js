@@ -9,7 +9,7 @@ const Headline = ({ id, href, title }) => {
   const hostname = new Url(href).hostname;
 
   return (
-    <>
+    <div>
       <h2>
         <Link to={"/project/" + id}>
           <span className={styles.headtext}> {title}</span>
@@ -18,7 +18,7 @@ const Headline = ({ id, href, title }) => {
       <h4>
         <a href={href}> ({hostname})</a>{" "}
       </h4>
-    </>
+    </div>
   );
 };
 

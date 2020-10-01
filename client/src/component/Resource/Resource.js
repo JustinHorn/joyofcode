@@ -39,38 +39,37 @@ const Resource = (props) => {
 
   return (
     <div className={styles.resource}>
-      <div className={styles.resourceBody}>
-        <Headline {...{ id, href, title }} />
-        <Picture {...{ imgUrl }} />
-        {!isFeed && <Description {...{ description }} />}
-        <PostInfo
-          {...{
-            id,
-            postedBy,
-            date,
-            likes,
-            preview,
-          }}
-        />
-        <TagsAndMutations
-          {...{
-            id,
-            tags,
-            isUpdate,
-            setUpdate,
-            preview,
-            github,
-            postedBy,
-          }}
-        />
-        {!preview && (
-          <div className={styles.socialAttributes}>
-            <CommentCounter count={commentCount} projectId={id} />
-            <LikeHandler likes={likes} resourceId={id} />
-            <span></span>
-          </div>
-        )}
-      </div>
+      <Headline {...{ id, href, title }} />
+      <Picture {...{ imgUrl }} />
+      {!isFeed && <Description {...{ description }} />}
+
+      <TagsAndMutations
+        {...{
+          id,
+          tags,
+          isUpdate,
+          setUpdate,
+          preview,
+          github,
+          postedBy,
+        }}
+      />
+      <PostInfo
+        {...{
+          id,
+          postedBy,
+          date,
+          likes,
+          preview,
+        }}
+      />
+      {!preview && (
+        <div className={styles.socialAttributes}>
+          <CommentCounter count={commentCount} projectId={id} />
+          <LikeHandler likes={likes} resourceId={id} />
+          <span></span>
+        </div>
+      )}
     </div>
   );
 };

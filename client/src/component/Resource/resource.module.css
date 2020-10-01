@@ -1,33 +1,29 @@
 .resource {
   width: 400px;
   text-align: left;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 10px;
 }
 
-.resourceBody {
-  width: 100%;
-}
-
-.resourceBody h2 {
+.resource h2 {
   margin-bottom: 0;
 }
 
-.resourceBody h4 {
+.resource h4 {
   margin: 5px;
   margin-left: 0;
   font-size: 0.8em;
   color: black;
 }
 
-.resourceBody a {
+.resource a {
   color: grey;
 }
 
 .socialAttributes {
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

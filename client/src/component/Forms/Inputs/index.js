@@ -12,6 +12,8 @@ const selectComponent = (handler) => {
 
     case "actionNoInput":
       return ActionNoInput;
+    case "textarea":
+      return TextAreaInput;
     default:
       return DefaultInput;
   }
@@ -22,6 +24,19 @@ export default selectComponent;
 const DefaultInput = ({ formValue, setSpecificFormValue }) => {
   return (
     <input
+      type={formValue.pw ? "password" : "text"}
+      placeholder={formValue.placeholder || ""}
+      value={formValue.value}
+      onChange={(e) => setSpecificFormValue(e.target.value)}
+    />
+  );
+};
+
+const TextAreaInput = ({ formValue, setSpecificFormValue }) => {
+  return (
+    <textarea
+      rows={10}
+      cols={30}
       type={formValue.pw ? "password" : "text"}
       placeholder={formValue.placeholder || ""}
       value={formValue.value}

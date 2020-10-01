@@ -18,9 +18,10 @@ const sharedOptions = {
     ...makeScreenShotAction,
   },
   description: {
-    name: "Description",
+    name: "Description (md)",
     placeholder: "I love this project",
     value: "",
+    handler: "textarea",
   },
   imgUrl: {
     name: "Url of image",
