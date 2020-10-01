@@ -28,6 +28,11 @@ const Navbar = () => {
               <button className={isSelected("/post")}> Post</button>
             </NavLink>
           )}
+          {user && (
+            <NavLink to={"/user/" + user.id}>
+              <button className={isSelected("/user/" + user.id)}> Me</button>
+            </NavLink>
+          )}
         </div>
 
         <AuthenticationButtons></AuthenticationButtons>

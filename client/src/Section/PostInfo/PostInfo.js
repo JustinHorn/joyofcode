@@ -7,7 +7,7 @@ import styles from "./postinfo.module.css";
 import { formatTimeDiff } from "helper";
 
 const PostInfo = ({ id, postedBy, date, likes, preview }) => {
-  const { user, projectByCurrentUser } = useContext(UserContext);
+  const { projectByCurrentUser } = useContext(UserContext);
 
   const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
 

@@ -10,6 +10,31 @@ type Query {
   authorize: User
 
   project(id: Int!): Resource
+
+  user(id: Int!): User
+  userProjects(
+    id: Int!
+    skip: Int
+    take: Int
+    orderBy: ResourceOrderByInput
+  ): [Resource!]
+  userComments(
+    id: Int!
+    skip: Int
+    take: Int
+    orderBy: CommentOrderByInput
+  ): [Resource!]
+  userLikes(
+    id: Int!
+    skip: Int
+    take: Int
+    orderBy: LikesOrderByInput
+  ): [Resource!]
+}
+
+input LikesOrderByInput {
+  id: Sort
+  date: Sort
 }
 
 input CommentOrderByInput {
@@ -71,6 +96,7 @@ type AuthPayLoad {
 type User {
   id: Int!
   verified: Boolean!
+  registeredAt: String!
   name: String!
   email: String!
   posts: [Resource!]!

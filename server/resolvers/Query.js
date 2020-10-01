@@ -33,4 +33,37 @@ const comments = async (p, args, context) => {
   });
 };
 
-module.exports = { hello, project, feed, authorize, comments };
+const user = async (p, args, context, info) => {
+  return await context.prisma.user.findOne({ where: { id: args.id } });
+};
+
+const userLikes = async (p, args, context, info) => {
+  return await context.prisma.like.findMany({
+    where: { userId: args.id },
+    orderBy: args.orderBy,
+  });
+};
+const userProjects = async (p, args, context, info) => {
+  return await context.prisma.resource.findMany({
+    where: { userId: args.id },
+    orderBy: args.orderBy,
+  });
+};
+const userComments = async (p, args, context, info) => {
+  return await context.prisma.comment.findMany({
+    where: { userId: args.id },
+    orderBy: args.orderBy,
+  });
+};
+
+module.exports = {
+  hello,
+  project,
+  feed,
+  authorize,
+  comments,
+  user,
+  userLikes,
+  userProjects,
+  userComments,
+};

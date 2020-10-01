@@ -19,6 +19,8 @@ import {
 } from "react-router-dom";
 import useFeed from "hooks/useFeed";
 
+import UserPage from "pages/User";
+
 function App() {
   const { user } = useContext(UserContext);
   const { data, loading, error } = useFeed();
@@ -30,6 +32,9 @@ function App() {
           <Navbar />
           {user && !user.verified && <h1>Not verified!</h1>}
           <Switch>
+            <Route path="/user/:id">
+              <UserPage />
+            </Route>
             <Route path="/project/:id">
               <ProjectPage />
             </Route>
