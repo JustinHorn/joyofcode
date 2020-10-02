@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 
 import { resourceQuery, formatValsFromLines } from "forms";
 
-import { readFeed, writeFeed } from "./helper";
+import { readFeed, writeFeed } from "../helper";
 
 const values = `$id: Int!`;
 
@@ -32,7 +32,7 @@ const mutation_unlikeResource = gql`
   }
 `;
 
-export const useLikeResource = (like) => {
+const useLikeResource = (like) => {
   const [likeResource, { error }] = useMutation(
     like ? mutation_likeResource : mutation_unlikeResource,
     {
@@ -103,3 +103,5 @@ const deleteElement = (index, arr) => [
   ...arr.slice(0, index),
   ...arr.slice(index + 1),
 ];
+
+export default useLikeResource;

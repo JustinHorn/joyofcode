@@ -4,8 +4,6 @@ import styles from "./commentsection.module.css";
 
 import Comment from "component/Comment";
 
-import Spoiler from "component/Spoiler";
-
 import useAddComment from "hooks/useAddComment";
 
 import useQueryComments from "hooks/useQueryComments";

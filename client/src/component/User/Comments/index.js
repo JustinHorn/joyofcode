@@ -9,6 +9,8 @@ import { comment } from "forms";
 
 import Comment from "component/Comment";
 
+import PostInfoComment from "component/PostInfo/Comment";
+
 export const userCommentsQuery = gql`
   query userComments($id: Int!, $take: Int, $orderBy: CommentOrderByInput) {
     userComments(id: $id, take: $take, orderBy: $orderBy) {
@@ -34,7 +36,20 @@ const UserComments = ({ userId }) => {
 
   return (
     <div>
-      <List Component={Comment} list={data?.userComments || []} Key={"uC"} />
+      <List
+        Component={UserComment}
+        list={data?.userComments || []}
+        Key={"uC"}
+      />
+    </div>
+  );
+};
+
+const UserComment = (props) => {
+  return (
+    <div className="text-left">
+      <Comment {...props} />
+      <PostInfoComment {...props} />
     </div>
   );
 };

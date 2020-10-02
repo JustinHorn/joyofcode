@@ -17,27 +17,27 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <nav className={styles.nav}>
-        <div className={styles.navigation}>
-          <NavLink to="/">
-            <button className={isSelected("/")}>Main </button>
-          </NavLink>
-          {user && (
-            <NavLink to="/post">
-              <button className={isSelected("/post")}> Post</button>
-            </NavLink>
-          )}
-          {user && (
-            <NavLink to={"/user/" + user.id}>
-              <button className={isSelected("/user/" + user.id)}> Me</button>
-            </NavLink>
-          )}
-        </div>
+    <nav className={styles.nav}>
+      <div className={styles.pages}>
+        <NavLink to="/">
+          <button className={isSelected("/")}>Main </button>
+        </NavLink>
 
+        {user && (
+          <NavLink to={"/user/" + user.id}>
+            <button className={isSelected("/user/" + user.id)}> Me</button>
+          </NavLink>
+        )}
+      </div>
+      <div className={styles.actions}>
+        {user && (
+          <NavLink to="/post">
+            <button className={isSelected("/post")}> Post</button>
+          </NavLink>
+        )}
         <AuthenticationButtons></AuthenticationButtons>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

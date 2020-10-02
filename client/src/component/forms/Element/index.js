@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormHandler from "component/Forms/Handler";
+import FormHandler from "component/forms/Handler";
 
 import styles from "./element.module.css";
 

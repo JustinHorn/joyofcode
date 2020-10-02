@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 
 import { resourceQuery, formatValsFromLines } from "forms";
 
-import { readFeed, writeFeed } from "./helper";
+import { readFeed, writeFeed } from "../helper";
 
 const values = `$title: String!
 $href: String!

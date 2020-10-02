@@ -3,7 +3,7 @@ import Feed from "component/Feed";
 
 import UserContext from "context";
 
-import TagInput from "component/Forms/Inputs/TagInput";
+import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 

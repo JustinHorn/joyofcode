@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import useDeleteResource from "hooks/useDeleteResource";
+import useDeleteResource from "hooks/resource/useDelete";
 
 import { useHistory } from "react-router-dom";
 

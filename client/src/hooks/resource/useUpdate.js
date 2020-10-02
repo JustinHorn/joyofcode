@@ -7,7 +7,7 @@ import { resourceQuery } from "forms";
 
 import { formatValsFromLines } from "forms";
 
-import { readFeed, writeFeed } from "./helper";
+import { readFeed, writeFeed } from "../helper";
 
 const values = `$id: Int!
 $title: String

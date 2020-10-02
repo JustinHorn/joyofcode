@@ -2,9 +2,9 @@ import React from "react";
 
 import Popup from "component/Popup";
 
-import { useHandleFormValues } from "component/Forms/MutationForm";
+import { useHandleFormValues } from "component/forms/MutationForm";
 import { updateOptions } from "forms/Options";
-import { useUpdateResource } from "hooks";
+import useUpdateResource from "hooks/resource/useUpdate";
 import MutationMenu from "component/MutationMenu";
 
 const ResourceUpdatePopup = ({ resourceValues, show, onClickAway }) => {

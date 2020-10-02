@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 
-import { readFeed, writeFeed } from "./helper";
+import { readFeed, writeFeed } from "../helper";
 
 const MUTATION_DELETE = gql`
   mutation MUTATION_DELETE($id: Int!) {

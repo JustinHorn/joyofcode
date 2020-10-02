@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 
 import styles from "./resource.module.css";
 
-import PostInfo from "Section/PostInfo";
+import PostInfo from "section/PostInfo";
 
-import TagsAndMutations from "Section/TagsAndMutations";
+import TagsAndMutations from "section/TagsAndMutations";
 
 import Picture from "component/Resource/Picture";
 
@@ -15,8 +15,6 @@ import Headline from "component/Resource/Headline";
 import CommentCounter from "component/CommentCounter";
 
 import LikeHandler from "component/LikeHandler";
-
-import { Link } from "react-router-dom";
 
 const Resource = (props) => {
   const {

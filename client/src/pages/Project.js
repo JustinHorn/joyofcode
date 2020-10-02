@@ -5,7 +5,7 @@ import Resource from "component/Resource";
 
 import UserContext from "context";
 
-import CommentSection from "Section/Comment";
+import CommentSection from "section/Comment";
 import ResourceUpdatePopup from "component/Resource/ResourceUpdatePopup";
 
 import DeleteHandler from "component/DeleteHandler";

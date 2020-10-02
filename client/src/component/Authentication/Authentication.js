@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-import { useLoginOrRegister } from "hooks";
+import useLoginOrRegister from "hooks/useLoginOrRegister";
 
 import {
   useHandleFormValues,
   MutationFormWithoutState,
-} from "component/Forms/MutationForm";
+} from "component/forms/MutationForm";
 
 import { loginOptions, registerOptions } from "forms/Options";
 

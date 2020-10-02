@@ -9,10 +9,10 @@ import Resource from "component/Resource";
 
 import UserContext from "context";
 
-import CommentSection from "Section/Comment";
+import CommentSection from "section/Comment";
 import ResourceUpdatePopup from "component/Resource/ResourceUpdatePopup";
 
-import useDeleteResource from "hooks/useDeleteResource";
+import useDeleteResource from "hooks/resource/useDelete";
 
 import DeleteHandler from "component/DeleteHandler";
 

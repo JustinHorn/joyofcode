@@ -10,3 +10,7 @@
 main {
   grid-area: main;
 }
+
+.text-left {
+  text-align: left;
+}

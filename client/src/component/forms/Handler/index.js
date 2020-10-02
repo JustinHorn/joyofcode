@@ -1,6 +1,6 @@
 import React from "react";
 
-import selectComponent from "component/Forms/Inputs";
+import selectComponent from "component/forms/Inputs";
 
 const FormHandler = (props) => {
   const { k: key, formValues, setFormValue } = props;

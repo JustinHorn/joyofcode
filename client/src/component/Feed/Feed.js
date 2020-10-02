@@ -4,10 +4,6 @@ import styles from "./feed.module.css";
 
 import Resource from "component/Resource";
 
-import TagInput from "component/Forms/Inputs/TagInput";
-
-import useFeed from "hooks/useFeed";
-
 import List from "component/List";
 
 const Feed = ({ filter, data }) => {

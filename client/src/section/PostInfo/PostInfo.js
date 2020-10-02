@@ -6,6 +6,8 @@ import styles from "./postinfo.module.css";
 
 import { formatTimeDiff } from "helper";
 
+import { Link } from "react-router-dom";
+
 const PostInfo = ({ id, postedBy, date, likes, preview }) => {
   const { projectByCurrentUser } = useContext(UserContext);
 
@@ -14,7 +16,8 @@ const PostInfo = ({ id, postedBy, date, likes, preview }) => {
   return (
     <div className={styles.postInfo}>
       <span>
-        {"posted by " + posterName + " " + formatTimeDiff(date) + " ago"}
+        {"posted by "} <Link to={"/user/" + postedBy.id}>{posterName}</Link>
+        {formatTimeDiff(date) + " ago"}
       </span>
     </div>
   );

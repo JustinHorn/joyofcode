@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { useLikeResource, useUnLikeResource } from "hooks";
+import useLikeResource from "hooks/resource/useLike";
 import UserContext from "context";
 
 import styles from "./likehandler.module.css";

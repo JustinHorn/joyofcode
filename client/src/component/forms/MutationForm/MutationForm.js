@@ -6,7 +6,7 @@ import { updateOptions, parseToResource } from "forms/Options";
 
 import List from "component/List";
 
-import Element from "component/Forms/Element";
+import Element from "component/forms/Element";
 
 export const useHandleFormValues = (props, resourceValues) => {
   const [formValues, setFormValues] = useState(props);
@@ -50,20 +50,16 @@ export const MutationFormWithoutState = (props) => {
   const { onClick, headline, formValues, setFormValue } = props;
   return (
     <div className={styles.form}>
-      <table className={styles.table}>
-        <tbody>
-          <List
-            Key={"MFWS"}
-            list={Object.keys(formValues).map((key, index) => ({
-              key: index,
-              k: key,
-              formValues,
-              setFormValue,
-            }))}
-            Component={Element}
-          />
-        </tbody>
-      </table>
+      <List
+        Key={"MFWS"}
+        list={Object.keys(formValues).map((key, index) => ({
+          key: index,
+          k: key,
+          formValues,
+          setFormValue,
+        }))}
+        Component={Element}
+      />
 
       <button onClick={onClick}>{headline}</button>
     </div>

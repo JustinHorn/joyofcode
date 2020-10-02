@@ -1,4 +1,4 @@
-import { useGetImageMutation } from "hooks";
+import useGetImageMutation from "hooks/useGetImageMutation";
 
 const useGetAction = (setFormValue) => {
   const setImage = (imgUrl) => {
