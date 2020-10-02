@@ -97,6 +97,9 @@ type User {
   posts: [Resource!]!
   likes: [Like!]!
   comments: [Comment!]!
+  projectCount: Int!
+  likeCount: Int!
+  commentCount: Int!
 }
 
 type Comment {

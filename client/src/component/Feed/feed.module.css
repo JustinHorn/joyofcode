@@ -1,6 +1,6 @@
 .feed {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 400px);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   place-items: center;
   column-gap: 10px;
   row-gap: 50px;

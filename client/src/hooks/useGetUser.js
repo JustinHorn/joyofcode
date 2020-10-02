@@ -9,6 +9,9 @@ const QueryUser = gql`
     user(id: $id) {
       id
       name
+      projectCount
+      likeCount
+      commentCount
     }
   }
 `;

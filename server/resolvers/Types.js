@@ -49,6 +49,21 @@ const User = {
       .findOne({ where: { id: parent.id } })
       .comments();
   },
+  commentCount: async (parent, args, context) => {
+    return await context.prisma.comment.count({
+      where: { userId: parent.id },
+    });
+  },
+  projectCount: async (parent, args, context) => {
+    return await context.prisma.resource.count({
+      where: { userId: parent.id },
+    });
+  },
+  likeCount: async (parent, args, context) => {
+    return await context.prisma.like.count({
+      where: { userId: parent.id },
+    });
+  },
 };
 
 const Like = {

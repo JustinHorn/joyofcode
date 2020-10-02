@@ -17,18 +17,18 @@ const UserPage = () => {
 
   return (
     <div>
-      <h1>{user && user.name}</h1>
+      <h1>{user?.name}</h1>
       <div className="text-left list">
         <div>
-          <h2>Projects</h2>
+          <h2>Projects {user?.projectCount}</h2>
           <UserProjects userId={id}></UserProjects>
         </div>
         <div>
-          <h2>Likes</h2>
+          <h2>Likes {user?.likeCount}</h2>
           <UserLikes userId={id} />
         </div>
         <div>
-          <h2>Comments</h2>
+          <h2>Comments {user?.commentCount}</h2>
           <UserComments userId={id}></UserComments>
         </div>
       </div>

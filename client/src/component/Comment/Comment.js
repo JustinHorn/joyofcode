@@ -18,7 +18,12 @@ const Comment = ({ text, postedBy, date, remove }) => {
           {you && <button onClick={remove}>DELETE</button>}
         </span>
       )}
-      <textarea readOnly={true} value={text} className={styles.text} />
+      <textarea
+        readOnly={true}
+        rows={text.split("\n").length}
+        value={text}
+        className={styles.text}
+      />
     </span>
   );
 };

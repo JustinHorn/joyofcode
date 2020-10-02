@@ -3,6 +3,17 @@
   flex-direction: column;
 }
 
+.comment textarea {
+  font-size: 3ch;
+  border: none;
+  height: fit-content;
+}
+
+.comment textarea:focus {
+  border: none;
+  outline: 0;
+}
+
 .commentsInfo {
   display: flex;
   justify-content: space-between;

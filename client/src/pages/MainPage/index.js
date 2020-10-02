@@ -42,7 +42,7 @@ const Mainpage = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.greet}>{user && <h1>Hello {user.name}</h1>}</div>
+      <div className={styles.greet}>{<h1>Hello {user?.name}</h1>}</div>
       <TagInput
         className={styles.searchbar}
         formValue={filters}
