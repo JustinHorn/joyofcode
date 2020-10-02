@@ -23,13 +23,8 @@ type Query {
     skip: Int
     take: Int
     orderBy: CommentOrderByInput
-  ): [Resource!]
-  userLikes(
-    id: Int!
-    skip: Int
-    take: Int
-    orderBy: LikesOrderByInput
-  ): [Resource!]
+  ): [Comment!]
+  userLikes(id: Int!, skip: Int, take: Int, orderBy: LikesOrderByInput): [Like!]
 }
 
 input LikesOrderByInput {

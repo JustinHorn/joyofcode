@@ -1,11 +1,9 @@
-import { useQuery } from "@apollo/client";
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import { gql } from "apollo-boost";
 import { resourceQuery } from "forms";
-
+import { useQuery } from "@apollo/client";
 import Feed from "component/Feed";
-import useProject from "hooks/useProject";
 
 export const userProjectsQuery = gql`
   query userProjects($id:Int!,$take:Int,$orderBy: ResourceOrderByInput) {
@@ -15,12 +13,9 @@ export const userProjectsQuery = gql`
   }
 `;
 
-const UserPage = () => {
-  let { id } = useParams();
-  id = Number(id);
-
+const UserProjects = ({ userId }) => {
   const { data, loading, error } = useQuery(userProjectsQuery, {
-    variables: { id, take: 10, orderBy: { date: "desc" } },
+    variables: { id: userId, take: 10, orderBy: { date: "desc" } },
   });
 
   if (error) {
@@ -29,13 +24,7 @@ const UserPage = () => {
   }
   if (loading) return "loading";
 
-  return (
-    <div>
-      <Feed filter={() => true} data={data?.userProjects}></Feed>
-      <div>Likes</div>
-      <div>Comments</div>
-    </div>
-  );
+  return <Feed data={data?.userProjects}></Feed>;
 };
 
-export default UserPage;
+export default UserProjects;

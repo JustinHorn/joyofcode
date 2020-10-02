@@ -7,6 +7,8 @@ import { getMainDefinition } from "@apollo/client/utilities";
 
 import { WebSocketLink } from "@apollo/client/link/ws";
 
+import { onError } from "apollo-link-error";
+
 const location = window.location.host;
 
 const isDevelopment =
@@ -56,9 +58,17 @@ const link = process.browser
     )
   : httpLink;
 
+const errorLink = onError(({ graphQLErrors }) => {
+  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+});
+
 const client = new ApolloClient({
-  link: authLink.concat(link),
+  link: ApolloLink.from([errorLink, authLink.concat(link)]),
   cache: new InMemoryCache(),
+  onError: ({ networkError, graphQLErrors }) => {
+    console.log("graphQLErrors", graphQLErrors);
+    console.log("networkError", networkError);
+  },
 });
 
 export default ({ children }) => (

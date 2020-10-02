@@ -40,18 +40,24 @@ const user = async (p, args, context, info) => {
 const userLikes = async (p, args, context, info) => {
   return await context.prisma.like.findMany({
     where: { userId: args.id },
+    skip: args.skip,
+    take: args.take,
     orderBy: args.orderBy,
   });
 };
 const userProjects = async (p, args, context, info) => {
   return await context.prisma.resource.findMany({
     where: { userId: args.id },
+    skip: args.skip,
+    take: args.take,
     orderBy: args.orderBy,
   });
 };
 const userComments = async (p, args, context, info) => {
   return await context.prisma.comment.findMany({
     where: { userId: args.id },
+    skip: args.skip,
+    take: args.take,
     orderBy: args.orderBy,
   });
 };

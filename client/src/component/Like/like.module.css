@@ -1,0 +1,9 @@
+.like {
+  display: flex;
+}
+
+.like a {
+  font-weight: bold;
+  color: black;
+  margin-right: 1ch;
+}

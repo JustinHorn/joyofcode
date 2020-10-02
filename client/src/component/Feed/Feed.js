@@ -11,6 +11,7 @@ import useFeed from "hooks/useFeed";
 import List from "component/List";
 
 const Feed = ({ filter, data }) => {
+  !filter && (filter = () => true);
   const resources = data?.map((x) => ({ ...x, isFeed: true }));
 
   const filteredResources = useMemo(
