@@ -26,7 +26,6 @@ const ProjectPage = () => {
   if (loading) return "loading";
   if (error) {
     throw error;
-    return "error";
   }
   return (
     <div>
@@ -36,7 +35,7 @@ const ProjectPage = () => {
 
       {postedByCurrentUser && <DeleteHandler resourceId={id}></DeleteHandler>}
 
-      <Resource {...data?.project}></Resource>
+      <Resource {...data?.project} showDescription={true}></Resource>
       <CommentSection resourceId={id} />
 
       <ResourceUpdatePopup

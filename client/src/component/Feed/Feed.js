@@ -8,11 +8,12 @@ import List from "component/List";
 
 const Feed = ({ filter, data }) => {
   !filter && (filter = () => true);
-  const resources = data?.map((x) => ({ ...x, isFeed: true }));
+  const resources = data?.map((x) => ({ ...x, showDescription: false }));
 
-  const filteredResources = useMemo(
-    () => resources?.filter(filter) || [filter, resources]
-  );
+  const filteredResources = useMemo(() => resources?.filter(filter), [
+    filter,
+    resources,
+  ]);
 
   return (
     <div className={styles.feed}>

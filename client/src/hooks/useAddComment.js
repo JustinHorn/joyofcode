@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import { comment, formatValsFromLines } from "forms";
 
-import { getQueryVars } from "./useQueryComments";
+import { getQueryVars } from "./comment/useQuery";
 
 const values = `$resourceId:Int! 
 $text:String!`;

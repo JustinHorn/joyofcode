@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 
-import { getQueryVars } from "hooks/useQueryComments";
+import { getQueryVars } from "hooks/comment/useQuery";
 
 const REMOVE_COMMENT_MUTATION = gql`
   mutation removeComment($commentId: Int!) {

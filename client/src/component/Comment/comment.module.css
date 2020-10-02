@@ -1,6 +1,4 @@
 .comment {
-  margin: 5px;
-  margin-left: 0px;
   display: flex;
   flex-direction: column;
 }

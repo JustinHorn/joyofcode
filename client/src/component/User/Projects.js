@@ -4,6 +4,9 @@ import { gql } from "apollo-boost";
 import { resourceQuery } from "forms";
 import { useQuery } from "@apollo/client";
 import Feed from "component/Feed";
+import Resource from "component/Resource";
+
+import List from "component/List";
 
 export const userProjectsQuery = gql`
   query userProjects($id:Int!,$take:Int,$orderBy: ResourceOrderByInput) {
@@ -24,7 +27,11 @@ const UserProjects = ({ userId }) => {
   }
   if (loading) return "loading";
 
-  return <Feed data={data?.userProjects}></Feed>;
+  return (
+    <div className="column-list">
+      <List Key="feed" Component={Resource} list={data?.userProjects || []} />
+    </div>
+  );
 };
 
 export default UserProjects;

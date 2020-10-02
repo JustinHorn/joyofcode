@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 
 import styles from "./resource.module.css";
 
-import PostInfo from "section/PostInfo";
+import PostInfoProject from "component/postInfo/Project";
 
 import TagsAndMutations from "section/TagsAndMutations";
 
@@ -30,7 +30,7 @@ const Resource = (props) => {
     likes,
     preview,
     commentCount,
-    isFeed,
+    showDescription,
   } = props;
 
   const [isUpdate, setUpdate] = useState(false);
@@ -39,7 +39,7 @@ const Resource = (props) => {
     <div className={styles.resource}>
       <Headline {...{ id, href, title }} />
       <Picture {...{ imgUrl }} />
-      {!isFeed && <Description {...{ description }} />}
+      {showDescription && <Description {...{ description }} />}
 
       <TagsAndMutations
         {...{
@@ -52,13 +52,10 @@ const Resource = (props) => {
           postedBy,
         }}
       />
-      <PostInfo
+      <PostInfoProject
         {...{
-          id,
           postedBy,
           date,
-          likes,
-          preview,
         }}
       />
       {!preview && (

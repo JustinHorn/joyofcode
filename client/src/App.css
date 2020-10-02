@@ -14,3 +14,23 @@ main {
 .text-left {
   text-align: left;
 }
+
+a {
+  color: grey;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 20px;
+}
+
+.list.px5 {
+  row-gap: 5px;
+}
+
+.column-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  column-gap: 20px;
+}

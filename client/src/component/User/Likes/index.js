@@ -32,7 +32,7 @@ const UserLikes = ({ userId }) => {
   if (loading) return "loading";
 
   return (
-    <div>
+    <div className="list px5">
       <List
         Component={Like}
         list={data?.userLikes.map((l) => ({ ...l, ...l.resource } || []))}

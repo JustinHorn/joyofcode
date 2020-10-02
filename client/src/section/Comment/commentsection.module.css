@@ -1,14 +1,4 @@
-.comments {
-  display: flex;
-  flex-direction: column;
-}
-
-.writeComment {
-  display: flex;
-  flex-direction: column;
-}
-
-.writeComment button {
+.commentbutton {
   margin-left: auto;
   width: fit-content;
 }

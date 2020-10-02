@@ -6,9 +6,9 @@ import Comment from "component/Comment";
 
 import useAddComment from "hooks/useAddComment";
 
-import useQueryComments from "hooks/useQueryComments";
+import useQueryComments from "hooks/comment/useQuery";
 
-import useRemoveComment from "hooks/useRemoveComment";
+import useRemoveComment from "hooks/comment/useRemove";
 
 const CommentSection = ({ resourceId }) => {
   const [text, setText] = useState("");
@@ -25,7 +25,7 @@ const CommentSection = ({ resourceId }) => {
 
   return (
     <div>
-      <div className={styles.writeComment}>
+      <div className="list">
         <textarea
           name="comment"
           placeholder="Comment"
@@ -35,7 +35,12 @@ const CommentSection = ({ resourceId }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={() => sendComment(text)}>Comment</button>
+        <button
+          className={styles.commentbutton}
+          onClick={() => sendComment(text)}
+        >
+          Comment
+        </button>
       </div>
       {loading && "loading"}
 
@@ -49,7 +54,7 @@ const CommentSection = ({ resourceId }) => {
 
 const CommentList = ({ comments, getRemoveComment }) => {
   return (
-    <div className={styles.comments}>
+    <div className="list">
       {comments.map((content, index) => (
         <Comment
           key={content.id}

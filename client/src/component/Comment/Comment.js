@@ -4,22 +4,35 @@ import styles from "./comment.module.css";
 import { formatTimeDiff } from "helper";
 
 import UserContext from "context/UserContext";
+import PostInfoGeneral from "component/postInfo/General";
 
-const Comment = ({ id, text, postedBy, date, remove }) => {
-  const { user } = useContext(UserContext);
+const Comment = ({ text, postedBy, date, remove }) => {
+  const { projectByCurrentUser } = useContext(UserContext);
 
-  const you = postedBy.id === user?.id;
-
+  const you = projectByCurrentUser(postedBy.id);
   return (
     <span className={styles.comment}>
-      <span className={styles.commentsInfo}>
-        <span>
-          {(you ? "You" : postedBy.name) + " " + formatTimeDiff(date) + " ago"}{" "}
+      {remove && (
+        <span className={styles.commentsInfo}>
+          <PostInfoComment postedBy={postedBy} date={date} />
+          {you && <button onClick={remove}>DELETE</button>}
         </span>
-        {you && remove && <button onClick={remove}>DELETE</button>}
-      </span>
+      )}
       <textarea readOnly={true} value={text} className={styles.text} />
     </span>
+  );
+};
+
+const PostInfoComment = ({ postedBy, date }) => {
+  const { projectByCurrentUser } = useContext(UserContext);
+
+  const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
+  return (
+    <PostInfoGeneral
+      link={"/user/" + postedBy.id}
+      linkText={posterName}
+      date={date}
+    />
   );
 };
 

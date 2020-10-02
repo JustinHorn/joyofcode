@@ -7,9 +7,7 @@ import List from "component/List";
 
 import { comment } from "forms";
 
-import Comment from "component/Comment";
-
-import PostInfoComment from "component/PostInfo/Comment";
+import UserComment from "component/Comment/UserComment";
 
 export const userCommentsQuery = gql`
   query userComments($id: Int!, $take: Int, $orderBy: CommentOrderByInput) {
@@ -35,21 +33,12 @@ const UserComments = ({ userId }) => {
   if (loading) return "loading";
 
   return (
-    <div>
+    <div className="list">
       <List
         Component={UserComment}
         list={data?.userComments || []}
         Key={"uC"}
       />
-    </div>
-  );
-};
-
-const UserComment = (props) => {
-  return (
-    <div className="text-left">
-      <Comment {...props} />
-      <PostInfoComment {...props} />
     </div>
   );
 };
