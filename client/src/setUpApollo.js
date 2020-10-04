@@ -1,7 +1,6 @@
 import React from "react";
 
-import { ApolloProvider, ApolloClient, HttpLink, split } from "@apollo/client";
-import { InMemoryCache, ApolloLink } from "apollo-boost";
+import { ApolloProvider, ApolloClient, HttpLink, split,InMemoryCache, ApolloLink  } from "@apollo/client";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 

@@ -1,6 +1,5 @@
 import { useEffect, useContext } from "react";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/client";
+import { useMutation,gql } from "@apollo/client";
 
 import UserContext from "context";
 

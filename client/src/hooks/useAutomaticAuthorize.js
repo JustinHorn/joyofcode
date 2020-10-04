@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 
-import { gql } from "apollo-boost";
+import { useQuery, gql } from "@apollo/client";
 
-import { useQuery } from "@apollo/client";
 
 const query_authorize = gql`
   query {

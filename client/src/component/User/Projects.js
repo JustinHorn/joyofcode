@@ -1,8 +1,7 @@
 import React from "react";
 
-import { gql } from "apollo-boost";
 import { resourceQuery } from "forms";
-import { useQuery } from "@apollo/client";
+import { useQuery,gql } from "@apollo/client";
 import Feed from "component/Feed";
 import Resource from "component/Resource";
 

@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
+import { useQuery ,gql} from "@apollo/client";
 
 import { resourceQuery, comment } from "forms";
 import Resource from "component/Resource";

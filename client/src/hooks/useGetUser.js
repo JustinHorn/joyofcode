@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { gql } from "apollo-boost";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery ,gql} from "@apollo/client";
 import UserContext from "context";
 
 const QueryUser = gql`

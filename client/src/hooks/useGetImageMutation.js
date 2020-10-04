@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/client";
+import { useMutation,gql } from "@apollo/client";
 const getImage_MUTATION = gql`
   mutation GetImage_MUTATION($href: String!) {
     makePictureOfWebsite(href: $href)

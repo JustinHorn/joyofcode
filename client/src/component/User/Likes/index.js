@@ -2,8 +2,7 @@ import React from "react";
 
 import Like from "component/Like";
 
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
+import { useQuery,gql } from "@apollo/client";
 
 import List from "component/List";
 

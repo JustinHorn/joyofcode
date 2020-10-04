@@ -1,5 +1,4 @@
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 import { resourceQuery } from "forms";
 
