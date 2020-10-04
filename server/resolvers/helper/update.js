@@ -1,6 +1,6 @@
 const getOldTags = async (id, context) => {
   return (
-    await context.prisma.resource
+    await context.prisma.project
       .findOne({
         where: { id: id },
       })

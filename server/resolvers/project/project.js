@@ -18,7 +18,7 @@ const checkArgs = ({ tags, href, github }) => {
   github && check.mustBeGithub(github);
 };
 
-const addResource = async (p, args, context, i) => {
+const addProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
 
   checkArgs(args);
@@ -30,7 +30,7 @@ const addResource = async (p, args, context, i) => {
       }))
     : [];
 
-  const resource = await context.prisma.resource.create({
+  const project = await context.prisma.project.create({
     data: {
       ...args,
 
@@ -43,10 +43,10 @@ const addResource = async (p, args, context, i) => {
     },
   });
 
-  return resource;
+  return project;
 };
 
-const updateResource = async (p, args, context, i) => {
+const updateProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
 
   const { href, title, github, imgUrl, description } = args;
@@ -58,7 +58,7 @@ const updateResource = async (p, args, context, i) => {
   await context.prisma.user.update({
     where: { id: userId },
     data: {
-      postedResources: {
+      postedProjects: {
         update: [
           {
             where: { id: args.id },
@@ -76,32 +76,32 @@ const updateResource = async (p, args, context, i) => {
     },
   });
 
-  return context.prisma.resource.findOne({ where: { id: args.id } });
+  return context.prisma.project.findOne({ where: { id: args.id } });
 };
 
-const deleteResource = async (p, args, context, i) => {
+const deleteProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
 
-  const resource = await context.prisma.resource.findOne({
+  const project = await context.prisma.project.findOne({
     where: { id: args.id },
   });
 
-  if (resource.userId !== userId) {
-    throw new Error("Resource not posted by user");
+  if (project.userId !== userId) {
+    throw new Error("Project not posted by user");
   }
 
-  await context.prisma.like.deleteMany({ where: { resourceId: args.id } });
+  await context.prisma.like.deleteMany({ where: { projectId: args.id } });
 
-  await context.prisma.resource.delete({
+  await context.prisma.project.delete({
     where: { id: args.id },
   });
 
-  return resource;
+  return project;
 };
 
 module.exports = {
-  addResource,
-  deleteResource,
-  updateResource,
+  addProject,
+  deleteProject,
+  updateProject,
   makePictureOfWebsite,
 };

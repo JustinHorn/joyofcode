@@ -1,0 +1,24 @@
+fragment ResourceQuery on Resource {
+  id
+  title
+  href
+  date
+  imgUrl
+  github
+  description
+  likes {
+    id
+    user {
+      id
+    }
+  }
+  commentCount
+  tags {
+    id
+    name
+  }
+  postedBy {
+    id
+    name
+  }
+}

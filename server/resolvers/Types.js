@@ -1,37 +1,37 @@
-const Resource = {
+const Project = {
   tags: (parent, args, context) => {
-    return context.prisma.resource.findOne({ where: { id: parent.id } }).tags();
+    return context.prisma.project.findOne({ where: { id: parent.id } }).tags();
   },
   postedBy: (parent, args, context) => {
-    return context.prisma.resource
+    return context.prisma.project
       .findOne({ where: { id: parent.id } })
       .postedBy();
   },
   likes: (parent, args, context) => {
-    return (likes = context.prisma.resource
+    return (likes = context.prisma.project
       .findOne({ where: { id: parent.id } })
       .likes());
   },
   likeCount: async (parent, args, context) => {
     return await context.prisma.like.count({
-      where: { resourceId: parent.id },
+      where: { projectId: parent.id },
     });
   },
   commentCount: async (parent, args, context) => {
     return await context.prisma.comment.count({
-      where: { resourceId: parent.id },
+      where: { projectId: parent.id },
     });
   },
   comments: async (parent, args, context) => {
-    return await context.prisma.resource
+    return await context.prisma.project
       .findOne({ where: { id: parent.id } })
       .comments();
   },
 };
 
 const Tag = {
-  resources: (parent, args, context) => {
-    return context.prisma.tag.findOne({ where: { id: parent.id } }).resources();
+  projects: (parent, args, context) => {
+    return context.prisma.tag.findOne({ where: { id: parent.id } }).projects();
   },
 };
 
@@ -39,7 +39,7 @@ const User = {
   posts: (parent, args, context) => {
     return context.prisma.user
       .findOne({ where: { id: parent.id } })
-      .postedResources();
+      .postedprojects();
   },
   likes: (parent, args, context) => {
     return context.prisma.user.findOne({ where: { id: parent.id } }).likes();
@@ -55,7 +55,7 @@ const User = {
     });
   },
   projectCount: async (parent, args, context) => {
-    return await context.prisma.resource.count({
+    return await context.prisma.project.count({
       where: { userId: parent.id },
     });
   },
@@ -70,8 +70,8 @@ const Like = {
   user: (parent, args, context) => {
     return context.prisma.like.findOne({ where: { id: parent.id } }).user();
   },
-  resource: (parent, args, context) => {
-    return context.prisma.like.findOne({ where: { id: parent.id } }).resource();
+  project: (parent, args, context) => {
+    return context.prisma.like.findOne({ where: { id: parent.id } }).project();
   },
 };
 
@@ -88,4 +88,4 @@ const Comment = {
   },
 };
 
-module.exports = { Resource, Tag, User, Like, Comment };
+module.exports = { Project, Tag, User, Like, Comment };

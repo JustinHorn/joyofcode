@@ -10,8 +10,12 @@ import List from "component/List";
 export const userProjectsQuery = gql`
   query userProjects($id:Int!,$take:Int,$orderBy: ResourceOrderByInput) {
     userProjects(id:$id,take:$take,orderBy: $orderBy) {
-      ${resourceQuery}
+      ...ResourceQuery
     }
+  }
+
+  fragment ResourceQuery on Resource {
+    ${resourceQuery}
   }
 `;
 

@@ -2,10 +2,10 @@ const likeMutations = require("./like");
 
 const commentMutations = require("./comment");
 
-const resourceMutations = require("./resource");
+const projectMutations = require("./project");
 
 module.exports = {
   ...likeMutations,
   ...commentMutations,
-  ...resourceMutations,
+  ...projectMutations,
 };

@@ -13,11 +13,11 @@ const authorize = async (p, args, context) => {
 };
 
 const project = async (p, args, context) => {
-  return await context.prisma.resource.findOne({ where: { id: args.id } });
+  return await context.prisma.project.findOne({ where: { id: args.id } });
 };
 
 const feed = async (p, args, context) => {
-  return await context.prisma.resource.findMany({
+  return await context.prisma.project.findMany({
     skip: args.skip,
     take: args.take,
     orderBy: args.orderBy,
@@ -26,7 +26,7 @@ const feed = async (p, args, context) => {
 
 const comments = async (p, args, context) => {
   return await context.prisma.comment.findMany({
-    where: { resourceId: args.resourceId },
+    where: { projectId: args.projectId },
     skip: args.skip,
     take: args.take,
     orderBy: args.orderBy,
@@ -46,7 +46,7 @@ const userLikes = async (p, args, context, info) => {
   });
 };
 const userProjects = async (p, args, context, info) => {
-  return await context.prisma.resource.findMany({
+  return await context.prisma.project.findMany({
     where: { userId: args.id },
     skip: args.skip,
     take: args.take,

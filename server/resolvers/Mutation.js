@@ -1,8 +1,8 @@
 const authenticationMutations = require("./authentication/authentication.js");
 
-const resourceMutations = require("./resource");
+const projectMutations = require("./project");
 
 module.exports = {
   ...authenticationMutations,
-  ...resourceMutations,
+  ...projectMutations,
 };

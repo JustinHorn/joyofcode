@@ -1,23 +1,23 @@
 type Query {
   hello: String!
-  feed(skip: Int, take: Int, orderBy: ResourceOrderByInput): [Resource!]!
+  feed(skip: Int, take: Int, orderBy: ProjectOrderByInput): [Project!]!
   comments(
-    resourceId: Int!
+    prsrojectId: Int!
     skip: Int
     take: Int
     orderBy: CommentOrderByInput
   ): [Comment!]!
   authorize: User
 
-  project(id: Int!): Resource
+  project(id: Int!): Project
 
   user(id: Int!): User
   userProjects(
     id: Int!
     skip: Int
     take: Int
-    orderBy: ResourceOrderByInput
-  ): [Resource!]
+    orderBy: ProjectOrderByInput
+  ): [Project!]
   userComments(
     id: Int!
     skip: Int
@@ -37,7 +37,7 @@ input CommentOrderByInput {
   date: Sort
 }
 
-input ResourceOrderByInput {
+input ProjectOrderByInput {
   id: Sort
   title: Sort
   href: Sort
@@ -53,19 +53,19 @@ type Mutation {
   login(email: String!, password: String!): AuthPayLoad
   register(name: String!, email: String!, password: String!): AuthPayLoad
 
-  addResource(
+  addProject(
     title: String!
     href: String!
     tags: [String!]
     imgUrl: String
     description: String
     github: String
-  ): Resource
+  ): Project
 
-  likeResource(id: Int!): Like
-  unlikeResource(id: Int!): Int
+  likeProject(id: Int!): Like
+  unlikeProject(id: Int!): Int
 
-  updateResource(
+  updateProject(
     id: Int!
     href: String
     title: String
@@ -73,13 +73,13 @@ type Mutation {
     imgUrl: String
     description: String
     github: String
-  ): Resource
+  ): Project
 
-  deleteResource(id: Int!): DeletedResource
+  deleteProject(id: Int!): DeletedProject
 
   makePictureOfWebsite(href: String!): String
 
-  addComment(resourceId: Int!, text: String!): Comment
+  addComment(projectId: Int!, text: String!): Comment
   removeComment(commentId: Int!): Int
 }
 
@@ -94,7 +94,7 @@ type User {
   registeredAt: String!
   name: String!
   email: String!
-  posts: [Resource!]!
+  posts: [Project!]!
   likes: [Like!]!
   comments: [Comment!]!
   projectCount: Int!
@@ -107,17 +107,17 @@ type Comment {
   date: String!
   text: String!
   postedBy: User!
-  postedUnder: Resource!
+  postedUnder: Project!
 }
 
 type Like {
   id: Int!
   date: String!
   user: User!
-  resource: Resource!
+  project: Project!
 }
 
-type DeletedResource {
+type DeletedProject {
   id: Int!
   title: String!
   href: String!
@@ -128,7 +128,7 @@ type DeletedResource {
   imgUrl: String!
 }
 
-type Resource {
+type Project {
   id: Int!
   title: String!
   href: String!
@@ -147,5 +147,5 @@ type Resource {
 type Tag {
   id: Int!
   name: String!
-  resources: [Resource!]!
+  projects: [Project!]!
 }

@@ -1,36 +1,36 @@
 const { getUserIdVerified } = require("../helper/authentication");
 
-const likeResource = async (p, args, context, i) => {
+const likeProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
-  const { id: resourceId } = args;
+  const { id: projectId } = args;
 
   const exists = await context.prisma.like.findOne({
-    where: { userId_resourceId: { userId, resourceId } },
+    where: { userId_projectId: { userId, projectId } },
   });
 
   if (exists) {
-    throw new Error("Resource has already been liked!");
+    throw new Error("Project has already been liked!");
   }
 
   const like = context.prisma.like.create({
     data: {
       user: { connect: { id: userId } },
-      resource: { connect: { id: resourceId } },
+      project: { connect: { id: projectId } },
     },
   });
   return like;
 };
 
-const unlikeResource = async (p, args, context, i) => {
+const unlikeProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
-  const { id: resourceId } = args;
+  const { id: projectId } = args;
 
   const like = await context.prisma.like.delete({
     where: {
-      userId_resourceId: { userId, resourceId },
+      userId_projectId: { userId, projectId },
     },
   });
   return like.id;
 };
 
-module.exports = { likeResource, unlikeResource };
+module.exports = { likeProject, unlikeProject };

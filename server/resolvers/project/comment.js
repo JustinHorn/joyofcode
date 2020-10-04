@@ -10,7 +10,7 @@ const addComment = async (p, args, context) => {
         connect: { id: userId },
       },
       postedUnder: {
-        connect: { id: args.resourceId },
+        connect: { id: args.projectId },
       },
     },
   });

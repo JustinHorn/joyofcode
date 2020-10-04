@@ -1,33 +1,35 @@
-datasource db {
-    provider = "postgresql"
-    // provider = "sqlite"
-
-    // url = "sqlite:./dev.db"
-
-    url = env("DATABASE_URL")
-
-}
-
-// 2
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["connectOrCreate"]
 }
 
-model User {
-    id               Int        @id @default(autoincrement())
-    verified         Boolean    @default(false)
-    verificationCode Int
-    name             String
-    email            String     @unique
-    password         String
-    registeredAt     DateTime   @default(now())
-    postedResources  Resource[]
-    likes            Like[]
-    comments         Comment[]
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
-model Resource {
+model Comment {
+    id          Int      @id @default(autoincrement())
+    text        String
+    userId      Int
+    projectId   Int
+    date        DateTime @default(now())
+    postedUnder Project  @relation(fields: [projectId], references: [id])
+    postedBy    User     @relation(fields: [userId], references: [id])
+}
+
+model Like {
+    id        Int      @id @default(autoincrement())
+    date      DateTime @default(now())
+    userId    Int
+    projectId Int
+    project   Project  @relation(fields: [projectId], references: [id])
+    user      User     @relation(fields: [userId], references: [id])
+
+    @@unique([userId, projectId])
+}
+
+model Project {
     id          Int      @id @default(autoincrement())
     date        DateTime @default(now())
     title       String
@@ -35,42 +37,31 @@ model Resource {
     imgUrl      String   @default("")
     github      String   @default("")
     description String   @default("")
+    postedBy    User?    @relation(fields: [userId], references: [id])
+    userId      Int?
 
-    tags Tag[]
-
-    postedBy User?     @relation(fields: [userId], references: [id])
-    userId   Int?
-    likes    Like[]
     comments Comment[]
+    likes    Like[]
+    tags     Tag[]
 
     @@unique([id, userId])
 }
 
-model Comment {
-    id          Int      @id @default(autoincrement())
-    date        DateTime @default(now())
-    text        String
-    postedBy    User     @relation(fields: [userId], references: [id])
-    userId      Int
-    postedUnder Resource @relation(fields: [resourceId], references: [id])
-
-    resourceId Int
-}
-
-model Like {
-    id   Int      @id @default(autoincrement())
-    date DateTime @default(now())
-    user User     @relation(fields: [userId], references: [id])
-
-    userId     Int
-    resource   Resource @relation(fields: [resourceId], references: [id])
-    resourceId Int
-
-    @@unique([userId, resourceId])
-}
-
 model Tag {
-    id        Int        @id @default(autoincrement())
-    name      String     @unique
-    resources Resource[]
+    id       Int       @id @default(autoincrement())
+    name     String    @unique
+    projects Project[]
+}
+
+model User {
+    id               Int       @id @default(autoincrement())
+    name             String
+    email            String    @unique
+    password         String
+    registeredAt     DateTime  @default(now())
+    verified         Boolean   @default(false)
+    verificationCode Int
+    comments         Comment[]
+    likes            Like[]
+    postedProjects   Project[]
 }
