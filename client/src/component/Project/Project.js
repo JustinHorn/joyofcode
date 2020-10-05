@@ -12,9 +12,9 @@ import Description from "component/Project/Description";
 
 import Headline from "component/Project/Headline";
 
-import CommentCounter from "component/CommentCounter";
+import Socials from "./Socials";
 
-import LikeHandler from "component/LikeHandler";
+import ProjectLayoutContext from "context/ProjectLayout";
 
 const Project = (props) => {
   const {
@@ -31,41 +31,38 @@ const Project = (props) => {
     preview,
     commentCount,
     showDescription,
+    small,
   } = props;
 
-  const [isUpdate, setUpdate] = useState(false);
+  const [isUpdate, setUpdate] = useState(!!small);
 
   return (
-    <div className={styles.project}>
-      <Headline {...{ id, href, title }} />
-      <Picture {...{ imgUrl }} />
-      {showDescription && <Description {...{ description }} />}
+    <ProjectLayoutContext.Provider value={{ small }}>
+      <div className={small ? styles.small : styles.normal}>
+        <Headline {...{ id, href, title }} />
+        {!small && <Picture {...{ imgUrl }} />}
+        {!small && showDescription && <Description {...{ description }} />}
 
-      <TagsAndMutations
-        {...{
-          id,
-          tags,
-          isUpdate,
-          setUpdate,
-          preview,
-          github,
-          postedBy,
-        }}
-      />
-      <PostInfoProject
-        {...{
-          postedBy,
-          date,
-        }}
-      />
-      {!preview && (
-        <div className={styles.socialAttributes}>
-          <CommentCounter count={commentCount} projectId={id} />
-          <LikeHandler likes={likes} projectId={id} />
-          <span></span>
-        </div>
-      )}
-    </div>
+        <TagsAndMutations
+          {...{
+            id,
+            tags,
+            isUpdate,
+            setUpdate,
+            preview,
+            github,
+            postedBy,
+          }}
+        />
+        <PostInfoProject
+          {...{
+            postedBy,
+            date,
+          }}
+        />
+        {!preview && <Socials {...{ id, commentCount, likes }} />}
+      </div>
+    </ProjectLayoutContext.Provider>
   );
 };
 

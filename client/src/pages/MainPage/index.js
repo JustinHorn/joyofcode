@@ -7,6 +7,8 @@ import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 
+import ToggleSmallNormal from "component/ToggleSmallNormal";
+
 const Mainpage = () => {
   const { user } = useContext(UserContext);
 
@@ -39,7 +41,9 @@ const Mainpage = () => {
         setSpecificFormValue={setValue}
       />
       <div className={styles.feed}>
-        <Feed filter={filter} />
+        <ToggleSmallNormal>
+          <Feed filter={filter} />
+        </ToggleSmallNormal>
       </div>
     </div>
   );

@@ -9,6 +9,8 @@ import UserLikes from "component/User/Likes";
 
 import useGetUser from "hooks/useGetUser";
 
+import ToggleSmallNormal from "component/ToggleSmallNormal";
+
 const UserPage = () => {
   let { id } = useParams();
   id = Number(id);
@@ -21,7 +23,9 @@ const UserPage = () => {
       <div className="text-left list">
         <div>
           <h2>Projects {user?.projectCount}</h2>
-          <UserProjects userId={id}></UserProjects>
+          <ToggleSmallNormal initSmall={true}>
+            <UserProjects userId={id} />
+          </ToggleSmallNormal>
         </div>
         <div>
           <h2>Likes {user?.likeCount}</h2>

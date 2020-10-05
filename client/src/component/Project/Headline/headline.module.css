@@ -1,4 +1,30 @@
-.headtext {
+.normal h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.normal .headtext {
   color: black;
+  text-decoration: none;
+}
+
+.normal h4 {
+  margin: 5px;
+  margin-left: 0;
+  font-size: 0.8em;
+  color: black;
+}
+
+.small {
+  display: flex;
+  align-items: center;
+}
+
+.small h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.small .headtext {
   text-decoration: none;
 }

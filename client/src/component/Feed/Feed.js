@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import styles from "./feed.module.css";
 
@@ -8,12 +8,16 @@ import List from "component/List";
 
 import useFeed from "hooks/useFeed";
 
-const Feed = ({ filter }) => {
+const Feed = ({ filter, small }) => {
   !filter && (filter = () => true);
 
   const { data, loading, error, addItems } = useFeed();
 
-  const projects = data?.feed.map((x) => ({ ...x, showDescription: false }));
+  const projects = data?.feed.map((x) => ({
+    ...x,
+    showDescription: false,
+    small,
+  }));
 
   const filteredProjects = useMemo(() => projects?.filter(filter), [
     filter,
@@ -28,7 +32,7 @@ const Feed = ({ filter }) => {
 
   return (
     <div>
-      <div className={styles.feed}>
+      <div className={small ? "list px5" : styles.feed}>
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
       <button onClick={addItems}>loadMore</button>
