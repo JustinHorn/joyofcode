@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Resource from "component/Resource";
+import Project from "component/Project";
 
 import UserContext from "context";
 
 import CommentSection from "section/Comment";
-import ResourceUpdatePopup from "component/Resource/ResourceUpdatePopup";
+import ProjectUpdatePopup from "component/Project/ProjectUpdatePopup";
 
 import DeleteHandler from "component/DeleteHandler";
 
@@ -33,15 +33,15 @@ const ProjectPage = () => {
         <button onClick={() => setUpdate(!isUpdate)}>edit</button>
       )}
 
-      {postedByCurrentUser && <DeleteHandler resourceId={id}></DeleteHandler>}
+      {postedByCurrentUser && <DeleteHandler projectId={id}></DeleteHandler>}
 
-      <Resource {...data?.project} showDescription={true}></Resource>
-      <CommentSection resourceId={id} />
+      <Project {...data?.project} showDescription={true}></Project>
+      <CommentSection projectId={id} />
 
-      <ResourceUpdatePopup
+      <ProjectUpdatePopup
         show={isUpdate}
         onClickAway={() => setUpdate(false)}
-        resourceValues={data?.project}
+        projectValues={data?.project}
       />
     </div>
   );

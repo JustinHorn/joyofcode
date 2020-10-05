@@ -1,21 +1,21 @@
 import React from "react";
 
-import { resourceQuery } from "forms";
-import { useQuery,gql } from "@apollo/client";
+import { projectQuery } from "forms";
+import { useQuery, gql } from "@apollo/client";
 import Feed from "component/Feed";
-import Resource from "component/Resource";
+import Project from "component/Project";
 
 import List from "component/List";
 
 export const userProjectsQuery = gql`
-  query userProjects($id:Int!,$take:Int,$orderBy: ResourceOrderByInput) {
+  query userProjects($id:Int!,$take:Int,$orderBy: ProjectOrderByInput) {
     userProjects(id:$id,take:$take,orderBy: $orderBy) {
-      ...ResourceQuery
+      ...ProjectQuery
     }
   }
 
-  fragment ResourceQuery on Resource {
-    ${resourceQuery}
+  fragment ProjectQuery on Project {
+    ${projectQuery}
   }
 `;
 
@@ -32,7 +32,7 @@ const UserProjects = ({ userId }) => {
 
   return (
     <div className="column-list">
-      <List Key="feed" Component={Resource} list={data?.userProjects || []} />
+      <List Key="feed" Component={Project} list={data?.userProjects || []} />
     </div>
   );
 };

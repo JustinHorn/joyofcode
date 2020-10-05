@@ -3,7 +3,7 @@ import { useHandleFormValues } from "component/forms/MutationForm";
 
 import { createOptions as options } from "forms/Options";
 
-import useCreateResource from "hooks/resource/useCreate";
+import useCreateProject from "hooks/project/useCreate";
 
 import UserContext from "context";
 import MutationMenu from "component/MutationMenu";
@@ -15,20 +15,18 @@ const Post = () => {
   const props = useHandleFormValues(options);
   const history = useHistory();
   const onCompleted = (data) => {
-    const resource = data.addResource;
+    const project = data.addProject;
 
     props.resetFormValues();
 
     if (
-      window.confirm(
-        `Resource ${resource.title} has been posted. Wanna view it?`
-      )
+      window.confirm(`Project ${project.title} has been posted. Wanna view it?`)
     ) {
-      history.push("/project/" + resource.id);
+      history.push("/project/" + project.id);
     }
   };
 
-  const { createResource: mutation } = useCreateResource({ onCompleted });
+  const { createProject: mutation } = useCreateProject({ onCompleted });
 
   return (
     <>

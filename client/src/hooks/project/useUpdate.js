@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { useMutation ,gql} from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 
-import { resourceQuery } from "forms";
+import { projectQuery } from "forms";
 
 import { formatValsFromLines } from "forms";
 
@@ -17,28 +17,28 @@ $github: String
 $description:String`;
 
 const MUTATION_UPDATE = gql`
-  mutation updateResource(
+  mutation updateProject(
     ${values}
   ) {
-    updateResource(
+    updateProject(
       ${formatValsFromLines(values)}
     ) {
-      ${resourceQuery}
+      ${projectQuery}
     }
   }
 `;
 
-const useUpdateResource = () => {
+const useUpdateProject = () => {
   const [update, { data, error }] = useMutation(MUTATION_UPDATE, {
     update(cache, m_result, m_id) {
-      const { updateResource } = m_result.data;
+      const { updateProject } = m_result.data;
       const feed = readFeed(cache);
 
-      const index = feed.findIndex((x) => x.id === updateResource.id);
+      const index = feed.findIndex((x) => x.id === updateProject.id);
       const new_data = {
         feed: [
           ...feed.slice(0, index),
-          updateResource,
+          updateProject,
           ...feed.slice(index + 1),
         ],
       };
@@ -55,4 +55,4 @@ const useUpdateResource = () => {
   return { update };
 };
 
-export default useUpdateResource;
+export default useUpdateProject;

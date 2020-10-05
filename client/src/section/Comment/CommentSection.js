@@ -4,20 +4,20 @@ import styles from "./commentsection.module.css";
 
 import Comment from "component/Comment";
 
-import useAddComment from "hooks/useAddComment";
+import useAddComment from "hooks/comment/useAddComment";
 
 import useQueryComments from "hooks/comment/useQuery";
 
 import useRemoveComment from "hooks/comment/useRemove";
 
-const CommentSection = ({ resourceId }) => {
+const CommentSection = ({ projectId }) => {
   const [text, setText] = useState("");
 
-  const { loadComments, data, called, loading } = useQueryComments(resourceId);
+  const { loadComments, data, called, loading } = useQueryComments(projectId);
 
-  const { sendComment } = useAddComment(resourceId);
+  const { sendComment } = useAddComment(projectId);
 
-  const { getRemove: getRemoveComment } = useRemoveComment(resourceId);
+  const { getRemove: getRemoveComment } = useRemoveComment(projectId);
 
   useEffect(() => {
     loadComments();

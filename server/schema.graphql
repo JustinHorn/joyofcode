@@ -2,7 +2,7 @@ type Query {
   hello: String!
   feed(skip: Int, take: Int, orderBy: ProjectOrderByInput): [Project!]!
   comments(
-    prsrojectId: Int!
+    projectId: Int!
     skip: Int
     take: Int
     orderBy: CommentOrderByInput

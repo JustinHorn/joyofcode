@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Resource from "component/Resource";
+import Project from "component/Project";
 import UserContext from "context";
 
 const Preview = ({ formValues }) => {
@@ -14,13 +14,14 @@ const Preview = ({ formValues }) => {
 
   return (
     <div className="preview">
-      <Resource
+      <Project
         preview={true}
         {...values}
         tags={tags}
         comments={[]}
         date={Date.now()}
         postedBy={{ name: user?.name }}
+        showDescription={true}
       />
     </div>
   );

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-import { useQuery, gql } from "@apollo/client";
-
+import { useLazyQuery, gql } from "@apollo/client";
 
 const query_authorize = gql`
   query {
@@ -10,12 +9,22 @@ const query_authorize = gql`
       name
       email
       verified
+      projectCount
+      likeCount
+      commentCount
     }
   }
 `;
 
 const useAutomaticAuthorize = (setUser) => {
-  const { data, error } = useQuery(query_authorize);
+  const [call, { data, error }] = useLazyQuery(query_authorize);
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      call();
+    }
+  }, []);
 
   useEffect(() => {
     if (data) {

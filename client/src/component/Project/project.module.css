@@ -1,4 +1,4 @@
-.resource {
+.project {
   width: 400px;
   text-align: left;
   display: grid;
@@ -6,12 +6,12 @@
   row-gap: 10px;
 }
 
-.resource h2 {
+.project h2 {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.resource h4 {
+.project h4 {
   margin: 5px;
   margin-left: 0;
   font-size: 0.8em;

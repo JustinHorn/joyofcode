@@ -2,9 +2,9 @@ import { gql, useMutation } from "@apollo/client";
 
 import { comment, formatValsFromLines } from "forms";
 
-import { getQueryVars } from "./comment/useQuery";
+import { getQueryVars } from "./useQuery";
 
-const values = `$resourceId:Int! 
+const values = `$projectId:Int! 
 $text:String!`;
 
 const ADDCOMMENT_MUTATION = gql`
@@ -18,26 +18,25 @@ mutation ADDCOMMENT_MUTATION(
   }
 }`;
 
-const useAddComment = (resourceId) => {
+const useAddComment = (projectId) => {
   const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION, {
     update: (cache, result, info) => {
       const { addComment: comment } = result.data;
 
-      const comments = cache.readQuery({ ...getQueryVars(resourceId) })
-        .comments;
+      const comments = cache.readQuery({ ...getQueryVars(projectId) }).comments;
 
       console.log(comment);
       const new_comments = [comment, ...comments];
 
       cache.writeQuery({
-        ...getQueryVars(resourceId),
+        ...getQueryVars(projectId),
         data: { comments: new_comments },
       });
     },
   });
 
   const sendComment = (text) => {
-    mutate({ variables: { resourceId, text } });
+    mutate({ variables: { projectId, text } });
   };
 
   return { sendComment };

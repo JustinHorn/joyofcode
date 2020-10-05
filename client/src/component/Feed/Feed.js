@@ -2,22 +2,22 @@ import React, { useMemo, useState } from "react";
 
 import styles from "./feed.module.css";
 
-import Resource from "component/Resource";
+import Project from "component/Project";
 
 import List from "component/List";
 
 const Feed = ({ filter, data }) => {
   !filter && (filter = () => true);
-  const resources = data?.map((x) => ({ ...x, showDescription: false }));
+  const projects = data?.map((x) => ({ ...x, showDescription: false }));
 
-  const filteredResources = useMemo(() => resources?.filter(filter), [
+  const filteredProjects = useMemo(() => projects?.filter(filter), [
     filter,
-    resources,
+    projects,
   ]);
 
   return (
     <div className={styles.feed}>
-      <List Key="feed" Component={Resource} list={filteredResources} />
+      <List Key="feed" Component={Project} list={filteredProjects} />
     </div>
   );
 };

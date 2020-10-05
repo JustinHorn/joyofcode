@@ -4,14 +4,14 @@ import Popup from "component/Popup";
 
 import { useHandleFormValues } from "component/forms/MutationForm";
 import { updateOptions } from "forms/Options";
-import useUpdateResource from "hooks/resource/useUpdate";
+import useUpdateProject from "hooks/project/useUpdate";
 import MutationMenu from "component/MutationMenu";
 
-const ResourceUpdatePopup = ({ resourceValues, show, onClickAway }) => {
-  const { id } = resourceValues;
+const ProjectUpdatePopup = ({ projectValues, show, onClickAway }) => {
+  const { id } = projectValues;
 
-  const propsM = useHandleFormValues(updateOptions, resourceValues);
-  const { update: mutation } = useUpdateResource();
+  const propsM = useHandleFormValues(updateOptions, projectValues);
+  const { update: mutation } = useUpdateProject();
 
   const doMutation = ({ variables }) => {
     variables.id = id;
@@ -32,4 +32,4 @@ const ResourceUpdatePopup = ({ resourceValues, show, onClickAway }) => {
   );
 };
 
-export default ResourceUpdatePopup;
+export default ProjectUpdatePopup;

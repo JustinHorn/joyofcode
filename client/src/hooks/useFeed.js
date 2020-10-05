@@ -1,13 +1,13 @@
 import { useQuery, gql } from "@apollo/client";
 
-import { resourceQuery } from "forms";
+import { projectQuery } from "forms";
 
 //move this out
 
 export const FeedQuery = gql`
-  query getFeed($take:Int,$orderBy: ResourceOrderByInput) {
+  query getFeed($take:Int,$orderBy: ProjectOrderByInput) {
     feed(take:$take,orderBy: $orderBy) {
-      ${resourceQuery}
+      ${projectQuery}
     }
   }
 `;

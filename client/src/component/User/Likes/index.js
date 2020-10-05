@@ -2,7 +2,7 @@ import React from "react";
 
 import Like from "component/Like";
 
-import { useQuery,gql } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 import List from "component/List";
 
@@ -11,7 +11,7 @@ export const userLikeQuery = gql`
     userLikes(id: $id, take: $take, orderBy: $orderBy) {
       id
       date
-      resource {
+      project {
         id
         title
       }
@@ -34,7 +34,7 @@ const UserLikes = ({ userId }) => {
     <div className="list px5">
       <List
         Component={Like}
-        list={data?.userLikes.map((l) => ({ ...l, ...l.resource } || []))}
+        list={data?.userLikes.map((l) => ({ ...l, ...l.project } || []))}
         Key={"uL"}
       />
     </div>

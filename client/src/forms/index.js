@@ -12,7 +12,7 @@ export const comment = `
     }
 `;
 
-export const resourceProps = `
+export const projectProps = `
         id
         title
         href
@@ -29,8 +29,8 @@ export const resourceProps = `
         commentCount
 `;
 
-export const resourceQuery = `
-    ${resourceProps}
+export const projectQuery = `
+    ${projectProps}
     tags {
     id
     name

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useMutation,gql } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 
-import { resourceQuery, formatValsFromLines } from "forms";
+import { projectQuery, formatValsFromLines } from "forms";
 
 import { readFeed, writeFeed } from "../helper";
 
@@ -12,25 +12,25 @@ $description:String
 $imgUrl: String
 $github: String`;
 
-const ADDResource_Mutation = gql`
-  mutation addResource(
+const ADDProject_Mutation = gql`
+  mutation addProject(
     ${values}
   ) {
-    addResource(
+    addProject(
         ${formatValsFromLines(values)}
     ) {
-      ${resourceQuery}
+      ${projectQuery}
     }
   }
 `;
-const useCreateResource = (props) => {
-  const [createResource, { error, data }] = useMutation(ADDResource_Mutation, {
+const useCreateProject = (props) => {
+  const [createProject, { error, data }] = useMutation(ADDProject_Mutation, {
     update(cache, m_result, m_id) {
-      const { addResource } = m_result.data;
+      const { addProject } = m_result.data;
       const feed = readFeed(cache);
 
       const new_data = {
-        feed: [addResource, ...feed],
+        feed: [addProject, ...feed],
       };
       writeFeed(cache, new_data);
     },
@@ -43,7 +43,7 @@ const useCreateResource = (props) => {
     }
   }, [error]);
 
-  return { createResource };
+  return { createProject };
 };
 
-export default useCreateResource;
+export default useCreateProject;

@@ -1,24 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
 
-import { useQuery ,gql} from "@apollo/client";
-
-import { resourceQuery, comment } from "forms";
-import Resource from "component/Resource";
-
-import UserContext from "context";
-
-import CommentSection from "section/Comment";
-import ResourceUpdatePopup from "component/Resource/ResourceUpdatePopup";
-
-import useDeleteResource from "hooks/resource/useDelete";
-
-import DeleteHandler from "component/DeleteHandler";
+import { projectQuery, comment } from "forms";
 
 const QUERY_PROJECT = gql`
   query QUERY_PROJECT($id:Int!) {
       project(id:$id) {
-          ${resourceQuery}
+          ${projectQuery}
           comments {
             ${comment}
           }

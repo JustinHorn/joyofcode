@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import styles from "./comment.module.css";
-import { formatTimeDiff } from "helper";
 
 import UserContext from "context/UserContext";
 import PostInfoGeneral from "component/postInfo/General";

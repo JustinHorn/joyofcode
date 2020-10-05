@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import useDeleteResource from "hooks/resource/useDelete";
+import useDeleteProject from "hooks/project/useDelete";
 
 import { useHistory } from "react-router-dom";
 
-const DeleteHandler = ({ resourceId }) => {
+const DeleteHandler = ({ projectId }) => {
   const history = useHistory();
 
-  const { deleteResource, error } = useDeleteResource({
+  const { deleteProject, error } = useDeleteProject({
     onCompleted: (data) => {
-      const { id, title } = data.deleteResource;
+      const { id, title } = data.deleteProject;
       alert(`Project ${title} was deleted`);
       history.push("/");
     },
@@ -23,7 +23,7 @@ const DeleteHandler = ({ resourceId }) => {
 
   const deleteOnClick = () => {
     if (window.confirm("You really wanna delete?")) {
-      deleteResource({ variables: { id: resourceId } });
+      deleteProject({ variables: { id: projectId } });
     }
   };
 
