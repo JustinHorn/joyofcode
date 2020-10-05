@@ -6,7 +6,7 @@ const UserContext = React.createContext();
 export default UserContext;
 
 export const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   useAutomaticAuthorize(setUser);
 

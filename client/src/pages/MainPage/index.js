@@ -12,7 +12,7 @@ import useFeed from "hooks/useFeed";
 const Mainpage = () => {
   const { user } = useContext(UserContext);
 
-  const [filters, setFilters] = useState({ value: [], placeholder: "search" });
+  const [filters, setFilters] = useState({ value: [], placeholder: "filter" });
 
   const filter = (resource) => {
     if (filters.value.length) {
