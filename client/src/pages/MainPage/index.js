@@ -7,8 +7,6 @@ import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 
-import useFeed from "hooks/useFeed";
-
 const Mainpage = () => {
   const { user } = useContext(UserContext);
 
@@ -32,14 +30,6 @@ const Mainpage = () => {
     setFilters({ ...filters, value: x });
   };
 
-  const { data, loading, error } = useFeed();
-
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  if (loading) return "loading";
-
   return (
     <div className={styles.main}>
       <div className={styles.greet}>{<h1>Hello {user?.name}</h1>}</div>
@@ -49,7 +39,7 @@ const Mainpage = () => {
         setSpecificFormValue={setValue}
       />
       <div className={styles.feed}>
-        <Feed filter={filter} data={data?.feed} />
+        <Feed filter={filter} />
       </div>
     </div>
   );

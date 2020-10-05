@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { projectQuery } from "forms";
 import { useQuery, gql } from "@apollo/client";
 
@@ -13,12 +15,27 @@ export const userProjectsQuery = gql`
   }
 `;
 
-const useQueryProjects = ({ userId }) => {
-  const { data, loading, error } = useQuery(userProjectsQuery, {
+const useQueryProjects = (props) => {
+  const { userId, take: propsTake } = props;
+  const [take, setTake] = useState(propsTake || 10);
+  const { data, loading, error, fetchMore } = useQuery(userProjectsQuery, {
     variables: { id: userId, take: 10, orderBy: { date: "desc" } },
   });
 
-  return { data, loading, error };
+  const addItems = () => {
+    fetchMore({
+      variables: { take: take + 3, skip: take },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        setTake(take + 3);
+
+        return Object.assign({}, prev, {
+          feed: [...fetchMoreResult.feed],
+        });
+      },
+    });
+  };
+  return { data, loading, error, addItems };
 };
 
 export default useQueryProjects;

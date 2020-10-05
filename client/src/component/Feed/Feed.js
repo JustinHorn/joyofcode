@@ -6,18 +6,30 @@ import Project from "component/Project";
 
 import List from "component/List";
 
-const Feed = ({ filter, data }) => {
+import useFeed from "hooks/useFeed";
+
+const Feed = ({ filter }) => {
   !filter && (filter = () => true);
-  const projects = data?.map((x) => ({ ...x, showDescription: false }));
+
+  const { data, loading, error, addItems } = useFeed();
+
+  const projects = data?.feed.map((x) => ({ ...x, showDescription: false }));
 
   const filteredProjects = useMemo(() => projects?.filter(filter), [
     filter,
     projects,
   ]);
 
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  if (loading) return "loading";
+
   return (
     <div className={styles.feed}>
       <List Key="feed" Component={Project} list={filteredProjects} />
+      <button onClick={addItems}>Take</button>
     </div>
   );
 };
