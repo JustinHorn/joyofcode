@@ -8,7 +8,6 @@ const ToggleSmallNormal = ({ children, initSmall }) => {
       <button onClick={() => setSmall(true)}>Small</button>
       <button onClick={() => setSmall(false)}> Normal</button>
       {React.Children.map(children, (child) => {
-        console.log(child);
         return React.cloneElement(child, { small }, null);
       })}
     </div>

@@ -18,6 +18,7 @@ const UserLikes = ({ userId }) => {
         listClass: "list px5",
         useQuery,
         component: Like,
+        buttonClass: "my-10",
       }}
     />
   );

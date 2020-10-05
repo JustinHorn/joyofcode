@@ -10,8 +10,6 @@ import useQueryComments from "hooks/comment/useQuery";
 
 import useRemoveComment from "hooks/comment/useRemove";
 
-import useHandleQuery from "helper/useHandleQuery";
-
 const CommentSection = ({ projectId }) => {
   const [text, setText] = useState("");
 

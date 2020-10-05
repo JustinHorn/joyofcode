@@ -9,7 +9,14 @@ const UserComments = ({ userId }) => {
   const useQuery = () => useQueryComments({ userId, take: 10 });
 
   return (
-    <UserGeneral {...{ component: UserComment, listClass: "list", useQuery }} />
+    <UserGeneral
+      {...{
+        component: UserComment,
+        listClass: "list",
+        useQuery,
+        buttonClass: "my-20",
+      }}
+    />
   );
 };
 

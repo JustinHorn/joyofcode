@@ -24,6 +24,7 @@ const UserProjects = ({ userId, small }) => {
         listClass: small ? "list px5" : "column-list",
         useQuery,
         component: Project,
+        buttonClass: small ? "my-10" : "my-20",
       }}
     />
   );

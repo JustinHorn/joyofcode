@@ -40,3 +40,24 @@ a {
   grid-template-columns: repeat(auto-fit, 400px);
   column-gap: 20px;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.my-10 {
+  margin: 10px 0;
+}
+
+.m-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-20 {
+  margin: 20px 0;
+}
+
+.my-40 {
+  margin: 40px 0;
+}
