@@ -21,7 +21,7 @@ const useQueryComments = (props) => {
   const [take, setTake] = useState(propsTake || 10);
 
   const { data, loading, error, fetchMore } = useQuery(userCommentsQuery, {
-    variables: { id: userId, take: take, orderBy: { date: "desc" } },
+    variables: { id: userId, take, orderBy: { date: "desc" } },
   });
 
   const addItems = () => {
@@ -32,13 +32,13 @@ const useQueryComments = (props) => {
         setTake(take + 3);
 
         return Object.assign({}, prev, {
-          feed: [...fetchMoreResult.feed],
+          userComments: [...fetchMoreResult.userComments],
         });
       },
     });
   };
 
-  return { data, loading, error, addItems };
+  return { data, list: data?.userComments, loading, error, addItems };
 };
 
 export default useQueryComments;

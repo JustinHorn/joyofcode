@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 
 import styles from "./feed.module.css";
 
@@ -27,9 +27,11 @@ const Feed = ({ filter }) => {
   if (loading) return "loading";
 
   return (
-    <div className={styles.feed}>
-      <List Key="feed" Component={Project} list={filteredProjects} />
-      <button onClick={addItems}>Take</button>
+    <div>
+      <div className={styles.feed}>
+        <List Key="feed" Component={Project} list={filteredProjects} />
+      </div>
+      <button onClick={addItems}>loadMore</button>
     </div>
   );
 };

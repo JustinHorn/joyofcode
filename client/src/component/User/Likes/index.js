@@ -1,28 +1,25 @@
 import React from "react";
 
+import UserGeneral from "../UserGeneral";
 import Like from "component/Like";
 
 import useQueryLikes from "hooks/user/useQueryLikes";
 
-import List from "component/List";
-
 const UserLikes = ({ userId }) => {
-  const { data, loading, error } = useQueryLikes({ userId });
-
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  if (loading) return "loading";
+  const useQuery = () =>
+    useQueryLikes({
+      userId,
+      take: 20,
+    });
 
   return (
-    <div className="list px5">
-      <List
-        Component={Like}
-        list={data?.userLikes.map((l) => ({ ...l, ...l.project } || []))}
-        Key={"uL"}
-      />
-    </div>
+    <UserGeneral
+      {...{
+        listClass: "list px5",
+        useQuery,
+        component: Like,
+      }}
+    />
   );
 };
 

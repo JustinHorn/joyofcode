@@ -1,12 +1,20 @@
 import React from "react";
 
-import { ApolloProvider, ApolloClient, HttpLink, split,InMemoryCache, ApolloLink  } from "@apollo/client";
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  split,
+  InMemoryCache,
+  ApolloLink,
+} from "@apollo/client";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 import { onError } from "apollo-link-error";
+import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const location = window.location.host;
 

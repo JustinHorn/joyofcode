@@ -19,7 +19,7 @@ const useQueryProjects = (props) => {
   const { userId, take: propsTake } = props;
   const [take, setTake] = useState(propsTake || 10);
   const { data, loading, error, fetchMore } = useQuery(userProjectsQuery, {
-    variables: { id: userId, take: 10, orderBy: { date: "desc" } },
+    variables: { id: userId, take, orderBy: { date: "desc" } },
   });
 
   const addItems = () => {
@@ -30,12 +30,12 @@ const useQueryProjects = (props) => {
         setTake(take + 3);
 
         return Object.assign({}, prev, {
-          feed: [...fetchMoreResult.feed],
+          userProjects: [...fetchMoreResult.userProjects],
         });
       },
     });
   };
-  return { data, loading, error, addItems };
+  return { list: data?.userProjects, data, loading, error, addItems };
 };
 
 export default useQueryProjects;

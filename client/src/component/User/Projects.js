@@ -1,24 +1,25 @@
 import React from "react";
-
-import Project from "component/Project";
-
-import List from "component/List";
+import UserGeneral from "./UserGeneral";
 
 import useQueryProject from "hooks/user/useQueryProjects";
 
-const UserProjects = ({ userId }) => {
-  const { data, loading, error } = useQueryProject({ userId });
+import Project from "component/Project";
 
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  if (loading) return "loading";
+const UserProjects = ({ userId }) => {
+  const useQuery = () =>
+    useQueryProject({
+      userId,
+      take: 6,
+    });
 
   return (
-    <div className="column-list">
-      <List Key="feed" Component={Project} list={data?.userProjects || []} />
-    </div>
+    <UserGeneral
+      {...{
+        listClass: "column-list",
+        useQuery,
+        component: Project,
+      }}
+    />
   );
 };
 

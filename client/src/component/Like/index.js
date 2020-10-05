@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { formatTimeDiff } from "helper";
 
-const LikeMenu = ({ id, date, title }) => {
+const LikeMenu = ({ date, project }) => {
   return (
     <span>
-      <Link to={"/project/" + id}>{title}</Link>
+      <Link to={"/project/" + project.id}>{project.title}</Link>
       {` was liked
   ${formatTimeDiff(date)} ago`}
     </span>

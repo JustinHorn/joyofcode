@@ -17,10 +17,10 @@ export const userLikeQuery = gql`
 
 const useQueryLikes = (props) => {
   const { userId, take: propsTake } = props;
-  const [take, setTake] = useState(propsTake || 10);
+  const [take, setTake] = useState(propsTake || 20);
 
   const { data, loading, error, fetchMore } = useQuery(userLikeQuery, {
-    variables: { id: userId, take: 20, orderBy: { date: "desc" } },
+    variables: { id: userId, take, orderBy: { date: "desc" } },
   });
 
   const addItems = () => {
@@ -31,13 +31,13 @@ const useQueryLikes = (props) => {
         setTake(take + 3);
 
         return Object.assign({}, prev, {
-          feed: [...fetchMoreResult.feed],
+          userLikes: [...fetchMoreResult.userLikes],
         });
       },
     });
   };
 
-  return { data, loading, error, addItems };
+  return { list: data?.userLikes, data, loading, error, addItems };
 };
 
 export default useQueryLikes;

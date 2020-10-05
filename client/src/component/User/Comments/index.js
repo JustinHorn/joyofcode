@@ -1,26 +1,15 @@
 import React from "react";
 
-import List from "component/List";
-
 import UserComment from "component/Comment/UserComment";
 import useQueryComments from "hooks/user/useQueryComments";
 
+import UserGeneral from "../UserGeneral";
+
 const UserComments = ({ userId }) => {
-  const { data, loading, error } = useQueryComments({ userId });
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  if (loading) return "loading";
+  const useQuery = () => useQueryComments({ userId, take: 10 });
 
   return (
-    <div className="list">
-      <List
-        Component={UserComment}
-        list={data?.userComments || []}
-        Key={"uC"}
-      />
-    </div>
+    <UserGeneral {...{ component: UserComment, listClass: "list", useQuery }} />
   );
 };
 
