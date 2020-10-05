@@ -59,6 +59,7 @@ const ActionInput = ({
         value={formValue.value}
         onChange={(e) => setSpecificFormValue(e.target.value)}
       />
+      <br />
       <button onClick={() => action(formValue.value)}>{actionName}</button>
     </div>
   );

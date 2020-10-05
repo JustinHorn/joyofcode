@@ -24,6 +24,7 @@ a {
 
   grid-template-columns: auto;
   row-gap: 20px;
+  padding: 20px 0;
 }
 
 .center-list {

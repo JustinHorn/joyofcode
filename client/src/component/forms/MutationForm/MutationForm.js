@@ -50,16 +50,18 @@ export const MutationFormWithoutState = (props) => {
   const { onClick, headline, formValues, setFormValue } = props;
   return (
     <div className={styles.form}>
-      <List
-        Key={"MFWS"}
-        list={Object.keys(formValues).map((key, index) => ({
-          key: index,
-          k: key,
-          formValues,
-          setFormValue,
-        }))}
-        Component={Element}
-      />
+      <div className="list">
+        <List
+          Key={"MFWS"}
+          list={Object.keys(formValues).map((key, index) => ({
+            key: index,
+            k: key,
+            formValues,
+            setFormValue,
+          }))}
+          Component={Element}
+        />
+      </div>
 
       <button onClick={onClick}>{headline}</button>
     </div>
