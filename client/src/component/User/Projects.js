@@ -1,28 +1,13 @@
 import React from "react";
 
-import { projectQuery } from "forms";
-import { useQuery, gql } from "@apollo/client";
-import Feed from "component/Feed";
 import Project from "component/Project";
 
 import List from "component/List";
 
-export const userProjectsQuery = gql`
-  query userProjects($id:Int!,$take:Int,$orderBy: ProjectOrderByInput) {
-    userProjects(id:$id,take:$take,orderBy: $orderBy) {
-      ...ProjectQuery
-    }
-  }
-
-  fragment ProjectQuery on Project {
-    ${projectQuery}
-  }
-`;
+import useQueryProject from "hooks/user/useQueryProjects";
 
 const UserProjects = ({ userId }) => {
-  const { data, loading, error } = useQuery(userProjectsQuery, {
-    variables: { id: userId, take: 10, orderBy: { date: "desc" } },
-  });
+  const { data, loading, error } = useQueryProject({ userId });
 
   if (error) {
     console.log(error);
