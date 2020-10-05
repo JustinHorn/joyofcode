@@ -13,7 +13,7 @@ const LikeHandler = ({ likes, projectId, query }) => {
   const isLikedByUser =
     user && likes && !!likes.find((x) => x.user.id === user.id);
 
-  const { likeProject } = query;
+  const { likeProject } = useLikeProject(!isLikedByUser);
 
   const onClick = () => {
     likeProject({ variables: { id: projectId } });
@@ -22,7 +22,7 @@ const LikeHandler = ({ likes, projectId, query }) => {
   return (
     <div className={styles.likeButton}>
       <span
-        className={styles.icon + " " + (!isLikedByUser ? styles.opac : "")}
+        className={styles.icon + " " + (isLikedByUser ? styles.liked : "")}
         onClick={onClick}
       >
         {isLikedByUser ? "✌️" : "👋"}
@@ -32,11 +32,4 @@ const LikeHandler = ({ likes, projectId, query }) => {
   );
 };
 
-export default (props) => {
-  const { user } = useContext(UserContext);
-
-  const isLikedByUser =
-    user && props.likes && !!props.likes.find((x) => x.user.id === user.id);
-
-  return useHandleQuery(props, useLikeProject, LikeHandler, !isLikedByUser);
-};
+export default LikeHandler;

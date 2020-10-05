@@ -1,10 +1,16 @@
 .likeButton {
   width: fit-content;
   height: fit-content;
-  cursor: pointer;
   font-size: 3ch;
+  cursor: default;
 }
 
-.opac {
+.icon {
+  cursor: pointer;
   opacity: 0.5;
+  transition: 1s all ease;
+}
+
+.liked {
+  opacity: 1;
 }

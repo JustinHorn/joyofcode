@@ -5,8 +5,21 @@ const ToggleSmallNormal = ({ children, initSmall }) => {
 
   return (
     <div>
-      <button onClick={() => setSmall(true)}>Small</button>
-      <button onClick={() => setSmall(false)}> Normal</button>
+      <div>
+        <button
+          className={small ? "selected" : ""}
+          onClick={() => setSmall(true)}
+        >
+          Small
+        </button>
+        <button
+          className={small ? "" : "selected"}
+          onClick={() => setSmall(false)}
+        >
+          {" "}
+          Normal
+        </button>
+      </div>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, { small }, null);
       })}

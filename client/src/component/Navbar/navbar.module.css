@@ -19,8 +19,3 @@
   display: flex;
   justify-content: flex-end;
 }
-
-.selected {
-  background-color: black;
-  color: white;
-}
