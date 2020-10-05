@@ -11,6 +11,8 @@ import useGetUser from "hooks/useGetUser";
 
 import ToggleSmallNormal from "component/ToggleSmallNormal";
 
+import styles from "./userpage.module.css";
+
 const UserPage = () => {
   let { id } = useParams();
   id = Number(id);
@@ -18,7 +20,7 @@ const UserPage = () => {
   const user = useGetUser(id);
 
   return (
-    <div>
+    <div className={styles.userpage}>
       <h1>{user?.name}</h1>
       <div className="text-left list">
         <div>

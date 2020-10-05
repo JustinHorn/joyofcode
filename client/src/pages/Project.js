@@ -12,21 +12,19 @@ import DeleteHandler from "component/DeleteHandler";
 
 import useProject from "hooks/useProject";
 
-const ProjectPage = () => {
+import useHandleQuery from "helper/useHandleQuery";
+
+const ProjectPage = ({ query }) => {
   let { id } = useParams();
   id = Number(id);
 
-  const { loading, data, error } = useProject(id);
+  const { data } = query;
 
   const [isUpdate, setUpdate] = useState(false);
 
   const { user } = useContext(UserContext);
   const postedByCurrentUser = data?.project.postedBy.id === user?.id && user;
 
-  if (loading) return "loading";
-  if (error) {
-    throw error;
-  }
   return (
     <div>
       {postedByCurrentUser && (
@@ -47,4 +45,8 @@ const ProjectPage = () => {
   );
 };
 
-export default ProjectPage;
+export default (props) => {
+  let { id } = useParams();
+  id = Number(id);
+  return useHandleQuery(props, useProject, ProjectPage, id);
+};

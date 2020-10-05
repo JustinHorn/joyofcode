@@ -32,7 +32,7 @@ const mutation_unlikeProject = gql`
 `;
 
 const useLikeProject = (like) => {
-  const [likeProject, { error }] = useMutation(
+  const [likeProject, { error, loading }] = useMutation(
     like ? mutation_likeProject : mutation_unlikeProject,
     {
       update: update(like),
@@ -45,7 +45,7 @@ const useLikeProject = (like) => {
     }
   }, [error]);
 
-  return { likeProject };
+  return { likeProject, error, loading };
 };
 
 const update = (like) => (cache, m_result, m_id) => {

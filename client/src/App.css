@@ -21,8 +21,14 @@ a {
 
 .list {
   display: grid;
+
   grid-template-columns: auto;
   row-gap: 20px;
+}
+
+.center-list {
+  width: fit-content;
+  margin: auto;
 }
 
 .list.px5 {

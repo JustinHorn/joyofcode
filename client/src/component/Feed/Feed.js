@@ -7,11 +7,12 @@ import Project from "component/Project";
 import List from "component/List";
 
 import useFeed from "hooks/useFeed";
+import useHandleQuery from "helper/useHandleQuery";
 
-const Feed = ({ filter, small }) => {
+const Feed = ({ filter, small, query }) => {
   !filter && (filter = () => true);
 
-  const { data, loading, error, addItems } = useFeed();
+  const { data, addItems } = query;
 
   const projects = data?.feed.map((x) => ({
     ...x,
@@ -24,15 +25,9 @@ const Feed = ({ filter, small }) => {
     projects,
   ]);
 
-  if (error) {
-    console.log(error);
-    throw error;
-  }
-  if (loading) return "loading";
-
   return (
     <div>
-      <div className={small ? "list px5" : styles.feed}>
+      <div className={small ? "list px5 center-list " : styles.feed}>
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
       <button onClick={addItems}>loadMore</button>
@@ -40,4 +35,4 @@ const Feed = ({ filter, small }) => {
   );
 };
 
-export default Feed;
+export default (props) => useHandleQuery(props, useFeed, Feed);

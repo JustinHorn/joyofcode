@@ -5,13 +5,15 @@ import UserContext from "context";
 
 import styles from "./likehandler.module.css";
 
-const LikeHandler = ({ likes, projectId }) => {
+import useHandleQuery from "helper/useHandleQuery";
+
+const LikeHandler = ({ likes, projectId, query }) => {
   const { user } = useContext(UserContext);
 
   const isLikedByUser =
     user && likes && !!likes.find((x) => x.user.id === user.id);
 
-  const { likeProject } = useLikeProject(!isLikedByUser);
+  const { likeProject } = query;
 
   const onClick = () => {
     likeProject({ variables: { id: projectId } });
@@ -30,4 +32,11 @@ const LikeHandler = ({ likes, projectId }) => {
   );
 };
 
-export default LikeHandler;
+export default (props) => {
+  const { user } = useContext(UserContext);
+
+  const isLikedByUser =
+    user && props.likes && !!props.likes.find((x) => x.user.id === user.id);
+
+  return useHandleQuery(props, useLikeProject, LikeHandler, !isLikedByUser);
+};
