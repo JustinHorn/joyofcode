@@ -3,7 +3,6 @@ import React from "react";
 function Icon({ location, className, backgroundSize }) {
   return (
     <div
-      title={location}
       className={" icon " + className}
       style={{
         backgroundImage: "url(" + location + ")",

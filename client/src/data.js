@@ -15,15 +15,19 @@ const iconList = [
   new IconClass("graphql", "svg"),
 
   new IconClass("prisma", "png"),
-  new IconClass("node", "png", "150%"),
+  new IconClass("nodejs", "png", "150%"),
   new IconClass("angular", "svg"),
-  new IconClass("react", "svg", "160%"),
+  new IconClass("reactjs", "svg", "160%"),
   new IconClass("mongodb", "png", "120%"),
   new IconClass("bootstrap", "svg", "120%"),
   new IconClass("sql", "png"),
   new IconClass("html5", "png", "110%"),
   new IconClass("css3", "svg", "150%"),
   new IconClass("javascript", "png"),
+  new IconClass("firebase", "svg"),
+  new IconClass("python", "svg"),
+  new IconClass("java", "png"),
+  new IconClass("flask", "png"),
 ];
 
 export default iconList;

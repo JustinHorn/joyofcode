@@ -36,8 +36,8 @@ const sharedOptions = {
   },
   techTags: {
     name: "Tech Tags",
-    placeholder: "node",
-    value: ["react"],
+    placeholder: "nodejs",
+    value: ["reactjs"],
     handler: "tech",
   },
   tags: {
