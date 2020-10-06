@@ -36,39 +36,46 @@ const Project = (props) => {
     commentCount,
     showDescription,
     lined,
-    techTags = [],
+    techTags,
   } = props;
 
   const [isUpdate, setUpdate] = useState(!!lined);
-  const icons = techTags.map((name) => iconList.find((i) => i.name === name));
+
+  let icons = techTags.map((name) => iconList.find((i) => i.name === name));
+
+  if (!icons.length) {
+    icons = ["nothing"];
+  }
 
   return (
-    <ProjectLayoutContext.Provider value={{ lined }}>
-      <div className={lined ? styles.lined : styles.cached}>
-        <Headline {...{ id, href, title }} />
-        {!lined && <Picture {...{ imgUrl }} />}
-        {!lined && showDescription && <Description {...{ description }} />}
-        <TechStack {...{ icons }} />
-        <TagsAndMutations
-          {...{
-            id,
-            tags,
-            isUpdate,
-            setUpdate,
-            preview,
-            github,
-            postedBy,
-          }}
-        />
-        <PostInfoProject
-          {...{
-            postedBy,
-            date,
-          }}
-        />
-        {!preview && <Socials {...{ id, commentCount, likes }} />}
-      </div>
-    </ProjectLayoutContext.Provider>
+    <div className={"box-shadow " + (lined ? "p-2" : "p-5")}>
+      <ProjectLayoutContext.Provider value={{ lined }}>
+        <div className={lined ? styles.lined : styles.cached}>
+          <Headline {...{ id, href, title }} />
+          {!lined && <Picture {...{ imgUrl }} />}
+          {!lined && showDescription && <Description {...{ description }} />}
+          <TechStack {...{ icons }} />
+          <TagsAndMutations
+            {...{
+              id,
+              tags,
+              isUpdate,
+              setUpdate,
+              preview,
+              github,
+              postedBy,
+            }}
+          />
+          <PostInfoProject
+            {...{
+              postedBy,
+              date,
+            }}
+          />
+          {!preview && <Socials {...{ id, commentCount, likes }} />}
+        </div>
+      </ProjectLayoutContext.Provider>
+    </div>
   );
 };
 

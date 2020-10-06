@@ -21,7 +21,7 @@ const UserProjects = ({ userId, lined }) => {
   return (
     <UserGeneral
       {...{
-        listClass: lined ? "list px5" : "column-list",
+        listClass: lined ? "list px5" : "feed",
         useQuery,
         component: Project,
         buttonClass: lined ? "my-10" : "my-20",

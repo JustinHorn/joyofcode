@@ -27,7 +27,7 @@ const Feed = ({ filter, lined, query }) => {
 
   return (
     <div>
-      <div className={lined ? "list px5 center-list " : styles.feed}>
+      <div className={lined ? "list px5  " : "feed"}>
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
       <span onClick={addItems} className="load">

@@ -10,7 +10,6 @@ const LikeMenu = ({ date, project }) => {
       <span>
         <Link to={"/project/" + project.id}>{project.title}</Link>
       </span>
-
       <span>{` ${formatTimeDiff(date)} ago`}</span>
     </span>
   );

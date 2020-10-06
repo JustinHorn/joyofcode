@@ -47,3 +47,5 @@ setCount of ... in feed
 
 - schema wrong in graphql
 - application freezes on update
+
+- show button at tag on hover

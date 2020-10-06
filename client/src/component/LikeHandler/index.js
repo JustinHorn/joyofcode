@@ -25,7 +25,7 @@ const LikeHandler = ({ likes, projectId, query }) => {
         className={styles.icon + " " + (isLikedByUser ? styles.liked : "")}
         onClick={onClick}
       >
-        {isLikedByUser ? "✌️" : "👋"}
+        👍
       </span>
       <span className={styles.text}> {likes.length}</span>
     </div>

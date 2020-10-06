@@ -7,6 +7,13 @@ import List from "component/List";
 import TechStackTag from "component/Tag/TechStackTag";
 
 import iconList from "data";
+import TextField from "@material-ui/core/TextField";
+
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
+const isTagName = (name) => {
+  return iconList.some((i) => i.name === name);
+};
 
 const TechInput = ({ className, formValue, setSpecificFormValue }) => {
   const techIcons = formValue.value;
@@ -14,8 +21,9 @@ const TechInput = ({ className, formValue, setSpecificFormValue }) => {
   const [text, setText] = useState("");
 
   const onPress = (e) => {
-    if (e.charCode === 13) {
+    if (e.charCode === 13 && isTagName(text)) {
       e.preventDefault();
+
       setSpecificFormValue([...techIcons, text]);
       setText("");
     }
@@ -28,18 +36,28 @@ const TechInput = ({ className, formValue, setSpecificFormValue }) => {
     ]);
   };
 
-  const onChange = (e) => {
-    setText(e.target.value.trim().toLowerCase());
+  const onChange = (e, value) => {
+    setText(value.trim().toLowerCase());
   };
   return (
     <div className={className}>
-      <input
-        type="text"
-        value={text}
-        placeholder={formValue.placeholder}
+      <Autocomplete
+        options={iconList}
+        getOptionLabel={(option) => option.name}
         onKeyPress={onPress}
-        onChange={onChange}
+        onInputChange={onChange}
+        inputValue={text}
+        renderInput={(params) => (
+          <TextField
+            inputProps={{
+              placeholder: formValue.placeholder,
+            }}
+            {...params}
+            variant="outlined"
+          />
+        )}
       />
+
       <ul className={styles.taglist}>
         <List
           Key={"techIcons"}
