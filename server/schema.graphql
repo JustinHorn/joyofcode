@@ -60,6 +60,7 @@ type Mutation {
     imgUrl: String
     description: String
     github: String
+    techTags: [String!]
   ): Project
 
   likeProject(id: Int!): Like
@@ -69,6 +70,7 @@ type Mutation {
     id: Int!
     href: String
     title: String
+    techTags: [String!]
     tags: [String!]
     imgUrl: String
     description: String
@@ -126,6 +128,7 @@ type DeletedProject {
   github: String!
   description: String!
   imgUrl: String!
+  techTags: [String!]
 }
 
 type Project {
@@ -140,6 +143,7 @@ type Project {
   description: String!
   likes: [Like!]!
   likeCount: Int!
+  techTags: [String!]!
   commentCount: Int!
   comments: [Comment!]!
 }

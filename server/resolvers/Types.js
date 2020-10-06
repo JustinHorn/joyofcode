@@ -27,6 +27,7 @@ const Project = {
       .findOne({ where: { id: parent.id } })
       .comments();
   },
+  techTags: (parent) => parent.techTags || [],
 };
 
 const Tag = {

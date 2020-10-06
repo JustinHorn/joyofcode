@@ -10,12 +10,15 @@ const makePictureOfWebsite = async (p, args, context) => {
 
 const check = require("../helper/check");
 
-const checkArgs = ({ tags, href, github }) => {
+const checkArgs = (args) => {
+  const { tags, href, github } = args;
+
   tags && check.tags(tags);
 
   href && check.noLocalHost(href, "as Link");
 
   github && check.mustBeGithub(github);
+  args.techTags = { set: args.techTags };
 };
 
 const addProject = async (p, args, context, i) => {
@@ -29,6 +32,8 @@ const addProject = async (p, args, context, i) => {
         where: { name: n },
       }))
     : [];
+
+  console.log(args);
 
   const project = await context.prisma.project.create({
     data: {
@@ -49,7 +54,7 @@ const addProject = async (p, args, context, i) => {
 const updateProject = async (p, args, context, i) => {
   const { userId } = await getUserIdVerified(context);
 
-  const { href, title, github, imgUrl, description } = args;
+  const { href, title, github, imgUrl, description, techTags } = args;
 
   checkArgs(args);
 
@@ -69,6 +74,7 @@ const updateProject = async (p, args, context, i) => {
               description,
               href,
               tags,
+              techTags: { set: techTags },
             },
           },
         ],

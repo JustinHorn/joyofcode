@@ -14,7 +14,8 @@ $href:String
 $tags: [String!]
 $imgUrl: String
 $github: String
-$description:String`;
+$description:String
+$techTags:[String!]`;
 
 const MUTATION_UPDATE = gql`
   mutation updateProject(

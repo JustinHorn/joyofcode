@@ -39,6 +39,7 @@ model Project {
     description String   @default("")
     postedBy    User?    @relation(fields: [userId], references: [id])
     userId      Int?
+    techTags    String[] @map("techTagIds")
 
     comments Comment[]
     likes    Like[]

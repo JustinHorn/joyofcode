@@ -36,12 +36,11 @@ const Project = (props) => {
     commentCount,
     showDescription,
     lined,
-    techStack = [],
+    techTags = [],
   } = props;
 
   const [isUpdate, setUpdate] = useState(!!lined);
-
-  const icons = techStack.map((name) => iconList.find((i) => i.name === name));
+  const icons = techTags.map((name) => iconList.find((i) => i.name === name));
 
   return (
     <ProjectLayoutContext.Provider value={{ lined }}>

@@ -10,7 +10,8 @@ $href: String!
 $tags: [String!]!
 $description:String
 $imgUrl: String
-$github: String`;
+$github: String
+$techTags:[String!]`;
 
 const ADDProject_Mutation = gql`
   mutation addProject(

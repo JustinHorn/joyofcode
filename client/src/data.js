@@ -12,6 +12,8 @@ function IconClass(name, filetype = "png", backgroundSize = "contain") {
 
 const iconList = [
   new IconClass("apollo", "png", "120%"),
+  new IconClass("graphql", "svg"),
+
   new IconClass("prisma", "png"),
   new IconClass("node", "png", "150%"),
   new IconClass("angular", "svg"),

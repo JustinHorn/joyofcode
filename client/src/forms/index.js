@@ -27,6 +27,7 @@ export const projectProps = `
             }
         }
         commentCount
+        techTags
 `;
 
 export const projectQuery = `
