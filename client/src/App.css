@@ -71,3 +71,13 @@ a {
 button {
   cursor: pointer;
 }
+
+.load {
+  font-weight: bold;
+  font-size: 5ch;
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right;
+}

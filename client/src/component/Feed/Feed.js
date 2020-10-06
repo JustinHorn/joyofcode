@@ -9,7 +9,7 @@ import List from "component/List";
 import useFeed from "hooks/useFeed";
 import useHandleQuery from "helper/useHandleQuery";
 
-const Feed = ({ filter, small, query }) => {
+const Feed = ({ filter, lined, query }) => {
   !filter && (filter = () => true);
 
   const { data, addItems } = query;
@@ -17,7 +17,7 @@ const Feed = ({ filter, small, query }) => {
   const projects = data?.feed.map((x) => ({
     ...x,
     showDescription: false,
-    small,
+    lined,
   }));
 
   const filteredProjects = useMemo(() => projects?.filter(filter), [
@@ -27,10 +27,12 @@ const Feed = ({ filter, small, query }) => {
 
   return (
     <div>
-      <div className={small ? "list px5 center-list " : styles.feed}>
+      <div className={lined ? "list px5 center-list " : styles.feed}>
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
-      <button onClick={addItems}>loadMore</button>
+      <span onClick={addItems} className="load">
+        . . .
+      </span>
     </div>
   );
 };

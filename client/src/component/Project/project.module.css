@@ -1,4 +1,4 @@
-.normal {
+.cached {
   width: 400px;
   text-align: left;
   display: grid;
@@ -6,7 +6,7 @@
   row-gap: 10px;
 }
 
-.small {
+.lined {
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-columns: minmax(200px, 500px) minmax(200px, 500px) 200px 200px;
 }

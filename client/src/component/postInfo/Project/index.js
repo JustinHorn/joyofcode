@@ -18,10 +18,10 @@ const PostInfoProject = ({ postedBy, date }) => {
 
   const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
 
-  const { small } = useContext(ProjectLayoutContext);
+  const { lined } = useContext(ProjectLayoutContext);
 
   return (
-    <div className={small ? styles.small : ""}>
+    <div className={lined ? styles.lined : ""}>
       <PostInfoGeneral
         {...(userPage
           ? {}

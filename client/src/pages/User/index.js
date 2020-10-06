@@ -9,7 +9,7 @@ import UserLikes from "component/User/Likes";
 
 import useGetUser from "hooks/useGetUser";
 
-import ToggleSmallNormal from "component/ToggleSmallNormal";
+import ToggleSmallNormal from "component/ToggleLinedCached";
 
 import styles from "./userpage.module.css";
 
@@ -21,11 +21,11 @@ const UserPage = () => {
 
   return (
     <div className={styles.userpage}>
-      <h1>{user?.name}</h1>
+      <h1>Activity of {user?.name}</h1>
       <div className="text-left list">
         <div>
           <h2>Projects {user?.projectCount}</h2>
-          <ToggleSmallNormal initSmall={true}>
+          <ToggleSmallNormal initLined={true}>
             <UserProjects userId={id} />
           </ToggleSmallNormal>
         </div>

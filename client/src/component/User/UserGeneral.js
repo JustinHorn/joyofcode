@@ -16,9 +16,9 @@ const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
       <div className={listClass}>
         <List Key="feed" Component={component} list={list || []} />
       </div>
-      <button onClick={addItems} className={buttonClass}>
-        load more
-      </button>
+      <span onClick={addItems} className={buttonClass + " load"}>
+        ...
+      </span>
     </div>
   );
 };

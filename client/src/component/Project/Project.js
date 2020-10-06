@@ -31,17 +31,17 @@ const Project = (props) => {
     preview,
     commentCount,
     showDescription,
-    small,
+    lined,
   } = props;
 
-  const [isUpdate, setUpdate] = useState(!!small);
+  const [isUpdate, setUpdate] = useState(!!lined);
 
   return (
-    <ProjectLayoutContext.Provider value={{ small }}>
-      <div className={small ? styles.small : styles.normal}>
+    <ProjectLayoutContext.Provider value={{ lined }}>
+      <div className={lined ? styles.lined : styles.cached}>
         <Headline {...{ id, href, title }} />
-        {!small && <Picture {...{ imgUrl }} />}
-        {!small && showDescription && <Description {...{ description }} />}
+        {!lined && <Picture {...{ imgUrl }} />}
+        {!lined && showDescription && <Description {...{ description }} />}
 
         <TagsAndMutations
           {...{

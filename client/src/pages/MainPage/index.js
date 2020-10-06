@@ -7,7 +7,7 @@ import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 
-import ToggleSmallNormal from "component/ToggleSmallNormal";
+import ToggleSmallNormal from "component/ToggleLinedCached";
 
 const Mainpage = () => {
   const { user } = useContext(UserContext);

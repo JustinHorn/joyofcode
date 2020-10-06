@@ -5,7 +5,7 @@ import useQueryProject from "hooks/user/useQueryProjects";
 
 import Project from "component/Project";
 
-const UserProjects = ({ userId, small }) => {
+const UserProjects = ({ userId, lined }) => {
   const useQuery = () => {
     const props = useQueryProject({
       userId,
@@ -13,7 +13,7 @@ const UserProjects = ({ userId, small }) => {
     });
 
     if (props.list) {
-      props.list = props.list.map((i) => ({ ...i, small }));
+      props.list = props.list.map((i) => ({ ...i, lined }));
     }
     return props;
   };
@@ -21,10 +21,10 @@ const UserProjects = ({ userId, small }) => {
   return (
     <UserGeneral
       {...{
-        listClass: small ? "list px5" : "column-list",
+        listClass: lined ? "list px5" : "column-list",
         useQuery,
         component: Project,
-        buttonClass: small ? "my-10" : "my-20",
+        buttonClass: lined ? "my-10" : "my-20",
       }}
     />
   );
