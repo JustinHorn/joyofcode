@@ -6,13 +6,13 @@ import TechStackTag from "component/Tag/TechStackTag";
 
 const TechStack = ({ icons = [] }) => {
   return (
-    <div className="flex-left">
+    <ul className="flex-left" style={{ paddingLeft: "0px" }}>
       <List
         list={icons.map((icon) => ({ iconVal: icon }))}
         Key={"tst"}
         Component={TechStackTag}
       />
-    </div>
+    </ul>
   );
 };
 

@@ -14,3 +14,20 @@
   margin-right: 2px;
   list-style: none;
 }
+
+.tag button,
+.techstacktag button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+
+  margin: auto;
+  transition: 0.3s all ease;
+}
+
+.tag:hover button,
+.techstacktag:hover button {
+  opacity: 1;
+}

@@ -4,6 +4,8 @@ import TagInput from "./TagInput";
 
 import TechInput from "./TechInput";
 
+import TextField from "@material-ui/core/TextField";
+
 const selectComponent = (handler) => {
   switch (handler) {
     case "tech":
@@ -27,11 +29,12 @@ export default selectComponent;
 
 const DefaultInput = ({ formValue, setSpecificFormValue }) => {
   return (
-    <input
+    <TextField
       type={formValue.pw ? "password" : "text"}
       placeholder={formValue.placeholder || ""}
       value={formValue.value}
       onChange={(e) => setSpecificFormValue(e.target.value)}
+      variant="outlined"
     />
   );
 };
@@ -57,11 +60,12 @@ const ActionInput = ({
 }) => {
   return (
     <div>
-      <input
+      <TextField
         type={formValue.pw ? "password" : "text"}
         placeholder={formValue.placeholder || ""}
         value={formValue.value}
         onChange={(e) => setSpecificFormValue(e.target.value)}
+        variant="outlined"
       />
       <br />
       <button onClick={() => action(formValue.value)}>{actionName}</button>

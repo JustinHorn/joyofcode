@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./tag.module.css";
 
 const Tag = ({ text, Button }) => (
-  <li className={styles.tag}>
+  <li className={styles.tag + " relative"}>
     {text} {Button}
   </li>
 );

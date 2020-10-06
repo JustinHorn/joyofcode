@@ -138,3 +138,7 @@ button {
 .p-2 {
   padding: 0.05%;
 }
+
+.relative {
+  position: relative;
+}

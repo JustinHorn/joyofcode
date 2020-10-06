@@ -6,6 +6,8 @@ import List from "component/List";
 
 import Tag from "component/Tag";
 
+import TextField from "@material-ui/core/TextField";
+
 const TagInput = ({ className, formValue, setSpecificFormValue }) => {
   const tags = formValue.value;
 
@@ -28,12 +30,13 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
   };
   return (
     <div className={className}>
-      <input
+      <TextField
         type="text"
         value={text}
         placeholder={formValue.placeholder}
         onKeyPress={onPress}
         onChange={onChange}
+        variant="outlined"
       />
       <ul className={styles.taglist}>
         <List

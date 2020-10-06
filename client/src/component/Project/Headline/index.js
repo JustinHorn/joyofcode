@@ -9,20 +9,17 @@ import ProjectLayoutContext from "context/ProjectLayout";
 const Headline = ({ id, href, title }) => {
   const hostname = new Url(href).hostname;
 
-  const { small } = useContext(ProjectLayoutContext);
+  const { lined } = useContext(ProjectLayoutContext);
 
   return (
-    <div className={small ? styles.small : styles.normal}>
-      <h2>
-        <Link to={"/project/" + id}>
-          <span className={styles.headtext}> {title}</span>
-        </Link>
-      </h2>
-      {!small && (
-        <h4>
-          <a href={href}> ({hostname})</a>{" "}
-        </h4>
-      )}
+    <div className={styles.normal}>
+      <h2>{(!lined && title) || <Link to={"/project/" + id}>{title}</Link>}</h2>
+
+      <h4>
+        {(!lined && <a href={href}> ({hostname})</a>) || (
+          <a>{`(${hostname})`} </a>
+        )}
+      </h4>
     </div>
   );
 };

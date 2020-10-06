@@ -3,6 +3,7 @@
   grid-template-areas:
     "headline headline"
     "edit preview";
+  column-gap: 50px;
 }
 
 .menu > * {
