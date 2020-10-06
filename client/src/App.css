@@ -81,3 +81,35 @@ button {
 .text-right {
   text-align: right;
 }
+
+.icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+}
+
+.icon-s-110 {
+  background-size: 110%;
+}
+
+.icon-s-120 {
+  background-size: 120%;
+}
+
+.icon-s-150 {
+  background-size: 140%;
+}
+
+.icon-s-150 {
+  background-size: 150%;
+}
+
+.icon-s-160 {
+  background-size: 160%;
+}
+
+.flex-left {
+  display: flex;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LinkIcon } from "component/Icon";
+import LinkIcon from "component/icon/LinkIcon";
 
 import styles from "./tagsandmutations.module.css";
 
@@ -24,13 +24,7 @@ const TagsAndMutations = ({
         Component={Tag}
       />
 
-      {github && (
-        <LinkIcon
-          className={styles.icon}
-          src="/img/icons/github.png"
-          href={github}
-        />
-      )}
+      {github && <LinkIcon src="/img/icons/github.png" href={github} />}
     </ul>
   );
 };

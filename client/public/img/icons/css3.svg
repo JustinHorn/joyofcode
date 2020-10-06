@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" id="svg2" version="1.1" viewBox="0 0 570.8 342.5" height="342.5" width="570.8">
+  <metadata id="metadata28">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Slice 1</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title id="title4">Slice 1</title>
+  <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+  <defs id="defs6" />
+  <path style="fill:#1572b6;fill-rule:evenodd;stroke:none;stroke-width:1" id="path11" d="M 174.9,307.7 147.8,4.08 445.2,4.08 418.1,307.6 296.3,341.4 174.9,307.7 Z m 0,0" />
+  <path style="fill:#33a9dc;fill-rule:evenodd;stroke:none;stroke-width:1" id="path13" d="m 296.5,315.6 98.4,-27.3 23.2,-259.4 -121.6,0 0,286.7 z m 0,0" />
+  <g transform="translate(202.7,63.4)" id="Group" style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <path style="fill:#ffffff" id="path16" d="m 93.8,75.5 49.3,0 3.4,-38.14 -52.7,0 0,-37.235 0.13,0 93.27,0 -0.9,9.995 -9.2,102.58 -83.3,0 0,-37.2 z m 0,0" />
+    <path style="fill:#ebebeb" id="path18" d="m 94.02,172.2 -0.16,0.1 -41.47,-11.2 -2.66,-29.7 -20.15,0 -17.23,0 5.22,58.4 76.28,21.2 0.17,-0.1 0,-38.7 z m 0,0" />
+    <path style="fill:#ffffff" id="path20" d="m 139.9,111.2 -4.5,49.8 -41.51,11.2 0,38.8 76.31,-21.2 0.6,-6.3 6.5,-72.3 -37.4,0 z m 0,0" />
+    <path style="fill:#ebebeb" id="path22" d="m 93.93,0.125 0,23.125 0,14.02 0,0.1 -89.832,0 -0.119,0 L 3.232,29 1.535,10.13 0.645,0.135 l 93.285,0 z m 0,0" />
+    <path style="fill:#ebebeb" id="path24" d="m 93.8,75.5 0,23.13 0,13.97 0,0.1 -40.83,0 -0.12,0 -0.75,-8.3 -1.69,-18.91 -0.89,-9.99 44.28,0 z m 0,0" />
+  </g>
+</svg>

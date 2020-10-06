@@ -14,6 +14,8 @@ import Headline from "component/Project/Headline";
 
 import Socials from "./Socials";
 
+import TechStack from "./TechStack";
+
 import ProjectLayoutContext from "context/ProjectLayout";
 
 const Project = (props) => {
@@ -32,6 +34,7 @@ const Project = (props) => {
     commentCount,
     showDescription,
     lined,
+    iconList,
   } = props;
 
   const [isUpdate, setUpdate] = useState(!!lined);
@@ -42,7 +45,7 @@ const Project = (props) => {
         <Headline {...{ id, href, title }} />
         {!lined && <Picture {...{ imgUrl }} />}
         {!lined && showDescription && <Description {...{ description }} />}
-
+        <TechStack {...{ iconList }} />
         <TagsAndMutations
           {...{
             id,
