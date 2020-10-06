@@ -65,9 +65,15 @@ server.express.get("/verifyuser", async (req, res, next) => {
 
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
-server.express.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+if (process.env.DEV) {
+  server.express.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+} else {
+  server.express.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 server.express.get("/file", async (req, res, next) => {
   const page = await puppeteer
