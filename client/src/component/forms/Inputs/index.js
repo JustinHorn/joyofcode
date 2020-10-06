@@ -2,8 +2,12 @@ import React, { useState } from "react";
 
 import TagInput from "./TagInput";
 
+import TechInput from "./TechInput";
+
 const selectComponent = (handler) => {
   switch (handler) {
+    case "tech":
+      return TechInput;
     case "tag":
       return TagInput;
 

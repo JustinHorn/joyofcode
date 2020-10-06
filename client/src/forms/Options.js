@@ -34,10 +34,16 @@ const sharedOptions = {
     placeholder: "https://github.com...",
     value: "",
   },
+  techStack: {
+    name: "TechStack Tags",
+    placeholder: "node",
+    value: ["react"],
+    handler: "tech",
+  },
   tags: {
-    name: "Tags",
-    placeholder: "node.js",
-    value: ["react.js"],
+    name: "Description Tags",
+    placeholder: "daily",
+    value: ["planning"],
     handler: "tag",
   },
 };

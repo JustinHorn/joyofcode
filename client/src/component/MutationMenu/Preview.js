@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import Project from "component/Project";
 import UserContext from "context";
 
+import iconList from "data";
+
 const Preview = ({ formValues }) => {
   const values = {};
 

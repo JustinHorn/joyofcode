@@ -18,6 +18,8 @@ import TechStack from "./TechStack";
 
 import ProjectLayoutContext from "context/ProjectLayout";
 
+import iconList from "data";
+
 const Project = (props) => {
   const {
     id,
@@ -34,10 +36,12 @@ const Project = (props) => {
     commentCount,
     showDescription,
     lined,
-    iconList,
+    techStack = [],
   } = props;
 
   const [isUpdate, setUpdate] = useState(!!lined);
+
+  const icons = techStack.map((name) => iconList.find((i) => i.name === name));
 
   return (
     <ProjectLayoutContext.Provider value={{ lined }}>
@@ -45,7 +49,7 @@ const Project = (props) => {
         <Headline {...{ id, href, title }} />
         {!lined && <Picture {...{ imgUrl }} />}
         {!lined && showDescription && <Description {...{ description }} />}
-        <TechStack {...{ iconList }} />
+        <TechStack {...{ icons }} />
         <TagsAndMutations
           {...{
             id,

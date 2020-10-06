@@ -5,3 +5,12 @@
   font-size: 2ch;
   margin-right: 2px;
 }
+
+.techstacktag {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 2ch;
+  margin-right: 2px;
+  list-style: none;
+}
