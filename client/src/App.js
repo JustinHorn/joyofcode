@@ -27,9 +27,10 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
+
       <div className="Layout">
         <main>
-          <Navbar />
           {user && !user.verified && <h1>Not verified!</h1>}
           <Switch>
             <Route path="/user/:id">

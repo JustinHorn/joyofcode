@@ -1,9 +1,17 @@
 .Layout {
+  padding-top: 5vh;
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-areas: ". main .";
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "navbar navbar navbar"
+    ". main .";
   text-align: center;
   min-height: 100vh;
+}
+
+.navbar {
+  grid-area: navbar;
 }
 
 main {
