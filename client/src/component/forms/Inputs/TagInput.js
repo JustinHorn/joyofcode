@@ -11,11 +11,15 @@ import TextField from "@material-ui/core/TextField";
 import useUpdateForm from "./useUpdateForm";
 
 const TagInput = ({ className, formValue, setSpecificFormValue }) => {
-  const { onPress, getDeleteTag, onChange, text, value } = useUpdateForm(
+  const { onPress, getDeleteTag, setText, text, value } = useUpdateForm(
     formValue,
     setSpecificFormValue,
     true
   );
+
+  const onChange = (e) => {
+    setText(e.target.value.trim().toLowerCase());
+  };
 
   return (
     <div className={className}>

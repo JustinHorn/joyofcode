@@ -16,10 +16,15 @@ const TechInput = ({ className, formValue, setSpecificFormValue }) => {
   const {
     onPress,
     getDeleteTag,
-    onChange,
+    setText,
     text,
     value: techIcons,
   } = useUpdateForm(formValue, setSpecificFormValue, false);
+
+  const onChange = (e, value) => {
+    setText(value.trim().toLowerCase());
+  };
+
   return (
     <div className={className}>
       <Autocomplete

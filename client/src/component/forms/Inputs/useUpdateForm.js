@@ -2,7 +2,10 @@ import { useState } from "react";
 
 import iconList from "data";
 
-const isTagName = (name) => {
+const isTagName = (name, notChecktagName) => {
+  if (notChecktagName) {
+    return true;
+  }
   return iconList.some((i) => i.name === name);
 };
 
@@ -11,9 +14,8 @@ const useUpdateForm = (formValue, setSpecificFormValue, notChecktagName) => {
   const [text, setText] = useState("");
 
   const onPress = (e) => {
-    if (e.charCode === 13 && (notChecktagName || isTagName(text))) {
+    if (e.charCode === 13 && isTagName(text, notChecktagName)) {
       e.preventDefault();
-
       setSpecificFormValue([...value, text]);
       setText("");
     }
@@ -23,11 +25,7 @@ const useUpdateForm = (formValue, setSpecificFormValue, notChecktagName) => {
     setSpecificFormValue([...value.slice(0, index), ...value.slice(index + 1)]);
   };
 
-  const onChange = (e, value) => {
-    setText(value.trim().toLowerCase());
-  };
-
-  return { onPress, getDeleteTag, onChange, text, value };
+  return { onPress, getDeleteTag, value, text, setText };
 };
 
 export default useUpdateForm;
