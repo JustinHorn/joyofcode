@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={styles.nav}>
+    <nav className={"box-shadow " + styles.nav}>
       <div className={styles.pages}>
         <NavLink to="/">
           <button className={isSelected("/")}>Main </button>
@@ -29,6 +29,11 @@ const Navbar = () => {
           </NavLink>
         )}
       </div>
+
+      <div className={styles.headline}>
+        <h4>Joy of Code </h4>
+      </div>
+
       <div className={styles.actions}>
         {user && (
           <NavLink to="/post">

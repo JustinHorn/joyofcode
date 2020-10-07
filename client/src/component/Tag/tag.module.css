@@ -7,10 +7,12 @@
 }
 
 .tag {
-  background-color: lightgrey;
+  background-color: rgb(254, 216, 177);
 }
 
 .techstacktag {
+  background-color: white;
+
   border: 1px solid grey;
   list-style: none;
 }

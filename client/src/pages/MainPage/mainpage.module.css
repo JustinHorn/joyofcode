@@ -18,6 +18,10 @@
   margin-left: auto;
 }
 
+.searchbar input {
+  padding: 10px;
+}
+
 .searchbar,
 .searchbar input {
   width: 300px;

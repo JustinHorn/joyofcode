@@ -25,7 +25,7 @@ const selectComponent = (handler) => {
 
 export default selectComponent;
 
-const DefaultInput = ({ formValue, setSpecificFormValue }) => {
+const DefaultInput = ({ formValue, setSpecificFormValue, className }) => {
   return (
     <TextField
       type={formValue.pw ? "password" : "text"}

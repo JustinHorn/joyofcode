@@ -2,10 +2,23 @@
   display: grid;
 
   grid-template-columns: auto 1fr auto;
-  grid-template-areas: "pages . actions";
+  grid-template-areas: "pages headline actions";
 
   text-align: right;
   width: 100%;
+}
+
+.headline {
+  grid-area: headline;
+  text-align: center;
+
+  margin: auto auto;
+}
+
+.headline h4 {
+  margin: 0;
+
+  padding: 0;
 }
 
 .pages {

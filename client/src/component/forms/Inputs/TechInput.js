@@ -23,20 +23,13 @@ const TechInput = ({ className, formValue, setSpecificFormValue }) => {
   return (
     <div className={className}>
       <Autocomplete
+        id="combobox"
         options={iconList}
         getOptionLabel={(option) => option.name}
         onKeyPress={onPress}
         onInputChange={onChange}
         inputValue={text}
-        renderInput={(params) => (
-          <TextField
-            inputProps={{
-              placeholder: formValue.placeholder,
-            }}
-            {...params}
-            variant="outlined"
-          />
-        )}
+        renderInput={(params) => <TextField {...params} variant="outlined" />}
       />
 
       <ul className={styles.taglist}>

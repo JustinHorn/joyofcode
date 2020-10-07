@@ -1,10 +1,9 @@
 .Layout {
-  margin-top: 20px;
   display: grid;
   grid-template-columns: 10% 80% 10%;
   grid-template-areas: ". main .";
-
   text-align: center;
+  min-height: 100vh;
 }
 
 main {
@@ -73,6 +72,7 @@ button {
   padding: 7px;
   margin: 5px;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 .load {
@@ -91,26 +91,6 @@ button {
   background-position: center;
   width: 30px;
   height: 30px;
-}
-
-.icon-s-110 {
-  background-size: 110%;
-}
-
-.icon-s-120 {
-  background-size: 120%;
-}
-
-.icon-s-150 {
-  background-size: 140%;
-}
-
-.icon-s-150 {
-  background-size: 150%;
-}
-
-.icon-s-160 {
-  background-size: 160%;
 }
 
 .flex-left {
@@ -141,4 +121,8 @@ button {
 
 .relative {
   position: relative;
+}
+
+#combobox {
+  padding: 0px;
 }

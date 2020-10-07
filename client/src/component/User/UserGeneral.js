@@ -7,7 +7,7 @@ const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
 
   if (error) {
     console.log(error);
-    throw error;
+    alert(error);
   }
   if (loading) return "loading";
 
