@@ -27,11 +27,6 @@ const ProjectPage = ({ query }) => {
   const postedByCurrentUser = data?.project?.postedBy.id === user?.id && user;
   const history = useHistory();
 
-  if (data && !data.project) {
-    history.push("/");
-    return "project does not exist";
-  }
-
   return (
     <div>
       {postedByCurrentUser && (
@@ -39,15 +34,18 @@ const ProjectPage = ({ query }) => {
       )}
 
       {postedByCurrentUser && <DeleteHandler projectId={id}></DeleteHandler>}
+      {data?.project && (
+        <>
+          <Project {...data?.project} showDescription={true}></Project>
+          <CommentSection projectId={id} />
 
-      <Project {...data?.project} showDescription={true}></Project>
-      <CommentSection projectId={id} />
-
-      <ProjectUpdatePopup
-        show={isUpdate}
-        onClickAway={() => setUpdate(false)}
-        projectValues={data?.project}
-      />
+          <ProjectUpdatePopup
+            show={isUpdate}
+            onClickAway={() => setUpdate(false)}
+            projectValues={data?.project}
+          />
+        </>
+      )}
     </div>
   );
 };
@@ -55,5 +53,6 @@ const ProjectPage = ({ query }) => {
 export default (props) => {
   let { id } = useParams();
   id = Number(id);
+
   return useHandleQuery(props, useProject, ProjectPage, id);
 };

@@ -40,6 +40,7 @@ const useCreateProject = (props) => {
 
   useEffect(() => {
     if (error) {
+      console.log(error);
       alert(error);
     }
   }, [error]);

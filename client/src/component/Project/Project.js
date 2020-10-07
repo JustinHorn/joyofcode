@@ -71,13 +71,17 @@ const Project = (props) => {
               postedBy,
             }}
           />
-          <PostInfoProject
-            {...{
-              postedBy,
-              date,
-            }}
-          />
-          {!preview && <Socials {...{ id, commentCount, likes }} />}
+          {!preview && (
+            <>
+              <PostInfoProject
+                {...{
+                  postedBy,
+                  date,
+                }}
+              />
+              <Socials {...{ id, commentCount, likes }} />
+            </>
+          )}
         </div>
       </ProjectLayoutContext.Provider>
     </div>

@@ -6,6 +6,7 @@ import useQueryProject from "hooks/user/useQueryProjects";
 import Project from "component/Project";
 
 const UserProjects = ({ userId, lined }) => {
+  !userId && (userId = "bsValue");
   const useQuery = () => {
     const props = useQueryProject({
       userId,

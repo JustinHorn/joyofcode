@@ -6,6 +6,8 @@ import useQueryComments from "hooks/user/useQueryComments";
 import UserGeneral from "../UserGeneral";
 
 const UserComments = ({ userId }) => {
+  !userId && (userId = "bsValue");
+
   const useQuery = () => useQueryComments({ userId, take: 10 });
 
   return (

@@ -40,7 +40,7 @@ const Navbar = () => {
             <button className={isSelected("/post")}> Post</button>
           </NavLink>
         )}
-        <AuthenticationButtons></AuthenticationButtons>
+        <AuthenticationButtons />
       </div>
     </nav>
   );

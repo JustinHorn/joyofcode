@@ -6,6 +6,8 @@ import Like from "component/Like";
 import useQueryLikes from "hooks/user/useQueryLikes";
 
 const UserLikes = ({ userId }) => {
+  !userId && (userId = "bsValue");
+
   const useQuery = () =>
     useQueryLikes({
       userId,
