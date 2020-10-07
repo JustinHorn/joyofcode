@@ -3,13 +3,19 @@ import Url from "url-parse";
 
 import styles from "./headline.module.css";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ProjectLayoutContext from "context/ProjectLayout";
 
 const Headline = ({ id, href, title }) => {
   const hostname = new Url(href).hostname;
 
   const { lined } = useContext(ProjectLayoutContext);
+
+  const location = useLocation();
+
+  if (!location.pathname.includes("/project/")) {
+    title = maxChar(title);
+  }
 
   return (
     <div className={styles.normal}>
@@ -23,5 +29,14 @@ const Headline = ({ id, href, title }) => {
     </div>
   );
 };
+
+function maxChar(str) {
+  let maxChar = 27;
+
+  if (str.length > maxChar) {
+    return str.slice(0, maxChar) + "...";
+  }
+  return str;
+}
 
 export default Headline;

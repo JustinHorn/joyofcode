@@ -1,3 +1,7 @@
 .element h4 {
   margin: 5px 0;
 }
+
+.element input {
+  padding: 5px;
+}

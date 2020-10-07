@@ -1,17 +1,17 @@
-.tag {
-  background-color: lightgrey;
+.tag,
+.techstacktag {
   border-radius: 5px;
   padding: 4px;
   font-size: 2ch;
   margin-right: 2px;
 }
 
+.tag {
+  background-color: lightgrey;
+}
+
 .techstacktag {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 4px;
-  font-size: 2ch;
-  margin-right: 2px;
+  border: 1px solid grey;
   list-style: none;
 }
 

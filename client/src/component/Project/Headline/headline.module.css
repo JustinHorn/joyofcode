@@ -3,6 +3,8 @@
   margin: 0;
   color: black;
   text-decoration: none;
+  max-width: 40vw;
+  word-wrap: break-word;
 }
 
 .normal h2 a {

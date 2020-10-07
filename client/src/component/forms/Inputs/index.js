@@ -12,10 +12,8 @@ const selectComponent = (handler) => {
       return TechInput;
     case "tag":
       return TagInput;
-
     case "action":
       return ActionInput;
-
     case "actionNoInput":
       return ActionNoInput;
     case "textarea":

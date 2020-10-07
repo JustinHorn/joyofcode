@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 
 import Project from "component/Project";
 
@@ -16,6 +16,7 @@ import useHandleQuery from "helper/useHandleQuery";
 
 const ProjectPage = ({ query }) => {
   let { id } = useParams();
+
   id = Number(id);
 
   const { data } = query;
@@ -23,7 +24,13 @@ const ProjectPage = ({ query }) => {
   const [isUpdate, setUpdate] = useState(false);
 
   const { user } = useContext(UserContext);
-  const postedByCurrentUser = data?.project.postedBy.id === user?.id && user;
+  const postedByCurrentUser = data?.project?.postedBy.id === user?.id && user;
+  const history = useHistory();
+
+  if (data && !data.project) {
+    history.push("/");
+    return "project does not exist";
+  }
 
   return (
     <div>

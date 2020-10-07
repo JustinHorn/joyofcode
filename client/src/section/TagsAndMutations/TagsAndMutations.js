@@ -18,13 +18,13 @@ const TagsAndMutations = ({
 
   return (
     <ul className={styles.props}>
+      {github && <LinkIcon src="/img/icons/github.png" href={github} />}
+
       <List
         list={tags?.map((t) => ({ text: t.name }))}
         Key={"tAM"}
         Component={Tag}
       />
-
-      {github && <LinkIcon src="/img/icons/github.png" href={github} />}
     </ul>
   );
 };

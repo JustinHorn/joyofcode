@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./taginput.module.css";
 
@@ -8,26 +8,15 @@ import Tag from "component/Tag";
 
 import TextField from "@material-ui/core/TextField";
 
+import useUpdateForm from "./useUpdateForm";
+
 const TagInput = ({ className, formValue, setSpecificFormValue }) => {
-  const tags = formValue.value;
+  const { onPress, getDeleteTag, onChange, text, value } = useUpdateForm(
+    formValue,
+    setSpecificFormValue,
+    true
+  );
 
-  const [text, setText] = useState("");
-
-  const onPress = (e) => {
-    if (e.charCode === 13) {
-      e.preventDefault();
-      setSpecificFormValue([...tags, text]);
-      setText("");
-    }
-  };
-
-  const getDeleteTag = (index) => () => {
-    setSpecificFormValue([...tags.slice(0, index), ...tags.slice(index + 1)]);
-  };
-
-  const onChange = (e) => {
-    setText(e.target.value.trim().toLowerCase());
-  };
   return (
     <div className={className}>
       <TextField
@@ -42,7 +31,7 @@ const TagInput = ({ className, formValue, setSpecificFormValue }) => {
         <List
           Key={"tags"}
           Component={Tag}
-          list={tags.map((t, i) => ({
+          list={value.map((t, i) => ({
             text: t,
             Button: <button onClick={getDeleteTag(i)}>X</button>,
           }))}
