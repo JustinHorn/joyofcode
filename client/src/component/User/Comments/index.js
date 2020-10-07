@@ -14,7 +14,7 @@ const UserComments = ({ userId }) => {
     <UserGeneral
       {...{
         component: UserComment,
-        listClass: "list",
+        listClass: "list-small",
         useQuery,
         buttonClass: "my-20",
       }}

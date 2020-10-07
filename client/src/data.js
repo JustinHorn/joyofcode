@@ -28,6 +28,11 @@ const iconList = [
   new IconClass("python", "svg"),
   new IconClass("java", "png"),
   new IconClass("flask", "png"),
+  new IconClass("contentful", "png"),
+  new IconClass("golang", "svg"),
+  new IconClass("php", "svg", "130%"),
+  new IconClass("clojure", "svg"),
+  new IconClass("deno", "png"),
 ];
 
 export default iconList;
