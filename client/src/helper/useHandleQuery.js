@@ -6,7 +6,7 @@ const useHandleQuery = (props, Query, Component, queryProps) => {
 
   if (error) {
     console.log(error);
-    throw error;
+    alert(error);
   }
   if (loading) return "loading";
 

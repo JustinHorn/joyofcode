@@ -1,30 +1,18 @@
 .normal h2 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.normal .headtext {
+  padding: 0;
+  margin: 0;
   color: black;
   text-decoration: none;
+  max-width: 40vw;
+  word-wrap: break-word;
+}
+
+.normal h2 a {
+  color: black;
 }
 
 .normal h4 {
-  margin: 5px;
-  margin-left: 0;
-  font-size: 0.8em;
+  padding: 0;
+  margin: 0;
   color: black;
-}
-
-.small {
-  display: flex;
-  align-items: center;
-}
-
-.small h2 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.small .headtext {
-  text-decoration: none;
 }

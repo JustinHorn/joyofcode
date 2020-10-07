@@ -7,8 +7,10 @@
 }
 
 .lined {
+  width: 100%;
   text-align: left;
   display: grid;
-  grid-template-columns: minmax(200px, 40%) 200px minmax(200px, 40%) 200px 200px;
+  grid-template-columns: 20vw 10vw 20vw 7vw 15vw;
+  column-gap: 5px;
   padding: 2%;
 }

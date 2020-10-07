@@ -11,10 +11,7 @@ import {
 
 import { getMainDefinition } from "@apollo/client/utilities";
 
-import { WebSocketLink } from "@apollo/client/link/ws";
-
 import { onError } from "apollo-link-error";
-import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const location = window.location.host;
 
@@ -25,13 +22,6 @@ const host = isDevelopment ? "localhost:4000" : location;
 
 const socket = location.includes("localhost") ? "ws" : "wss";
 const protocol = location.includes("localhost") ? "http" : "https";
-
-const wsLink = process.browser
-  ? new WebSocketLink({
-      uri: `${socket}://${host}/`,
-      options: { reconnect: true },
-    })
-  : null;
 
 const httpLink = new HttpLink({
   uri: `${protocol}://${host}/graphql`,
@@ -51,19 +41,7 @@ const authLink = new ApolloLink((operation, forward) => {
   // Call the next link in the middleware chain.
   return forward(operation);
 });
-const link = process.browser
-  ? split(
-      ({ query }) => {
-        const definition = getMainDefinition(query);
-        return (
-          definition.kind === "OperationDefinition" &&
-          definition.operation === "subscription"
-        );
-      },
-      wsLink,
-      httpLink
-    )
-  : httpLink;
+const link = httpLink;
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));

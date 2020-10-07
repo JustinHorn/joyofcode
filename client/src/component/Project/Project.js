@@ -20,6 +20,8 @@ import ProjectLayoutContext from "context/ProjectLayout";
 
 import iconList from "data";
 
+import { useLocation } from "react-router-dom";
+
 const Project = (props) => {
   const {
     id,
@@ -34,12 +36,14 @@ const Project = (props) => {
     likes,
     preview,
     commentCount,
-    showDescription,
     lined,
+    showDescription: isUpdate,
     techTags,
   } = props;
 
-  const [isUpdate, setUpdate] = useState(!!lined);
+  const location = useLocation();
+
+  const isProjectPage = location.pathname.includes("/project/") || isUpdate;
 
   let icons = techTags.map((name) => iconList.find((i) => i.name === name));
 
@@ -48,19 +52,20 @@ const Project = (props) => {
   }
 
   return (
-    <div className={"box-shadow " + (lined ? "p-2" : "p-5")}>
+    <div
+      className={!isProjectPage ? "box-shadow " + (lined ? "p-2" : "p-5") : ""}
+    >
       <ProjectLayoutContext.Provider value={{ lined }}>
         <div className={lined ? styles.lined : styles.cached}>
           <Headline {...{ id, href, title }} />
-          {!lined && <Picture {...{ imgUrl }} />}
-          {!lined && showDescription && <Description {...{ description }} />}
+          {!lined && <Picture {...{ id, imgUrl }} />}
+          {!lined && isProjectPage && <Description {...{ description }} />}
           <TechStack {...{ icons }} />
           <TagsAndMutations
             {...{
               id,
               tags,
-              isUpdate,
-              setUpdate,
+
               preview,
               github,
               postedBy,

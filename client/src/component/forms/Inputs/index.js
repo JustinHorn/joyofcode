@@ -4,16 +4,16 @@ import TagInput from "./TagInput";
 
 import TechInput from "./TechInput";
 
+import TextField from "@material-ui/core/TextField";
+
 const selectComponent = (handler) => {
   switch (handler) {
     case "tech":
       return TechInput;
     case "tag":
       return TagInput;
-
     case "action":
       return ActionInput;
-
     case "actionNoInput":
       return ActionNoInput;
     case "textarea":
@@ -25,13 +25,14 @@ const selectComponent = (handler) => {
 
 export default selectComponent;
 
-const DefaultInput = ({ formValue, setSpecificFormValue }) => {
+const DefaultInput = ({ formValue, setSpecificFormValue, className }) => {
   return (
-    <input
+    <TextField
       type={formValue.pw ? "password" : "text"}
       placeholder={formValue.placeholder || ""}
       value={formValue.value}
       onChange={(e) => setSpecificFormValue(e.target.value)}
+      variant="outlined"
     />
   );
 };
@@ -57,11 +58,12 @@ const ActionInput = ({
 }) => {
   return (
     <div>
-      <input
+      <TextField
         type={formValue.pw ? "password" : "text"}
         placeholder={formValue.placeholder || ""}
         value={formValue.value}
         onChange={(e) => setSpecificFormValue(e.target.value)}
+        variant="outlined"
       />
       <br />
       <button onClick={() => action(formValue.value)}>{actionName}</button>

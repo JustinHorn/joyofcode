@@ -1,10 +1,17 @@
 .Layout {
-  margin-top: 20px;
+  padding-top: 5vh;
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-areas: ". main .";
-
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "navbar navbar navbar"
+    ". main .";
   text-align: center;
+  min-height: 100vh;
+}
+
+.navbar {
+  grid-area: navbar;
 }
 
 main {
@@ -70,9 +77,10 @@ a {
 
 button {
   cursor: pointer;
-  padding: 5px;
+  padding: 7px;
   margin: 5px;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 .load {
@@ -91,26 +99,6 @@ button {
   background-position: center;
   width: 30px;
   height: 30px;
-}
-
-.icon-s-110 {
-  background-size: 110%;
-}
-
-.icon-s-120 {
-  background-size: 120%;
-}
-
-.icon-s-150 {
-  background-size: 140%;
-}
-
-.icon-s-150 {
-  background-size: 150%;
-}
-
-.icon-s-160 {
-  background-size: 160%;
 }
 
 .flex-left {
@@ -137,4 +125,12 @@ button {
 
 .p-2 {
   padding: 0.05%;
+}
+
+.relative {
+  position: relative;
+}
+
+#combobox {
+  padding: 0px;
 }
