@@ -14,7 +14,6 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 import { onError } from "apollo-link-error";
-import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const location = window.location.host;
 

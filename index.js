@@ -65,7 +65,7 @@ server.express.get("/verifyuser", async (req, res, next) => {
 
 server.express.use(express.static(path.join(__dirname, "client", "build")));
 
-if (process.env.DEV) {
+if (process.env.JUSTINDEV) {
   server.express.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
@@ -91,7 +91,9 @@ server.express.get("/file", async (req, res, next) => {
 
 server.start(options, () => console.log("Server startet!"));
 
-process.on("SIGINT", () => {
-  console.log("Bye bye!");
-  process.exit();
-});
+if (process.env.JUSTINDEV) {
+  process.on("SIGINT", () => {
+    console.log("Bye bye!");
+    process.exit();
+  });
+}
