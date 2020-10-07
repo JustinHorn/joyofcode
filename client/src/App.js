@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Navbar from "component/Navbar";
 import UserContext from "context";

@@ -1,5 +1,4 @@
 const { GraphQLServer } = require("graphql-yoga");
-const stream = require("stream");
 
 const express = require("express");
 const path = require("path");
