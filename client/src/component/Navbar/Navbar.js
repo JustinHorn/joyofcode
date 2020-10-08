@@ -20,7 +20,7 @@ const Navbar = () => {
     <nav className={"box-shadow " + styles.nav}>
       <div className={styles.pages}>
         <NavLink to="/">
-          <button className={isSelected("/")}>Main </button>
+          <button className={isSelected("/")}>Home </button>
         </NavLink>
 
         {user && (
