@@ -11,6 +11,8 @@ import PrivateRoute from "component/PrivateRoute";
 
 import Post from "pages/Post";
 
+import ScrollToTop from "component/ScrollToTop";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
 
       <div className="Layout">
