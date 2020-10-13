@@ -40,7 +40,8 @@ const Project = (props) => {
     techTags,
   } = props;
 
-  const { lined } = useContext(ProjectLayoutContext);
+  const contextProps = useContext(ProjectLayoutContext);
+  const lined = contextProps?.lined;
 
   const location = useLocation();
 

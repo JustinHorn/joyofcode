@@ -25,7 +25,6 @@ const ProjectPage = ({ query }) => {
 
   const { user } = useContext(UserContext);
   const postedByCurrentUser = data?.project?.postedBy.id === user?.id && user;
-  const history = useHistory();
 
   return (
     <div>
@@ -33,10 +32,11 @@ const ProjectPage = ({ query }) => {
         <button onClick={() => setUpdate(!isUpdate)}>edit</button>
       )}
 
-      {postedByCurrentUser && <DeleteHandler projectId={id}></DeleteHandler>}
+      {postedByCurrentUser && <DeleteHandler projectId={id} />}
+
+      {data && <Project {...data?.project} showDescription={true} />}
       {data?.project && (
         <>
-          <Project {...data?.project} showDescription={true}></Project>
           <CommentSection projectId={id} />
 
           <ProjectUpdatePopup
