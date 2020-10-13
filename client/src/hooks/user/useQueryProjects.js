@@ -35,7 +35,7 @@ const useQueryProjects = (props) => {
       },
     });
   };
-  return { list: data?.userProjects, data, loading, error, addItems };
+  return { list: data?.userProjects, data, loading, error, addItems, take };
 };
 
 export default useQueryProjects;

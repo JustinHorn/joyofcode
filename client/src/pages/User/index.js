@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 
 import UserProjects from "component/User/Projects";
 
-import UserComments from "component/User/Comments";
-
-import UserLikes from "component/User/Likes";
+import useQueryProject from "hooks/user/useQueryProjects";
 
 import useGetUser from "hooks/useGetUser";
 
@@ -19,23 +17,25 @@ const UserPage = () => {
 
   const user = useGetUser(id);
 
+  const queryProps = useQueryProject({
+    userId: id,
+    take: 6,
+  });
+
+  const displayedTake = Math.min(queryProps.take, user?.projectCount);
+
   return (
     <div className={styles.userpage}>
-      <h1>Activity of {user?.name}</h1>
+      <h1>Projects of {user?.name}</h1>
+
       <div className="text-left list">
         <div>
-          <h2>Projects {user?.projectCount}</h2>
+          <h2>
+            {displayedTake} of {user?.projectCount} Projects
+          </h2>
           <ToggleSmallNormal initLined={true}>
-            <UserProjects userId={id} />
+            <UserProjects userId={id} queryProps={queryProps} />
           </ToggleSmallNormal>
-        </div>
-        <div>
-          <h2>Likes {user?.likeCount}</h2>
-          <UserLikes userId={id} />
-        </div>
-        <div>
-          <h2>Comments {user?.commentCount}</h2>
-          <UserComments userId={id}></UserComments>
         </div>
       </div>
     </div>

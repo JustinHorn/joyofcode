@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import List from "component/List";
 
 const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
-  const { list, loading, error, addItems } = useQuery();
+  const { list, loading, error, addItems, take } = useQuery();
 
   useEffect(() => {
     if (error) {

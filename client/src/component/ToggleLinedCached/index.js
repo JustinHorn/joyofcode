@@ -1,7 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useLocation, useHistory } from "react-router-dom";
+
+import ProjectLayoutContext from "context/ProjectLayout";
+
+function useQuery() {
+  const location = useLocation();
+  return new URLSearchParams(location.search);
+}
 
 const ToggleLinedCached = ({ children, initLined }) => {
+  const query = useQuery();
+
+  const queryLined = query.get("lined");
+
+  const history = useHistory();
+
+  if (queryLined && (queryLined === "true" || queryLined === "false")) {
+    initLined = queryLined === "true";
+  }
+
   const [lined, setLined] = useState(!!initLined);
+
+  useEffect(() => {
+    if (lined) {
+      query.set("lined", "true");
+    } else {
+      query.set("lined", "false");
+    }
+    history.replace(window.location.pathname + "?" + query.toString());
+  }, [lined]);
 
   return (
     <div>
@@ -19,9 +47,9 @@ const ToggleLinedCached = ({ children, initLined }) => {
           Cached
         </button>
       </div>
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(child, { lined }, null);
-      })}
+      <ProjectLayoutContext.Provider value={{ lined }}>
+        {children}
+      </ProjectLayoutContext.Provider>
     </div>
   );
 };

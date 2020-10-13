@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useContext } from "react";
 
 import styles from "./feed.module.css";
 
@@ -8,16 +8,17 @@ import List from "component/List";
 
 import useFeed from "hooks/useFeed";
 import useHandleQuery from "helper/useHandleQuery";
+import ProjectLayoutContext from "context/ProjectLayout";
 
-const Feed = ({ filter, lined, query }) => {
+const Feed = ({ filter, query }) => {
   !filter && (filter = () => true);
 
   const { data, addItems } = query;
+  const { lined } = useContext(ProjectLayoutContext);
 
   const projects = data?.feed.map((x) => ({
     ...x,
     showDescription: false,
-    lined,
   }));
 
   const filteredProjects = useMemo(() => projects?.filter(filter), [

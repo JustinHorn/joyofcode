@@ -37,7 +37,7 @@ const useQueryLikes = (props) => {
     });
   };
 
-  return { list: data?.userLikes, data, loading, error, addItems };
+  return { list: data?.userLikes, data, loading, error, addItems, take };
 };
 
 export default useQueryLikes;

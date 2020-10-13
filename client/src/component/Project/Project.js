@@ -36,10 +36,11 @@ const Project = (props) => {
     likes,
     preview,
     commentCount,
-    lined,
     showDescription: isUpdate,
     techTags,
   } = props;
+
+  const { lined } = useContext(ProjectLayoutContext);
 
   const location = useLocation();
 

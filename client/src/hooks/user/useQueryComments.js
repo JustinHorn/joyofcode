@@ -38,7 +38,7 @@ const useQueryComments = (props) => {
     });
   };
 
-  return { data, list: data?.userComments, loading, error, addItems };
+  return { data, list: data?.userComments, loading, error, addItems, take };
 };
 
 export default useQueryComments;

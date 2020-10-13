@@ -1,23 +1,14 @@
 import React, { useContext } from "react";
 import UserGeneral from "./UserGeneral";
 
-import useQueryProject from "hooks/user/useQueryProjects";
-
 import Project from "component/Project";
+import ProjectLayoutContext from "context/ProjectLayout";
 
-const UserProjects = ({ userId, lined }) => {
+const UserProjects = ({ userId, queryProps }) => {
   !userId && (userId = "bsValue");
-  const useQuery = () => {
-    const props = useQueryProject({
-      userId,
-      take: 6,
-    });
+  const useQuery = () => queryProps;
 
-    if (props.list) {
-      props.list = props.list.map((i) => ({ ...i, lined }));
-    }
-    return props;
-  };
+  const { lined } = useContext(ProjectLayoutContext);
 
   return (
     <UserGeneral

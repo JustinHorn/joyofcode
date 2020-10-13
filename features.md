@@ -49,3 +49,5 @@ setCount of ... in feed
 - application freezes on update
 
 - show button at tag on hover
+
+-remove dots on ready
