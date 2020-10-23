@@ -18,9 +18,10 @@ import TechStack from "./TechStack";
 
 import ProjectLayoutContext from "context/ProjectLayout";
 
-import iconList from "data";
-
 import { useLocation } from "react-router-dom";
+import cn from "classnames";
+
+import iconList from "data";
 
 const Project = (props) => {
   const {
@@ -52,10 +53,11 @@ const Project = (props) => {
   if (!icons.length) {
     icons = ["nothing"];
   }
-
   return (
     <div
-      className={!isProjectPage ? "box-shadow " + (lined ? "p-2" : "p-5") : ""}
+      className={cn({
+        [cn("box-shadow ", lined ? "p-2" : "p-5")]: !isProjectPage,
+      })}
     >
       <ProjectLayoutContext.Provider value={{ lined }}>
         <div className={lined ? styles.lined : styles.cached}>

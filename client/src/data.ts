@@ -1,13 +1,23 @@
 const location = "/img/icons/";
 
-let id = 1;
+let id:number = 1;
 
-function IconClass(name, filetype = "png", backgroundSize = "contain") {
+
+
+class IconClass implements TechIcon {
+  id:number
+  name:string
+  filetype:string
+  backgroundSize:string
+  location:string
+
+  constructor(name:string, filetype = "png", backgroundSize = "contain") {
   this.id = id++;
   this.name = name;
   this.filetype = filetype;
   this.backgroundSize = backgroundSize;
   this.location = location + name + "." + filetype;
+  }
 }
 
 const iconList = [

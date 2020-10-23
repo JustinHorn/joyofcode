@@ -6,15 +6,20 @@ import styles from "./headline.module.css";
 import { Link, useLocation } from "react-router-dom";
 import ProjectLayoutContext from "context/ProjectLayout";
 
-const Headline = ({ id, href, title }) => {
+
+
+
+
+const Headline = ({ id, href, title }:HeadlineProps) => {
   const hostname = new Url(href).hostname;
 
-  const { lined } = useContext(ProjectLayoutContext);
+  const { lined } = useContext<ProjectLayoutTypes>(ProjectLayoutContext);
+
 
   const location = useLocation();
 
   if (!location.pathname.includes("/project/")) {
-    title = maxChar(title);
+    title =  maxChar(title) ;
   }
 
   return (
@@ -30,7 +35,7 @@ const Headline = ({ id, href, title }) => {
   );
 };
 
-function maxChar(str) {
+function maxChar(str:string):string {
   let maxChar = 27;
 
   if (str.length > maxChar) {

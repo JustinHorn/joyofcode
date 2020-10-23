@@ -4,7 +4,9 @@ import styles from "./picture.module.css";
 
 import { Link } from "react-router-dom";
 
-const Picture = ({ imgUrl, id }) => {
+
+
+const Picture= ({ imgUrl, id }:PictureProps) => {
   const content = (
     <div className={styles.imgContainer}>
       {imgUrl && <img className={styles.preview} src={imgUrl} />}
