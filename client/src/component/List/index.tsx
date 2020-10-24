@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
-type ListProps = {
-  list:any[],
-  Component:any,
-  Key:string
-}
+
+
 
 
 const List = ({ list = [], Component, Key }:ListProps) => {

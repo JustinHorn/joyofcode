@@ -6,7 +6,13 @@ import CommentCounter from "component/CommentCounter";
 
 import LikeHandler from "component/LikeHandler";
 
-const Socials = ({ id, commentCount, likes }) => {
+type SocialsProps = {
+  id:number,
+  commentCount:number,
+  likes:any,
+}
+
+const Socials = ({ id, commentCount, likes }:SocialsProps) => {
   return (
     <div className={styles.socialAttributes}>
       <CommentCounter count={commentCount} projectId={id} />

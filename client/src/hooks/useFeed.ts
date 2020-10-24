@@ -17,7 +17,7 @@ export const FeedQueryAndVars = {
   variables: { take: 6, orderBy: { date: "desc" } },
 };
 
-const useFeed = (props = {}) => {
+const useFeed:(props:any) => any = (props = {}) => {
   const [take, setTake] = useState(props.take || 6);
 
   const { data, loading, error, fetchMore } = useQuery(FeedQueryAndVars.query, {
@@ -27,7 +27,7 @@ const useFeed = (props = {}) => {
   const addItems = () => {
     fetchMore({
       variables: { take: take + 3, skip: take },
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev:any, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
         setTake(take + 3);
 

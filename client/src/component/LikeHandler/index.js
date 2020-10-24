@@ -5,9 +5,7 @@ import UserContext from "context";
 
 import styles from "./likehandler.module.css";
 
-import useHandleQuery from "helper/useHandleQuery";
-
-const LikeHandler = ({ likes, projectId, query }) => {
+const LikeHandler = ({ likes, projectId }) => {
   const { user } = useContext(UserContext);
 
   const isLikedByUser =

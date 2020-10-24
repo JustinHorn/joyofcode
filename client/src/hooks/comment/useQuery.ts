@@ -9,12 +9,12 @@ const QUERY_COMMENTS = gql`
     }
   }
 `;
-export const getQueryVars = (id) => ({
+export const getQueryVars = (id:number) => ({
   query: QUERY_COMMENTS,
   variables: { projectId: id, orderBy: { date: "desc" } },
 });
 
-const useQueryComments = (projectId) => {
+const useQueryComments = (projectId:number) => {
   const queryVars = getQueryVars(projectId);
   const [loadComments, { data, loading, called }] = useLazyQuery(
     queryVars.query,

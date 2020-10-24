@@ -1,5 +1,12 @@
 import { FeedQueryAndVars } from "./useFeed";
-const readFeed = (cache) => {
+
+
+
+
+type readFeedFunction =  (cache:any) => any
+
+
+const readFeed:readFeedFunction = (cache) => {
   const data = cache.readQuery({
     ...FeedQueryAndVars,
   });
@@ -8,7 +15,10 @@ const readFeed = (cache) => {
   return feed;
 };
 
-const writeFeed = (cache, data) => {
+type writeFeedFunction =  (cache:any,data:any) => any
+
+
+const writeFeed: writeFeedFunction = (cache, data) => {
   cache.writeQuery({
     ...FeedQueryAndVars,
     data,
