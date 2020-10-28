@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 import { gql, useMutation } from "@apollo/client";
+
+import UserContext from "context/UserContext";
 
 const authWithGithub = gql`
   mutation authorizeWithGithub($code: String!) {
@@ -16,7 +18,23 @@ const authWithGithub = gql`
 `;
 
 const useAuthWithCode = () => {
-  return useMutation(authWithGithub);
+  const [mutate, { data, error }] = useMutation(authWithGithub);
+  const { login } = useContext(UserContext);
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
+      const { token, user } = data.authorizeWithGithub;
+      login(token, user);
+    }
+  }, [data]);
+
+  return [mutate, { data, error }];
 };
 
 export default useAuthWithCode;

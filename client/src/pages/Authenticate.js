@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import useGithubAuthentication from "hooks/useGithubAuthentication";
 
@@ -11,12 +11,9 @@ import UserContext from "context/UserContext";
 const AuthenticatePage = () => {
   const [mutate, { data, error }] = useGithubAuthentication();
 
-  const { saveUserData, setUser } = useContext(UserContext);
-
   const location = useLocation();
 
   const { deleteParam } = useHistoryDeleteParam();
-
   useEffect(() => {
     if (urlHasRedirectPath(location)) {
       const code = getUrlParam(location, "code");
@@ -27,25 +24,11 @@ const AuthenticatePage = () => {
     }
   }, [location]);
 
-  useEffect(() => {
-    if (error) {
-      alert(error);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    if (data) {
-      const { token, user } = data.authorizeWithGithub;
-      saveUserData(token);
-      setUser(user);
-    }
-  }, [data]);
-
   if (data || error) {
     return <Redirect to="/" />;
   }
 
-  return <h1> Authenticate</h1>;
+  return <h1>...authenticating</h1>;
 };
 
 const urlHasRedirectPath = (location) => {

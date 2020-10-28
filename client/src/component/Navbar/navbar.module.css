@@ -10,6 +10,7 @@
   padding-left: 10vw;
   padding-right: 10vw;
   background-color: white;
+  place-items: center;
 }
 
 .headline {
@@ -18,15 +19,11 @@
   margin: auto;
 }
 
-.headline h4 {
-  margin: 0;
-  padding: 0;
-}
-
 .pages {
   grid-area: pages;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .actions {

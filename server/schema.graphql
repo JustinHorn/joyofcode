@@ -51,8 +51,6 @@ enum Sort {
 
 type Mutation {
   authorizeWithGithub(code: String!): AuthPayLoad
-  login(email: String!, password: String!): AuthPayLoad
-  register(name: String!, email: String!, password: String!): AuthPayLoad
 
   addProject(
     title: String!

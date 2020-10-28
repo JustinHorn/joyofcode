@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
 
       <div className={styles.headline}>
-        <h4>Joy of Code </h4>
+        <h1>Joy of Code </h1>
       </div>
 
       <div className={styles.actions}>
