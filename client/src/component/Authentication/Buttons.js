@@ -28,7 +28,7 @@ const AuthenticationButtons = () => {
       {(!user && (
         <button>
           <a
-            href={`https://github.com/login/oauth/authorize?client_id=8116f4e7c6b99b0f99f1&scope=user`} //its okay to expose the client_id
+            href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=user`} //its okay to expose the client_id
             className="flex align-center"
           >
             <Icon location={"/img/icons/github.png"} />

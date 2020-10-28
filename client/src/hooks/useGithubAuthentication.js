@@ -30,7 +30,7 @@ const useAuthWithCode = () => {
   useEffect(() => {
     if (data) {
       const { token, user } = data.authorizeWithGithub;
-      login(token, user);
+      login(user, token);
     }
   }, [data]);
 

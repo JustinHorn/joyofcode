@@ -10,8 +10,6 @@ const authorizeWithGithub = async (parent, { code }, { prisma }) => {
     code,
   });
 
-  console.log("hi");
-
   // 2. Package the results in a single object, write the value to currentUser global variable
   currentUser = {
     name: githubUser.name,
@@ -45,8 +43,6 @@ const authorizeWithGithub = async (parent, { code }, { prisma }) => {
   } else {
     user = user[0];
   }
-
-  console.log(user);
 
   const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
