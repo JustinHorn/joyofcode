@@ -34,7 +34,15 @@ export const UserContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, idOfCurrentUser, logout, login, projectByCurrentUser }}
+      value={{
+        user,
+        idOfCurrentUser,
+        logout,
+        login,
+        projectByCurrentUser,
+        saveUserData,
+        setUser,
+      }}
     >
       {children}
     </UserContext.Provider>

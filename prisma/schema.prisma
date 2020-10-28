@@ -61,6 +61,7 @@ model User {
     password         String
     registeredAt     DateTime  @default(now())
     verified         Boolean   @default(false)
+    github_id        Int       @default(-1)
     verificationCode Int
     comments         Comment[]
     likes            Like[]

@@ -13,6 +13,8 @@ import Post from "pages/Post";
 
 import ScrollToTop from "component/ScrollToTop";
 
+import AuthenticationPage from "pages/Authenticate";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,6 +47,9 @@ function App() {
             <PrivateRoute path="/post">
               <Post />
             </PrivateRoute>
+            <Route path="/authenticate">
+              <AuthenticationPage />
+            </Route>
             <Route exact path="/">
               <Mainpage />
             </Route>

@@ -4,6 +4,8 @@ import Popup from "component/Popup";
 
 import UserContext from "context";
 
+import Icon from "component/icon/Icon";
+
 const AuthenticationButtons = () => {
   const [show, setShow] = useState("not");
 
@@ -23,17 +25,17 @@ const AuthenticationButtons = () => {
 
   return (
     <div>
-      {(!user &&
-        ["Login", "Register"].map((option, index) => (
-          <button
-            key={index}
-            type="checkbox"
-            className={option === show ? "active" : ""}
-            onClick={getOnClick(option)}
+      {(!user && (
+        <button>
+          <a
+            href={`https://github.com/login/oauth/authorize?client_id=8116f4e7c6b99b0f99f1&scope=user`} //its okay to expose the client_id
+            className="flex align-center"
           >
-            {option}
-          </button>
-        ))) || <button onClick={logout}>Logout</button>}
+            <Icon location={"/img/icons/github.png"} />
+            <span>Authentication </span>
+          </a>
+        </button>
+      )) || <button onClick={logout}>Logout</button>}
       <Popup show={show !== "not"} onClickAway={() => setShow("not")}>
         <Authentication isLogin={show === "Login"} />
       </Popup>

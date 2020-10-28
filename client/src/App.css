@@ -111,8 +111,16 @@ button {
   height: 30px;
 }
 
+.flex {
+  display: flex;
+}
+
 .flex-left {
   display: flex;
+}
+
+.align-center {
+  align-items: center;
 }
 
 .box-shadow {
