@@ -9,7 +9,7 @@ import TechStackTag from "component/Tag/TechStackTag";
 
 const TechStack = ({ icons = [] } :TechStackProps) => {
   return (
-    <ul className="flex-left" style={{ paddingLeft: "0px" }}>
+    <ul className="flex-left overflow-x" style={{ paddingLeft: "0px" }}>
       <List
         list={icons.map((icon) => ({ iconVal: icon }))}
         Key={"tst"}

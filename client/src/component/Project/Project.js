@@ -56,7 +56,7 @@ const Project = (props) => {
   return (
     <div
       className={cn({
-        [cn("box-shadow ", lined ? "p-2" : "p-5")]: !isProjectPage,
+        [cn("box-shadow ", lined ? "p-2" : "p-2r")]: !isProjectPage,
       })}
     >
       <ProjectLayoutContext.Provider value={{ lined }}>

@@ -41,7 +41,7 @@ a {
 
   grid-template-columns: auto;
   row-gap: 10px;
-  padding: 1% 0;
+  padding: 5px 0;
 }
 
 .center-list {
@@ -50,7 +50,10 @@ a {
 }
 
 .list.px5 {
-  row-gap: 1.25%;
+  row-gap: 5px;
+}
+.cpx10 {
+  column-gap: 20px;
 }
 
 .column-list {
@@ -141,6 +144,13 @@ button {
   padding: 5%;
 }
 
+.m-5 {
+  margin: 5%;
+}
+.p-2r {
+  padding: 2%;
+}
+
 .p-2 {
   padding: 0.05%;
 }
@@ -151,4 +161,8 @@ button {
 
 #combobox {
   padding: 0px;
+}
+
+.overflow-x {
+  overflow-x: hidden;
 }
