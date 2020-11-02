@@ -45,6 +45,7 @@ const iconList = [
   new IconClass("deno", "png"),
   new IconClass("nextjs", "svg","100%"),
   new IconClass("material-ui", "svg"),
+  new IconClass("typescript", "webp"),
 
 ];
 
