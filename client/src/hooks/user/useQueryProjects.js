@@ -23,17 +23,18 @@ const useQueryProjects = (props) => {
   });
 
   const addItems = () => {
-    fetchMore({
-      variables: { take: take + 3, skip: take },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        setTake(take + 3);
+    !loading &&
+      fetchMore({
+        variables: { take: take + 3, skip: take },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return prev;
+          setTake(take + 3);
 
-        return Object.assign({}, prev, {
-          userProjects: [...fetchMoreResult.userProjects],
-        });
-      },
-    });
+          return Object.assign({}, prev, {
+            userProjects: [...fetchMoreResult.userProjects],
+          });
+        },
+      });
   };
   return { list: data?.userProjects, data, loading, error, addItems, take };
 };

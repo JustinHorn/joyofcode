@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo, useContext, useEffect, useRef } from "react";
 
 import styles from "./feed.module.css";
 
@@ -10,10 +10,12 @@ import useFeed from "hooks/useFeed";
 import useHandleQuery from "helper/useHandleQuery";
 import ProjectLayoutContext from "context/ProjectLayout";
 
+import useDoOnView from "hooks/useDoOnView";
+
 const Feed = ({ filter, query }) => {
   !filter && (filter = () => true);
 
-  const { data, addItems } = query;
+  const { data, addItems, loading } = query;
   const { lined } = useContext(ProjectLayoutContext);
 
   const projects = data?.feed.map((x) => ({
@@ -26,12 +28,14 @@ const Feed = ({ filter, query }) => {
     projects,
   ]);
 
+  const dotDotDot = useDoOnView(addItems);
+
   return (
     <div>
       <div className={lined ? "list px5  " : "feed"}>
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
-      <span onClick={addItems} className="load">
+      <span ref={dotDotDot} onClick={addItems} className="load">
         . . .
       </span>
     </div>

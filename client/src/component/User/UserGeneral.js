@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 
 import List from "component/List";
+import useDoOnView from "hooks/useDoOnView";
 
 const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
   const { list, loading, error, addItems, take } = useQuery();
+
+  const viewTrigger = useDoOnView(addItems);
 
   useEffect(() => {
     if (error) {
@@ -17,7 +20,11 @@ const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
       <div className={listClass}>
         <List Key="feed" Component={component} list={list || []} />
       </div>
-      <span onClick={addItems} className={buttonClass + " load"}>
+      <span
+        ref={viewTrigger}
+        onClick={addItems}
+        className={buttonClass + " load"}
+      >
         ...
       </span>
     </div>

@@ -25,20 +25,22 @@ const useFeed:(props:any) => any = (props = {}) => {
   });
 
   const addItems = () => {
-    fetchMore({
-      variables: { take: take + 3, skip: take },
-      updateQuery: (prev:any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        setTake(take + 3);
-
-        return Object.assign({}, prev, {
-          feed: [...fetchMoreResult.feed],
-        });
-      },
-    });
+    if(!loading) {
+      fetchMore({
+        variables: { take: take + 3, skip: take },
+        updateQuery: (prev:any, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return prev;
+          setTake(take + 3);
+  
+          return Object.assign({}, prev, {
+            feed: [...fetchMoreResult.feed],
+          });
+        },
+      });
+    }
   };
 
-  return { data, loading, error, addItems };
+  return { data, loading, error, addItems ,take};
 };
 
 export default useFeed;
