@@ -1,10 +1,8 @@
 const { getTags } = require("../helper/update");
-const { getUserIdVerified } = require("../helper/authentication");
 
 const { getImage } = require("../helper/shootPicture");
 
 const makePictureOfWebsite = async (p, args, context) => {
-  const { userId } = await getUserIdVerified(context);
   return getImage(args.href);
 };
 
@@ -22,7 +20,7 @@ const checkArgs = (args) => {
 };
 
 const addProject = async (p, args, context, i) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
 
   checkArgs(args);
 
@@ -32,8 +30,6 @@ const addProject = async (p, args, context, i) => {
         where: { name: n },
       }))
     : [];
-
-  console.log(args);
 
   const project = await context.prisma.project.create({
     data: {
@@ -52,7 +48,7 @@ const addProject = async (p, args, context, i) => {
 };
 
 const updateProject = async (p, args, context, i) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
 
   const { href, title, github, imgUrl, description, techTags } = args;
 
@@ -86,7 +82,7 @@ const updateProject = async (p, args, context, i) => {
 };
 
 const deleteProject = async (p, args, context, i) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
 
   const project = await context.prisma.project.findOne({
     where: { id: args.id },

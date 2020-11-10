@@ -8,9 +8,32 @@ const { resolvers } = require("./server/resolvers");
 const { PrismaClient } = require("@prisma/client");
 const { exception } = require("console");
 
+const { getUserId } = require("./server/resolvers/helper/authentication");
+
 require("dotenv").config();
 // 2
 const prisma = new PrismaClient();
+
+const verifyUserId = async (resolve, root, args, context, info) => {
+  const userId = await getUserId(context);
+  const result = await resolve(root, { ...args, userId }, context, info);
+  return result;
+};
+
+const middleware1 = {
+  Mutation: {
+    addProject: verifyUserId,
+    likeProject: verifyUserId,
+    unlikeProject: verifyUserId,
+    updateProject: verifyUserId,
+    deleteProject: verifyUserId,
+    makePictureOfWebsite: verifyUserId,
+    addComment: verifyUserId,
+    removeComment: verifyUserId,
+  },
+};
+
+const middlewares = [middleware1];
 
 const server = new GraphQLServer({
   typeDefs: "./server/schema.graphql",
@@ -21,6 +44,7 @@ const server = new GraphQLServer({
       prisma,
     };
   },
+  middlewares,
 });
 
 const options = {

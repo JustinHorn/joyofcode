@@ -1,9 +1,3 @@
 # Joy of Code
 
-Share your web dev project with other developers!
-
-connect();  
-shareProject();  
-getFeedback();  
-improve();
-
+A platform where you can share your web dev project with other developers!

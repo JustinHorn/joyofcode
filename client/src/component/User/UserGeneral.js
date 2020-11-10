@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
 import List from "component/List";
-import useDoOnView from "hooks/useDoOnView";
+import useOnView from "react-useonview";
 
 const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
   const { list, loading, error, addItems, take } = useQuery();
 
-  const viewTrigger = useDoOnView(addItems);
+  const viewTrigger = useOnView(addItems);
 
   useEffect(() => {
     if (error) {

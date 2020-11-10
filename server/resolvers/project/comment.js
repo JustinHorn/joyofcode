@@ -1,8 +1,5 @@
-const { getUserIdVerified } = require("../helper/authentication");
-
 const addComment = async (p, args, context) => {
-  const { userId } = await getUserIdVerified(context);
-
+  const { userId } = args;
   const comment = context.prisma.comment.create({
     data: {
       text: args.text,
@@ -18,7 +15,7 @@ const addComment = async (p, args, context) => {
 };
 
 const removeComment = async (p, args, context) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
 
   const user = await context.prisma.user.update({
     where: { id: userId },

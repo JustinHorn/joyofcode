@@ -1,7 +1,5 @@
-const { getUserIdVerified } = require("../helper/authentication");
-
 const likeProject = async (p, args, context, i) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
   const { id: projectId } = args;
 
   const exists = await context.prisma.like.findOne({
@@ -22,7 +20,7 @@ const likeProject = async (p, args, context, i) => {
 };
 
 const unlikeProject = async (p, args, context, i) => {
-  const { userId } = await getUserIdVerified(context);
+  const { userId } = args;
   const { id: projectId } = args;
 
   const like = await context.prisma.like.delete({
