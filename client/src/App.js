@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "component/Navbar";
 import UserContext from "context";
 
-import Mainpage from "pages/MainPage";
+import MainPage from "pages/MainPage";
 
 import ProjectPage from "pages/Project";
 
@@ -51,9 +51,9 @@ function App() {
               <AuthenticationPage />
             </Route>
             <Route exact path="/">
-              <Mainpage />
+              <MainPage />
             </Route>
-            <Route path="/">
+            <Route path="*">
               <Redirect to={"/"}></Redirect>
             </Route>
           </Switch>

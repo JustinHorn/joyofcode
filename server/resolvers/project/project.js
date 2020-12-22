@@ -1,19 +1,19 @@
-const { getTags } = require("../helper/update");
+const { getTags } = require('../helper/update');
 
-const { getImage } = require("../helper/shootPicture");
+const { getImage } = require('../helper/shootPicture');
 
 const makePictureOfWebsite = async (p, args, context) => {
   return getImage(args.href);
 };
 
-const check = require("../helper/check");
+const check = require('../helper/check');
 
 const checkArgs = (args) => {
   const { tags, href, github } = args;
 
   tags && check.tags(tags);
 
-  href && check.noLocalHost(href, "as Link");
+  href && check.noLocalHost(href, 'as Link');
 
   github && check.mustBeGithub(github);
   args.techTags = { set: args.techTags };
@@ -21,6 +21,7 @@ const checkArgs = (args) => {
 
 const addProject = async (p, args, context, i) => {
   const { userId } = args;
+  const { href, title, github, imgUrl, description, techTags } = args;
 
   checkArgs(args);
 
@@ -33,8 +34,12 @@ const addProject = async (p, args, context, i) => {
 
   const project = await context.prisma.project.create({
     data: {
-      ...args,
-
+      href,
+      title,
+      github,
+      imgUrl,
+      description,
+      techTags: { set: techTags },
       tags: {
         connectOrCreate: tags,
       },
@@ -89,10 +94,11 @@ const deleteProject = async (p, args, context, i) => {
   });
 
   if (project.userId !== userId) {
-    throw new Error("Project not posted by user");
+    throw new Error('Project not posted by user');
   }
 
   await context.prisma.like.deleteMany({ where: { projectId: args.id } });
+  await context.prisma.comment.deleteMany({ where: { projectId: args.id } });
 
   await context.prisma.project.delete({
     where: { id: args.id },

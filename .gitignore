@@ -1,6 +1,8 @@
 /node_modules
+
 .env
 
 .png
 prisma/*
 !prisma/schema.prisma
+!prisma/.env.example

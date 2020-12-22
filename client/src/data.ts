@@ -1,3 +1,7 @@
+/*This file manages the sizing for items. The items are just stored as string name in db and then associated with logos on the server*/
+
+
+
 const location = "/img/icons/";
 
 let id:number = 1;
