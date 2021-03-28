@@ -33,3 +33,4 @@ React.js > Apollo > GraphQl- Yoga (Express + GraphQl) > Prisma 2 > Heroku Postgr
 
 I have built it in an iterative way. First using my own authentication later utilizing github.  
 The project saw several database migrations as well as me moving the whole data from ElephantDB to Heroku PostgresQL
+

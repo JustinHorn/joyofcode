@@ -8,6 +8,8 @@
 
 ## in Queue
 
+give project a search feature
+
 setCount of ... in feed
 
 - give projects a a proper description -> markdown
