@@ -14,7 +14,7 @@ const useUpdateForm = (formValue, setSpecificFormValue, notChecktagName) => {
   const [text, setText] = useState("");
 
   const onPress = (e) => {
-    if (e.charCode === 13 && isTagName(text, notChecktagName)) {
+    if (e.charCode === 13 && isTagName(text, notChecktagName && text)) {
       e.preventDefault();
       setSpecificFormValue([...value, text]);
       setText("");

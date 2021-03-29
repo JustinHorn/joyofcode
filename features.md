@@ -52,4 +52,4 @@ setCount of ... in feed
 
 - show button at tag on hover
 
--remove dots on ready
+- remove dots on ready
