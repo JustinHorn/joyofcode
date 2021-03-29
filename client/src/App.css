@@ -88,6 +88,15 @@ a {
   color: white;
 }
 
+.iconButton > * {
+  width: 20px;
+  height: 20px;
+}
+
+.not-selected {
+  opacity: 0.5;
+}
+
 button {
   cursor: pointer;
   padding: 7px;

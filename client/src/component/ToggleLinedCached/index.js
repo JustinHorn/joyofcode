@@ -4,6 +4,8 @@ import { useLocation, useHistory } from "react-router-dom";
 
 import ProjectLayoutContext from "context/ProjectLayout";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function useQuery() {
   const location = useLocation();
   return new URLSearchParams(location.search);
@@ -33,18 +35,18 @@ const ToggleLinedCached = ({ children, initLined }) => {
 
   return (
     <div>
-      <div className={"text-right"}>
+      <div className={"text-left"}>
         <button
-          className={lined ? "selected" : ""}
+          className={(lined ? "" : "not-selected") + " iconButton"}
           onClick={() => setLined(true)}
         >
-          Lined
+          <FontAwesomeIcon icon={["fas", "bars"]}> h</FontAwesomeIcon>
         </button>
         <button
-          className={lined ? "" : "selected"}
+          className={(lined ? "not-selected" : "") + " iconButton"}
           onClick={() => setLined(false)}
         >
-          Cached
+          <FontAwesomeIcon icon={["fas", "th"]}> h</FontAwesomeIcon>
         </button>
       </div>
       <ProjectLayoutContext.Provider value={{ lined }}>

@@ -7,7 +7,7 @@ import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 
-import ToggleSmallNormal from "component/ToggleLinedCached";
+import ToggleLinedCached from "component/ToggleLinedCached";
 
 const Mainpage = () => {
   const { user } = useContext(UserContext);
@@ -41,9 +41,9 @@ const Mainpage = () => {
         setSpecificFormValue={setValue}
       />
       <div className={styles.feed}>
-        <ToggleSmallNormal>
+        <ToggleLinedCached>
           <Feed filter={filter} />
-        </ToggleSmallNormal>
+        </ToggleLinedCached>
       </div>
     </div>
   );
