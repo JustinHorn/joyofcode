@@ -4,18 +4,12 @@
   display: grid;
   grid-template-areas:
     "greet greet"
-    "search search"
+    "searchbarLayout searchbarLayout"
     "feed feed";
 }
 
 .greet {
   grid-area: greet;
-}
-
-.searchbar {
-  grid-area: search;
-  margin-top: auto;
-  margin-left: auto;
 }
 
 .searchbar input {
@@ -29,4 +23,10 @@
 
 .feed {
   grid-area: feed;
+}
+
+.searchbarLayout {
+  grid-area: searchbarLayout;
+  display: flex;
+  justify-content: space-between;
 }
