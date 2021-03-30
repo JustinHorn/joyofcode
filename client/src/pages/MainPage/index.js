@@ -19,7 +19,10 @@ function useQuery() {
 const Mainpage = () => {
   const { user } = useContext(UserContext);
 
-  const [filters, setFilters] = useState({ value: [], placeholder: "filter" });
+  const [filters, setFilters] = useState({
+    value: [],
+    placeholder: "filter by tag",
+  });
 
   const filter = (resource) => {
     if (filters.value.length) {
@@ -74,13 +77,13 @@ const Mainpage = () => {
           />
           <div>
             <button
-              className={(lined ? "" : "not-selected") + " iconButton"}
+              className={(lined ? "selected" : "not-selected") + " iconButton"}
               onClick={() => setLined(true)}
             >
               <FontAwesomeIcon icon={["fas", "bars"]}> h</FontAwesomeIcon>
             </button>
             <button
-              className={(lined ? "not-selected" : "") + " iconButton"}
+              className={(lined ? "not-selected" : "selected") + " iconButton"}
               onClick={() => setLined(false)}
             >
               <FontAwesomeIcon icon={["fas", "th"]}> h</FontAwesomeIcon>
