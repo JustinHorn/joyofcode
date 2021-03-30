@@ -2,19 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import Feed from "component/Feed";
 
 import UserContext from "context";
-import { useLocation, useHistory } from "react-router-dom";
 
 import TagInput from "component/forms/Inputs/TagInput";
 
 import styles from "./mainpage.module.css";
 import ProjectLayoutContext from "context/ProjectLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import ToggleLinedCached from "component/ToggleLinedCached";
-function useQuery() {
-  const location = useLocation();
-  return new URLSearchParams(location.search);
-}
+import useLinedCached from "hooks/useLinedCached";
 
 const Mainpage = () => {
   const { user } = useContext(UserContext);
@@ -38,31 +32,11 @@ const Mainpage = () => {
     return true;
   };
 
-  const query = useQuery();
-
-  const queryLined = query.get("lined");
-
-  let initLined = false;
-
-  if (queryLined && (queryLined === "true" || queryLined === "false")) {
-    initLined = queryLined === "true";
-  }
-
   const setValue = (x) => {
     setFilters({ ...filters, value: x });
   };
 
-  const [lined, setLined] = useState(!!initLined);
-
-  const history = useHistory();
-  useEffect(() => {
-    if (lined) {
-      query.set("lined", "true");
-    } else {
-      query.set("lined", "false");
-    }
-    history.replace(window.location.pathname + "?" + query.toString());
-  }, [lined]);
+  const [lined, setLined] = useLinedCached(true);
 
   return (
     <div className={styles.main}>
