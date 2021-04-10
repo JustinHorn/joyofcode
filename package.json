@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./index.js",
     "clean": "kill -9 $(lsof -t -i:4000)",
-    "dev": "nodemon -e .js,.graphql --ignore '/client'",
+    "dev": "nodemon -e .js,.graphql --ignore client/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "yarn prisma generate && cd client && yarn && yarn build"
   },

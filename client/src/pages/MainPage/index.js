@@ -36,7 +36,7 @@ const Mainpage = () => {
     setFilters({ ...filters, value: x });
   };
 
-  const [lined, setLined] = useLinedCached(true);
+  const [lined, setLined] = useLinedCached(false);
 
   return (
     <div className={styles.main}>
