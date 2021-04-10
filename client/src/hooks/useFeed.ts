@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useQuery, gql } from "@apollo/client";
 
@@ -24,12 +24,31 @@ const useFeed:(props:any) => any = (props = {}) => {
     variables: FeedQueryAndVars.variables,
   });
 
+
+  // loading does not seem to get updated on fetch more
+  const [isLoading,setIsLoading] = useState(loading);
+
+  useEffect(() => {
+    setIsLoading(loading)
+  },[loading])
+
+  const real_loading = loading || isLoading
+
   const addItems = () => {
-    if(!loading) {
+    if(!real_loading) {
+      setIsLoading(true)
       fetchMore({
         variables: { take: take + 3, skip: take },
         updateQuery: (prev:any, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prev;
+          setIsLoading(false);
+
+          if (!fetchMoreResult) return prev;         
+          
+          console.log("prev");
+          console.log(prev);
+          console.log("fetchMoreResult");
+
+          console.log(fetchMoreResult);
           setTake(take + 3);
   
           return Object.assign({}, prev, {
@@ -40,7 +59,14 @@ const useFeed:(props:any) => any = (props = {}) => {
     }
   };
 
-  return { data, loading, error, addItems ,take};
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      alert(error);
+    }
+  }, [error]);
+
+  return { data, loading:real_loading, old_loading:loading, error, addItems ,take};
 };
 
 export default useFeed;

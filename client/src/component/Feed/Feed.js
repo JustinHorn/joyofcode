@@ -11,11 +11,12 @@ import useHandleQuery from "helper/useHandleQuery";
 import ProjectLayoutContext from "context/ProjectLayout";
 
 import useDoOnView from "hooks/useDoOnView";
+import ReactLoading from "react-loading";
 
 const Feed = ({ filter, query }) => {
   !filter && (filter = () => true);
 
-  const { data, addItems, loading } = query;
+  const { data, addItems, loading, old_loading } = useFeed();
   const { lined } = useContext(ProjectLayoutContext);
 
   const projects = data?.feed.map((x) => ({
@@ -36,10 +37,17 @@ const Feed = ({ filter, query }) => {
         <List Key="feed" Component={Project} list={filteredProjects} />
       </div>
       <span ref={dotDotDot} onClick={addItems} className="load">
-        . . .
+        {(loading && (
+          <ReactLoading
+            className="loader"
+            color={"black"}
+            type={old_loading ? "spin" : "bubbles"}
+          />
+        )) ||
+          ". . ."}
       </span>
     </div>
   );
 };
 
-export default (props) => useHandleQuery(props, useFeed, Feed);
+export default Feed;
