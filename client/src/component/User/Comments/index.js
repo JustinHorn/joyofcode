@@ -14,7 +14,7 @@ const UserComments = ({ userId }) => {
     <UserGeneral
       {...{
         component: UserComment,
-        listClass: "list-small",
+        listClass: "list row-gap-10",
         useQuery,
         buttonClass: "my-20",
       }}

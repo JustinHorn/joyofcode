@@ -17,7 +17,7 @@ const UserLikes = ({ userId }) => {
   return (
     <UserGeneral
       {...{
-        listClass: "list-small px5",
+        listClass: "list row-gap-10",
         useQuery,
         component: Like,
         buttonClass: "my-10",
