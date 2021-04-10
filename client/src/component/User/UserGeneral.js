@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 
 import List from "component/List";
 import useOnView from "react-useonview";
+import ReactLoading from "react-loading";
 
 const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
-  const { list, loading, error, addItems, take } = useQuery();
+  const { list, loading, error, addItems, old_loading } = useQuery();
 
   const viewTrigger = useOnView(addItems);
 
@@ -13,7 +14,6 @@ const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
       alert(error);
     }
   }, [error]);
-  if (loading) return "loading";
 
   return (
     <div className="">
@@ -25,7 +25,14 @@ const UserGeneral = ({ listClass, buttonClass, useQuery, component }) => {
         onClick={addItems}
         className={buttonClass + " load"}
       >
-        ...
+        {(loading && (
+          <ReactLoading
+            className="loader"
+            color={"black"}
+            type={old_loading ? "spin" : "bubbles"}
+          />
+        )) ||
+          ". . ."}
       </span>
     </div>
   );

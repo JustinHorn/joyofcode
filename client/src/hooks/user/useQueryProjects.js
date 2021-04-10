@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { projectQuery } from "forms";
 import { useQuery, gql } from "@apollo/client";
@@ -22,21 +22,41 @@ const useQueryProjects = (props) => {
     variables: { id: userId, take, orderBy: { date: "desc" } },
   });
 
-  const addItems = () => {
-    !loading &&
-      fetchMore({
-        variables: { take: take + 3, skip: take },
-        updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prev;
-          setTake(take + 3);
+  // loading does not seem to get updated on fetch more
+  const [isLoading, setIsLoading] = useState(loading);
 
-          return Object.assign({}, prev, {
-            userProjects: [...fetchMoreResult.userProjects],
-          });
-        },
-      });
+  useEffect(() => {
+    setIsLoading(loading);
+  }, [loading]);
+
+  const real_loading = loading || isLoading;
+
+  const addItems = () => {
+    if (real_loading) return;
+    setIsLoading(true);
+    fetchMore({
+      variables: { take: take + 3, skip: take },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        setIsLoading(false);
+
+        if (!fetchMoreResult) return prev;
+        setTake(take + 3);
+
+        return Object.assign({}, prev, {
+          userProjects: [...fetchMoreResult.userProjects],
+        });
+      },
+    });
   };
-  return { list: data?.userProjects, data, loading, error, addItems, take };
+  return {
+    list: data?.userProjects,
+    data,
+    loading: real_loading,
+    old_loading: loading,
+    error,
+    addItems,
+    take,
+  };
 };
 
 export default useQueryProjects;
