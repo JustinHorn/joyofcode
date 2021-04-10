@@ -1,16 +1,14 @@
 .nav {
-  position: fixed;
   display: grid;
 
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas: "pages headline actions";
+  grid-template-columns: 9vw auto 1fr auto 9vw;
+  grid-template-areas: ". pages headline actions .";
 
   text-align: right;
-  width: 80vw;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  width: 100%;
   background-color: white;
   place-items: center;
+  margin: 0;
 }
 
 .headline {
