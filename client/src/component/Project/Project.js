@@ -23,6 +23,8 @@ import cn from "classnames";
 
 import iconList from "data";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Project = (props) => {
   const {
     id,
@@ -68,7 +70,7 @@ const Project = (props) => {
     >
       <ProjectLayoutContext.Provider value={{ lined }}>
         <div className={lined ? styles.lined : styles.cached}>
-          <Headline {...{ id, href, title }} />
+          <Headline {...{ id, href, title, github }} />
           {!lined && <Picture {...{ id, imgUrl }} />}
           {!lined && isProjectPage && <Description {...{ description }} />}
           <TechStack {...{ icons }} />
@@ -78,7 +80,7 @@ const Project = (props) => {
               tags,
 
               preview,
-              github,
+
               postedBy,
             }}
           />

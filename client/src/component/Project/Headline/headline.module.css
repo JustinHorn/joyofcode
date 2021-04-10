@@ -16,3 +16,17 @@
   margin: 0;
   color: black;
 }
+
+.normal button {
+  margin: 0;
+  padding: 5px;
+  width: 40px;
+  color: yellow;
+  background-color: black;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.lined .normal button {
+  width: 30px;
+}
