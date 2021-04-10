@@ -29,7 +29,7 @@ const UserPage = () => {
 
   const [lined, setLined] = useLinedCached(true);
   return (
-    <div className={styles.userpage}>
+    <div className={""}>
       <h1>Projects of {user?.name}</h1>
 
       <div className="text-left list">

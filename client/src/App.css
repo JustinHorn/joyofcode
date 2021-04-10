@@ -1,18 +1,12 @@
 .Layout {
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 9vw 1fr 9vw;
   grid-template-rows: auto auto;
-  grid-template-areas:
-    "navbar navbar navbar"
-    ". main .";
+  grid-template-areas: ". main .";
   text-align: center;
   min-height: 100vh;
   background-color: white;
   z-index: -1;
-}
-
-.navbar {
-  grid-area: navbar;
 }
 
 main {
