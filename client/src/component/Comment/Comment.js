@@ -4,6 +4,7 @@ import styles from "./comment.module.css";
 
 import UserContext from "context/UserContext";
 import PostInfoGeneral from "component/postInfo/General";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comment = ({ text, postedBy, date, remove }) => {
   const { projectByCurrentUser } = useContext(UserContext);
@@ -11,18 +12,16 @@ const Comment = ({ text, postedBy, date, remove }) => {
   const you = projectByCurrentUser(postedBy.id);
   return (
     <span className={styles.comment}>
-      {remove && (
-        <span className={styles.commentsInfo}>
-          <PostInfoComment postedBy={postedBy} date={date} />
-          {you && <button onClick={remove}>DELETE</button>}
-        </span>
+      <span className={styles.commentsInfo}>
+        <PostInfoComment postedBy={postedBy} date={date} />
+      </span>
+
+      <span className={styles.text}>{text}</span>
+      {you && (
+        <button title="delete" onClick={remove}>
+          <FontAwesomeIcon icon={["fas", "trash-alt"]}>h</FontAwesomeIcon>
+        </button>
       )}
-      <textarea
-        readOnly={true}
-        rows={text.split("\n").length}
-        value={text}
-        className={styles.text}
-      />
     </span>
   );
 };
