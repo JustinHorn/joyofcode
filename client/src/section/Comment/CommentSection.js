@@ -54,14 +54,16 @@ const CommentSection = ({ projectId }) => {
 
 const CommentList = ({ comments, getRemoveComment }) => {
   return (
-    <div className={"list row-gap-10 " + styles.height}>
-      {comments.map((content, index) => (
-        <Comment
-          key={content.id}
-          {...content}
-          remove={getRemoveComment(content.id)}
-        />
-      ))}
+    <div className={styles.height}>
+      <div className={"list row-gap-10 "}>
+        {comments.map((content, index) => (
+          <Comment
+            key={content.id}
+            {...content}
+            remove={getRemoveComment(content.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
