@@ -10,7 +10,11 @@
   width: 100%;
   text-align: left;
   display: grid;
-  grid-template-columns: 20vw 10vw 20vw 7vw 15vw;
+  grid-template-columns: 25% 10fr 10fr 15fr 10fr;
   column-gap: 5px;
-  padding: 2%;
+  padding: 10px;
+}
+
+.width {
+  width: 100%;
 }

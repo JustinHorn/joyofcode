@@ -53,10 +53,17 @@ const Project = (props) => {
   if (!icons.length) {
     icons = ["nothing"];
   }
+
+  let cn_property = {};
+  cn_property[styles.width] = lined;
   return (
     <div
       className={cn({
-        [cn("box-shadow ", lined ? "p-2" : "p-2r")]: !isProjectPage,
+        [cn(
+          "box-shadow ",
+          lined ? "p-2" : "p-2r",
+          cn_property
+        )]: !isProjectPage,
       })}
     >
       <ProjectLayoutContext.Provider value={{ lined }}>
