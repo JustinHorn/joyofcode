@@ -24,7 +24,7 @@ const CommentSection = ({ projectId }) => {
   }, []);
 
   return (
-    <div>
+    <div styles={styles.section}>
       <div className="list row-gap-10">
         <textarea
           name="comment"
@@ -54,7 +54,7 @@ const CommentSection = ({ projectId }) => {
 
 const CommentList = ({ comments, getRemoveComment }) => {
   return (
-    <div className="list row-gap-10">
+    <div className={"list row-gap-10 " + styles.height}>
       {comments.map((content, index) => (
         <Comment
           key={content.id}

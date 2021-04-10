@@ -2,3 +2,12 @@
   margin-left: auto;
   width: fit-content;
 }
+
+.section {
+  height: min-content;
+}
+
+.height {
+  overflow-y: auto;
+  height: 500px;
+}

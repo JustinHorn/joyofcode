@@ -14,6 +14,8 @@ import useProject from "hooks/useProject";
 
 import useHandleQuery from "helper/useHandleQuery";
 
+import styles from "./projectPage.module.css";
+
 const ProjectPage = ({ query }) => {
   let { id } = useParams();
 
@@ -27,25 +29,27 @@ const ProjectPage = ({ query }) => {
   const postedByCurrentUser = data?.project?.postedBy.id === user?.id && user;
 
   return (
-    <div>
+    <div className={""}>
       {postedByCurrentUser && (
         <button onClick={() => setUpdate(!isUpdate)}>edit</button>
       )}
 
       {postedByCurrentUser && <DeleteHandler projectId={id} />}
 
-      {data && <Project {...data?.project} showDescription={true} />}
-      {data?.project && (
-        <>
-          <CommentSection projectId={id} />
-
+      {data && (
+        <div className={styles.page}>
+          <div className={styles.flex}>
+            <CommentSection projectId={id} />
+          </div>
+          <Project {...data?.project} showDescription={true} />
           <ProjectUpdatePopup
             show={isUpdate}
             onClickAway={() => setUpdate(false)}
             projectValues={data?.project}
           />
-        </>
+        </div>
       )}
+      <hr />
     </div>
   );
 };

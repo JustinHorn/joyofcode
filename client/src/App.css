@@ -1,10 +1,8 @@
 .Layout {
   display: grid;
   grid-template-columns: 9vw 1fr 9vw;
-  grid-template-rows: auto auto;
   grid-template-areas: ". main .";
   text-align: center;
-  min-height: 100vh;
   background-color: white;
   z-index: -1;
 }
