@@ -21,9 +21,26 @@ import ProjectLayoutContext from "context/ProjectLayout";
 import { useLocation } from "react-router-dom";
 import cn from "classnames";
 
-import iconList from "data";
+import iconList, { NoIcon } from "data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+type ProjectProps = {
+  id: number;
+  title: string;
+  tags: Tag[];
+  href: string;
+  postedBy: User;
+  imgUrl?: string;
+  date: number;
+  description: string;
+  github?: string;
+  likes: Like[];
+  preview: boolean;
+  commentCount: number;
+  showDescription: boolean;
+  techTags: string[];
+};
 
 const Project = (props: any) => {
   const {
@@ -41,7 +58,7 @@ const Project = (props: any) => {
     commentCount,
     showDescription: isUpdate,
     techTags,
-  } = props;
+  } = props as ProjectProps;
 
   const contextProps = useContext(ProjectLayoutContext);
   const lined = contextProps?.lined;
@@ -50,12 +67,12 @@ const Project = (props: any) => {
 
   const isProjectPage = location.pathname.includes("/project/") || isUpdate;
 
-  let icons = techTags.map((name: string) =>
-    iconList.find((i) => i.name === name)
-  );
+  let icons = techTags
+    .map((name: string) => iconList.find((i) => i.name === name))
+    .filter((result) => !!result) as TechIcon[];
 
-  if (!icons.length) {
-    icons = ["nothing"];
+  if (icons.length === 0) {
+    icons = [NoIcon];
   }
 
   const prop_string: string = styles.width;
@@ -77,15 +94,10 @@ const Project = (props: any) => {
           <Headline {...{ id, href, title, github }} />
           {!lined && <Picture {...{ id, imgUrl }} />}
           {!lined && isProjectPage && <Description {...{ description }} />}
-          <TechStack {...{ icons }} />
+          <TechStack icons={icons} />
           <TagsAndMutations
             {...{
-              id,
               tags,
-
-              preview,
-
-              postedBy,
             }}
           />
           {!preview && (

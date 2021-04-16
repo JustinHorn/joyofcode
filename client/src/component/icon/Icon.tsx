@@ -1,8 +1,12 @@
 import React from "react";
 
+type IconProps = {
+  location?: string;
+  className?: string;
+  backgroundSize?: string;
+};
 
-
-function Icon({ location, className, backgroundSize }:IconProps) {
+function Icon({ location, className, backgroundSize }: IconProps) {
   return (
     <div
       className={" icon " + className}

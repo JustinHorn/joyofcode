@@ -1,8 +1,11 @@
 import React from "react";
-import Icon from "component/icon/Icon";
 
 import List from "component/List";
 import TechStackTag from "component/Tag/TechStackTag";
+
+type TechStackProps = {
+  icons: TechIcon[];
+};
 
 const TechStack = ({ icons = [] }: TechStackProps) => {
   return (

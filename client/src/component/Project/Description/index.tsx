@@ -3,7 +3,11 @@ import DOMPurify from "dompurify";
 
 import marked from "marked";
 
-const Description = ({ description }:DescriptionProps) => (
+type DescriptionProps = {
+  description: string;
+};
+
+const Description = ({ description }: DescriptionProps) => (
   <div
     dangerouslySetInnerHTML={{
       __html: DOMPurify.sanitize(marked(description)),
