@@ -25,7 +25,7 @@ import iconList from "data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Project = (props) => {
+const Project = (props: any) => {
   const {
     id,
     title,
@@ -50,14 +50,18 @@ const Project = (props) => {
 
   const isProjectPage = location.pathname.includes("/project/") || isUpdate;
 
-  let icons = techTags.map((name) => iconList.find((i) => i.name === name));
+  let icons = techTags.map((name: string) =>
+    iconList.find((i) => i.name === name)
+  );
 
   if (!icons.length) {
     icons = ["nothing"];
   }
 
-  let cn_property = {};
-  cn_property[styles.width] = lined;
+  const prop_string: string = styles.width;
+
+  let cn_property: any = {};
+  cn_property[prop_string] = !!lined;
   return (
     <div
       className={cn({

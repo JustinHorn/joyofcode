@@ -8,7 +8,14 @@ import ProjectLayoutContext from "context/ProjectLayout";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Headline = ({ id, href, title, github }) => {
+type HeadlineProps = {
+  id: number;
+  href: string;
+  title: string;
+  github?: string;
+};
+
+const Headline = ({ id, href, title, github }: HeadlineProps) => {
   const hostname = new Url(href).hostname;
 
   const { lined } = useContext(ProjectLayoutContext);
@@ -31,7 +38,7 @@ const Headline = ({ id, href, title, github }) => {
           href={href}
         >
           <button>
-            <FontAwesomeIcon icon={["fas", "eye"]}>h</FontAwesomeIcon>{" "}
+            <FontAwesomeIcon icon={["fas", "eye"]}></FontAwesomeIcon>{" "}
           </button>
         </a>
         {github && (
@@ -42,7 +49,7 @@ const Headline = ({ id, href, title, github }) => {
             href={github}
           >
             <button>
-              <FontAwesomeIcon icon={["fas", "code"]}>h</FontAwesomeIcon>{" "}
+              <FontAwesomeIcon icon={["fas", "code"]}></FontAwesomeIcon>{" "}
             </button>
           </a>
         )}
@@ -51,7 +58,7 @@ const Headline = ({ id, href, title, github }) => {
   );
 };
 
-function maxChar(str) {
+function maxChar(str: string): string {
   let maxChar = 27;
 
   if (str.length > maxChar) {

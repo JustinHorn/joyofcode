@@ -4,10 +4,7 @@ import Icon from "component/icon/Icon";
 import List from "component/List";
 import TechStackTag from "component/Tag/TechStackTag";
 
-
-
-
-const TechStack = ({ icons = [] } :TechStackProps) => {
+const TechStack = ({ icons = [] }: TechStackProps) => {
   return (
     <ul className="flex-left overflow-x" style={{ paddingLeft: "0px" }}>
       <List

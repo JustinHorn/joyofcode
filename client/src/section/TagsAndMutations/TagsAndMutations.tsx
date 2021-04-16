@@ -7,13 +7,18 @@ import styles from "./tagsandmutations.module.css";
 import List from "component/List";
 import Tag from "component/Tag";
 
+type TagsAndMutationsProps = {
+  tags?: Tag[];
+  github?: string;
+};
+
 const TagsAndMutations = ({
   tags,
 
   github,
-}) => {
-  if (tags.length === 0) {
-    tags = [{ name: "..." }];
+}: TagsAndMutationsProps) => {
+  if (!tags || tags.length === 0) {
+    tags = [{ name: "...", id: -1 }];
   }
 
   return (
@@ -21,7 +26,7 @@ const TagsAndMutations = ({
       {github && <LinkIcon src="/img/icons/github.png" href={github} />}
 
       <List
-        list={tags?.map((t) => ({ text: t.name }))}
+        list={tags.map((t) => ({ text: t.name }))}
         Key={"tAM"}
         Component={Tag}
       />

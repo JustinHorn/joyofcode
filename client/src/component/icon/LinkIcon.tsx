@@ -1,6 +1,12 @@
 import React from "react";
 
-const LinkIcon = ({ src, href, className }) => {
+type LinkIconProps = {
+  src:string;
+  href:string;
+  className?:string;
+}
+
+const LinkIcon = ({ src, href, className }:LinkIconProps) => {
   return (
     <a href={href}>
       <div
