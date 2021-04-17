@@ -13,13 +13,19 @@ const MUTATION_DELETE = gql`
   }
 `;
 
-const useDeleteProject = (props) => {
+type useDeleteProjectReturn = {
+  deleteProject: (obj: { variables: { id: number } }) => any;
+  error: any;
+  called: boolean;
+};
+
+const useDeleteProject = (props: any): useDeleteProjectReturn => {
   const [deleteProject, { error, called }] = useMutation(MUTATION_DELETE, {
-    update(cache, m_result, m_id) {
+    update(cache: any, m_result: any, m_id: any) {
       const { deleteProject } = m_result.data;
       const feed = readFeed(cache);
 
-      const index = feed.findIndex((x) => x.id === deleteProject.id);
+      const index = feed.findIndex((x: any) => x.id === deleteProject.id);
       const new_data = {
         feed: [...feed.slice(0, index), ...feed.slice(index + 1)],
       };

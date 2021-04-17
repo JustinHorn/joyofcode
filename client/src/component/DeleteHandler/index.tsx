@@ -4,11 +4,15 @@ import useDeleteProject from "hooks/project/useDelete";
 
 import { useHistory } from "react-router-dom";
 
-const DeleteHandler = ({ projectId }) => {
+type DeleteHandlerProps = {
+  projectId: number;
+};
+
+const DeleteHandler = ({ projectId }: DeleteHandlerProps) => {
   const history = useHistory();
 
   const { deleteProject, error } = useDeleteProject({
-    onCompleted: (data) => {
+    onCompleted: (data: any) => {
       const { id, title } = data.deleteProject;
       alert(`Project ${title} was deleted`);
       history.push("/");
