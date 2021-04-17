@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const location = useLocation();
 
-  const isSelected = (path) => {
+  const isSelected = (path: string) => {
     return location.pathname === path ? "selected" : "";
   };
 
