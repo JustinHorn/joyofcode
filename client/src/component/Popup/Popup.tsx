@@ -1,12 +1,12 @@
-import React from "react";
-import { JsxElement } from "typescript";
+import React, { ReactChildren, ReactNode } from "react";
+import { JsxChild, JsxElement } from "typescript";
 
 import styles from "./popup.module.css";
 
 type PopupProps = {
   show: boolean;
   onClickAway?: () => any;
-  children: JsxElement;
+  children: ReactNode;
 };
 
 const Popup = ({ show, onClickAway, children }: PopupProps) => (

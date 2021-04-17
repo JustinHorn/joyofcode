@@ -4,12 +4,16 @@ import UserContext from "context";
 
 import iconList from "data";
 
-const Preview = ({ formValues }) => {
-  const values = {};
+type PreviewProps = {
+  formValues: any;
+};
+
+const Preview = ({ formValues }: PreviewProps) => {
+  const values: any = {};
 
   Object.keys(formValues).forEach((k) => (values[k] = formValues[k].value));
 
-  const tags = values.tags.map((x) => ({
+  const tags = values.tags.map((x: string) => ({
     name: x,
   }));
   const { user } = useContext(UserContext);

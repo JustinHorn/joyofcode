@@ -7,13 +7,23 @@ import { updateOptions } from "forms/Options";
 import useUpdateProject from "hooks/project/useUpdate";
 import MutationMenu from "component/MutationMenu";
 
-const ProjectUpdatePopup = ({ projectValues, show, onClickAway }) => {
+type ProjectUpdatePopupProps = {
+  projectValues: any;
+  show: boolean;
+  onClickAway: () => any;
+};
+
+const ProjectUpdatePopup = ({
+  projectValues,
+  show,
+  onClickAway,
+}: ProjectUpdatePopupProps) => {
   const { id } = projectValues;
 
   const propsM = useHandleFormValues(updateOptions, projectValues);
   const { update: mutation } = useUpdateProject();
 
-  const doMutation = ({ variables }) => {
+  const doMutation = ({ variables }: { variables: any }) => {
     variables.id = id;
     mutation({ variables });
     onClickAway();

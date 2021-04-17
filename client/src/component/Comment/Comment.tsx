@@ -6,7 +6,14 @@ import UserContext from "context/UserContext";
 import PostInfoGeneral from "component/postInfo/General";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Comment = ({ text, postedBy, date, remove }) => {
+export type CommentProps = {
+  text: string;
+  postedBy: User;
+  date: number;
+  remove?: () => any;
+};
+
+const Comment = ({ text, postedBy, date, remove }: CommentProps) => {
   const { projectByCurrentUser } = useContext(UserContext);
 
   const you = projectByCurrentUser(postedBy.id);
@@ -19,19 +26,25 @@ const Comment = ({ text, postedBy, date, remove }) => {
       <span className={styles.text}>{text}</span>
       {you && (
         <button title="delete" onClick={remove}>
-          <FontAwesomeIcon icon={["fas", "trash-alt"]}>h</FontAwesomeIcon>
+          <FontAwesomeIcon icon={["fas", "trash-alt"]}></FontAwesomeIcon>
         </button>
       )}
     </span>
   );
 };
 
-const PostInfoComment = ({ postedBy, date }) => {
+export type PostInfoCommentProps = {
+  postedBy: User;
+  date: number;
+};
+
+const PostInfoComment = ({ postedBy, date }: PostInfoCommentProps) => {
   const { projectByCurrentUser } = useContext(UserContext);
 
   const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
   return (
     <PostInfoGeneral
+      prefix={""}
       link={"/user/" + postedBy.id}
       linkText={posterName}
       date={date}

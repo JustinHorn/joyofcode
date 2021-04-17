@@ -7,8 +7,22 @@ import styles from "./menu.module.css";
 
 import { testMatch, formatVars } from "forms/Options";
 
-const MutationMenu = ({ options, mutation, props, headline, actionName }) => {
-  const doMutation = (props) => {
+type MutationMenuProps = {
+  options: any;
+  mutation: (x: { variables: any }) => any;
+  props: any;
+  headline?: string;
+  actionName?: string;
+};
+
+const MutationMenu = ({
+  options,
+  mutation,
+  props,
+  headline,
+  actionName,
+}: MutationMenuProps) => {
+  const doMutation = (props:object) => {
     if (testMatch(options, props)) {
       const variables = formatVars(options, props);
       mutation({ variables });
