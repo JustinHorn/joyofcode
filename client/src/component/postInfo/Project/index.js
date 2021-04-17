@@ -14,9 +14,9 @@ const PostInfoProject = ({ postedBy, date }) => {
 
   const userPage = location.pathname.includes("/user/");
 
-  const { projectByCurrentUser } = useContext(UserContext);
+  const { isCurrentUser } = useContext(UserContext);
 
-  const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
+  const posterName = isCurrentUser(postedBy.id) ? "you" : postedBy?.name;
 
   const { lined } = useContext(ProjectLayoutContext);
 

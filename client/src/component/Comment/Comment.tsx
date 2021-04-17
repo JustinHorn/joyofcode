@@ -14,9 +14,9 @@ export type CommentProps = {
 };
 
 const Comment = ({ text, postedBy, date, remove }: CommentProps) => {
-  const { projectByCurrentUser } = useContext(UserContext);
+  const { isCurrentUser } = useContext(UserContext);
 
-  const you = projectByCurrentUser(postedBy.id);
+  const you = isCurrentUser(postedBy.id);
   return (
     <span className={styles.comment}>
       <span className={styles.commentsInfo}>
@@ -39,9 +39,9 @@ export type PostInfoCommentProps = {
 };
 
 const PostInfoComment = ({ postedBy, date }: PostInfoCommentProps) => {
-  const { projectByCurrentUser } = useContext(UserContext);
+  const { isCurrentUser } = useContext(UserContext);
 
-  const posterName = projectByCurrentUser(postedBy.id) ? "you" : postedBy?.name;
+  const posterName = isCurrentUser(postedBy.id) ? "you" : postedBy?.name;
   return (
     <PostInfoGeneral
       prefix={""}

@@ -22,7 +22,7 @@ const MutationMenu = ({
   headline,
   actionName,
 }: MutationMenuProps) => {
-  const doMutation = (props:object) => {
+  const doMutation = (props: object) => {
     if (testMatch(options, props)) {
       const variables = formatVars(options, props);
       mutation({ variables });
