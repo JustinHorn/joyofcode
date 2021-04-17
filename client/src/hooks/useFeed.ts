@@ -17,40 +17,50 @@ export const FeedQueryAndVars = {
   variables: { take: 6, orderBy: { date: "desc" } },
 };
 
-const useFeed:(props:any) => any = (props = {}) => {
-  const [take, setTake] = useState(props.take || 6);
+type useFeedProps = {
+  take: number;
+};
+
+type useFeedReturn = {
+  data: {
+    feed: Project[];
+  };
+  loading: boolean;
+  old_loading: boolean;
+  error: any;
+  addItems: () => void;
+  take: number;
+};
+
+const useFeed: (props?: useFeedProps) => useFeedReturn = (
+  props = { take: 6 }
+) => {
+  const [take, setTake] = useState(props.take);
 
   const { data, loading, error, fetchMore } = useQuery(FeedQueryAndVars.query, {
     variables: FeedQueryAndVars.variables,
   });
 
-
   // loading does not seem to get updated on fetch more
-  const [isLoading,setIsLoading] = useState(loading);
+  const [isLoading, setIsLoading] = useState(loading);
 
   useEffect(() => {
-    setIsLoading(loading)
-  },[loading])
+    setIsLoading(loading);
+  }, [loading]);
 
-  const real_loading = loading || isLoading
+  const real_loading = loading || isLoading;
 
   const addItems = () => {
-    if(!real_loading) {
-      setIsLoading(true)
+    if (!real_loading) {
+      setIsLoading(true);
       fetchMore({
         variables: { take: take + 3, skip: take },
-        updateQuery: (prev:any, { fetchMoreResult }) => {
+        updateQuery: (prev: any, { fetchMoreResult }) => {
           setIsLoading(false);
 
-          if (!fetchMoreResult) return prev;         
-          
-          console.log("prev");
-          console.log(prev);
-          console.log("fetchMoreResult");
-
-          console.log(fetchMoreResult);
+          if (!fetchMoreResult) return prev;
           setTake(take + 3);
-  
+
           return Object.assign({}, prev, {
             feed: [...fetchMoreResult.feed],
           });
@@ -66,7 +76,16 @@ const useFeed:(props:any) => any = (props = {}) => {
     }
   }, [error]);
 
-  return { data, loading:real_loading, old_loading:loading, error, addItems ,take};
+  console.log(data);
+
+  return {
+    data,
+    loading: real_loading,
+    old_loading: loading,
+    error,
+    addItems,
+    take,
+  };
 };
 
 export default useFeed;

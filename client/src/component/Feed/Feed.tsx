@@ -13,23 +13,27 @@ import ProjectLayoutContext from "context/ProjectLayout";
 import useDoOnView from "hooks/useDoOnView";
 import ReactLoading from "react-loading";
 
-const Feed = ({ filter, query }) => {
-  !filter && (filter = () => true);
+type Feed = {
+  filter?: (x: any) => boolean;
+};
 
+const Feed = ({ filter }: Feed) => {
   const { data, addItems, loading, old_loading } = useFeed();
   const { lined } = useContext(ProjectLayoutContext);
 
-  const projects = data?.feed.map((x) => ({
+  const projects = data?.feed.map((x: any) => ({
     ...x,
     showDescription: false,
   }));
 
-  const filteredProjects = useMemo(() => projects?.filter(filter), [
-    filter,
-    projects,
-  ]);
+  const filteredProjects = useMemo(
+    () => projects?.filter(filter || ((x: any) => true)),
+    [filter, projects]
+  );
 
-  const dotDotDot = useDoOnView(addItems);
+  const dotDotDot = (useDoOnView(
+    addItems
+  ) as unknown) as React.LegacyRef<HTMLSpanElement>;
 
   return (
     <div>
