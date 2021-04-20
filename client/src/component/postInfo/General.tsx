@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 
 type PostInfoGeneralProps = {
   className?: string;
-  prefix: string;
-  link: string;
-  linkText: string;
+  prefix?: string;
+  link?: string;
+  linkText?: string;
   date: number;
 };
 
@@ -24,7 +24,7 @@ const PostInfoGeneral = ({
   return (
     <span className={styles.postInfo + " " + className}>
       {prefix && ` posted ${prefix} `}
-      <Link to={link}>{linkText}</Link>
+      <Link to={link || ""}>{linkText}</Link>
       {" " + formatTimeDiff(date) + " ago"}
     </span>
   );

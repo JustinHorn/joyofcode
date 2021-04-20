@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { useLazyQuery ,gql} from "@apollo/client";
+import { useLazyQuery, gql } from "@apollo/client";
 import UserContext from "context";
 
 const QueryUser = gql`
@@ -16,13 +16,13 @@ const QueryUser = gql`
 `;
 
 const useGetUser = (id) => {
-  const { user: currentUser, idOfCurrentUser } = useContext(UserContext);
+  const { user: currentUser, isCurrentUser } = useContext(UserContext);
 
   const [getUserData, { data, loading, error }] = useLazyQuery(QueryUser, {
     variables: { id },
   });
 
-  let isIdOfCurrentUser = idOfCurrentUser(id);
+  let isIdOfCurrentUser = isCurrentUser(id);
 
   useEffect(() => {
     !isIdOfCurrentUser && getUserData();

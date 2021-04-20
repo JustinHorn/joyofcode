@@ -9,7 +9,12 @@ import styles from "./postinfoproject.module.css";
 
 import { useLocation } from "react-router-dom";
 
-const PostInfoProject = ({ postedBy, date }) => {
+type PostInfoProjectProps = {
+  postedBy: User;
+  date: number;
+};
+
+const PostInfoProject = ({ postedBy, date }: PostInfoProjectProps) => {
   const location = useLocation();
 
   const userPage = location.pathname.includes("/user/");
