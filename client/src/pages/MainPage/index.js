@@ -54,13 +54,13 @@ const Mainpage = () => {
               className={(lined ? "selected" : "not-selected") + " iconButton"}
               onClick={() => setLined(true)}
             >
-              <FontAwesomeIcon icon={["fas", "bars"]}> h</FontAwesomeIcon>
+              <FontAwesomeIcon icon={["fas", "bars"]}> </FontAwesomeIcon>
             </button>
             <button
               className={(lined ? "not-selected" : "selected") + " iconButton"}
               onClick={() => setLined(false)}
             >
-              <FontAwesomeIcon icon={["fas", "th"]}> h</FontAwesomeIcon>
+              <FontAwesomeIcon icon={["fas", "th"]}></FontAwesomeIcon>
             </button>
           </div>
         </div>
