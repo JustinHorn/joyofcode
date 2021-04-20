@@ -1,4 +1,4 @@
-const { getUserId } = require('./resolvers/helper/authentication');
+const { getUserId } = require('../resolvers/helper/authentication');
 
 const verifyUserId = async (resolve, root, args, context, info) => {
   const userId = await getUserId(context);
