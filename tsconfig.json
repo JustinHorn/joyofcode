@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+
+        "allowJs": true,
+        "target": "es6",
+      "module": "commonjs",
+      "rootDir": "./src",
+      "outDir": "./build",
+      "esModuleInterop": true,
+      "strict": true
+    },
+    "include": [
+        "src"
+      ],
+    "exclude": [
+        "./client/**/*",
+        "./built/**/*"
+    ]
+  }

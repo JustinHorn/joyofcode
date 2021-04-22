@@ -8,9 +8,7 @@ const Project = {
       .postedBy();
   },
   likes: (parent, args, context) => {
-    return (likes = context.prisma.project
-      .findOne({ where: { id: parent.id } })
-      .likes());
+    return context.prisma.project.findOne({ where: { id: parent.id } }).likes();
   },
   likeCount: async (parent, args, context) => {
     return await context.prisma.like.count({

@@ -1,16 +1,15 @@
-const { GraphQLServer } = require('graphql-yoga');
+import { GraphQLServer } from 'graphql-yoga';
 
-const express = require('express');
-const path = require('path');
+import path from 'path';
 
-const { resolvers } = require('./resolvers');
+import { resolvers } from './resolvers';
 
-const { PrismaClient } = require('@prisma/client');
-const { exception } = require('console');
+import { PrismaClient } from '@prisma/client';
 
 require('dotenv').config();
 
-const { middlewares } = require('./server/middleware');
+import { middlewares } from './server/middleware';
+import express from 'express';
 
 const prisma = new PrismaClient();
 
@@ -32,7 +31,7 @@ const options = {
   playground: '/graphql',
 };
 
-helmet = require('helmet');
+const helmet = require('helmet');
 
 server.express.use(
   helmet({
@@ -43,14 +42,14 @@ server.express.use(
 
 if (process.env.IS_DEVELOPMENT) {
   // display build version only on /
-  server.express.get('/', (req, res) => {
+  server.express.get('/', (_req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 } else {
   // display build version on all paths of server
   server.express.use(express.static(path.join(__dirname, 'client', 'build')));
 
-  server.express.get('*', (req, res) => {
+  server.express.get('*', (_req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 }
