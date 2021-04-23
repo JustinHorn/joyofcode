@@ -31,11 +31,41 @@ const mutation_unlikeProject = gql`
   }
 `;
 
-const useLikeProject = (like) => {
-  const [likeProject, { error, loading }] = useMutation(
-    like ? mutation_likeProject : mutation_unlikeProject,
+const useLikeProject = (liked) => {
+  const [likeProject, { error, loading }] = useMutation(mutation_likeProject, {
+    update: (cache, m_result, m_id) => {
+      const feed = readFeed(cache);
+      let r;
+
+      r = update_like(feed, m_result, m_id);
+
+      const { index, new_project } = r;
+      const new_data = {
+        feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
+      };
+      writeFeed(cache, new_data);
+    },
+  });
+
+  const [unlikeProject, { unlikeError, unlikeLoading }] = useMutation(
+    mutation_unlikeProject,
     {
-      update: update(like),
+      update: (cache, m_result, m_id) => {
+        const feed = readFeed(cache);
+        let r;
+
+        r = update_unlike(feed, m_result, m_id);
+
+        const { index, new_project } = r;
+        const new_data = {
+          feed: [
+            ...feed.slice(0, index),
+            new_project,
+            ...feed.slice(index + 1),
+          ],
+        };
+        writeFeed(cache, new_data);
+      },
     }
   );
 
@@ -45,22 +75,15 @@ const useLikeProject = (like) => {
     }
   }, [error]);
 
-  return { likeProject, error, loading };
-};
+  useEffect(() => {
+    if (unlikeError) {
+      alert(unlikeError);
+    }
+  }, [unlikeError]);
 
-const update = (like) => (cache, m_result, m_id) => {
-  const feed = readFeed(cache);
-  let r;
-  if (like) {
-    r = update_like(feed, m_result, m_id);
-  } else {
-    r = update_unlike(feed, m_result, m_id);
-  }
-  const { index, new_project } = r;
-  const new_data = {
-    feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
-  };
-  writeFeed(cache, new_data);
+  const toggleLikeProject = liked ? unlikeProject : likeProject;
+
+  return { toggleLikeProject, unlikeProject, likeProject, error, loading };
 };
 
 const update_like = (feed, m_result, m_id) => {
@@ -79,23 +102,15 @@ const update_unlike = (feed, m_result, m_id) => {
     (x) => x.likes.findIndex((l) => l.id === likeId) > -1
   );
 
-  const new_project = shallowCopy(feed[index]);
+  const new_project = { ...feed[index] };
   const new_likes = new_project.likes;
 
   const likeIndex = new_likes.findIndex((l) => l.id === likeId);
   new_project.likes = deleteElement(likeIndex, new_likes);
 
-  decrementValue(new_project, "likeCount");
+  new_project.likeCount -= 1;
 
   return { index, new_project };
-};
-
-const shallowCopy = (obj) => {
-  return { ...obj };
-};
-
-const decrementValue = (obj, value) => {
-  obj[value] -= 1;
 };
 
 const deleteElement = (index, arr) => [

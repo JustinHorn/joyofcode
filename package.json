@@ -7,7 +7,7 @@
     "node": "12.18.x"
   },
   "scripts": {
-    "start": "node src/index.ts",
+    "start": "node build/index.js",
     "build": "tsc --project ./",
     "build-docker":"yarn build && cd client/ && yarn build && cd .. && docker build -t joyofcode .",
     "clean": "kill -9 $(lsof -t -i:4000)",

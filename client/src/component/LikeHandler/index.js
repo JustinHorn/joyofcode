@@ -11,10 +11,10 @@ const LikeHandler = ({ likes, projectId }) => {
   const isLikedByUser =
     user && likes && !!likes.find((x) => x.user.id === user.id);
 
-  const { likeProject } = useLikeProject(!isLikedByUser);
+  const { toggleLikeProject } = useLikeProject(isLikedByUser);
 
   const onClick = () => {
-    likeProject({ variables: { id: projectId } });
+    toggleLikeProject({ variables: { id: projectId } });
   };
 
   return (

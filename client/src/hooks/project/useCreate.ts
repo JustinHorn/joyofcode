@@ -24,9 +24,26 @@ const ADDProject_Mutation = gql`
     }
   }
 `;
-const useCreateProject = (props) => {
+
+type useCreateProjectProps = any;
+type useCreateProjectReturn = {
+  createProject: (obj: {
+    variables: {
+      title: string;
+      tags: string[];
+      description?: string;
+      imgUrl?: string;
+      github?: string;
+      techTags?: string[];
+    };
+  }) => void;
+};
+
+const useCreateProject = (
+  props: useCreateProjectProps
+): useCreateProjectReturn => {
   const [createProject, { error, data }] = useMutation(ADDProject_Mutation, {
-    update(cache, m_result, m_id) {
+    update(cache: any, m_result: any, m_id: any) {
       const { addProject } = m_result.data;
       const feed = readFeed(cache);
 
