@@ -43,14 +43,16 @@ server.express.use(
 if (process.env.IS_DEVELOPMENT) {
   // display build version only on /
   server.express.get('/', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 } else {
   // display build version on all paths of server
-  server.express.use(express.static(path.join(__dirname, 'client', 'build')));
+  server.express.use(
+    express.static(path.join(__dirname, '..', 'client', 'build'))
+  );
 
   server.express.get('*', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
 
