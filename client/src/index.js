@@ -4,9 +4,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import ApolloProvider from "setUpApollo";
+import client from "setUpApollo";
 
 import { UserContextProvider } from "context/UserContext";
+
+import { ApolloProvider } from "@apollo/client/react";
 
 import { config, library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +18,7 @@ library.add(fas);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider>
+    <ApolloProvider client={client}>
       <UserContextProvider>
         <App />
       </UserContextProvider>

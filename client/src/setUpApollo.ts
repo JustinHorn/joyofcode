@@ -1,19 +1,19 @@
 import React from "react";
 
 import {
-  ApolloProvider,
   ApolloClient,
   HttpLink,
   split,
   InMemoryCache,
   ApolloLink,
+  from,
 } from "@apollo/client";
 
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 import { getMainDefinition } from "@apollo/client/utilities";
 
-import { onError } from "apollo-link-error";
+import { onError } from "@apollo/client/link/error";
 
 const location = window.location.host;
 
@@ -59,7 +59,7 @@ const link = process.browser
           definition.operation === "subscription"
         );
       },
-      wsLink,
+      wsLink!,
       httpLink
     )
   : httpLink;
@@ -69,14 +69,14 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, authLink.concat(link)]),
+  link: from([errorLink, authLink, link]),
   cache: new InMemoryCache(),
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log("graphQLErrors", graphQLErrors);
-    console.log("networkError", networkError);
-  },
 });
 
-export default ({ children }) => (
-  <ApolloProvider client={client}>{children}</ApolloProvider>
-);
+type ApolloProviderProps = {
+  children: React.ReactNode;
+};
+
+//       <ApolloProvider client={client}>{children}</ApolloProvider>
+
+export default client;
