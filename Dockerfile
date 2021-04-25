@@ -4,8 +4,8 @@ USER app
 
 WORKDIR /app
 COPY ["package.json","yarn.lock","./"]
-RUN yarn
-COPY ["/build","./server/"]
+COPY ["/build","./build/"]
 COPY ["/client/build","./client/build/"]
 COPY ["./prisma","./prisma/"]
-CMD ["yarn","prisma","generate","&&","yarn","start"]
+COPY ["./src/server/schema.graphql","./src/server/"]
+CMD yarn ; yarn prisma generate ; yarn start ;
