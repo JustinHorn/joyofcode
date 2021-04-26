@@ -15,7 +15,25 @@ export const userProjectsQuery = gql`
   }
 `;
 
-const useQueryProjects = (props) => {
+type useQueryProjectsProps = {
+  userId: number;
+  take?: number;
+};
+
+type useQueryProjectsReturn = {
+  list: Project[];
+  data: any;
+  loading: boolean;
+  old_loading: boolean;
+  error: any;
+  addItems: () => void;
+
+  take: number;
+};
+
+const useQueryProjects = (
+  props: useQueryProjectsProps
+): useQueryProjectsReturn => {
   const { userId, take: propsTake } = props;
   const [take, setTake] = useState(propsTake || 10);
   const { data, loading, error, fetchMore } = useQuery(userProjectsQuery, {
@@ -43,7 +61,7 @@ const useQueryProjects = (props) => {
         setTake(take + 3);
 
         return Object.assign({}, prev, {
-          userProjects: [...fetchMoreResult.userProjects],
+          userProjects: [...(fetchMoreResult as any).userProjects],
         });
       },
     });

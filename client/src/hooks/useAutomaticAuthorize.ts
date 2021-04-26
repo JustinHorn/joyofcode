@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { useLazyQuery, gql } from "@apollo/client";
+import { NoUser } from "context/UserContext";
 
 const query_authorize = gql`
   query {
@@ -16,7 +17,9 @@ const query_authorize = gql`
   }
 `;
 
-const useAutomaticAuthorize = (setUser) => {
+type useAutomaticAuthorizeProps = (x: User) => void;
+
+const useAutomaticAuthorize = (setUser: useAutomaticAuthorizeProps) => {
   const [call, { data, error }] = useLazyQuery(query_authorize);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ const useAutomaticAuthorize = (setUser) => {
 
   useEffect(() => {
     if (error) {
-      setUser(false);
+      setUser(NoUser);
     }
   }, [error]);
 };

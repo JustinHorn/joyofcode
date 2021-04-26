@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import useAutomaticAuthorize from "hooks/useAutomaticAuthorize";
 
-const NoUser: User = {
+export const NoUser: User = {
   id: -1,
   name: "",
 };
