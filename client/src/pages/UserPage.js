@@ -8,7 +8,7 @@ import useQueryProject from "hooks/user/useQueryProjects";
 
 import useGetUser from "hooks/useGetUser";
 
-import styles from "./userpage.module.css";
+import styles from "./styles/userPage.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProjectLayoutContext from "context/ProjectLayout";

@@ -5,15 +5,15 @@ import UserContext from "context";
 
 import MainPage from "pages/MainPage";
 
-import ProjectPage from "pages/Project";
+import ProjectPage from "pages/ProjectPage";
 
 import PrivateRoute from "component/PrivateRoute";
 
-import Post from "pages/Post";
+import Post from "pages/PostingPage";
 
 import ScrollToTop from "component/ScrollToTop";
 
-import AuthenticationPage from "pages/Authenticate";
+import AuthenticationPage from "pages/AuthenticationPage";
 
 import {
   BrowserRouter as Router,
@@ -23,7 +23,7 @@ import {
 } from "react-router-dom";
 import useFeed from "hooks/useFeed";
 
-import UserPage from "pages/User";
+import UserPage from "pages/UserPage";
 
 function App() {
   const { user } = useContext(UserContext);

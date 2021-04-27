@@ -8,7 +8,7 @@ import { Redirect, useLocation } from "react-router-dom";
 
 import UserContext from "context/UserContext";
 
-const AuthenticatePage = () => {
+const AuthenticationPage = () => {
   const [mutate, { data, error }] = useGithubAuthentication();
 
   const location = useLocation();
@@ -40,4 +40,4 @@ const getUrlParam = (location, param) => {
   return params.get(param);
 };
 
-export default AuthenticatePage;
+export default AuthenticationPage;

@@ -9,7 +9,7 @@ import UserContext from "context";
 import MutationMenu from "component/MutationMenu";
 import { useHistory } from "react-router-dom";
 
-const Post = () => {
+const PostPage = () => {
   const { user } = useContext(UserContext);
 
   const props = useHandleFormValues(options);
@@ -44,4 +44,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default PostPage;

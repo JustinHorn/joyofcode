@@ -14,7 +14,7 @@ import useProject from "hooks/useProject";
 
 import useHandleQuery from "helper/useHandleQuery";
 
-import styles from "./projectPage.module.css";
+import styles from "./styles/projectPage.module.css";
 
 const ProjectPage = ({ query }) => {
   let { id } = useParams();

@@ -1,16 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import Feed from "component/Feed";
 
 import UserContext from "context";
 
 import TagInput from "component/forms/Inputs/TagInput";
 
-import styles from "./mainpage.module.css";
+import styles from "./styles/mainPage.module.css";
 import ProjectLayoutContext from "context/ProjectLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useLinedCached from "hooks/useLinedCached";
 
-const Mainpage = () => {
+const MainPage = () => {
   const { user } = useContext(UserContext);
 
   const [filters, setFilters] = useState({
@@ -72,4 +72,4 @@ const Mainpage = () => {
   );
 };
 
-export default Mainpage;
+export default MainPage;
