@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthenticationButtons from "component/Authentication";
 
 import styles from "./navbar.module.css";
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import { NavLink, useLocation } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import useLikeProject from "hooks/project/useLike";
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import styles from "./likehandler.module.css";
 

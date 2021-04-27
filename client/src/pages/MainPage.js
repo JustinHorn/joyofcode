@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Feed from "component/Feed";
 
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import TagInput from "component/forms/Inputs/TagInput";
 

@@ -1,14 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Project from "component/Project";
 
 import List from "component/List";
 import ProjectLayoutContext from "context/ProjectLayout";
 import useOnView from "react-useonview";
 import ReactLoading from "react-loading";
+import { useQueryProjectsReturn } from "hooks/user/useQueryProjects";
 
-const UserProjects = ({ userId, queryProps }) => {
-  !userId && (userId = "bsValue");
+type UserProjectsProps = {
+  queryProps: useQueryProjectsReturn;
+};
 
+const UserProjects = ({ queryProps }: UserProjectsProps) => {
   const { lined } = useContext(ProjectLayoutContext);
 
   const { list, loading, error, addItems, old_loading } = queryProps;

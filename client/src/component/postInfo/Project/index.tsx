@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import PostInfoGeneral from "../General";
 import ProjectLayoutContext from "context/ProjectLayout";

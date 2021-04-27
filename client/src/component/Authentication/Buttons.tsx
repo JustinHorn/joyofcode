@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import Icon from "component/icon/Icon";
 

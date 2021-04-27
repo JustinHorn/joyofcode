@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./App.css";
 import Navbar from "component/Navbar";
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import MainPage from "pages/MainPage";
 
@@ -9,7 +9,7 @@ import ProjectPage from "pages/ProjectPage";
 
 import PrivateRoute from "component/PrivateRoute";
 
-import Post from "pages/PostingPage";
+import PostingPage from "pages/PostingPage";
 
 import ScrollToTop from "component/ScrollToTop";
 
@@ -45,7 +45,7 @@ function App() {
               <ProjectPage />
             </Route>
             <PrivateRoute path="/post">
-              <Post />
+              <PostingPage />
             </PrivateRoute>
             <Route path="/authenticate">
               <AuthenticationPage />

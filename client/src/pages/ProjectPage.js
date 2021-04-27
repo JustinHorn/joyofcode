@@ -3,7 +3,7 @@ import { useHistory, useParams, Redirect } from "react-router-dom";
 
 import Project from "component/Project";
 
-import UserContext from "context";
+import UserContext from "context/UserContext";
 
 import CommentSection from "section/Comment";
 import ProjectUpdatePopup from "component/Project/ProjectUpdatePopup";

@@ -10,7 +10,7 @@ import useFeed from "hooks/useFeed";
 import useHandleQuery from "helper/useHandleQuery";
 import ProjectLayoutContext from "context/ProjectLayout";
 
-import useDoOnView from "hooks/useDoOnView";
+import useDoOnView from "react-useonview";
 import ReactLoading from "react-loading";
 
 type Feed = {

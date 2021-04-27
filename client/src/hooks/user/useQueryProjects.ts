@@ -20,7 +20,7 @@ type useQueryProjectsProps = {
   take?: number;
 };
 
-type useQueryProjectsReturn = {
+export type useQueryProjectsReturn = {
   list: Project[];
   data: any;
   loading: boolean;
