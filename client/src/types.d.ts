@@ -1,22 +1,23 @@
 /// <reference types="react-scripts" />
 
-interface Tag {
-  id: number;
-  name: string;
-}
-
 interface Project {
-  commentCount: number;
-  date: string;
-  description: string;
-  github: string;
-  href: string;
   id: number;
+  title: string;
+  href: string;
+  date: string;
   imgUrl: string;
+  github: string;
+  description: string;
+  commentCount: number;
   likes: Like[];
   postedBy: User;
   tags: Tag[];
-  techTags: TechIcon[];
+  techTags: string[];
+}
+
+interface Tag {
+  id: number;
+  name: string;
 }
 
 interface User {
@@ -37,4 +38,11 @@ interface TechIcon {
   filetype: string;
   backgroundSize: string;
   location: string;
+}
+
+interface Comment {
+  id: number;
+  text: string;
+  date: number;
+  postedBy: User;
 }

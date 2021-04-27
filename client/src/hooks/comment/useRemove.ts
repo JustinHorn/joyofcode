@@ -8,14 +8,20 @@ const REMOVE_COMMENT_MUTATION = gql`
   }
 `;
 
-const useRemoveComment = (projectId) => {
+type useRemoveCommentProps = number;
+type useRemoveCommentReturn = { getRemove: (id: number) => () => void };
+
+const useRemoveComment = (
+  projectId: useRemoveCommentProps
+): useRemoveCommentReturn => {
+  const a: any = {};
   const [removeComment, { error }] = useMutation(REMOVE_COMMENT_MUTATION, {
-    update: (cache, result, info) => {
+    update(cache: any, result: any, info: any) {
       const { removeComment: id } = result.data;
 
       const comments = cache.readQuery({ ...getQueryVars(projectId) }).comments;
 
-      const index = comments.findIndex((c) => c.id === id);
+      const index = comments.findIndex((c: Comment) => c.id === id);
       const new_comments = [
         ...comments.slice(0, index),
         ...comments.slice(index + 1),
@@ -25,9 +31,10 @@ const useRemoveComment = (projectId) => {
         data: { comments: new_comments },
       });
     },
+    ...a,
   });
 
-  const getRemove = (id) => () => {
+  const getRemove = (id: number) => () => {
     removeComment({ variables: { commentId: id } });
   };
   return { getRemove };

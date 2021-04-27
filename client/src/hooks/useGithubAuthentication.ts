@@ -17,7 +17,12 @@ const authWithGithub = gql`
   }
 `;
 
-const useAuthWithCode = () => {
+type useAuthWithCodeReturn = [
+  (x: { variables: { code: string } }) => void,
+  { data: any; error: any }
+];
+
+const useAuthWithCode = (): useAuthWithCodeReturn => {
   const [mutate, { data, error }] = useMutation(authWithGithub);
   const { login } = useContext(UserContext);
 

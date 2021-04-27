@@ -43,41 +43,41 @@ type useLikeProjectReturn = {
 };
 
 const useLikeProject = (liked: boolean): useLikeProjectReturn => {
-  const update: any = (cache: any, m_result: any, m_id: any) => {
-    const feed = readFeed(cache);
-    let r;
-
-    r = update_like(feed, m_result, m_id);
-
-    const { index, new_project } = r;
-    const new_data = {
-      feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
-    };
-    writeFeed(cache, new_data);
-  };
+  const a: any = {};
 
   const [likeProject, { error, loading }] = useMutation(mutation_likeProject, {
-    update,
+    update: (cache: any, m_result: any, m_id: any) => {
+      const feed = readFeed(cache);
+      let r;
+
+      r = update_like(feed, m_result, m_id);
+
+      const { index, new_project } = r;
+      const new_data = {
+        feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
+      };
+      writeFeed(cache, new_data);
+    },
+    ...a,
   });
-
-  const inner_update_unlike: any = (cache: any, m_result: any, m_id: any) => {
-    const feed = readFeed(cache);
-    let r;
-
-    r = update_unlike(feed, m_result, m_id);
-
-    const { index, new_project } = r;
-    const new_data = {
-      feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
-    };
-    writeFeed(cache, new_data);
-  };
 
   const [
     unlikeProject,
     { error: unlikeError, loading: unlikeLoading },
   ] = useMutation(mutation_unlikeProject, {
-    update: inner_update_unlike,
+    update: (cache: any, m_result: any, m_id: any) => {
+      const feed = readFeed(cache);
+      let r;
+
+      r = update_unlike(feed, m_result, m_id);
+
+      const { index, new_project } = r;
+      const new_data = {
+        feed: [...feed.slice(0, index), new_project, ...feed.slice(index + 1)],
+      };
+      writeFeed(cache, new_data);
+    },
+    ...a,
   });
 
   useEffect(() => {

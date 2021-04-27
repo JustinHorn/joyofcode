@@ -5,7 +5,11 @@ function useQuery() {
   const location = useLocation();
   return new URLSearchParams(location.search);
 }
-const useLinedCached = (linedDefaultTF) => {
+
+
+
+
+const useLinedCached = (linedDefaultTF:any) => {
   const query = useQuery();
 
   const queryLined = query.get("lined");

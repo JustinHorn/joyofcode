@@ -1,12 +1,12 @@
-const { getUserId } = require("./helper/authentication");
+const { getUserId } = require('./helper/authentication');
 
-const hello = () => "Hello World!";
+const hello = () => 'Hello World!';
 
 const authorize = async (p, args, context) => {
   const userId = getUserId(context);
   const user = await context.prisma.user.findOne({ where: { id: userId } });
   if (!user) {
-    throw new Error("No user found");
+    throw new Error('No user found');
   }
 
   return user;

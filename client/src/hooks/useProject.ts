@@ -13,7 +13,7 @@ const QUERY_PROJECT = gql`
   }
 `;
 
-const useProject = (id) => {
+const useProject = (id:number) => {
   const { loading, data, error } = useQuery(QUERY_PROJECT, {
     variables: { id },
   });

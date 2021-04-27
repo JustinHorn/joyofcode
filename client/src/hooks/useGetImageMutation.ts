@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { useMutation,gql } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 const getImage_MUTATION = gql`
   mutation GetImage_MUTATION($href: String!) {
     makePictureOfWebsite(href: $href)
   }
 `;
 
-const useGetImageMutation = (setImage) => {
+const useGetImageMutation = (
+  setImage: (data: string) => void
+): ((href: string) => void) => {
   const [getImage, { error: imageError, data: imageData }] = useMutation(
     getImage_MUTATION
   );
@@ -17,7 +19,7 @@ const useGetImageMutation = (setImage) => {
     }
   }, [imageData]);
 
-  const preview = (href) => {
+  const preview = (href:string) => {
     getImage({ variables: { href } });
   };
 

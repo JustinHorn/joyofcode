@@ -4,7 +4,7 @@ import styles from "./commentsection.module.css";
 
 import Comment from "component/Comment";
 
-import useAddComment from "hooks/comment/useAddComment";
+import useAddComment from "hooks/comment/useAddCommen";
 
 import useQueryComments from "hooks/comment/useQuery";
 

@@ -15,7 +15,7 @@ const QueryUser = gql`
   }
 `;
 
-const useGetUser = (id) => {
+const useGetUser = (id: number): User | undefined => {
   const { user: currentUser, isCurrentUser } = useContext(UserContext);
 
   const [getUserData, { data, loading, error }] = useLazyQuery(QueryUser, {

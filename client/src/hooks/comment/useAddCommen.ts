@@ -18,9 +18,12 @@ mutation ADDCOMMENT_MUTATION(
   }
 }`;
 
-const useAddComment = (projectId) => {
+const useAddComment = (
+  projectId: number
+): { sendComment: (text: string) => void } => {
+  const a: any = {};
   const [mutate, { error }] = useMutation(ADDCOMMENT_MUTATION, {
-    update: (cache, result, info) => {
+    update: (cache: any, result: any, info: any) => {
       const { addComment: comment } = result.data;
 
       const comments = cache.readQuery({ ...getQueryVars(projectId) }).comments;
@@ -33,9 +36,10 @@ const useAddComment = (projectId) => {
         data: { comments: new_comments },
       });
     },
+    ...a,
   });
 
-  const sendComment = (text) => {
+  const sendComment = (text: string) => {
     mutate({ variables: { projectId, text } });
   };
 
