@@ -1,4 +1,6 @@
-const addComment = async (p, args, context) => {
+import { Context } from 'app-types';
+
+const addComment = async (p: any, args: any, context: Context) => {
   const { userId } = args;
   const comment = context.prisma.comment.create({
     data: {
@@ -14,7 +16,7 @@ const addComment = async (p, args, context) => {
   return comment;
 };
 
-const removeComment = async (p, args, context) => {
+const removeComment = async (p: any, args: any, context: Context) => {
   const { userId } = args;
 
   const user = await context.prisma.user.update({

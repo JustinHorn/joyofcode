@@ -1,8 +1,9 @@
-const { getUserId } = require('./helper/authentication');
+import { Context } from 'app-types';
+import { getUserId } from './helper/authentication';
 
 const hello = () => 'Hello World!';
 
-const authorize = async (p, args, context) => {
+const authorize = async (_p: any, _args: any, context: Context) => {
   const userId = getUserId(context);
   const user = await context.prisma.user.findOne({ where: { id: userId } });
   if (!user) {
@@ -12,11 +13,11 @@ const authorize = async (p, args, context) => {
   return user;
 };
 
-const project = async (p, args, context) => {
+const project = async (_p: any, args: any, context: Context) => {
   return await context.prisma.project.findOne({ where: { id: args.id } });
 };
 
-const feed = async (p, args, context) => {
+const feed = async (_p: any, args: any, context: Context) => {
   return await context.prisma.project.findMany({
     skip: args.skip,
     take: args.take,
@@ -24,7 +25,7 @@ const feed = async (p, args, context) => {
   });
 };
 
-const comments = async (p, args, context) => {
+const comments = async (_p: any, args: any, context: Context) => {
   return await context.prisma.comment.findMany({
     where: { projectId: args.projectId },
     skip: args.skip,
@@ -33,11 +34,11 @@ const comments = async (p, args, context) => {
   });
 };
 
-const user = async (p, args, context, info) => {
+const user = async (_p: any, args: any, context: Context, _info: any) => {
   return await context.prisma.user.findOne({ where: { id: args.id } });
 };
 
-const userLikes = async (p, args, context, info) => {
+const userLikes = async (_p: any, args: any, context: Context, _info: any) => {
   return await context.prisma.like.findMany({
     where: { userId: args.id },
     skip: args.skip,
@@ -45,7 +46,12 @@ const userLikes = async (p, args, context, info) => {
     orderBy: args.orderBy,
   });
 };
-const userProjects = async (p, args, context, info) => {
+const userProjects = async (
+  _p: any,
+  args: any,
+  context: Context,
+  _info: any
+) => {
   return await context.prisma.project.findMany({
     where: { userId: args.id },
     skip: args.skip,
@@ -53,7 +59,12 @@ const userProjects = async (p, args, context, info) => {
     orderBy: args.orderBy,
   });
 };
-const userComments = async (p, args, context, info) => {
+const userComments = async (
+  _p: any,
+  args: any,
+  context: Context,
+  _info: any
+) => {
   return await context.prisma.comment.findMany({
     where: { userId: args.id },
     skip: args.skip,
@@ -62,7 +73,7 @@ const userComments = async (p, args, context, info) => {
   });
 };
 
-module.exports = {
+export {
   hello,
   project,
   feed,

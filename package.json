@@ -9,11 +9,12 @@
   "scripts": {
     "start": "node build/index.js",
     "build": "tsc --project ./",
-    "build-docker":"yarn build && cd client/ && yarn build && cd .. && docker build -t joyofcode .",
+    "build-docker": "yarn build && cd client/ && yarn build && cd .. && docker build -t joyofcode .",
     "clean": "kill -9 $(lsof -t -i:4000)",
     "dev": "nodemon -e .js,.graphql --ignore client/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "yarn build && yarn prisma generate && cd client && yarn && yarn build"
+    "heroku-postbuild": "yarn build && yarn prisma generate && cd client && yarn && yarn build",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
@@ -36,12 +37,14 @@
     "moment": "^2.27.0",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
-    "nodemon": "^2.0.4",
     "puppeteer": "^5.3.0",
     "url-parse": "^1.4.7"
   },
   "devDependencies": {
     "@types/ws": "^7.4.1",
+    "graphql": "^15.5.0",
+    "nodemon": "^2.0.7",
+    "prisma": "^2.21.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   }

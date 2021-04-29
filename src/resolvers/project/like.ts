@@ -1,4 +1,6 @@
-const likeProject = async (p, args, context, i) => {
+import { Context } from 'app-types';
+
+const likeProject = async (p: any, args: any, context: Context, i: any) => {
   const { userId } = args;
   const { id: projectId } = args;
 
@@ -7,7 +9,7 @@ const likeProject = async (p, args, context, i) => {
   });
 
   if (exists) {
-    throw new Error("Project has already been liked!");
+    throw new Error('Project has already been liked!');
   }
 
   const like = context.prisma.like.create({
@@ -19,7 +21,7 @@ const likeProject = async (p, args, context, i) => {
   return like;
 };
 
-const unlikeProject = async (p, args, context, i) => {
+const unlikeProject = async (p: any, args: any, context: Context, i: any) => {
   const { userId } = args;
   const { id: projectId } = args;
 

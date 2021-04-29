@@ -2,7 +2,7 @@ import { GraphQLServer } from 'graphql-yoga';
 
 import path from 'path';
 
-import { resolvers } from './resolvers';
+import { resolvers } from './bundleresolvers';
 
 import { PrismaClient } from '@prisma/client';
 
