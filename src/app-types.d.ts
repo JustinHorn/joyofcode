@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import { ContextParameters } from 'graphql-yoga/dist/types';
+import { Context as innerContext } from 'graphql-yoga/dist/types';
 
-interface Context extends ContextParameters {
+interface Context extends innerContext {
   prisma: PrismaClient;
+  [x: string]: any;
 }

@@ -41,6 +41,9 @@
     "url-parse": "^1.4.7"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/puppeteer": "^5.4.3",
     "@types/ws": "^7.4.1",
     "nodemon": "^2.0.7",
     "prisma": "^2.21.2",

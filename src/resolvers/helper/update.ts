@@ -1,4 +1,6 @@
-const getOldTags = async (id, context) => {
+import { Context } from 'app-types';
+
+const getOldTags = async (id: number, context: Context) => {
   return (
     await context.prisma.project
       .findOne({
@@ -11,12 +13,12 @@ const getOldTags = async (id, context) => {
   }));
 };
 
-const formatCoC = (tag) => ({
+const formatCoC = (tag: string) => ({
   create: { name: tag },
   where: { name: tag },
 });
 
-const getTags = async (args, context) => {
+export const getTags = async (args: any, context: Context) => {
   if (!args.tags) return {};
 
   const oldTags = await getOldTags(args.id, context);
@@ -25,7 +27,10 @@ const getTags = async (args, context) => {
 
   const new_tags = filterNewTags(args.tags, oldNames);
 
-  const nextTags = { connectOrCreate: new_tags.map((x) => formatCoC(x)) };
+  const nextTags = {
+    connectOrCreate: new_tags.map((x: string) => formatCoC(x)),
+    disconnect: undefined as { id: number }[] | undefined,
+  };
 
   const abandonedTags = oldTags.filter((x) => !args.tags.includes(x.name));
 
@@ -36,8 +41,6 @@ const getTags = async (args, context) => {
   return nextTags;
 };
 
-const filterNewTags = (nT, oT) => {
-  return nT.filter((nT) => oT.findIndex((oT) => oT.name === nT) === -1);
+const filterNewTags = (nT: string[], oT: string[]) => {
+  return nT.filter((nT) => oT.findIndex((oT) => oT === nT) === -1);
 };
-
-module.exports = { getTags };
