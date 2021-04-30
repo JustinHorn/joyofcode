@@ -25,6 +25,7 @@
     "@prisma/cli": "2.5.1",
     "@prisma/client": "2.5.1",
     "@types/classnames": "^2.2.11",
+    "@types/node-fetch": "^2.5.10",
     "@types/react": "^17.0.3",
     "aws-sdk": "^2.753.0",
     "bcryptjs": "^2.4.3",

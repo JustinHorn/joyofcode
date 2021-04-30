@@ -1,8 +1,8 @@
-const authenticationMutations = require("./authentication/authentication.js");
+import { authorizeWithGithub } from './authentication/authentication';
 
-const projectMutations = require("./project");
+import projectMutations from './project';
 
-module.exports = {
-  ...authenticationMutations,
+export default {
+  authorizeWithGithub,
   ...projectMutations,
 };

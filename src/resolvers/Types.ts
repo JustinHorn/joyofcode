@@ -1,90 +1,90 @@
-const Project = {
-  tags: (parent, args, context) => {
+import { Context } from 'app-types';
+
+export const Project = {
+  tags: (parent: any, args: any, context: Context) => {
     return context.prisma.project.findOne({ where: { id: parent.id } }).tags();
   },
-  postedBy: (parent, args, context) => {
+  postedBy: (parent: any, args: any, context: Context) => {
     return context.prisma.project
       .findOne({ where: { id: parent.id } })
       .postedBy();
   },
-  likes: (parent, args, context) => {
+  likes: (parent: any, args: any, context: Context) => {
     return context.prisma.project.findOne({ where: { id: parent.id } }).likes();
   },
-  likeCount: async (parent, args, context) => {
+  likeCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.like.count({
       where: { projectId: parent.id },
     });
   },
-  commentCount: async (parent, args, context) => {
+  commentCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.comment.count({
       where: { projectId: parent.id },
     });
   },
-  comments: async (parent, args, context) => {
+  comments: async (parent: any, args: any, context: Context) => {
     return await context.prisma.project
       .findOne({ where: { id: parent.id } })
       .comments();
   },
-  techTags: (parent) => parent.techTags || [],
+  techTags: (parent: any) => parent.techTags || [],
 };
 
 const Tag = {
-  projects: (parent, args, context) => {
+  projects: (parent: any, args: any, context: Context) => {
     return context.prisma.tag.findOne({ where: { id: parent.id } }).projects();
   },
 };
 
-const User = {
-  posts: (parent, args, context) => {
+export const User = {
+  posts: (parent: any, args: any, context: Context) => {
     return context.prisma.user
       .findOne({ where: { id: parent.id } })
-      .postedprojects();
+      .postedProjects();
   },
-  likes: (parent, args, context) => {
+  likes: (parent: any, args: any, context: Context) => {
     return context.prisma.user.findOne({ where: { id: parent.id } }).likes();
   },
-  comments: async (parent, args, context) => {
+  comments: async (parent: any, args: any, context: Context) => {
     return await context.prisma.user
       .findOne({ where: { id: parent.id } })
       .comments();
   },
-  commentCount: async (parent, args, context) => {
+  commentCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.comment.count({
       where: { userId: parent.id },
     });
   },
-  projectCount: async (parent, args, context) => {
+  projectCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.project.count({
       where: { userId: parent.id },
     });
   },
-  likeCount: async (parent, args, context) => {
+  likeCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.like.count({
       where: { userId: parent.id },
     });
   },
 };
 
-const Like = {
-  user: (parent, args, context) => {
+export const Like = {
+  user: (parent: any, args: any, context: Context) => {
     return context.prisma.like.findOne({ where: { id: parent.id } }).user();
   },
-  project: (parent, args, context) => {
+  project: (parent: any, args: any, context: Context) => {
     return context.prisma.like.findOne({ where: { id: parent.id } }).project();
   },
 };
 
-const Comment = {
-  postedBy: (parent, args, context) => {
+export const Comment = {
+  postedBy: (parent: any, args: any, context: Context) => {
     return context.prisma.comment
       .findOne({ where: { id: parent.id } })
       .postedBy();
   },
-  postedUnder: (parent, args, context) => {
+  postedUnder: (parent: any, args: any, context: Context) => {
     return context.prisma.comment
       .findOne({ where: { id: parent.id } })
       .postedUnder();
   },
 };
-
-module.exports = { Project, Tag, User, Like, Comment };

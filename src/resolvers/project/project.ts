@@ -1,14 +1,18 @@
-const { getTags } = require('../helper/update');
+import { getTags } from '../helper/update';
 
-const { getImage } = require('../helper/shootPicture');
+import { getImage } from '../helper/shootPicture';
+import { Context } from 'app-types';
+import * as check from '../helper/check';
 
-const makePictureOfWebsite = async (p, args, context) => {
+export const makePictureOfWebsite = async (
+  p: any,
+  args: any,
+  context: Context
+) => {
   return getImage(args.href);
 };
 
-const check = require('../helper/check');
-
-const checkArgs = (args) => {
+const checkArgs = (args: any) => {
   const { tags, href, github } = args;
 
   tags && check.tags(tags);
@@ -19,14 +23,14 @@ const checkArgs = (args) => {
   args.techTags = { set: args.techTags };
 };
 
-const addProject = async (p, args, context, i) => {
+export const addProject = async (p: any, args: any, context: Context) => {
   const { userId } = args;
   const { href, title, github, imgUrl, description, techTags } = args;
 
   checkArgs(args);
 
   const tags = args.tags
-    ? args.tags.map((n) => ({
+    ? args.tags.map((n: string) => ({
         create: { name: n },
         where: { name: n },
       }))
@@ -52,7 +56,7 @@ const addProject = async (p, args, context, i) => {
   return project;
 };
 
-const updateProject = async (p, args, context, i) => {
+export const updateProject = async (p: any, args: any, context: Context) => {
   const { userId } = args;
 
   const { href, title, github, imgUrl, description, techTags } = args;
@@ -86,12 +90,16 @@ const updateProject = async (p, args, context, i) => {
   return context.prisma.project.findOne({ where: { id: args.id } });
 };
 
-const deleteProject = async (p, args, context, i) => {
+export const deleteProject = async (p: any, args: any, context: Context) => {
   const { userId } = args;
 
   const project = await context.prisma.project.findOne({
     where: { id: args.id },
   });
+
+  if (!project) {
+    throw new Error('Project does not exist');
+  }
 
   if (project.userId !== userId) {
     throw new Error('Project not posted by user');
@@ -105,11 +113,4 @@ const deleteProject = async (p, args, context, i) => {
   });
 
   return project;
-};
-
-module.exports = {
-  addProject,
-  deleteProject,
-  updateProject,
-  makePictureOfWebsite,
 };
