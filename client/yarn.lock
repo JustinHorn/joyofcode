@@ -9741,10 +9741,10 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-useonview@^1.0.0:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-useonview/-/react-useonview-1.1.3.tgz#b13e60403804740e2a225a5318a6b2bde1c6c107"
-  integrity sha512-DxDuavkWiZMfOai1Yyceli3oDKQ2OU7vnclkmnDS6xGcXLYPjGlMp54+c4qYpjD539kN3ojJEogOIXYjCyt+oA==
+react-useonview@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-useonview/-/react-useonview-1.2.2.tgz#c2fe201d7e7d4dd5947b3e3f6e5ff927e3f82285"
+  integrity sha512-znTGIdhBx8N++aC7dGrCN7vJxZaq/ff/xgF2AHwbkY+ZlhmkbHubLCAvWm6Ll/PIfdmxr+2E0gdc26BXWVqwlw==
 
 react@^16.13.1:
   version "16.14.0"

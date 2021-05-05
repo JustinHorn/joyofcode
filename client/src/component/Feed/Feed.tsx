@@ -31,9 +31,7 @@ const Feed = ({ filter }: Feed) => {
     [filter, projects]
   );
 
-  const dotDotDot = (useDoOnView(
-    addItems
-  ) as unknown) as React.LegacyRef<HTMLSpanElement>;
+  const dotDotDot = useDoOnView(addItems);
 
   return (
     <div>

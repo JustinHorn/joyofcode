@@ -46,8 +46,3 @@ interface Comment {
   date: number;
   postedBy: User;
 }
-
-declare module "react-useonview" {
-  const e = (x: any) => any;
-  export default e;
-}
