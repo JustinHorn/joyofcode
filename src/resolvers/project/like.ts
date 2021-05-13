@@ -4,8 +4,8 @@ const likeProject = async (p: any, args: any, context: Context, i: any) => {
   const { userId } = args;
   const { id: projectId } = args;
 
-  const exists = await context.prisma.like.findOne({
-    where: { userId_projectId: { userId, projectId } },
+  const exists = await context.prisma.like.findFirst({
+    where: {  userId, projectId  , },
   });
 
   if (exists) {

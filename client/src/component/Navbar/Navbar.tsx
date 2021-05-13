@@ -8,7 +8,7 @@ import UserContext from "context/UserContext";
 import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user,loggedIn } = useContext(UserContext);
 
   const location = useLocation();
 
@@ -24,7 +24,7 @@ const Navbar = () => {
             <button className={isSelected("/")}>Home </button>
           </NavLink>
 
-          {user && (
+          {loggedIn && (
             <NavLink to={"/user/" + user.id}>
               <button className={isSelected("/user/" + user.id)}> Me</button>
             </NavLink>
@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
 
         <div className={styles.actions}>
-          {user && (
+          {loggedIn && (
             <NavLink to="/post">
               <button className={isSelected("/post")}> Post</button>
             </NavLink>

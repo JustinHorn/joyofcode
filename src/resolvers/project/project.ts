@@ -87,13 +87,13 @@ export const updateProject = async (p: any, args: any, context: Context) => {
     },
   });
 
-  return context.prisma.project.findOne({ where: { id: args.id } });
+  return context.prisma.project.findFirst({ where: { id: args.id } });
 };
 
 export const deleteProject = async (p: any, args: any, context: Context) => {
   const { userId } = args;
 
-  const project = await context.prisma.project.findOne({
+  const project = await context.prisma.project.findFirst({
     where: { id: args.id },
   });
 

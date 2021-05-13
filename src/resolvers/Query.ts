@@ -5,7 +5,7 @@ const hello = () => 'Hello World!';
 
 const authorize = async (_p: any, _args: any, context: Context) => {
   const userId = getUserId(context);
-  const user = await context.prisma.user.findOne({ where: { id: userId } });
+  const user = await context.prisma.user.findFirst({ where: { id: userId } });
   if (!user) {
     throw new Error('No user found');
   }
@@ -14,7 +14,7 @@ const authorize = async (_p: any, _args: any, context: Context) => {
 };
 
 const project = async (_p: any, args: any, context: Context) => {
-  return await context.prisma.project.findOne({ where: { id: args.id } });
+  return await context.prisma.project.findFirst({ where: { id: args.id } });
 };
 
 const feed = async (_p: any, args: any, context: Context) => {
@@ -35,7 +35,7 @@ const comments = async (_p: any, args: any, context: Context) => {
 };
 
 const user = async (_p: any, args: any, context: Context, _info: any) => {
-  return await context.prisma.user.findOne({ where: { id: args.id } });
+  return await context.prisma.user.findFirst({ where: { id: args.id } });
 };
 
 const userLikes = async (_p: any, args: any, context: Context, _info: any) => {

@@ -5,11 +5,11 @@ import UserContext from "context/UserContext";
 import Icon from "component/icon/Icon";
 
 const AuthenticationButtons = () => {
-  const { user, logout } = useContext(UserContext);
+  const { loggedIn, logout } = useContext(UserContext);
 
   return (
     <div>
-      {(!user && (
+      {(!loggedIn && (
         <button>
           <a
             href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&scope=user`} //its okay to expose the client_id

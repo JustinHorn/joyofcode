@@ -3,7 +3,7 @@ import { Context } from 'app-types';
 const getOldTags = async (id: number, context: Context) => {
   return (
     await context.prisma.project
-      .findOne({
+      .findFirst({
         where: { id: id },
       })
       .tags()

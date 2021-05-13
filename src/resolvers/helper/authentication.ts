@@ -15,7 +15,7 @@ export const getUserId = (context: Context) => {
 export const getUserIdVerified = async (context: Context) => {
   const userId = getUserId(context);
 
-  const user = await context.prisma.user.findOne({ where: { id: userId } });
+  const user = await context.prisma.user.findFirst({ where: { id: userId } });
 
   if (!user) {
     throw new Error('Could not find user for with this auth token');

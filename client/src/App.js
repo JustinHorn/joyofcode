@@ -36,7 +36,6 @@ function App() {
 
       <div className="Layout">
         <main>
-          {user && !user.verified && <h1>Not verified!</h1>}
           <Switch>
             <Route path="/user/:id">
               <UserPage />

@@ -2,15 +2,15 @@ import { Context } from 'app-types';
 
 export const Project = {
   tags: (parent: any, args: any, context: Context) => {
-    return context.prisma.project.findOne({ where: { id: parent.id } }).tags();
+    return context.prisma.project.findFirst({ where: { id: parent.id } }).tags();
   },
   postedBy: (parent: any, args: any, context: Context) => {
     return context.prisma.project
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .postedBy();
   },
   likes: (parent: any, args: any, context: Context) => {
-    return context.prisma.project.findOne({ where: { id: parent.id } }).likes();
+    return context.prisma.project.findFirst({ where: { id: parent.id } }).likes();
   },
   likeCount: async (parent: any, args: any, context: Context) => {
     return await context.prisma.like.count({
@@ -24,7 +24,7 @@ export const Project = {
   },
   comments: async (parent: any, args: any, context: Context) => {
     return await context.prisma.project
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .comments();
   },
   techTags: (parent: any) => parent.techTags || [],
@@ -32,22 +32,22 @@ export const Project = {
 
 const Tag = {
   projects: (parent: any, args: any, context: Context) => {
-    return context.prisma.tag.findOne({ where: { id: parent.id } }).projects();
+    return context.prisma.tag.findFirst({ where: { id: parent.id } }).projects();
   },
 };
 
 export const User = {
   posts: (parent: any, args: any, context: Context) => {
     return context.prisma.user
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .postedProjects();
   },
   likes: (parent: any, args: any, context: Context) => {
-    return context.prisma.user.findOne({ where: { id: parent.id } }).likes();
+    return context.prisma.user.findFirst({ where: { id: parent.id } }).likes();
   },
   comments: async (parent: any, args: any, context: Context) => {
     return await context.prisma.user
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .comments();
   },
   commentCount: async (parent: any, args: any, context: Context) => {
@@ -69,22 +69,22 @@ export const User = {
 
 export const Like = {
   user: (parent: any, args: any, context: Context) => {
-    return context.prisma.like.findOne({ where: { id: parent.id } }).user();
+    return context.prisma.like.findFirst({ where: { id: parent.id } }).user();
   },
   project: (parent: any, args: any, context: Context) => {
-    return context.prisma.like.findOne({ where: { id: parent.id } }).project();
+    return context.prisma.like.findFirst({ where: { id: parent.id } }).project();
   },
 };
 
 export const Comment = {
   postedBy: (parent: any, args: any, context: Context) => {
     return context.prisma.comment
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .postedBy();
   },
   postedUnder: (parent: any, args: any, context: Context) => {
     return context.prisma.comment
-      .findOne({ where: { id: parent.id } })
+      .findFirst({ where: { id: parent.id } })
       .postedUnder();
   },
 };

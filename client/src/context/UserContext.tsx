@@ -9,6 +9,7 @@ export const NoUser: User = {
 
 type UserContextProps = {
   user: User;
+  loggedIn:boolean;
   isCurrentUser: (id: number) => boolean;
   logout: () => void;
   login: (user: User, token: string) => void;
@@ -18,6 +19,7 @@ type UserContextProps = {
 
 const UserContext = React.createContext<UserContextProps>({
   user: NoUser,
+  loggedIn:false,
   isCurrentUser: (id) => false,
   logout: () => {},
   login: (u, t) => {},
@@ -57,6 +59,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     <UserContext.Provider
       value={{
         user,
+        loggedIn: user !== NoUser,
         isCurrentUser,
         logout,
         login,
